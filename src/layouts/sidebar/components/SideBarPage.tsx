@@ -21,9 +21,9 @@ function SideBarPage() {
                     <div className="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
                         data-bs-parent="#sidenavAccordionPages">
                         <nav className="sb-sidenav-menu-nested nav">
-                            <NavLink className="nav-link" to="login.html">Login</NavLink>
-                            <NavLink className="nav-link" to="register.html">Register</NavLink>
-                            <NavLink className="nav-link" to="password.html">Forgot Password</NavLink>
+                            <NavLink className="nav-link" to="/admin/page/login">Login</NavLink>
+                            <NavLink className="nav-link" to="/admin/page/register">Register</NavLink>
+                            <NavLink className="nav-link" to="/admin/page/resetPass">Forgot Password</NavLink>
                         </nav>
                     </div>
                     <NavLink className="nav-link collapsed" to="#" data-bs-toggle="collapse"
@@ -35,9 +35,9 @@ function SideBarPage() {
                     <div className="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
                         data-bs-parent="#sidenavAccordionPages">
                         <nav className="sb-sidenav-menu-nested nav">
-                            <NavLink className="nav-link" to="401.html">401 Page</NavLink>
-                            <NavLink className="nav-link" to="404.html">404 Page</NavLink>
-                            <NavLink className="nav-link" to="500.html">500 Page</NavLink>
+                            <NavLink className="nav-link" to="/admin/page/401">401 Page</NavLink>
+                            <NavLink className="nav-link" to="/admin/page/404">404 Page</NavLink>
+                            <NavLink className="nav-link" to="/admin/page/500">500 Page</NavLink>
                         </nav>
                     </div>
                 </nav>
