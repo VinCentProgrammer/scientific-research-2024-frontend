@@ -1,33 +1,29 @@
 import { useEffect, useState } from 'react';
 import getBase64 from '../../utils/Base64';
 import { NavLink } from 'react-router-dom';
-import RequireAdmin from '../admin/RequireAdmin';
 import SideBar from '../sidebar/SideBar';
 
 function UserForm() {
-    const [user, setUser] = useState({
-        username: '',
-        email: '',
-        password: '',
-        firstname: '',
-        lastname: '',
-        phoneNumber: '',
-        gender: true,
-        active: 0,
-        activeCode: "",
-        avatar: null,
-        address: '',
-        createdAt: ''
-    })
+    const [userId, setUserId] = useState(0);
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [firstname, setFirstname] = useState("");
+    const [lastname, setLastname] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [password, setPassword] = useState("");
+    const [rePassword, setRePassword] = useState("");
+    const [gender, setGender] = useState(1);
+    const [address, setAddress] = useState("");
+    const [avatar, setAvatar] = useState<File | null>(null);
 
-    const [rePassword, setRePassword] = useState('');
 
     // Các biến báo lỗi
     const [errorUsername, setErrorUsername] = useState("");
     const [errorEmail, setErrorEmail] = useState("");
     const [errorPassword, setErrorPassword] = useState("");
     const [errorRePassword, setErrorRePassword] = useState("");
-    const [notification, setNotification] = useState("");
+    const [successNoti, setSuccessNoti] = useState("");
+    const [errorNoti, setErrorNoti] = useState("");
 
 
     // Handle submit form
@@ -42,43 +38,53 @@ function UserForm() {
         e.preventDefault();
 
         // Kiểm tra các điều kiện và gán kết quả vào biến
-        const isUsernameValid = !await checkExistedUsername(user.username);
-        const isEmailValid = !await checkExistedEmail(user.email);
-        const isPasswordValid = !checkPassword(user.password);
+        const isUsernameValid = !await checkExistedUsername(username);
+        const isEmailValid = !await checkExistedEmail(email);
+        const isPasswordValid = !checkPassword(password);
 
         // Kiểm tra tất cả các điều kiện
         if (isUsernameValid && isEmailValid && isPasswordValid) {
-            const base64Avatar = user.avatar ? await getBase64(user.avatar) : null;
+            const base64Avatar = avatar ? await getBase64(avatar) : null;
 
             const token = localStorage.getItem('token');
-
-            fetch("http://localhost:8080/user/add", {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(user)
-            }
-            ).then((response) => {
-                if (response.ok) {
-                    alert("Đã thêm user thành công!");
-                    setUser({
-                        username: '',
-                        email: '',
-                        password: '',
-                        firstname: '',
-                        lastname: '',
-                        phoneNumber: '',
+            fetch("http://localhost:8080/account/register",
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        userId: 0,
+                        username: username,
+                        email: email,
+                        password: password,
+                        firstname: firstname,
+                        lastname: lastname,
+                        phoneNumber: phoneNumber,
                         gender: true,
                         active: 0,
                         activeCode: "",
-                        avatar: null,
-                        address: '',
+                        avatar: base64Avatar,
+                        address: address,
                         createdAt: ''
                     })
+                }
+            ).then((response) => {
+                if (response.ok) {
+                    setSuccessNoti("Đã thêm user thành công!");
+                    setUsername('');
+                    setEmail('');
+                    setPassword('');
+                    setRePassword('');
+                    setFirstname('');
+                    setLastname('');
+                    setPhoneNumber('');
+                    setGender(1);
+                    setAddress('');
+                    setAvatar(null);
                 } else {
-                    alert("Gặp lỗi trong quá trình thêm user!");
+                    setErrorNoti("Gặp lỗi trong quá trình thêm user!");
                 }
             })
         }
@@ -104,7 +110,7 @@ function UserForm() {
     }
 
     const handleUsernameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUser({ ...user, username: e.target.value });
+        setUsername(e.target.value);
         setErrorUsername('');
         return checkExistedUsername(e.target.value);
     }
@@ -128,7 +134,7 @@ function UserForm() {
     }
 
     const handleEmailOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUser({ ...user, email: e.target.value });
+        setEmail(e.target.value);
         setErrorEmail('');
         return checkExistedEmail(e.target.value);
     }
@@ -146,14 +152,14 @@ function UserForm() {
     }
 
     const handlePassOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUser({ ...user, password: e.target.value });
+        setPassword(e.target.value);
         setErrorPassword('');
         return checkPassword(e.target.value);
     }
 
     //////////////======CHECK RE PASSWORD ========///////////////////
     const checkRePassword = (rePassword: string) => {
-        if (rePassword !== user.password) {
+        if (rePassword !== password) {
             setErrorRePassword("Mật khẩu không trùng khớp.");
             return true;
         } else {
@@ -172,7 +178,7 @@ function UserForm() {
     const handleAvatarOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             const file = e.target.files[0];
-            setUser({ ...user, avatar: null });
+            setAvatar(file);
         }
     };
 
@@ -189,6 +195,12 @@ function UserForm() {
                             </div>
                             <div className="card-body w-75 mx-auto">
                                 <form onSubmit={handleSubmit}>
+                                    {/* User ID */}
+                                    <input
+                                        type='hidden'
+                                        id='userId'
+                                        value={userId}
+                                    />
                                     {/* Username */}
                                     <div className="d-flex flex-row align-items-center mb-4  text-start">
                                         <i className="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -197,7 +209,7 @@ function UserForm() {
                                                 <span style={{ color: "red", marginLeft: '10px' }}>{errorUsername}</span>
                                             </label>
                                             <input type="text" id="username"
-                                                value={user.username}
+                                                value={username}
                                                 onChange={handleUsernameOnChange}
                                                 className="form-control" />
                                         </div>
@@ -211,7 +223,7 @@ function UserForm() {
                                                 <span style={{ color: "red", marginLeft: '10px' }}>{errorEmail}</span>
                                             </label>
                                             <input type="email" id="email"
-                                                value={user.email}
+                                                value={email}
                                                 onChange={handleEmailOnChange}
                                                 className="form-control" />
                                         </div>
@@ -223,8 +235,8 @@ function UserForm() {
                                         <div className="form-outline flex-fill mb-0">
                                             <label className="form-label" htmlFor="firstname">Firstname</label>
                                             <input type="text" id="firstname" className="form-control"
-                                                value={user.firstname}
-                                                onChange={(e) => setUser({ ...user, firstname: e.target.value })}
+                                                value={firstname}
+                                                onChange={(e) => setFirstname(e.target.value)}
                                             />
                                         </div>
                                     </div>
@@ -235,8 +247,8 @@ function UserForm() {
                                         <div className="form-outline flex-fill mb-0">
                                             <label className="form-label" htmlFor="lastname">Lastname </label>
                                             <input type="text" id="lastname" className="form-control"
-                                                value={user.lastname}
-                                                onChange={(e) => setUser({ ...user, lastname: e.target.value })}
+                                                value={lastname}
+                                                onChange={(e) => setLastname(e.target.value)}
                                             />
                                         </div>
                                     </div>
@@ -247,8 +259,8 @@ function UserForm() {
                                         <div className="form-outline flex-fill mb-0">
                                             <label className="form-label" htmlFor="phoneNumber">Phone Number </label>
                                             <input type="text" id="phoneNumber" className="form-control"
-                                                value={user.phoneNumber}
-                                                onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
+                                                value={phoneNumber}
+                                                onChange={(e) => setPhoneNumber(e.target.value)}
                                             />
                                         </div>
                                     </div>
@@ -259,8 +271,8 @@ function UserForm() {
                                         <div className="form-outline flex-fill mb-0">
                                             <label className="form-label" htmlFor="address">Address</label>
                                             <input type="text" id="address" className="form-control"
-                                                value={user.address}
-                                                onChange={(e) => setUser({ ...user, address: e.target.value })}
+                                                value={address}
+                                                onChange={(e) => setAddress(e.target.value)}
                                             />
                                         </div>
                                     </div>
@@ -273,7 +285,7 @@ function UserForm() {
                                             <div className="container row">
                                                 <div className="form-check col-md-3">
                                                     <input className="form-check-input" type="radio" name="exampleRadios" id="male" value={1}
-                                                        onChange={(e) => setUser({ ...user, gender: true })}
+                                                        onChange={(e) => setGender(1)}
                                                         checked />
                                                     <label className="form-check-label" htmlFor="male">
                                                         Male
@@ -281,7 +293,8 @@ function UserForm() {
                                                 </div>
                                                 <div className="form-check col-md-3">
                                                     <input className="form-check-input" type="radio" name="exampleRadios" id="female" value={0}
-                                                        onChange={(e) => setUser({ ...user, gender: false })} />
+                                                        onChange={(e) => setGender(0)}
+                                                    />
                                                     <label className="form-check-label" htmlFor="female">
                                                         Female
                                                     </label>
@@ -296,7 +309,7 @@ function UserForm() {
                                         <div className="form-outline flex-fill mb-0">
                                             <label className="form-label" htmlFor="password">Password <span className="text-danger">(*)</span><span style={{ color: "red", marginLeft: '10px' }}>{errorPassword}</span></label>
                                             <input type="password" id="password"
-                                                value={user.password}
+                                                value={password}
                                                 onChange={handlePassOnChange}
                                                 className="form-control" />
                                         </div>
@@ -330,14 +343,14 @@ function UserForm() {
                                         <div className="container">
                                             <div className="row">
                                                 {
-                                                    notification && <NavLink to='/admin/user/list' className="btn btn-info btn-lg w-25 col-md-6">View list user</NavLink>
+                                                    successNoti && <NavLink to='/admin/user/list' className="btn btn-info btn-lg w-25 col-md-6 mx-4">View list user</NavLink>
                                                 }
                                                 <button type="submit" className="btn btn-primary btn-lg w-25 col-md-6">Add new user</button>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <div style={{ color: "green" }}>{notification}</div>
+                                    <div style={{ color: "green" }}>{successNoti ? successNoti : errorNoti}</div>
                                 </form>
                             </div>
                         </div>
@@ -349,4 +362,4 @@ function UserForm() {
 }
 
 
-export default RequireAdmin(UserForm);
+export default UserForm;

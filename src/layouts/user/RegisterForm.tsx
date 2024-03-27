@@ -3,7 +3,6 @@ import getBase64 from '../../utils/Base64';
 
 
 function RegisterForm() {
-
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [firstname, setFirstname] = useState("");
