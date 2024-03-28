@@ -13,7 +13,8 @@ function SideBarRolePermission() {
                 <div className="collapse" id="rolePermission" aria-labelledby="headingTwo"
                     data-bs-parent="#sidenavAccordion">
                     <nav className="sb-sidenav-menu-nested nav accordion">
-                        <NavLink to="/admin/role/permission" className='nav-link'>Quyền</NavLink>
+                        <NavLink to="/admin/role/permission/add" className='nav-link'>Thêm quyền</NavLink>
+                        <NavLink to="/admin/role/permission/list" className='nav-link'>Danh sách quyền</NavLink>
                         <NavLink to="/admin/role/add" className='nav-link'>Thêm vai trò</NavLink>
                         <NavLink to="/admin/role/list" className='nav-link'>Danh sách vai trò</NavLink>
                     </nav>

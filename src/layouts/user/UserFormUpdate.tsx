@@ -1,39 +1,75 @@
 import { useEffect, useState } from 'react';
-import getBase64 from '../../utils/Base64';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import SideBar from '../sidebar/SideBar';
+import UserModel from '../../models/UserModel';
+import { getUserById } from '../../api/UserAPI';
+import Page404 from '../page/Page404';
+import getBase64 from '../../utils/Base64';
 import RequireAdmin from '../admin/RequireAdmin';
 
-function UserForm() {
-    const [userId, setUserId] = useState(0);
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [firstname, setFirstname] = useState("");
-    const [lastname, setLastname] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [password, setPassword] = useState("");
-    const [rePassword, setRePassword] = useState("");
+function UserFormUpdate() {
+    const { userIdParam } = useParams();
+    let userId = 0;
+    try {
+        userId = parseInt(userIdParam + '');
+    } catch (error) {
+        userId = 0;
+        console.log('Error', error);
+    }
+    if (Number.isNaN(userId))
+        userId = 0;
+
+    const [user, setUser] = useState<UserModel | null>(null);
+    // Khởi tạo state cho các trường dữ liệu người dùng
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [usernameTemp, setUsernameTemp] = useState('');
+    const [emailTemp, setEmailTemp] = useState('');
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [gender, setGender] = useState(1);
-    const [address, setAddress] = useState("");
-    const [avatar, setAvatar] = useState<File | null>(null);
+    const [address, setAddress] = useState('');
+    const [avatarBase64, setAvatarBase64] = useState<string | null | undefined>(null);
 
 
     // Các biến báo lỗi
     const [errorUsername, setErrorUsername] = useState("");
     const [errorEmail, setErrorEmail] = useState("");
-    const [errorPassword, setErrorPassword] = useState("");
-    const [errorRePassword, setErrorRePassword] = useState("");
     const [successNoti, setSuccessNoti] = useState("");
-    const [errorNoti, setErrorNoti] = useState("");
+    const [error, setError] = useState("");
 
+    useEffect(() => {
+        // Gọi API để lấy thông tin người dùng dựa trên userId
+        getUserById(userId)
+            .then((res) => {
+                setUser(res);
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+            });
+    }, [userId]);
+
+    useEffect(() => {
+        if (user !== null) {
+            setUsername(user.username === undefined ? '' : user.username)
+            setEmail(user.email === undefined ? '' : user.email);
+            setUsernameTemp(user.username === undefined ? '' : user.username)
+            setEmailTemp(user.email === undefined ? '' : user.email);
+            setFirstname(user.firstname === undefined ? '' : user.firstname);
+            setLastname(user.lastname === undefined ? '' : user.lastname);
+            setPhoneNumber(user.phoneNumber === undefined ? '' : user.phoneNumber);
+            setGender(user.gender === true ? 1 : 0);
+            setAddress(user.address === undefined ? '' : user.address);
+            setAvatarBase64(user.avatar === null ? null : user.avatar);
+        }
+    }, [user]);
 
     // Handle submit form
     const handleSubmit = async (e: React.FormEvent) => {
         // Clear any previous error messages
         setErrorUsername('');
         setErrorEmail('');
-        setErrorPassword('');
-        setErrorRePassword('');
 
         // Tránh click liên tục
         e.preventDefault();
@@ -41,52 +77,49 @@ function UserForm() {
         // Kiểm tra các điều kiện và gán kết quả vào biến
         const isUsernameValid = !await checkExistedUsername(username);
         const isEmailValid = !await checkExistedEmail(email);
-        const isPasswordValid = !checkPassword(password);
 
         // Kiểm tra tất cả các điều kiện
-        if (isUsernameValid && isEmailValid && isPasswordValid) {
-            const base64Avatar = avatar ? await getBase64(avatar) : null;
+        if (isUsernameValid && isEmailValid) {
 
             const token = localStorage.getItem('token');
-            fetch("http://localhost:8080/account/register",
+            fetch("http://localhost:8080/account/update",
                 {
-                    method: 'POST',
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify({
-                        userId: 0,
+                        userId: userId,
                         username: username,
                         email: email,
-                        password: password,
                         firstname: firstname,
                         lastname: lastname,
                         phoneNumber: phoneNumber,
                         gender: gender,
                         active: 0,
                         activeCode: "",
-                        avatar: base64Avatar,
+                        avatar: avatarBase64,
                         address: address,
-                        createdAt: '',
-                        updatedAt: ''
+                        createdAt: ''
                     })
+
                 }
             ).then((response) => {
                 if (response.ok) {
-                    setSuccessNoti("Đã thêm user thành công!");
+                    setSuccessNoti("Đã cập nhật user thành công!");
+
                     setUsername('');
                     setEmail('');
-                    setPassword('');
-                    setRePassword('');
                     setFirstname('');
                     setLastname('');
                     setPhoneNumber('');
                     setGender(1);
                     setAddress('');
-                    setAvatar(null);
+                    setAvatarBase64(null);
+
                 } else {
-                    setErrorNoti("Gặp lỗi trong quá trình thêm user!");
+                    setError("Gặp lỗi trong quá trình cập nhật user!");
                 }
             })
         }
@@ -101,7 +134,7 @@ function UserForm() {
         try {
             const response = await fetch(url);
             const data = await response.text();
-            if (data === 'true') {
+            if (data === 'true' && username !== usernameTemp) {
                 setErrorUsername('Tên đăng nhập đã tồn tại!');
                 return true;
             }
@@ -125,7 +158,7 @@ function UserForm() {
         try {
             const response = await fetch(url);
             const data = await response.text();
-            if (data === 'true') {
+            if (data === 'true' && email !== emailTemp) {
                 setErrorEmail('Địa chỉ email đã tồn tại!');
                 return true;
             }
@@ -141,48 +174,19 @@ function UserForm() {
         return checkExistedEmail(e.target.value);
     }
 
-    //////////////======CHECK PASSWORD ========///////////////////
-    const checkPassword = (password: string) => {
-        const passwordRegex = /^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-        if (!passwordRegex.test(password)) {
-            setErrorPassword("Mật khẩu phải có ít nhất 8 ký tự và bao gồm ít nhất 1 ký tự đặc biệt (!@#$%^&*)");
-            return true;
-        } else {
-            setErrorPassword("");
-            return false;
-        }
-    }
-
-    const handlePassOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value);
-        setErrorPassword('');
-        return checkPassword(e.target.value);
-    }
-
-    //////////////======CHECK RE PASSWORD ========///////////////////
-    const checkRePassword = (rePassword: string) => {
-        if (rePassword !== password) {
-            setErrorRePassword("Mật khẩu không trùng khớp.");
-            return true;
-        } else {
-            setErrorRePassword(""); // Mật khẩu trùng khớp
-            return false;
-        }
-    }
-
-    const handleRePassOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setRePassword(e.target.value);
-        setErrorRePassword('');
-        return checkRePassword(e.target.value);
-    }
-
     //////////////====== HANDLE AVATAR ========///////////////////
-    const handleAvatarOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleAvatarOnChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             const file = e.target.files[0];
-            setAvatar(file);
+            setAvatarBase64(await getBase64(file));
         }
     };
+
+    if (userId === 0) {
+        return (
+            <Page404 />
+        )
+    }
 
 
     return (
@@ -193,7 +197,7 @@ function UserForm() {
                     <div id="content" className="container">
                         <div className="card">
                             <div className="card-header font-weight-bold">
-                                Thêm người dùng
+                                Cập nhật người dùng
                             </div>
                             <div className="card-body w-75 mx-auto">
                                 <form onSubmit={handleSubmit}>
@@ -278,6 +282,35 @@ function UserForm() {
                                             />
                                         </div>
                                     </div>
+
+                                    {/* Gender */}
+                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                        <i className="fa-solid fa-venus-mars me-3"></i>
+                                        <div className="form-outline flex-fill mb-0">
+                                            <label className="form-label" htmlFor="gender">Gender</label>
+                                            <div className="container row">
+                                                <div className="form-check col-md-3">
+                                                    <input className="form-check-input" type="radio" name="exampleRadios" id="male"
+                                                        value={1} checked={gender === 1}
+                                                        onChange={(e) => setGender(parseInt(e.target.value))}
+                                                    />
+                                                    <label className="form-check-label" htmlFor="male">
+                                                        Male
+                                                    </label>
+                                                </div>
+                                                <div className="form-check col-md-3">
+                                                    <input className="form-check-input" type="radio" name="exampleRadios" id="female"
+                                                        value={0} checked={gender === 0}
+                                                        onChange={(e) => setGender(parseInt(e.target.value))}
+                                                    />
+                                                    <label className="form-check-label" htmlFor="female">
+                                                        Female
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     {/* Avatar */}
                                     <div className="d-flex flex-row align-items-center mb-4  text-start">
                                         <i className="fa-regular fa-image me-3"></i>
@@ -289,59 +322,9 @@ function UserForm() {
                                             />
                                         </div>
                                     </div>
-
-                                    
-                                    {/* Gender */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fa-solid fa-venus-mars me-3"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="gender">Gender</label>
-                                            <div className="container row">
-                                                <div className="form-check col-md-3">
-                                                    <input className="form-check-input" type="radio" name="exampleRadios" id="male" value={1}
-                                                        onChange={(e) => setGender(1)}
-                                                        checked />
-                                                    <label className="form-check-label" htmlFor="male">
-                                                        Male
-                                                    </label>
-                                                </div>
-                                                <div className="form-check col-md-3">
-                                                    <input className="form-check-input" type="radio" name="exampleRadios" id="female" value={0}
-                                                        onChange={(e) => setGender(0)}
-                                                    />
-                                                    <label className="form-check-label" htmlFor="female">
-                                                        Female
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div>
+                                        <img className='img-thumbnail w-50' src={avatarBase64 + ''} alt="" />
                                     </div>
-
-                                    {/* Password */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="password">Password <span className="text-danger">(*)</span><span style={{ color: "red", marginLeft: '10px' }}>{errorPassword}</span></label>
-                                            <input type="password" id="password"
-                                                value={password}
-                                                onChange={handlePassOnChange}
-                                                className="form-control" />
-                                        </div>
-                                    </div>
-
-                                    {/* Repeat Password */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="passwordRepeat">Repeat password <span className="text-danger">(*)</span><span style={{ color: "red", marginLeft: '10px' }}>{errorRePassword}</span></label>
-                                            <input type="password" id="passwordRepeat"
-                                                value={rePassword}
-                                                onChange={handleRePassOnChange}
-                                                className="form-control" />
-                                        </div>
-                                    </div>
-
-
 
                                     <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <div className="container">
@@ -349,12 +332,12 @@ function UserForm() {
                                                 {
                                                     successNoti && <NavLink to='/admin/user/list' className="btn btn-info btn-lg w-25 col-md-6 mx-4">View list user</NavLink>
                                                 }
-                                                <button type="submit" className="btn btn-primary btn-lg w-25 col-md-6">Add new user</button>
+                                                <button type="submit" className="btn btn-primary btn-lg w-25 col-md-6">Save</button>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <div style={{ color: "green" }}>{successNoti ? successNoti : errorNoti}</div>
+                                    <div style={{ color: "green" }}>{successNoti ? successNoti : error}</div>
                                 </form>
                             </div>
                         </div>
@@ -365,5 +348,4 @@ function UserForm() {
     )
 }
 
-
-export default RequireAdmin(UserForm);
+export default RequireAdmin(UserFormUpdate);

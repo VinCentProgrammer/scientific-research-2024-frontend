@@ -18,7 +18,6 @@ import PageList from './layouts/page/PageList';
 import PostCat from './layouts/post/PostCat';
 import UserList from './layouts/user/UserList';
 import UserForm from './layouts/user/UserForm';
-import Permission from './layouts/role/Permission';
 import RoleList from './layouts/role/RoleList';
 import RoleForm from './layouts/role/RoleForm';
 import ActiveAccount from './layouts/user/ActiveAccount';
@@ -30,6 +29,10 @@ import Page500 from './layouts/page/Page500';
 import PostList from './layouts/post/PostList';
 import PostForm from './layouts/post/PostForm';
 import Page403 from './layouts/page/Page403';
+import UserFormUpdate from './layouts/user/UserFormUpdate';
+import PermissionForm from './layouts/role/PermissionForm';
+import PermissionList from './layouts/role/PermissionList';
+import PermissionFormUpdate from './layouts/role/PermissionFormUpdate';
 
 function App() {
   return (
@@ -50,7 +53,10 @@ function App() {
           <Route path='/reset-pass/:email/:activeCode' element={<ResetPassword />} />
           <Route path='/admin/user/list' element={<UserList />} />
           <Route path='/admin/user/add' element={<UserForm />} />
-          <Route path='/admin/role/permission' element={<Permission />} />
+          <Route path='/admin/user/edit/:userIdParam' element={<UserFormUpdate />} />
+          <Route path='/admin/role/permission/add' element={<PermissionForm />} />
+          <Route path='/admin/role/permission/list' element={<PermissionList />} />
+          <Route path='/admin/role/permission/edit/:permissionIdParam' element={<PermissionFormUpdate />} />
           <Route path='/admin/role/list' element={<RoleList />} />
           <Route path='/admin/role/add' element={<RoleForm />} />
 

@@ -1,13 +1,20 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import SideBar from "../sidebar/SideBar";
-import { findUser, getUsers } from "../../api/UserAPI";
+import { deleteUser, findUser, getUsers } from "../../api/UserAPI";
 import UserRow from "./UserRow";
 import UserModel from "../../models/UserModel";
 import { Pagination } from "../../utils/Pagination";
+import { Button, Modal } from "react-bootstrap";
+import { jwtDecode } from "jwt-decode";
+import JwtPayload from "../../models/JwtPayLoad";
+import { useNavigate } from "react-router-dom";
+import RequireAdmin from "../admin/RequireAdmin";
 // import { Search } from "react-bootstrap-icons";
 
 
 const UserList: React.FC<{}> = () => {
+    const [userIdLogin, setUserIdLogin] = useState(0);
+    const [userIdDelete, setUserIdDelete] = useState(0);
     const [listUser, setListUser] = useState<UserModel[] | null>(null);
     const [loadingData, setLoadingData] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
@@ -15,6 +22,11 @@ const UserList: React.FC<{}> = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [keyword, setKeyword] = useState('');
     const [temKeyword, setTemKeyword] = useState('');
+
+    const [showModal, setShowModal] = useState(false);
+    const [notification, setNotification] = useState('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (keyword === '') {
@@ -45,6 +57,13 @@ const UserList: React.FC<{}> = () => {
                 })
         }
 
+        const token = localStorage.getItem('token');
+        if(token) {
+            const decodedToken = jwtDecode(token) as JwtPayload;
+            const userId = decodedToken.userId;
+            setUserIdLogin(userId);
+        }
+
     }, [currPage, keyword])
 
     const paginate = (currPage: number) => {
@@ -59,6 +78,34 @@ const UserList: React.FC<{}> = () => {
         setKeyword(temKeyword);
     }
 
+    const handleOnDelete = async (id: number) => {
+        setUserIdDelete(id);
+        if(userIdLogin === id) {
+            setNotification('Bạn không thể xóa user hiện tại đang đăng nhập!');
+            setShowModal(true);
+            return;
+        }
+        const deleleted = deleteUser(id);
+        if (await deleleted === true) {
+            setNotification('Xóa thành công');
+            setShowModal(true);
+            if (listUser) {
+                const updatedUser = listUser.filter(user => user.userId !== id);
+                setListUser(updatedUser);
+            } else {
+                setError("Không có bản ghi nào");
+            }
+        }
+    }
+
+    const handleOnUpdate = (id: number) => {
+        navigate(`/admin/user/edit/${id}`)
+    }
+
+    const handleClose = () => {
+        setShowModal(false);
+    }
+
     if (loadingData) {
         return (
             <div className="spinner-border" role="status">
@@ -69,15 +116,11 @@ const UserList: React.FC<{}> = () => {
 
     if (error) {
         return (
-            <div>Gặp lỗi: {error}</div>
+            <div>{error}</div>
         )
     }
 
-    if (listUser?.length === 0) {
-        return (
-            <div>Không có sách</div>
-        )
-    }
+
 
     return (
         <div id="layoutSidenav">
@@ -132,7 +175,7 @@ const UserList: React.FC<{}> = () => {
                                     <tbody>
                                         {
                                             listUser?.map((user) => (
-                                                <UserRow key={user.userId} user={user} />
+                                                <UserRow key={user.userId} user={user} onDelete={handleOnDelete} onUpdate={handleOnUpdate} />
                                             ))
                                         }
                                     </tbody>
@@ -144,10 +187,26 @@ const UserList: React.FC<{}> = () => {
                         </div>
                     </div>
                 </main>
+                <section>
+                    <Modal show={showModal} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Thông báo</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <div>
+                                <p className="text-center fs-2 font-weight-bold"> <i className={`bi bi-check-circle text-${userIdDelete === userIdLogin ? 'danger' : 'success'} mx-2`}></i> {notification}</p>
+                            </div>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Đóng
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+                </section>
             </div>
         </div>
-
     )
 }
 
-export default UserList;
+export default RequireAdmin(UserList);
