@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import getBase64 from '../../utils/Base64';
 import { NavLink } from 'react-router-dom';
 import SideBar from '../sidebar/SideBar';
 import RequireAdmin from '../admin/RequireAdmin';
+import RoleModel from '../../models/RoleModel';
+import { getRole } from '../../api/RoleAPI';
 
 function UserForm() {
     const [userId, setUserId] = useState(0);
@@ -16,6 +18,17 @@ function UserForm() {
     const [gender, setGender] = useState(1);
     const [address, setAddress] = useState("");
     const [avatar, setAvatar] = useState<File | null>(null);
+    const [roles, setRoles] = useState<RoleModel[] | null>([]);
+    const [selectedRoles, setSelectedRoles] = useState<number[]>([]);
+
+    const handleRoleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        const selectedOptions = event.target.selectedOptions;
+        const selectedRoleIds: number[] = [];
+        for (let i = 0; i < selectedOptions.length; i++) {
+            selectedRoleIds.push(parseInt(selectedOptions[i].value));
+        }
+        setSelectedRoles(selectedRoleIds);
+    };
 
 
     // Các biến báo lỗi
@@ -26,6 +39,14 @@ function UserForm() {
     const [successNoti, setSuccessNoti] = useState("");
     const [errorNoti, setErrorNoti] = useState("");
 
+    useEffect(() => {
+        getRole("http://localhost:8080/role")
+            .then(
+                res => {
+                    setRoles(res.result);
+                }
+            )
+    }, [])
 
     // Handle submit form
     const handleSubmit = async (e: React.FormEvent) => {
@@ -48,7 +69,7 @@ function UserForm() {
             const base64Avatar = avatar ? await getBase64(avatar) : null;
 
             const token = localStorage.getItem('token');
-            fetch("http://localhost:8080/account/register",
+            fetch("http://localhost:8080/api/user/add",
                 {
                     method: 'POST',
                     headers: {
@@ -69,7 +90,8 @@ function UserForm() {
                         avatar: base64Avatar,
                         address: address,
                         createdAt: '',
-                        updatedAt: ''
+                        updatedAt: '',
+                        roles: selectedRoles
                     })
                 }
             ).then((response) => {
@@ -290,7 +312,7 @@ function UserForm() {
                                         </div>
                                     </div>
 
-                                    
+
                                     {/* Gender */}
                                     <div className="d-flex flex-row align-items-center mb-4  text-start">
                                         <i className="fa-solid fa-venus-mars me-3"></i>
@@ -341,7 +363,28 @@ function UserForm() {
                                         </div>
                                     </div>
 
-
+                                    {/* Roles */}
+                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                        <i className="bi bi-person-check me-3 fa-fw"></i>
+                                        <select
+                                            className="form-select"
+                                            multiple aria-label="multiple select example"
+                                            value={selectedRoles.map(roleId => String(roleId))}
+                                            onChange={handleRoleChange}
+                                        >
+                                            <option selected>Choose role</option>
+                                            {
+                                                roles?.map((role) => (
+                                                    <option
+                                                        key={role.roleId}
+                                                        value={role.roleId}
+                                                    >
+                                                        {role.roleName}
+                                                    </option>
+                                                ))
+                                            }
+                                        </select>
+                                    </div>
 
                                     <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <div className="container">

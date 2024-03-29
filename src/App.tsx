@@ -33,6 +33,9 @@ import UserFormUpdate from './layouts/user/UserFormUpdate';
 import PermissionForm from './layouts/role/PermissionForm';
 import PermissionList from './layouts/role/PermissionList';
 import PermissionFormUpdate from './layouts/role/PermissionFormUpdate';
+import RoleFormUpdate from './layouts/role/RoleFormUpdate';
+import RoleDetail from './layouts/role/RoleDetail';
+import PageForm from './layouts/page/PageForm';
 
 function App() {
   return (
@@ -59,6 +62,8 @@ function App() {
           <Route path='/admin/role/permission/edit/:permissionIdParam' element={<PermissionFormUpdate />} />
           <Route path='/admin/role/list' element={<RoleList />} />
           <Route path='/admin/role/add' element={<RoleForm />} />
+          <Route path='/admin/role/edit/:roleIdParam' element={<RoleFormUpdate />} />
+          <Route path='/admin/role/list/:roleIdParam' element={<RoleDetail />} />
 
           {/* //////////////////////////////// PAGE ///////////////////////////////// */}
           <Route path='/page/about' element={<About />} />
@@ -67,8 +72,8 @@ function App() {
           <Route path="/page/403" element={<Page403 />} />
           <Route path="/page/404" element={<Page404 />} />
           <Route path="/page/500" element={<Page500 />} />
-          <Route path='admin/page/list' element={<PageList />} />
-
+          <Route path='/admin/page/add' element={<PageForm />} />
+          <Route path='/admin/page/list' element={<PageList />} />
 
           {/* //////////////////////////////// POST ///////////////////////////////// */}
           <Route path='/post' element={<Post />} />

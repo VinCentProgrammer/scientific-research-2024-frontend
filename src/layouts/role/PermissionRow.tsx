@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PermissionModel from "../../models/PermissionModel";
+import RequireAdmin from "../admin/RequireAdmin";
 
 interface PermissionRowProps {
     permission: PermissionModel;
@@ -27,6 +28,7 @@ const PermissionRow: React.FC<PermissionRowProps> = (props) => {
             <td>{props.permission.slug}</td>
             <td>{props.permission.desc}</td>
             <td>{props.permission.createdAt}</td>
+            <td>{props.permission.updatedAt === null ? props.permission.createdAt : props.permission.updatedAt}</td>
             <td>
                 <div>
                     <button className="btn btn-success btn-sm rounded-0 text-white mx-2" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={handleOnUpdate}><i className="fa fa-edit"></i></button>
@@ -37,4 +39,4 @@ const PermissionRow: React.FC<PermissionRowProps> = (props) => {
     )
 }
 
-export default PermissionRow;
+export default RequireAdmin(PermissionRow);

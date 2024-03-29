@@ -1,9 +1,5 @@
 
-import React from "react";
-import { my_request } from "./Request";
 import UserModel from "../models/UserModel";
-import { jwtDecode } from "jwt-decode";
-import JwtPayload from "../models/JwtPayLoad";
 
 interface ResultInterface {
     result: UserModel[];
@@ -42,6 +38,7 @@ async function getUser(url: string): Promise<ResultInterface> {
             email: userData.email,
             active: userData.active,
             gender: userData.gender,
+            roles: userData.roles,
             createdAt: userData.createdAt,
             firstname: userData.firstname,
             lastname: userData.lastname,
@@ -92,6 +89,7 @@ export async function getUserById(id: number): Promise<UserModel | null> {
             active: userData.active,
             gender: userData.gender,
             createdAt: userData.createdAt,
+            roles: userData.roles,
             firstname: userData.firstname,
             lastname: userData.lastname,
             address: userData.address,

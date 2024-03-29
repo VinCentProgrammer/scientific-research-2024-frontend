@@ -10,7 +10,8 @@ function Page404() {
                         <div className="row justify-content-center">
                             <div className="col-lg-6">
                                 <div className="text-center mt-4">
-                                    <img className="mb-4 img-error" src="assets/img/error-404-monochrome.svg" />
+                                <h1 className="display-1">404</h1>
+                                    <p className="lead">Not Found</p>
                                     <p className="lead">This requested URL was not found on this server.</p>
                                     <NavLink to="/">
                                         <i className="fas fa-arrow-left me-1"></i>

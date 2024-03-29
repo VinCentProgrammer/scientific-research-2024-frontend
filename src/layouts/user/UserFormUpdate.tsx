@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import SideBar from '../sidebar/SideBar';
 import UserModel from '../../models/UserModel';
@@ -6,6 +6,8 @@ import { getUserById } from '../../api/UserAPI';
 import Page404 from '../page/Page404';
 import getBase64 from '../../utils/Base64';
 import RequireAdmin from '../admin/RequireAdmin';
+import RoleModel from '../../models/RoleModel';
+import { getRole } from '../../api/RoleAPI';
 
 function UserFormUpdate() {
     const { userIdParam } = useParams();
@@ -31,6 +33,8 @@ function UserFormUpdate() {
     const [gender, setGender] = useState(1);
     const [address, setAddress] = useState('');
     const [avatarBase64, setAvatarBase64] = useState<string | null | undefined>(null);
+    const [roles, setRoles] = useState<RoleModel[] | null>([]);
+    const [selectedRoles, setSelectedRoles] = useState<number[]>([]);
 
 
     // Các biến báo lỗi
@@ -51,6 +55,16 @@ function UserFormUpdate() {
     }, [userId]);
 
     useEffect(() => {
+        getRole("http://localhost:8080/role")
+            .then(
+                res => {
+                    setRoles(res.result);
+                }
+            )
+    }, [])
+
+
+    useEffect(() => {
         if (user !== null) {
             setUsername(user.username === undefined ? '' : user.username)
             setEmail(user.email === undefined ? '' : user.email);
@@ -65,6 +79,15 @@ function UserFormUpdate() {
         }
     }, [user]);
 
+    const handleRoleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        const selectedOptions = event.target.selectedOptions;
+        const selectedRoleIds: number[] = [];
+        for (let i = 0; i < selectedOptions.length; i++) {
+            selectedRoleIds.push(parseInt(selectedOptions[i].value));
+        }
+        setSelectedRoles(selectedRoleIds);
+    };
+    
     // Handle submit form
     const handleSubmit = async (e: React.FormEvent) => {
         // Clear any previous error messages
@@ -82,7 +105,7 @@ function UserFormUpdate() {
         if (isUsernameValid && isEmailValid) {
 
             const token = localStorage.getItem('token');
-            fetch("http://localhost:8080/account/update",
+            fetch("http://localhost:8080/api/user/update",
                 {
                     method: 'PUT',
                     headers: {
@@ -101,7 +124,8 @@ function UserFormUpdate() {
                         activeCode: "",
                         avatar: avatarBase64,
                         address: address,
-                        createdAt: ''
+                        createdAt: '',
+                        roles: selectedRoles
                     })
 
                 }
@@ -324,6 +348,29 @@ function UserFormUpdate() {
                                     </div>
                                     <div>
                                         <img className='img-thumbnail w-50' src={avatarBase64 + ''} alt="" />
+                                    </div>
+
+                                    {/* Roles */}
+                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                        <i className="bi bi-person-check me-3 fa-fw"></i>
+                                        <select
+                                            className="form-select"
+                                            multiple aria-label="multiple select example"
+                                            value={selectedRoles.map(roleId => String(roleId))}
+                                            onChange={handleRoleChange}
+                                        >
+                                            <option selected>Choose role</option>
+                                            {
+                                                roles?.map((role) => (
+                                                    <option
+                                                        key={role.roleId}
+                                                        value={role.roleId}
+                                                    >
+                                                        {role.roleName}
+                                                    </option>
+                                                ))
+                                            }
+                                        </select>
                                     </div>
 
                                     <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">

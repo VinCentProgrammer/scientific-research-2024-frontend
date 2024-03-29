@@ -1,3 +1,5 @@
+import RequireAdminOrStaff from "../admin/RequireAdminOrStaff";
+import RequireAdminAndStaff from "../admin/RequireAdminOrStaff";
 import SideBar from "../sidebar/SideBar";
 
 function Dashboard() {
@@ -201,4 +203,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard;
+export default RequireAdminOrStaff(Dashboard);

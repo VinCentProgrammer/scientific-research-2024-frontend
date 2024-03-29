@@ -1,29 +1,27 @@
 import { useEffect, useState } from "react";
-import PermissionList from "./PermissionList";
-import PermissionModel from "../../models/PermissionModel";
-import { getPermissions } from "../../api/PermissionAPI";
 import SideBar from "../sidebar/SideBar";
 import { NavLink } from "react-router-dom";
+import RequireAdmin from "../admin/RequireAdmin";
 
 function PermissionForm() {
 
-    const [roleName, setRoleName] = useState<string>('');
+    const [permissionName, setPermissionName] = useState<string>('');
     const [slug, setSlug] = useState<string>('');
     const [desc, setDesc] = useState<string>('');
 
-    const [errorRoleName, setErrorRoleName] = useState<string>('');
+    const [errorPermissionName, setErrorPermissionName] = useState<string>('');
     const [errorSlug, setErrorSlug] = useState<string>('');
     const [successNoti, setSuccessNoti] = useState("");
     const [errorNoti, setErrorNoti] = useState("");
 
 
-    const handleOnChangeRoleName = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleOnChangePermissionName = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value) {
-            setRoleName(e.target.value);
-            setErrorRoleName('');
+            setPermissionName(e.target.value);
+            setErrorPermissionName('');
         } else {
-            setRoleName('');
-            setErrorRoleName('Trường này không được bỏ trống');
+            setPermissionName('');
+            setErrorPermissionName('Trường này không được bỏ trống');
         }
     }
 
@@ -39,14 +37,14 @@ function PermissionForm() {
 
     const handleSubmit = (e: React.FormEvent) => {
         // Clear 
-        setErrorRoleName('');
+        setErrorPermissionName('');
         setErrorSlug('');
 
         // Prevent default
         e.preventDefault();
 
         // 
-        if (roleName && slug) {
+        if (permissionName && slug) {
             const token = localStorage.getItem('token');
             fetch("http://localhost:8080/permission",
                 {
@@ -57,7 +55,7 @@ function PermissionForm() {
                     },
                     body: JSON.stringify({
                         permissionId: 0,
-                        name: roleName,
+                        name: permissionName,
                         desc: desc,
                         slug: slug,
                     })
@@ -65,7 +63,7 @@ function PermissionForm() {
             ).then((response) => {
                 if (response.ok) {
                     setSuccessNoti("Đã thêm quyền thành công!");
-                    setRoleName('');
+                    setPermissionName('');
                     setDesc('');
                     setSlug('');
 
@@ -90,10 +88,10 @@ function PermissionForm() {
                                 <div className="card-body col-md-4">
                                     <form onSubmit={handleSubmit}>
                                         <div className="form-group mt-2">
-                                            <label htmlFor="name">Tên quyền <span className="text-danger">(*) {errorRoleName}</span></label>
+                                            <label htmlFor="name">Tên quyền <span className="text-danger">(*) {errorPermissionName}</span></label>
                                             <input className="form-control" type="text" name="name" id="name"
-                                                value={roleName}
-                                                onChange={handleOnChangeRoleName}
+                                                value={permissionName}
+                                                onChange={handleOnChangePermissionName}
                                             />
                                         </div>
                                         <div className="form-group mt-2">
@@ -131,4 +129,4 @@ function PermissionForm() {
     )
 }
 
-export default PermissionForm;
+export default RequireAdmin(PermissionForm);

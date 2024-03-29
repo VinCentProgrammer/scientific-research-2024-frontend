@@ -5,6 +5,7 @@ class UserModel {
     active: boolean;
     gender: boolean;
     createdAt: string;
+    roles: Array<number>;
     firstname?: string;
     lastname?: string;
     address?: string;
@@ -18,6 +19,7 @@ class UserModel {
         active: boolean,
         gender: boolean,
         createdAt: string,
+        roles: Array<number>,
         firstname?: string,
         lastname?: string,
         address?: string,
@@ -30,6 +32,7 @@ class UserModel {
         this.active = active;
         this.gender = gender;
         this.createdAt = createdAt;
+        this.roles = roles;
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;

@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import SideBar from '../sidebar/SideBar';
-import UserModel from '../../models/UserModel';
-import { getUserById } from '../../api/UserAPI';
 import Page404 from '../page/Page404';
-import getBase64 from '../../utils/Base64';
 import RequireAdmin from '../admin/RequireAdmin';
 import PermissionModel from '../../models/PermissionModel';
 import { getPermissionById } from '../../api/PermissionAPI';
@@ -174,4 +171,4 @@ function PermissionFormUpdate() {
     )
 }
 
-export default PermissionFormUpdate;
+export default RequireAdmin(PermissionFormUpdate);
