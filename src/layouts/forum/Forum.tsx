@@ -1,6 +1,6 @@
 function Forum() {
     return (
-        <div className="container" id="forum">
+        <div className="container text-start" id="forum">
             <div className="row">
                 <div className="col-lg-9 mb-3">
                     <div className="row text-left mb-5">

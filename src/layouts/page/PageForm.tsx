@@ -1,25 +1,9 @@
 import SideBar from "../sidebar/SideBar";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import ReactQuill from "react-quill";
 
 function PageForm(): JSX.Element {
-    const [detail, setDetail] = useState<string>('');
-
-    const handleReady = (editor: any) => {
-        editor.editing.view.change((writer: any) => {
-            writer.setStyle(
-                "height",
-                "200px",
-                editor.editing.view.document.getRoot()
-            );
-        });
-    };
-
-    const handleChange = (event: any, editor: any) => {
-        const data = editor.getData();
-        setDetail(data);
-    };
+    const [value, setValue] = useState('');
 
     return (
         <div id="layoutSidenav">
@@ -38,33 +22,13 @@ function PageForm(): JSX.Element {
                                         <input className="form-control" type="text" name="name" id="name" />
                                     </div>
                                     <div className="form-group mt-3">
-                                        <label htmlFor="content">Mô tả ngắn</label>
-                                        <textarea name="" className="form-control" id="content" ></textarea>
+                                        <label htmlFor="desc">Mô tả ngắn</label>
+                                        <input className="form-control" type="text" name="name" id="desc" />
                                     </div>
                                     <div className="form-group mt-3">
                                         <label htmlFor="detail">Chi tiết</label>
-                                        <CKEditor
-                                            editor={ClassicEditor}
-                                            data={detail}
-                                            onReady={handleReady}
-                                            onChange={handleChange}
-                                            config={{
-                                                toolbar: [
-                                                    'heading', '|',
-                                                    'bold', 'italic', 'underline', 'strikethrough', '|',
-                                                    'bulletedList', 'numberedList', '|',
-                                                    'link', 'imageUpload', '|',
-                                                    'alignment', '|',
-                                                    'blockQuote', '|',
-                                                    'undo', 'redo'
-                                                ],
-                                                image: {
-                                                    toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight']
-                                                }
-                                            }}
-                                        />
+                                        <input className="form-control" type="text" name="name" id="detail" />
                                     </div>
-
                                     <button type="submit" className="btn btn-primary  mt-3">Thêm</button>
                                 </form>
                             </div>

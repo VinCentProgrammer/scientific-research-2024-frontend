@@ -12,9 +12,10 @@ function SideBarPost() {
             <div className="collapse" id="post" aria-labelledby="headingTwo"
                 data-bs-parent="#sidenavAccordion">
                 <nav className="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                    <NavLink to="/admin/post/cat/list" className='nav-link'>Danh mục</NavLink>
-                    <NavLink to="/admin/post/list" className='nav-link'>Danh sách bài viết</NavLink>
+                    <NavLink to="/admin/post/cat/add" className='nav-link'>Thêm danh mục</NavLink>
+                    <NavLink to="/admin/post/cat/list" className='nav-link'>Danh sách danh mục</NavLink>
                     <NavLink to="/admin/post/add" className='nav-link'>Thêm bài viết mới</NavLink>
+                    <NavLink to="/admin/post/list" className='nav-link'>Danh sách bài viết</NavLink>
                 </nav>
             </div>
         </div>

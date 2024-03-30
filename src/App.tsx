@@ -15,7 +15,6 @@ import Theory from './layouts/theory/Theory';
 import Problem from './layouts/problem/Problem';
 import Dashboard from './layouts/dashboard/Dashboard';
 import PageList from './layouts/page/PageList';
-import PostCat from './layouts/post/PostCat';
 import UserList from './layouts/user/UserList';
 import UserForm from './layouts/user/UserForm';
 import RoleList from './layouts/role/RoleList';
@@ -26,8 +25,8 @@ import ResetPassForm from './layouts/user/ResetPassForm';
 import Page401 from './layouts/page/Page401';
 import Page404 from './layouts/page/Page404';
 import Page500 from './layouts/page/Page500';
-import PostList from './layouts/post/PostList';
-import PostForm from './layouts/post/PostForm';
+import PostList from './layouts/post/PostListAdmin';
+import PostForm from './layouts/post/PostFormAdmin';
 import Page403 from './layouts/page/Page403';
 import UserFormUpdate from './layouts/user/UserFormUpdate';
 import PermissionForm from './layouts/role/PermissionForm';
@@ -36,6 +35,9 @@ import PermissionFormUpdate from './layouts/role/PermissionFormUpdate';
 import RoleFormUpdate from './layouts/role/RoleFormUpdate';
 import RoleDetail from './layouts/role/RoleDetail';
 import PageForm from './layouts/page/PageForm';
+import PostCatForm from './layouts/post/PostCatFormAdmin';
+import PostCatList from './layouts/post/PostCatListAdmin';
+import PostCatFormUpdateAdmin from './layouts/post/PostCatFormUpdateAdmin';
 
 function App() {
   return (
@@ -66,21 +68,24 @@ function App() {
           <Route path='/admin/role/list/:roleIdParam' element={<RoleDetail />} />
 
           {/* //////////////////////////////// PAGE ///////////////////////////////// */}
+          <Route path='/admin/page/add' element={<PageForm />} />
+          <Route path='/admin/page/list' element={<PageList />} />
           <Route path='/page/about' element={<About />} />
           <Route path='/page/contact' element={<Contact />} />
           <Route path="/page/401" element={<Page401 />} />
           <Route path="/page/403" element={<Page403 />} />
           <Route path="/page/404" element={<Page404 />} />
           <Route path="/page/500" element={<Page500 />} />
-          <Route path='/admin/page/add' element={<PageForm />} />
-          <Route path='/admin/page/list' element={<PageList />} />
+          
 
           {/* //////////////////////////////// POST ///////////////////////////////// */}
           <Route path='/post' element={<Post />} />
           <Route path='/post-detail' element={<PostDetail />} />
           <Route path='admin/post/list' element={<PostList />} />
           <Route path='admin/post/add' element={<PostForm />} />
-          <Route path='admin/post/cat/list' element={<PostCat />} />
+          <Route path='admin/post/cat/add' element={<PostCatForm />} />
+          <Route path='admin/post/cat/list' element={<PostCatList />} />
+          <Route path='admin/post/cat/edit/:postCatIdParam' element={<PostCatFormUpdateAdmin />} />
 
           {/* //////////////////////////////// FORUM ///////////////////////////////// */}
           <Route path='/forum' element={<Forum />} />

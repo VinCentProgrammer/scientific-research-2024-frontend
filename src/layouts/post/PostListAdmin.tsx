@@ -1,10 +1,16 @@
+import { useEffect, useState } from "react";
+import PostCatModel from "../../models/PostCatModel";
 import SideBar from "../sidebar/SideBar";
+import { getPostCats } from "../../api/PostAPI";
 
-function PostList() {
+function PostListAdmin() {
+    
+
+
     return (
         <div id="layoutSidenav">
             <SideBar />
-            <div id="layoutSidenav_content">
+            <div id="layoutSidenav_content" className="text-start">
                 <main>
                     <div id="content" className="container-fluid">
                         <div className="card">
@@ -162,4 +168,4 @@ function PostList() {
     )
 }
 
-export default PostList;
+export default PostListAdmin;

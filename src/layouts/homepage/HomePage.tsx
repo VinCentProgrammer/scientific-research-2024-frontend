@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Feature from './components/Feature';
 import Quote from './components/Quote';
-import Post from '../post/components/ListPost';
 import SearchForm from './components/SearchForm';
 import Banner from './components/Banner';
+import Post from '../post/Post';
 
 
 function HomePage() {
@@ -14,9 +13,8 @@ function HomePage() {
                 <SearchForm />
                 <Banner />
             </header>
-            <Feature />
             <Quote />
-            <Post />
+            <Post/>
         </div >
     )
 }

@@ -12,24 +12,12 @@ function SideBarPage() {
             <div className="collapse" id="page" aria-labelledby="headingTwo"
                 data-bs-parent="#sidenavAccordion">
                 <nav className="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                    <NavLink className="nav-link" to="admin/page/add">
-                        Thêm trang mới
-                    </NavLink>
-                    <NavLink className="nav-link" to="admin/page/list">
-                        Danh sách trang
-                    </NavLink>
-                    <NavLink className="nav-link" to="/page/401">
-                        401 Page
-                    </NavLink>
-                    <NavLink className="nav-link" to="/page/403">
-                        403 Page
-                    </NavLink>
-                    <NavLink className="nav-link" to="/page/404">
-                        404 Page
-                    </NavLink>
-                    <NavLink className="nav-link" to="/page/500">
-                        500 Page
-                    </NavLink>
+                    <NavLink to="/admin/page/add" className='nav-link'>Thêm mới</NavLink>
+                    <NavLink to="/admin/page/list" className='nav-link'>Danh sách page</NavLink>
+                    <NavLink className="nav-link" to="/page/401"> 401 Page </NavLink>
+                    <NavLink className="nav-link" to="/page/403">403 Page</NavLink>
+                    <NavLink className="nav-link" to="/page/404">404 Page</NavLink>
+                    <NavLink className="nav-link" to="/page/500">500 Page</NavLink>
                 </nav>
             </div>
         </div>
