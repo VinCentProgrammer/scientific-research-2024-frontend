@@ -38,6 +38,7 @@ import PageForm from './layouts/page/PageForm';
 import PostCatForm from './layouts/post/PostCatFormAdmin';
 import PostCatList from './layouts/post/PostCatListAdmin';
 import PostCatFormUpdateAdmin from './layouts/post/PostCatFormUpdateAdmin';
+import PostFormUpdateAdmin from './layouts/post/PostFormUpdateAdmin';
 
 function App() {
   return (
@@ -83,6 +84,7 @@ function App() {
           <Route path='/post-detail' element={<PostDetail />} />
           <Route path='admin/post/list' element={<PostList />} />
           <Route path='admin/post/add' element={<PostForm />} />
+          <Route path='admin/post/edit/:postIdParam' element={<PostFormUpdateAdmin />} />
           <Route path='admin/post/cat/add' element={<PostCatForm />} />
           <Route path='admin/post/cat/list' element={<PostCatList />} />
           <Route path='admin/post/cat/edit/:postCatIdParam' element={<PostCatFormUpdateAdmin />} />

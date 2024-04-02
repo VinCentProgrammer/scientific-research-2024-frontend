@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SideBar from "../sidebar/SideBar";
 import PostCatModel from "../../models/PostCatModel";
-import { getPostCatById, getPostCats } from "../../api/PostAPI";
+import { getPostCatById, getPostCats } from "../../api/PostCatAPI";
 import getBase64 from "../../utils/Base64";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
@@ -75,9 +75,6 @@ function PostFormAdmin() {
         }
     };
 
-    console.log(getPostCatById(postCatId));
-
-
     const handleSubmit = async (e: React.FormEvent) => {
         // Clear 
         setErrorTitle('');
@@ -96,7 +93,7 @@ function PostFormAdmin() {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
 
-            fetch("http://localhost:8080/post/add",
+            fetch("http://localhost:8080/api/post/add",
                 {
                     method: 'POST',
                     headers: {

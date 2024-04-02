@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PostCatModel from "../../models/PostCatModel";
 import SideBar from "../sidebar/SideBar";
-import { getPostCatById, getPostCats } from "../../api/PostAPI";
+import { getPostCatById, getPostCats } from "../../api/PostCatAPI";
 import { NavLink, useParams } from "react-router-dom";
 
 function PostCatFormUpdateAdmin() {

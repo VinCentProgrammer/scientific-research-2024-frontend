@@ -6,7 +6,7 @@ export default class PostModel {
     desc: string;
     detail: string;
     thumbnail: string;
-    postCategory: PostCatModel;
+    postCatId: number;
     userId: number;
     createdAt: string;
     updatedAt: string;
@@ -17,7 +17,7 @@ export default class PostModel {
         desc: string,
         detail: string,
         thumbnail: string,
-        postCategory: PostCatModel,
+        postCatId: number,
         userId: number,
         createdAt: string,
         updatedAt: string
@@ -27,7 +27,7 @@ export default class PostModel {
         this.desc = desc;
         this.detail = detail;
         this.thumbnail = thumbnail;
-        this.postCategory = postCategory;
+        this.postCatId = postCatId;
         this.userId = userId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;

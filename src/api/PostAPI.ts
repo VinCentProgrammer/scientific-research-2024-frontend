@@ -1,17 +1,17 @@
 
 import React from "react";
-import PostCatModel from "../models/PostCatModel";
+import PostModel from "../models/PostModel";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../models/JwtPayLoad";
 
 interface ResultInterface {
-    result: PostCatModel[];
+    result: PostModel[];
     totalPages: number;
-    totalPostCat: number;
+    totalPost: number;
 }
 
-export async function getPostCat(url: string): Promise<ResultInterface> {
-    const result: PostCatModel[] = [];
+export async function getPost(url: string): Promise<ResultInterface> {
+    const result: PostModel[] = [];
     const token = localStorage.getItem('token');
 
     const response: Response = await fetch(url, {
@@ -31,37 +31,40 @@ export async function getPostCat(url: string): Promise<ResultInterface> {
     }
 
     const totalPages: number = responseData.page.totalPages;
-    const totalPostCat: number = responseData.page.totalElements;
+    const totalPost: number = responseData.page.totalElements;
 
     // Duyệt qua mảng dữ liệu để lấy thông tin của mỗi user
-    responseData._embedded.postCategories.forEach((postCatData: any) => {
+    responseData._embedded.postDetails.forEach((postData: any) => {
         result.push({
-            postCatId: postCatData.postCatId,
-            postCatParentId: postCatData.postCatParentId,
-            postCatName: postCatData.postCatName,
-            desc: postCatData.desc,
-            createdAt: postCatData.createdAt,
-            updatedAt: postCatData.updatedAt,
+            postId: postData.postId,
+            title: postData.title,
+            detail: postData.detail,
+            thumbnail: postData.thumbnail,
+            desc: postData.desc,
+            postCatId: postData.postCatId,
+            userId: postData.userId,
+            createdAt: postData.createdAt,
+            updatedAt: postData.updatedAt,
         });
     });
 
-    return { result: result, totalPostCat: totalPostCat, totalPages: totalPages };
+    return { result: result, totalPost: totalPost, totalPages: totalPages };
 }
 
-export async function getPostCats(): Promise<PostCatModel[]> {
-    const url: string = `http://localhost:8080/post-cat`;
-    return (await getPostCat(url)).result;
-}
-
-
-export async function getListPostCat(page: number): Promise<ResultInterface> {
-    const url: string = `http://localhost:8080/post-cat?sort=postCatId,desc&size=8&page=${page}`;
-    return getPostCat(url);
+export async function getPosts(): Promise<PostModel[]> {
+    const url: string = `http://localhost:8080/post-detail`;
+    return (await getPost(url)).result;
 }
 
 
-export async function deletePostCat(postCatId: number) {
-    const url: string = `http://localhost:8080/post-cat/${postCatId}`;
+export async function getListPost(page: number): Promise<ResultInterface> {
+    const url: string = `http://localhost:8080/post-detail?sort=postId,desc&size=8&page=${page}`;
+    return getPost(url);
+}
+
+
+export async function deletePost(postId: number) {
+    const url: string = `http://localhost:8080/post-detail/${postId}`;
     const token = localStorage.getItem('token');
 
     // Kiểm tra xem token có tồn tại không
@@ -93,8 +96,8 @@ export async function deletePostCat(postCatId: number) {
 }
 
 
-export async function getPostCatById(postCatId: number): Promise<PostCatModel | null> {
-    const url: string = `http://localhost:8080/post-cat/${postCatId}`;
+export async function getPostById(postId: number): Promise<PostModel | null> {
+    const url: string = `http://localhost:8080/post-detail/${postId}`;
     const token = localStorage.getItem('token');
 
 
@@ -113,19 +116,22 @@ export async function getPostCatById(postCatId: number): Promise<PostCatModel | 
             throw new Error(`Lỗi khi truy cập đến API! ${url}`);
         }
         // Nếu trả về OKE
-        const postCatData = await response.json();
+        const postData = await response.json();
         // Nếu không có sách nào cả
-        if (!postCatData) {
+        if (!postData) {
             throw new Error('Không tồn tài!');
         }
         // Có sách yêu cầu
         return {
-            postCatId: postCatData.postCatId,
-            postCatParentId: postCatData.postCatParentId,
-            postCatName: postCatData.postCatName,
-            desc: postCatData.desc,
-            createdAt: postCatData.createdAt,
-            updatedAt: postCatData.updatedAt,
+            postId: postData.postId,
+            title: postData.title,
+            detail: postData.detail,
+            thumbnail: postData.thumbnail,
+            desc: postData.desc,
+            postCatId: postData.postCatId,
+            userId: postData.userId,
+            createdAt: postData.createdAt,
+            updatedAt: postData.updatedAt,
         }
     } catch (error) {
         console.error('Error: ', error);

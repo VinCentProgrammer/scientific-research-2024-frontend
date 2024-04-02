@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SideBar from "../sidebar/SideBar";
 import PostCatModel from "../../models/PostCatModel";
 import { useNavigate } from "react-router-dom";
-import { deletePostCat, getListPostCat, getPostCats } from "../../api/PostAPI";
+import { deletePostCat, getListPostCat, getPostCats } from "../../api/PostCatAPI";
 import { Pagination } from "../../utils/Pagination";
 import { Button, Modal } from "react-bootstrap";
 import PostCatItemAdmin from "./PostCatItemAdmin";
