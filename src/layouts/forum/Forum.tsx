@@ -1,6 +1,9 @@
+import ScrollToTopButton from "../../utils/ScrollToTopButton";
+
 function Forum() {
     return (
         <div className="container text-start" id="forum">
+            <ScrollToTopButton />
             <div className="row">
                 <div className="col-lg-9 mb-3">
                     <div className="row text-left mb-5">

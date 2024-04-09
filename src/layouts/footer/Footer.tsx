@@ -5,7 +5,7 @@ function Footer() {
         <footer className="bg-dark py-4">
             <div className="container px-5">
                 <div className="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div className="col-auto"><div className="small m-0 text-white">Copyright &copy; Your Website 2023</div></div>
+                    <div className="col-auto"><div className="small m-0 text-white">Copyright &copy; discrete.math.utc2.vn 2023</div></div>
                     <div className="col-auto">
                         <a className="link-light small" href="#!">Privacy</a>
                         <span className="text-white mx-1">&middot;</span>

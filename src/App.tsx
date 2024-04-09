@@ -39,6 +39,7 @@ import PostCatForm from './layouts/post/PostCatFormAdmin';
 import PostCatList from './layouts/post/PostCatListAdmin';
 import PostCatFormUpdateAdmin from './layouts/post/PostCatFormUpdateAdmin';
 import PostFormUpdateAdmin from './layouts/post/PostFormUpdateAdmin';
+import ScrollToTopButton from './utils/ScrollToTopButton';
 
 function App() {
   return (
@@ -77,7 +78,7 @@ function App() {
           <Route path="/page/403" element={<Page403 />} />
           <Route path="/page/404" element={<Page404 />} />
           <Route path="/page/500" element={<Page500 />} />
-          
+
 
           {/* //////////////////////////////// POST ///////////////////////////////// */}
           <Route path='/post' element={<Post />} />

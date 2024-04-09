@@ -1,14 +1,17 @@
+import ScrollToTopButton from "../../../utils/ScrollToTopButton";
+
 function PostDetail() {
     return (
         <section className="py-5 text-start">
+            <ScrollToTopButton />
             <div className="container px-5 my-5">
                 <div className="row gx-5">
                     <div className="col-lg-3">
                         <div className="d-flex align-items-center mt-lg-5 mb-4">
                             <img className="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
                             <div className="ms-3">
-                                <div className="fw-bold">Valerie Luna</div>
-                                <div className="text-muted">News, Business</div>
+                                <div className="fw-bold">Admin</div>
+                                <div className="text-muted">News, Combinatorics</div>
                             </div>
                         </div>
                     </div>
@@ -17,17 +20,17 @@ function PostDetail() {
                             <header className="mb-4">
                                 <h1 className="fw-bolder mb-1">Welcome to Blog Post!</h1>
                                 <div className="text-muted fst-italic mb-2">January 1, 2023</div>
-                                <a className="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
-                                <a className="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
+                                <a className="badge bg-secondary text-decoration-none link-light" href="#!">Discrete Math</a>
+                                <a className="badge bg-secondary text-decoration-none link-light" href="#!">Ontology</a>
                             </header>
                             <figure className="mb-4"><img className="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
                             <section className="mb-5">
-                                <p className="fs-5 mb-4">Science is an enterprise that should be cherished as an activity of the free human mind. Because it transforms who we are, how we live, and it gives us an understanding of our place in the universe.</p>
-                                <p className="fs-5 mb-4">The universe is large and old, and the ingredients for life as we know it are everywhere, so there's no reason to think that Earth would be unique in that regard. Whether of not the life became intelligent is a different question, and we'll see if we find that.</p>
-                                <p className="fs-5 mb-4">If you get asteroids about a kilometer in size, those are large enough and carry enough energy into our system to disrupt transportation, communication, the food chains, and that can be a really bad day on Earth.</p>
-                                <h2 className="fw-bolder mb-4 mt-5">I have odd cosmic thoughts every day</h2>
-                                <p className="fs-5 mb-4">For me, the most fascinating interface is Twitter. I have odd cosmic thoughts every day and I realized I could hold them to myself or share them with people who might be interested.</p>
-                                <p className="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened there because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running water. It's bone dry today. Something bad happened there as well.</p>
+                                <p className="fs-5 mb-4">Discrete mathematics is the study of mathematical structures that are countable or otherwise distinct and separable. Examples of structures that are discrete are combinations, graphs, and logical statements. Discrete structures can be finite or infinite. Discrete mathematics is in contrast to continuous mathematics, which deals with structures which can range in value over the real numbers, or have some non-separable quality.</p>
+                                <p className="fs-5 mb-4">Since the time of Isaac Newton and until quite recently, almost the entire emphasis of applied mathematics has been on continuously varying processes, modeled by the mathematical continuum and using methods derived from the diﬀerential and integral calculus. In contrast, discrete mathematics concerns itself mainly with finite collections of discrete objects. With the growth of digital devices, especially computers, discrete mathematics has become more and more important.</p>
+                                <p className="fs-5 mb-4">Discrete structures can be counted, arranged, placed into sets, and put into ratios with one another. Although discrete mathematics is a wide and varied field, there are certain rules that carry over into many topics. The concept of independent events and the rules of product, sum, and PIE are shared among combinatorics, set theory, and probability. In addition, De Morgan's laws are applicable in many fields of discrete mathematics.</p>
+                                <h2 className="fw-bolder mb-4 mt-5">Combinatorics</h2>
+                                <p className="fs-5 mb-4">Combinatorics is the mathematics of counting and arranging. Of course, most people know how to count, but combinatorics applies mathematical operations to count things that are much too large to be counted the conventional way.</p>
+                                <p className="fs-5 mb-4">Combinatorics is especially useful in computer science. Combinatorics methods can be used to develop estimates about how many operations a computer algorithm will require. Combinatorics is also important for the study of discrete probability. Combinatorics methods can be used to count possible outcomes in a uniform probability experiment.</p>
                             </section>
                         </article>
                         <section>

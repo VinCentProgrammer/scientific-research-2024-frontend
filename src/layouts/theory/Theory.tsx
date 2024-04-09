@@ -1,6 +1,9 @@
+import ScrollToTopButton from "../../utils/ScrollToTopButton";
+
 function Theory() {
     return (
         <div className="container p-5 d-flex align-items-start" style={{minHeight: '700px'}}>
+            <ScrollToTopButton />
             <ul className="nav nav-pills flex-column nav-pills border-end border-3 me-3 align-items-end" id="pills-tab" role="tablist">
                 <li className="nav-item" role="presentation">
                     <button className="nav-link text-primary fw-semibold active position-relative" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>

@@ -72,7 +72,7 @@ function ResetPassForm() {
 
 
     return (
-        <div id="layoutAuthentication">
+        <div id="layoutAuthentication" className='m-4'>
             <div id="layoutAuthentication_content">
                 <main>
                     <div className="container">

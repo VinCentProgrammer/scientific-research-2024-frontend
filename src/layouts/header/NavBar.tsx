@@ -1,6 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
 import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import capitalize from '../../utils/CapitalizeString';
 
 function NavBar() {
     const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -24,18 +25,18 @@ function NavBar() {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid px-5">
                 <div className=''>
-                    <NavLink className="navbar-brand font-weight-bold" to="/">UTC2 - TOÁN RỜI RẠC</NavLink>
+                    <NavLink className="navbar-brand font-weight-bold" to="/">UTC2 - Discrete Math</NavLink>
                 </div>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li className="nav-item"><NavLink className="nav-link" to="/">Trang chủ</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/theory">Lý thuyết</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/problem">Giải bài tập</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/post">Bài viết</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/forum">Diễn đàn - Trao đổi</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/page/about">Về chúng tôi</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/page/contact">Liên hệ</NavLink></li>
+                        <li className="nav-item"><NavLink className="nav-link" to="/">Home</NavLink></li>
+                        <li className="nav-item"><NavLink className="nav-link" to="/theory">Theory</NavLink></li>
+                        <li className="nav-item"><NavLink className="nav-link" to="/problem">Solve Exercises</NavLink></li>
+                        <li className="nav-item"><NavLink className="nav-link" to="/post">Posts</NavLink></li>
+                        <li className="nav-item"><NavLink className="nav-link" to="/forum">Discussion Forum</NavLink></li>
+                        <li className="nav-item"><NavLink className="nav-link" to="/page/about">About Us</NavLink></li>
+                        <li className="nav-item"><NavLink className="nav-link" to="/page/contact">Get in Touch</NavLink></li>
 
                         {
                             isLogin ?
@@ -46,27 +47,27 @@ function NavBar() {
                                             aria-expanded="false">
                                             <i className="fas fa-user fa-fw"></i>
                                             <span className="mx-2">
-                                                Xin chào {usernameLogin}
+                                                Hi {usernameLogin && capitalize(usernameLogin)}
                                             </span>
                                         </a>
                                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                             <li>
                                                 <a className="dropdown-item" href="#!">
                                                     <i className="bi bi-person mx-2"></i>
-                                                    Tài khoản
+                                                    Account
                                                 </a>
                                             </li>
                                             <div className="dropdown-divider"></div>
                                             <li>
                                                 <button className="dropdown-item" onClick={handleLogout}>
                                                     <i className="bi bi-arrow-up-circle mx-2"></i>
-                                                    Đăng xuất
+                                                    Logout
                                                 </button>
                                             </li>
                                         </ul>
                                     </li>
                                 </ul> : <li className='btn btn-outline-info mx-4'>
-                                    <NavLink className="dropdown-item" to="/login">Đăng nhập</NavLink>
+                                    <NavLink className="dropdown-item" to="/login">Sign in</NavLink>
                                 </li>
                         }
                     </ul>
