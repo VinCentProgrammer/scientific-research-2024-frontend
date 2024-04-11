@@ -38,7 +38,6 @@ function TheoryCatListAdmin() {
         setCurrPage(currPage);
     }
 
-
     const handleOnDelete = async (id: number) => {
         const deleleted = deleteTheoryCat(id);
         if (await deleleted === true) {
@@ -65,7 +64,7 @@ function TheoryCatListAdmin() {
     if (loadingData) {
         return (
             <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
+                <span className="sr-only"></span>
             </div>
         )
     }
@@ -75,8 +74,6 @@ function TheoryCatListAdmin() {
             <div>{error}</div>
         )
     }
-
-
 
     return (
         <div id="layoutSidenav">
@@ -117,7 +114,6 @@ function TheoryCatListAdmin() {
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                 </main>

@@ -21,8 +21,6 @@ export async function getPermission(url: string): Promise<ResultInterface> {
 
     const responseData = await response.json(); // Phải await để chờ dữ liệu JSON được trả về
 
-
-    // Kiểm tra xem có lỗi trong phản hồi không
     if (!response.ok) {
         throw new Error(`Error ${response.status}: ${responseData.message}`);
     }
@@ -30,7 +28,6 @@ export async function getPermission(url: string): Promise<ResultInterface> {
     const totalPages: number = responseData.page.totalPages;
     const totalPermission: number = responseData.page.totalElements;
 
-    // Duyệt qua mảng dữ liệu để lấy thông tin của mỗi user
     responseData._embedded.permissions.forEach((permissionData: any) => {
         result.push({
             permissionId: permissionData.permissionId,
@@ -90,7 +87,6 @@ export async function deletePermission(id: number) {
     const url: string = `http://localhost:8080/permission/${id}`;
     const token = localStorage.getItem('token');
 
-    // Kiểm tra xem token có tồn tại không
     if (!token) {
         throw new Error('Token not found in localStorage');
     }
@@ -104,17 +100,14 @@ export async function deletePermission(id: number) {
             }
         });
 
-        // Kiểm tra xem có lỗi trong phản hồi không
         if (!response.ok) {
             const responseData = await response.json();
             throw new Error(`Error ${response.status}: ${responseData.message}`);
         }
-        // Kiểm tra xem có xóa user hiện tại đang login hay không
-
         return true; // Trả về true nếu xóa thành công
     } catch (error) {
         console.error('Error deleting user:', error);
-        throw error; // Ném lỗi để xử lý tại nơi gọi hàm này nếu cần
+        throw error; 
     }
 }
 
@@ -125,7 +118,6 @@ export async function getPermissionById(id: number): Promise<PermissionModel | n
 
 
     try {
-        // Truy vấn đến đường dẫn
         const response: Response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -134,17 +126,13 @@ export async function getPermissionById(id: number): Promise<PermissionModel | n
             }
         });
 
-        // Nếu trả về lỗi
         if (!response.ok) {
             throw new Error(`Lỗi khi truy cập đến API lấy permission! ${url}`);
         }
-        // Nếu trả về OKE
         const permissionData = await response.json();
-        // Nếu không có sách nào cả
         if (!permissionData) {
             throw new Error('User không tồn tài!');
         }
-        // Có sách yêu cầu
         return {
             permissionId: permissionData.permissionId,
             name: permissionData.name,

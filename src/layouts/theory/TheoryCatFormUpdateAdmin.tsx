@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import PostCatModel from "../../models/PostCatModel";
 import SideBar from "../sidebar/SideBar";
-import { getPostCats } from "../../api/PostCatAPI";
 import { NavLink, useParams } from "react-router-dom";
 import TheoryCatModel from "../../models/TheoryCatModel";
-import { getTheoryCat, getTheoryCatById, getTheoryCats } from "../../api/TheoryCatAPI";
+import { getTheoryCatById, getTheoryCats } from "../../api/TheoryCatAPI";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 
@@ -53,8 +51,8 @@ function TheoryCatFormUpdateAdmin() {
 
     useEffect(() => {
         if (theoryCat !== null) {
-            setName(theoryCat.name === undefined ? '' : theoryCat.name)
-            setShortDesc(theoryCat.shortDesc === undefined ? '' : theoryCat.shortDesc)
+            setName(theoryCat.name === undefined ? '' : theoryCat.name);
+            setShortDesc(theoryCat.shortDesc === undefined ? '' : theoryCat.shortDesc);
             setTheoryCatParentId(theoryCat.theoryParentCatId);
         }
     }, [theoryCat]);
@@ -96,10 +94,6 @@ function TheoryCatFormUpdateAdmin() {
         if (name && shortDesc && theoryParentCatId && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-
-            console.log(theoryParentCatId);
-            
-
             fetch(`http://localhost:8080/api/theory/cat/update`,
                 {
                     method: 'PUT',
@@ -121,7 +115,6 @@ function TheoryCatFormUpdateAdmin() {
                     setName('');
                     setShortDesc('');
                     setTheoryCatParentId(1);
-
                 } else {
                     setErrorNoti("An error occurred during the update process!");
                 }
@@ -182,7 +175,6 @@ function TheoryCatFormUpdateAdmin() {
                                                     }
                                                 </select>
                                             </div>
-
                                             <div>
                                                 {
                                                     successNoti && <NavLink to='/admin/theory/topic/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View Theory Topic</NavLink>

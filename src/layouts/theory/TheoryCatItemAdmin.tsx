@@ -5,8 +5,6 @@ interface TheoryCatRowProps {
     onDelete: (id: number) => void;
     onUpdate: (id: number) => void;
 }
-
-
 const TheoryCatItemAdmin: React.FC<TheoryCatRowProps> = (props) => {
     const handleOnDelete = () => {
         const confirm = window.confirm("Are you sure to delete this record?");

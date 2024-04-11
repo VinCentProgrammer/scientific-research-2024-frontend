@@ -38,7 +38,6 @@ function NavBar() {
                         <li className="nav-item"><NavLink className="nav-link" to="/forum">Discussion Forum</NavLink></li>
                         <li className="nav-item"><NavLink className="nav-link" to="/page/about">About Us</NavLink></li>
                         <li className="nav-item"><NavLink className="nav-link" to="/page/contact">Get in Touch</NavLink></li>
-
                         {
                             isLogin ?
                                 <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">

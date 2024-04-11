@@ -18,7 +18,6 @@ function ActiveAccount() {
         try {
             const url: string = `http://localhost:8080/account/active?email=${email}&activeCode=${activeCode}`;
             const response = await fetch(url, { method: 'GET' })
-
             if (response.ok) {
                 setActive(true);
             } else {
@@ -26,7 +25,6 @@ function ActiveAccount() {
             }
         } catch (error) {
             console.log("Lỗi khi kích hoạt: ", error);
-
         }
     }
 
@@ -41,15 +39,14 @@ function ActiveAccount() {
                                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                                         {active
                                             ? <div>
-                                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Kích hoạt tài khoản thành công <i className="bi bi-check-circle text-success"></i></p>
-                                                <NavLink className="btn btn-success" to="/login">Đăng nhập ngay</NavLink>
+                                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Account activation successful <i className="bi bi-check-circle text-success"></i></p>
+                                                <NavLink className="btn btn-success" to="/login">Log in now</NavLink>
                                             </div>
                                             : <div>
-                                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Lỗi kích hoạt tài khoản <i className="bi bi-exclamation-circle text-danger"></i></p>
-                                                <NavLink className="btn btn-primary" to="/register">Đăng ký lại nào</NavLink>
+                                                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Account activation error<i className="bi bi-exclamation-circle text-danger"></i></p>
+                                                <NavLink className="btn btn-primary" to="/register">Please register again</NavLink>
                                             </div>
                                         }
-
                                     </div>
                                     <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
                                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"

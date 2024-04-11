@@ -5,8 +5,6 @@ import JwtPayload from "../../models/JwtPayLoad";
 import { NavLink } from "react-router-dom";
 import TheoryCatModel from "../../models/TheoryCatModel";
 import { getTheoryCats } from "../../api/TheoryCatAPI";
-import TheoryModel from "../../models/TheoryModel";
-import { getTheories } from "../../api/TheoryAPI";
 
 function TheoryFormAdmin() {
     const [theoryCats, setTheoryCats] = useState<TheoryCatModel[]>([]);
@@ -52,7 +50,6 @@ function TheoryFormAdmin() {
         setTheoryCatId(parseInt(event.target.value));
     }
 
-
     const handleSubmit = async (e: React.FormEvent) => {
         // Clear 
         setErrorTitle('');
@@ -61,14 +58,10 @@ function TheoryFormAdmin() {
         // Prevent default
         e.preventDefault();
 
-        // 
         const token = localStorage.getItem('token');
-        console.log(theoryCatId);
-        
         if (title && content && theoryCatId && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-
             fetch("http://localhost:8080/api/theory/add",
                 {
                     method: 'POST',
@@ -96,7 +89,6 @@ function TheoryFormAdmin() {
         }
     }
 
-   
     return (
         <div id="layoutSidenav">
             <SideBar />

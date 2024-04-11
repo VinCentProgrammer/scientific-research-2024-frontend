@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
-import PostCatModel from "../../models/PostCatModel";
-import SideBar from "../sidebar/SideBar";
-import { getPostCats } from "../../api/PostCatAPI";
-import { useNavigate } from "react-router-dom";
-import PostModel from "../../models/PostModel";
-import { deletePost, getListPost, getPosts } from "../../api/PostAPI";
-import { Pagination } from "../../utils/Pagination";
 import { Button, Modal } from "react-bootstrap";
 import TheoryModel from "../../models/TheoryModel";
-import { deleteTheory, getListTheory } from "../../api/TheoryAPI";
+import { getListTheory } from "../../api/TheoryAPI";
+import { useNavigate } from "react-router-dom";
+import SideBar from "../sidebar/SideBar";
 import TheoryRowAdmin from "./TheoryRowAdmin";
+import { Pagination } from "../../utils/Pagination";
 
 function TheoryListAdmin() {
     const [theories, setTheories] = useState<TheoryModel[] | null>([]);
@@ -21,7 +17,7 @@ function TheoryListAdmin() {
     const [notification, setNotification] = useState('');
     const navigate = useNavigate();
 
-    
+
     useEffect(() => {
         getListTheory(currPage - 1)
             .then(

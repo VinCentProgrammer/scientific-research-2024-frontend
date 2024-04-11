@@ -44,16 +44,12 @@ function TheoryKeywordFormAdmin() {
     const handleSubmit = (e: React.FormEvent) => {
         // Clear 
         setErrorKeyword('');
-
-        // Prevent default
         e.preventDefault();
 
-        // 
         const token = localStorage.getItem('token');
         if (keyword && theoryId && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-
             fetch("http://localhost:8080/api/theory/keyword/add",
                 {
                     method: 'POST',

@@ -6,7 +6,6 @@ function ResetPassForm() {
     const [errorEmail, setErrorEmail] = useState('');
     const [notification, setNotification] = useState("");
 
-
     //////////////======CHECK EMAIL ========///////////////////
     const checkExistedEmail = async (email: string) => {
         // Endpoint

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import TheoryModel from "../../models/TheoryModel";
 
 interface TheoryRowInterface {
@@ -6,7 +5,6 @@ interface TheoryRowInterface {
     onUpdate: (id: number) => void;
 }
 const TheoryRowAdmin: React.FC<TheoryRowInterface> = (props) => {
-
     const handleOnUpdate = () => {
         props.onUpdate(props.theory.theoryDetailId);
     }

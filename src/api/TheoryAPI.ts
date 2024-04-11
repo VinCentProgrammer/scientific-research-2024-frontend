@@ -20,8 +20,6 @@ export async function getTheory(url: string): Promise<ResultInterface> {
 
     const responseData = await response.json(); // Phải await để chờ dữ liệu JSON được trả về
 
-
-    // Kiểm tra xem có lỗi trong phản hồi không
     if (!response.ok) {
         throw new Error(`Error ${response.status}: ${responseData.message}`);
     }
@@ -29,7 +27,6 @@ export async function getTheory(url: string): Promise<ResultInterface> {
     const totalPages: number = responseData.page.totalPages;
     const totalTheory: number = responseData.page.totalElements;
 
-    // Duyệt qua mảng dữ liệu để lấy thông tin của mỗi user
     responseData._embedded.theoryDetails.forEach((theoryData: any) => {
         result.push({
             theoryDetailId: theoryData.theoryDetailId,
@@ -49,18 +46,15 @@ export async function getTheories(): Promise<TheoryModel[]> {
     return (await getTheory(url)).result;
 }
 
-
 export async function getListTheory(page: number): Promise<ResultInterface> {
     const url: string = `http://localhost:8080/theory-detail?sort=theoryId,asc&size=8&page=${page}`;
     return getTheory(url);
 }
 
-
 export async function deleteTheory(theoryId: number) {
     const url: string = `http://localhost:8080/theory-detail/${theoryId}`;
     const token = localStorage.getItem('token');
 
-    // Kiểm tra xem token có tồn tại không
     if (!token) {
         throw new Error('Token not found in localStorage');
     }
@@ -74,12 +68,10 @@ export async function deleteTheory(theoryId: number) {
             }
         });
 
-        // Kiểm tra xem có lỗi trong phản hồi không
         if (!response.ok) {
             const responseData = await response.json();
             throw new Error(`Error ${response.status}: ${responseData.message}`);
         }
-        // Kiểm tra xem có xóa user hiện tại đang login hay không
 
         return true; // Trả về true nếu xóa thành công
     } catch (error) {
@@ -91,7 +83,6 @@ export async function deleteTheory(theoryId: number) {
 
 export async function getTheoryById(theoryId: number): Promise<TheoryModel | null> {
     const url: string = `http://localhost:8080/theory-detail/${theoryId}`;
-    // const token = localStorage.getItem('token');
 
     try {
         // Truy vấn đến đường dẫn
@@ -99,21 +90,16 @@ export async function getTheoryById(theoryId: number): Promise<TheoryModel | nul
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                // 'Authorization': `Bearer ${token}`
             }
         });
 
-        // Nếu trả về lỗi
         if (!response.ok) {
             throw new Error(`Lỗi khi truy cập đến API! ${url}`);
         }
-        // Nếu trả về OKE
         const responseData = await response.json();
-        // Nếu không có sách nào cả
         if (!responseData) {
             throw new Error('Không tồn tài!');
         }
-        // Có sách yêu cầu
         return {
             theoryDetailId: responseData.theoryDetailId,
             theoryCatId: responseData.theoryCatId,
@@ -132,15 +118,12 @@ export async function getTheoryById(theoryId: number): Promise<TheoryModel | nul
 
 export async function getTheoryByCatId(theoryCatId: number): Promise<TheoryModel | null> {
     const url: string = `http://localhost:8080/api/theory/cat/${theoryCatId}`;
-    // const token = localStorage.getItem('token');
 
     try {
-        // Truy vấn đến đường dẫn
         const response: Response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                // 'Authorization': `Bearer ${token}`
             }
         });
 
@@ -148,13 +131,10 @@ export async function getTheoryByCatId(theoryCatId: number): Promise<TheoryModel
         if (!response.ok) {
             throw new Error(`Lỗi khi truy cập đến API! ${url}`);
         }
-        // Nếu trả về OKE
         const responseData = await response.json();
-        // Nếu không có sách nào cả
         if (!responseData) {
             throw new Error('Không tồn tài!');
         }
-        // Có sách yêu cầu
         return {
             theoryDetailId: responseData.theoryDetailId,
             theoryCatId: responseData.theoryCatId,

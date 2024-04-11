@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-import PostCatModel from "../../models/PostCatModel";
 import SideBar from "../sidebar/SideBar";
-import { getPostCats } from "../../api/PostCatAPI";
 import { NavLink } from "react-router-dom";
 import TheoryModel from "../../models/TheoryModel";
-import { getTheoryCat, getTheoryCats } from "../../api/TheoryCatAPI";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 import { getTheories } from "../../api/TheoryAPI";
@@ -58,15 +55,12 @@ function TheoryExampleFormAdmin() {
         setErrorName('');
         setErrorAnswer('');
 
-        // Prevent default
         e.preventDefault();
 
-        // 
         const token = localStorage.getItem('token');
         if (name && answer && theoryId && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-
             fetch("http://localhost:8080/api/theory/example/add",
                 {
                     method: 'POST',
@@ -90,14 +84,6 @@ function TheoryExampleFormAdmin() {
                     setTheoryId(1);
                 } else {
                     setErrorNoti("An error occurred while adding!");
-                    console.log({
-                        exampleId: 0,
-                        theoryDetailId: theoryId,
-                        userId: userId,
-                        name: name,
-                        answer: answer
-                    });
-
                 }
             })
         }

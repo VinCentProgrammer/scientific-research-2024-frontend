@@ -1,17 +1,10 @@
 import { useEffect, useState } from "react";
 import SideBar from "../sidebar/SideBar";
-import PostCatModel from "../../models/PostCatModel";
-import { getPostCatByPostId, getPostCats } from "../../api/PostCatAPI";
-import getBase64 from "../../utils/Base64";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 import { NavLink, useParams } from "react-router-dom";
-import { getPostById } from "../../api/PostAPI";
-import PostModel from "../../models/PostModel";
 import TheoryExampleModel from "../../models/TheoryExampleModel";
-import { getTheories, getTheoryById } from "../../api/TheoryAPI";
-import { getTheoryCats } from "../../api/TheoryCatAPI";
-import TheoryCatModel from "../../models/TheoryCatModel";
+import { getTheories } from "../../api/TheoryAPI";
 import { getTheoryExampleById } from "../../api/TheoryExampleAPI";
 import TheoryModel from "../../models/TheoryModel";
 
@@ -92,24 +85,17 @@ function TheoryExampleFormUpdateAdmin() {
         setTheoryId(parseInt(event.target.value));
     }
 
-    console.log(theoryId);
-    
-
-
     const handleSubmit = async (e: React.FormEvent) => {
         // Clear 
         setErrorName('');
         setErrorAnswer('');
 
-        // Prevent default
         e.preventDefault();
 
-        // 
         const token = localStorage.getItem('token');
         if (name && answer && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-
             fetch("http://localhost:8080/api/theory/example/update",
                 {
                     method: 'PUT',
@@ -132,19 +118,10 @@ function TheoryExampleFormUpdateAdmin() {
                     setAnswer('');
                 } else {
                     setErrorNoti("An error occurred while updating!");
-                    console.log({
-                        exampleId: exampleId,
-                        theoryDetailId: theoryId,
-                        name: name,
-                        answer: answer,
-                        userId: userId,
-                    });
-                    
                 }
             })
         }
     }
-
 
     return (
         <div id="layoutSidenav">
@@ -198,7 +175,6 @@ function TheoryExampleFormUpdateAdmin() {
                                             }
                                         </select>
                                     </div>
-
 
                                     <div>
                                         {

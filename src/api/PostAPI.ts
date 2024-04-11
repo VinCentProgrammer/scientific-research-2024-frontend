@@ -1,4 +1,3 @@
-
 import PostModel from "../models/PostModel";
 
 interface ResultInterface {
@@ -21,8 +20,6 @@ export async function getPost(url: string): Promise<ResultInterface> {
 
     const responseData = await response.json(); // Phải await để chờ dữ liệu JSON được trả về
 
-
-    // Kiểm tra xem có lỗi trong phản hồi không
     if (!response.ok) {
         throw new Error(`Error ${response.status}: ${responseData.message}`);
     }
@@ -30,7 +27,6 @@ export async function getPost(url: string): Promise<ResultInterface> {
     const totalPages: number = responseData.page.totalPages;
     const totalPost: number = responseData.page.totalElements;
 
-    // Duyệt qua mảng dữ liệu để lấy thông tin của mỗi user
     responseData._embedded.postDetails.forEach((postData: any) => {
         result.push({
             postId: postData.postId,
@@ -59,12 +55,10 @@ export async function getListPost(page: number): Promise<ResultInterface> {
     return getPost(url);
 }
 
-
 export async function deletePost(postId: number) {
     const url: string = `http://localhost:8080/post-detail/${postId}`;
     const token = localStorage.getItem('token');
 
-    // Kiểm tra xem token có tồn tại không
     if (!token) {
         throw new Error('Token not found in localStorage');
     }
@@ -78,12 +72,10 @@ export async function deletePost(postId: number) {
             }
         });
 
-        // Kiểm tra xem có lỗi trong phản hồi không
         if (!response.ok) {
             const responseData = await response.json();
             throw new Error(`Error ${response.status}: ${responseData.message}`);
         }
-        // Kiểm tra xem có xóa user hiện tại đang login hay không
 
         return true; // Trả về true nếu xóa thành công
     } catch (error) {
@@ -96,9 +88,7 @@ export async function deletePost(postId: number) {
 export async function getPostById(postId: number): Promise<PostModel | null> {
     const url: string = `http://localhost:8080/post-detail/${postId}`;
     const token = localStorage.getItem('token');
-
     try {
-        // Truy vấn đến đường dẫn
         const response: Response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -107,17 +97,13 @@ export async function getPostById(postId: number): Promise<PostModel | null> {
             }
         });
 
-        // Nếu trả về lỗi
         if (!response.ok) {
             throw new Error(`Lỗi khi truy cập đến API! ${url}`);
         }
-        // Nếu trả về OKE
         const postData = await response.json();
-        // Nếu không có sách nào cả
         if (!postData) {
             throw new Error('Không tồn tài!');
         }
-        // Có sách yêu cầu
         return {
             postId: postData.postId,
             title: postData.title,

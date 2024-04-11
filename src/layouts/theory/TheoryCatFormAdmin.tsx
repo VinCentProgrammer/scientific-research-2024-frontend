@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import PostCatModel from "../../models/PostCatModel";
 import SideBar from "../sidebar/SideBar";
-import { getPostCats } from "../../api/PostCatAPI";
 import { NavLink } from "react-router-dom";
 import TheoryCatModel from "../../models/TheoryCatModel";
-import { getTheoryCat, getTheoryCats } from "../../api/TheoryCatAPI";
+import { getTheoryCats } from "../../api/TheoryCatAPI";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 
@@ -146,7 +144,6 @@ function TheoryCatFormAdmin() {
                                                     }
                                                 </select>
                                             </div>
-
                                             <div>
                                                 {
                                                     successNoti && <NavLink to='/admin/theory/topic/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View Theory Topic</NavLink>
@@ -160,7 +157,6 @@ function TheoryCatFormAdmin() {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </main>
             </div>

@@ -1,17 +1,11 @@
 import { useEffect, useState } from "react";
-import PostCatModel from "../../models/PostCatModel";
 import SideBar from "../sidebar/SideBar";
-import { getPostCats } from "../../api/PostCatAPI";
 import { useNavigate } from "react-router-dom";
-import PostModel from "../../models/PostModel";
-import { deletePost, getListPost, getPosts } from "../../api/PostAPI";
-import { Pagination } from "../../utils/Pagination";
 import { Button, Modal } from "react-bootstrap";
 import TheoryExampleModel from "../../models/TheoryExampleModel";
-import { deleteTheory, getListTheory } from "../../api/TheoryAPI";
-import TheoryRowAdmin from "./TheoryRowAdmin";
-import { deleteTheoryExample, getListTheoryExample, getTheoryExample } from "../../api/TheoryExampleAPI";
+import { deleteTheoryExample, getListTheoryExample } from "../../api/TheoryExampleAPI";
 import TheoryExampleRowAdmin from "./TheoryExampleRowAdmin";
+import { Pagination } from "../../utils/Pagination";
 
 function TheoryExampleListAdmin() {
     const [theoryExamples, setTheoryExamples] = useState<TheoryExampleModel[] | null>([]);
@@ -23,7 +17,6 @@ function TheoryExampleListAdmin() {
     const [notification, setNotification] = useState('');
     const navigate = useNavigate();
 
-    
     useEffect(() => {
         getListTheoryExample(currPage - 1)
             .then(
@@ -66,11 +59,10 @@ function TheoryExampleListAdmin() {
         setShowModal(false);
     }
 
-
     if (loadingData) {
         return (
             <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
+                <span className="sr-only"></span>
             </div>
         )
     }

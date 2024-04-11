@@ -1,17 +1,10 @@
 import { useEffect, useState } from "react";
 import SideBar from "../sidebar/SideBar";
-import PostCatModel from "../../models/PostCatModel";
-import { getPostCatByPostId, getPostCats } from "../../api/PostCatAPI";
-import getBase64 from "../../utils/Base64";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 import { NavLink, useParams } from "react-router-dom";
-import { getPostById } from "../../api/PostAPI";
-import PostModel from "../../models/PostModel";
 import TheoryKeywordModel from "../../models/TheoryKeywordModel";
-import { getTheories, getTheoryById } from "../../api/TheoryAPI";
-import { getTheoryCats } from "../../api/TheoryCatAPI";
-import TheoryCatModel from "../../models/TheoryCatModel";
+import { getTheories } from "../../api/TheoryAPI";
 import { getTheoryKeywordById } from "../../api/TheoryKeywordAPI";
 import TheoryModel from "../../models/TheoryModel";
 
@@ -86,7 +79,6 @@ function TheoryKeywordFormUpdateAdmin() {
         // Prevent default
         e.preventDefault();
 
-        // 
         const token = localStorage.getItem('token');
         if (keyword && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;

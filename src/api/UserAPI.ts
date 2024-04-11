@@ -20,8 +20,6 @@ async function getUser(url: string): Promise<ResultInterface> {
 
     const responseData = await response.json(); // Phải await để chờ dữ liệu JSON được trả về
 
-
-    // Kiểm tra xem có lỗi trong phản hồi không
     if (!response.ok) {
         throw new Error(`Error ${response.status}: ${responseData.message}`);
     }
@@ -29,7 +27,6 @@ async function getUser(url: string): Promise<ResultInterface> {
     const totalPages: number = responseData.page.totalPages;
     const totalUser: number = responseData.page.totalElements;
 
-    // Duyệt qua mảng dữ liệu để lấy thông tin của mỗi user
     responseData._embedded.users.forEach((userData: any) => {
         result.push({
             userId: userData.userId,
@@ -61,7 +58,6 @@ export async function getUserById(id: number): Promise<UserModel | null> {
 
     
     try {
-        // Truy vấn đến đường dẫn
         const response: Response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -70,17 +66,13 @@ export async function getUserById(id: number): Promise<UserModel | null> {
             }
         });
 
-        // Nếu trả về lỗi
         if (!response.ok) {
             throw new Error(`Lỗi khi truy cập đến API lấy user! ${url}`);
         }
-        // Nếu trả về OKE
         const userData = await response.json();
-        // Nếu không có sách nào cả
         if (!userData) {
             throw new Error('User không tồn tài!');
         }
-        // Có sách yêu cầu
         return {
             userId: userData.userId,
             username: userData.username,
@@ -102,9 +94,7 @@ export async function getUserById(id: number): Promise<UserModel | null> {
 }
 
 export async function findUser(keyword: string): Promise<ResultInterface> {
-
     const url: string = `http://localhost:8080/user/search/findByUsernameContaining?sort=userId,desc&size=8&page=0&username=${keyword}`;
-
     return getUser(url);
 }
 
@@ -112,7 +102,6 @@ export async function deleteUser(id: number) {
     const url: string = `http://localhost:8080/user/${id}`;
     const token = localStorage.getItem('token');
 
-    // Kiểm tra xem token có tồn tại không
     if (!token) {
         throw new Error('Token not found in localStorage');
     }
@@ -125,14 +114,10 @@ export async function deleteUser(id: number) {
                 'Authorization': `Bearer ${token}`
             }
         });
-
-        // Kiểm tra xem có lỗi trong phản hồi không
         if (!response.ok) {
             const responseData = await response.json();
             throw new Error(`Error ${response.status}: ${responseData.message}`);
         }
-        // Kiểm tra xem có xóa user hiện tại đang login hay không
-
         return true; // Trả về true nếu xóa thành công
     } catch (error) {
         console.error('Error deleting user:', error);

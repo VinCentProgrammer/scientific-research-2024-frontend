@@ -20,8 +20,6 @@ export async function getTheoryKeyword(url: string): Promise<ResultInterface> {
 
     const responseData = await response.json(); // Phải await để chờ dữ liệu JSON được trả về
 
-
-    // Kiểm tra xem có lỗi trong phản hồi không
     if (!response.ok) {
         throw new Error(`Error ${response.status}: ${responseData.message}`);
     }
@@ -29,7 +27,6 @@ export async function getTheoryKeyword(url: string): Promise<ResultInterface> {
     const totalPages: number = responseData.page.totalPages;
     const totalTheoryKeyword: number = responseData.page.totalElements;
 
-    // Duyệt qua mảng dữ liệu để lấy thông tin của mỗi user
     responseData._embedded.theoryKeywords.forEach((theoryKeywordData: any) => {
         result.push({
             keywordId: theoryKeywordData.keywordId,
@@ -59,7 +56,6 @@ export async function deleteTheoryKeyword(keywordId: number) {
     const url: string = `http://localhost:8080/theory-keyword/${keywordId}`;
     const token = localStorage.getItem('token');
 
-    // Kiểm tra xem token có tồn tại không
     if (!token) {
         throw new Error('Token not found in localStorage');
     }
@@ -73,13 +69,10 @@ export async function deleteTheoryKeyword(keywordId: number) {
             }
         });
 
-        // Kiểm tra xem có lỗi trong phản hồi không
         if (!response.ok) {
             const responseData = await response.json();
             throw new Error(`Error ${response.status}: ${responseData.message}`);
         }
-        // Kiểm tra xem có xóa user hiện tại đang login hay không
-
         return true; // Trả về true nếu xóa thành công
     } catch (error) {
         console.error('Error deleting user:', error);
@@ -90,29 +83,22 @@ export async function deleteTheoryKeyword(keywordId: number) {
 
 export async function getTheoryKeywordById(keywordId: number): Promise<TheoryKeywordModel | null> {
     const url: string = `http://localhost:8080/theory-keyword/${keywordId}`;
-    // const token = localStorage.getItem('token');
 
     try {
-        // Truy vấn đến đường dẫn
         const response: Response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                // 'Authorization': `Bearer ${token}`
             }
         });
 
-        // Nếu trả về lỗi
         if (!response.ok) {
             throw new Error(`Lỗi khi truy cập đến API! ${url}`);
         }
-        // Nếu trả về OKE
         const responseData = await response.json();
-        // Nếu không có sách nào cả
         if (!responseData) {
             throw new Error('Không tồn tài!');
         }
-        // Có sách yêu cầu
         return {
             keywordId: responseData.keywordId,
             theoryDetailId: responseData.theoryDetailId,

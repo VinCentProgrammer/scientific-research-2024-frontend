@@ -7,7 +7,6 @@ import TheoryKeywordModel from "../../models/TheoryKeywordModel";
 import { deleteTheoryKeyword, getListTheoryKeyword } from "../../api/TheoryKeywordAPI";
 import TheoryKeywordRowAdmin from "./TheoryKeywordRowAdmin";
 
-
 function TheoryKeywordListAdmin() {
     const [theoryKeywords, setTheoryKeywords] = useState<TheoryKeywordModel[] | null>([]);
     const [loadingData, setLoadingData] = useState<boolean>(false);
@@ -17,7 +16,6 @@ function TheoryKeywordListAdmin() {
     const [showModal, setShowModal] = useState(false);
     const [notification, setNotification] = useState('');
     const navigate = useNavigate();
-
     
     useEffect(() => {
         getListTheoryKeyword(currPage - 1)
@@ -37,7 +35,6 @@ function TheoryKeywordListAdmin() {
     const paginate = (currPage: number) => {
         setCurrPage(currPage);
     }
-
 
     const handleOnDelete = async (id: number) => {
         const deleleted = deleteTheoryKeyword(id);
@@ -61,7 +58,6 @@ function TheoryKeywordListAdmin() {
         setShowModal(false);
     }
 
-
     if (loadingData) {
         return (
             <div className="spinner-border" role="status">
@@ -75,7 +71,6 @@ function TheoryKeywordListAdmin() {
             <div>{error}</div>
         )
     }
-
 
     return (
         <div id="layoutSidenav">

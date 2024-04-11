@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
 import SideBar from "../sidebar/SideBar";
-import PostCatModel from "../../models/PostCatModel";
-import { getPostCatByPostId, getPostCats } from "../../api/PostCatAPI";
-import getBase64 from "../../utils/Base64";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 import { NavLink, useParams } from "react-router-dom";
-import { getPostById } from "../../api/PostAPI";
-import PostModel from "../../models/PostModel";
 import TheoryModel from "../../models/TheoryModel";
 import { getTheoryById } from "../../api/TheoryAPI";
 import { getTheoryCats } from "../../api/TheoryCatAPI";
@@ -97,12 +92,10 @@ function TheoryFormUpdateAdmin() {
         // Prevent default
         e.preventDefault();
 
-        // 
         const token = localStorage.getItem('token');
         if (title && content && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-
             fetch("http://localhost:8080/api/theory/update",
                 {
                     method: 'PUT',
@@ -183,7 +176,6 @@ function TheoryFormUpdateAdmin() {
                                             }
                                         </select>
                                     </div>
-
 
                                     <div>
                                         {

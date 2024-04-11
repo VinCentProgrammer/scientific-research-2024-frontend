@@ -9,7 +9,6 @@ interface JwtPayload {
     isUser: boolean;
 }
 
-
 function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -38,7 +37,7 @@ function LoginForm() {
                     if (response.ok) {
                         return response.json();
                     } else {
-                        setError('Lỗi đăng nhập hệ thống!');
+                        setError('System login error!');
                     }
                 }
             ).then(
@@ -53,12 +52,12 @@ function LoginForm() {
                         setIsStaff(true);
                     }
 
-                    setNotification('Đăng nhập thành công');
+                    setNotification('Logged in successfully');
                     setShowModal(true);
                 }
             ).catch((error) => {
                 console.error('Đăng nhập thất bại: ', error);
-                setError('Đăng nhập thất bại. Vui lòng kiểm tra lại tên đăng nhập và mật khẩu.')
+                setError('Login failed. Please check your username and password again.')
             }
             );
     }
@@ -73,7 +72,7 @@ function LoginForm() {
 
     return (
         <section className='m-4'>
-            <div className="container-fluid h-custom" style={{minHeight: '600px'}}>
+            <div className="container-fluid h-custom" style={{ minHeight: '600px' }}>
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-md-9 col-lg-6 col-xl-5">
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
@@ -145,7 +144,7 @@ function LoginForm() {
             <section>
                 <Modal show={showModal} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Thông báo</Modal.Title>
+                        <Modal.Title>Notification</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div>
@@ -154,7 +153,7 @@ function LoginForm() {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
-                            Đóng
+                            Close
                         </Button>
                     </Modal.Footer>
                 </Modal>

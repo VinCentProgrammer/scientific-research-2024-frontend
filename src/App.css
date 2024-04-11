@@ -53,12 +53,15 @@
   }
 }
 
-a {
-  /* color: #787272; */
-}
-
 a:hover {
   text-decoration: none;
+}
+
+#forum {
+  margin-top: 20px;
+  background: #eee;
+  color: #708090;
+  padding: 20px;
 }
 
 .topnav .navbar-brand {
@@ -247,7 +250,6 @@ ul#sidebar-menu * {
   list-style: none;
   padding: 0;
   margin: 0;
-
 }
 
 #category-product-wp .list-item li {
@@ -283,8 +285,10 @@ ul#sidebar-menu * {
   color: #666;
 }
 
-#category-product-wp .list-item li:hover > .sub-menu{ display: block;}
+#category-product-wp .list-item li:hover > .sub-menu {
+  display: block;
+}
 
 #category-product-wp .list-item li:hover {
-    background-color: rgb(142, 182, 231);
+  background-color: rgb(142, 182, 231);
 }

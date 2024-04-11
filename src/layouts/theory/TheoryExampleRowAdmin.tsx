@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import TheoryExampleModel from "../../models/TheoryExampleModel";
 
 interface TheoryExampleRowInterface {

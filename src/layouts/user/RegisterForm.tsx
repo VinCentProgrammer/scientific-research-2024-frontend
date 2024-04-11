@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import getBase64 from '../../utils/Base64';
 
-
 function RegisterForm() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -41,12 +40,10 @@ function RegisterForm() {
 
         // Kiểm tra tất cả các điều kiện
         if (isUsernameValid && isEmailValid && isPasswordValid && isRePasswordValid) {
-
             const base64Avatar = avatar ? await getBase64(avatar) : null;
 
             try {
                 const url = 'http://localhost:8080/account/register';
-
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: {
@@ -68,13 +65,13 @@ function RegisterForm() {
                 );
 
                 if (response.ok) {
-                    setNotification("Đăng ký thành công, vui lòng kiểm tra email để kích hoạt tài khoản!");
+                    setNotification("Registration successful, please check your email to activate your account!");
                 } else {
                     console.log(response.json());
-                    setNotification("Đã xảy ra lỗi trong quá trình đăng ký tài khoản.")
+                    setNotification("An error occurred during account registration.")
                 }
             } catch (error) {
-                setNotification("Đã xảy ra lỗi trong quá trình đăng ký tài khoản.")
+                setNotification("An error occurred during account registration.")
             }
         }
 
@@ -89,7 +86,7 @@ function RegisterForm() {
             const response = await fetch(url);
             const data = await response.text();
             if (data === 'true') {
-                setErrorUsername('Tên đăng nhập đã tồn tại!');
+                setErrorUsername('Username available!');
                 return true;
             }
         } catch (error) {
@@ -113,7 +110,7 @@ function RegisterForm() {
             const response = await fetch(url);
             const data = await response.text();
             if (data === 'true') {
-                setErrorEmail('Địa chỉ email đã tồn tại!');
+                setErrorEmail('Email address already exists!');
                 return true;
             }
         } catch (error) {
@@ -132,7 +129,7 @@ function RegisterForm() {
     const checkPassword = (password: string) => {
         const passwordRegex = /^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
         if (!passwordRegex.test(password)) {
-            setErrorPassword("Mật khẩu phải có ít nhất 8 ký tự và bao gồm ít nhất 1 ký tự đặc biệt (!@#$%^&*)");
+            setErrorPassword("Password must have at least 8 characters and include at least 1 special character (!@#$%^&*)");
             return true;
         } else {
             setErrorPassword("");
@@ -149,7 +146,7 @@ function RegisterForm() {
     //////////////======CHECK RE PASSWORD ========///////////////////
     const checkRePassword = (rePassword: string) => {
         if (rePassword !== password) {
-            setErrorRePassword("Mật khẩu không trùng khớp.");
+            setErrorRePassword("Passwords do not match.");
             return true;
         } else {
             setErrorRePassword(""); // Mật khẩu trùng khớp

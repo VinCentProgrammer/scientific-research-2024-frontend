@@ -18,9 +18,6 @@ function Theory() {
     if (Number.isNaN(theoryCatId))
         theoryCatId = 0;
 
-        console.log(theoryCatId);
-        
-
     const [theory, setTheory] = useState<TheoryModel | null>(null);
 
     useEffect(() => {
@@ -35,13 +32,10 @@ function Theory() {
             });
     }, [theoryCatId]);
 
-    console.log(theory);
-    
-
     return (
         <div id="layoutSidenav">
             <ScrollToTopButton />
-            <div className="container mt-4" style={{ minHeight: '700px' }}>
+            <div className="container-fluid mt-4" style={{ minHeight: '700px' }}>
                 <div className="row">
                     <div className="col-md-3">
                         <SidebarMenu />
@@ -49,8 +43,13 @@ function Theory() {
                     <div className="col-md-9">
                         <div id="content" style={{ textAlign: 'left' }}>
                             {
-                                theory &&
+                                theory 
+                                ?
                                 <div dangerouslySetInnerHTML={{ __html: theory?.content }} />
+                                : 
+                                <div>
+                                    Lý thuyết toán rời rạc
+                                </div>
                             }
                         </div>
                     </div>
