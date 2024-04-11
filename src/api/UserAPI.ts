@@ -1,4 +1,3 @@
-
 import UserModel from "../models/UserModel";
 
 interface ResultInterface {
@@ -141,35 +140,3 @@ export async function deleteUser(id: number) {
     }
 }
 
-
-// export async function laySachTheMaSach(maSach: number): Promise<UserModel | null> {
-//     const url: string = `http://localhost:8080/sach/${maSach}`;
-//     try {
-//         // Truy vấn đến đường dẫn
-//         const response = await fetch(url);
-//         // Nếu trả về lỗi
-//         if (!response.ok) {
-//             throw new Error(`Lỗi khi truy cập đến API lấy sách! ${url}`);
-//         }
-//         // Nếu trả về OKE
-//         const sachData = await response.json();
-//         // Nếu không có sách nào cả
-//         if (!sachData) {
-//             throw new Error('Sách không tồn tài!');
-//         }
-//         // Có sách yêu cầu
-//         return {
-//             maSach: sachData.maSach,
-//             tenSach: sachData.tenSach,
-//             giaBan: sachData.giaBan,
-//             giaNiemYet: sachData.giaNiemYet,
-//             moTa: sachData.moTa,
-//             soLuong: sachData.soLuong,
-//             tenTacGia: sachData.tenTacGia,
-//             trungBinhXepHang: sachData.trungBinhXepHang
-//         }
-//     } catch (error) {
-//         console.error('Error: ', error);
-//         return null;
-//     }
-// }

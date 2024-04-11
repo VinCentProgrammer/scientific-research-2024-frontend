@@ -49,6 +49,10 @@ import TheoryCatFormUpdateAdmin from './layouts/theory/TheoryCatFormUpdateAdmin'
 import TheoryExampleFormAdmin from './layouts/theory/TheoryExampleFormAdmin';
 import TheoryExampleListAdmin from './layouts/theory/TheoryExampleListAdmin';
 import TheoryExampleFormUpdateAdmin from './layouts/theory/TheoryExampleFormUpdateAdmin';
+import TheoryKeywordFormAdmin from './layouts/theory/TheoryKeywordFormAdmin';
+import TheoryKeywordListAdmin from './layouts/theory/TheoryKeywordListAdmin';
+import TheoryKeywordFormUpdateAdmin from './layouts/theory/TheoryKeywordFormUpdateAdmin';
+import SidebarMenu from './layouts/theory/SidebarMenu';
 
 function App() {
   return (
@@ -104,6 +108,7 @@ function App() {
 
           {/* //////////////////////////////// THEORY ///////////////////////////////// */}
           <Route path='/theory' element={<Theory />} />
+          <Route path='/theory/:theoryCatIdParam' element={<Theory />} />
           <Route path='/admin/theory/add' element={<TheoryFormAdmin />} />
           <Route path='/admin/theory/list' element={<TheoryListAdmin />} />
           <Route path='admin/theory/edit/:theoryIdParam' element={<TheoryFormUpdateAdmin />} />
@@ -113,8 +118,9 @@ function App() {
           <Route path='/admin/theory/example/add' element={<TheoryExampleFormAdmin />} />
           <Route path='/admin/theory/example/list' element={<TheoryExampleListAdmin />} />
           <Route path='admin/theory/example/edit/:theoryExampleIdParam' element={<TheoryExampleFormUpdateAdmin />} />
-          <Route path='/admin/theory/keyword/add' element={<Theory />} />
-          <Route path='/admin/theory/keyword/list' element={<Theory />} />
+          <Route path='/admin/theory/keyword/add' element={<TheoryKeywordFormAdmin />} />
+          <Route path='/admin/theory/keyword/list' element={<TheoryKeywordListAdmin />} />
+          <Route path='admin/theory/keyword/edit/:theoryKeywordIdParam' element={<TheoryKeywordFormUpdateAdmin />} />
 
           {/* //////////////////////////////// PROBLEM ///////////////////////////////// */}
           <Route path='/problem' element={<Problem />} />

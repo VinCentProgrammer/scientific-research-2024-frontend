@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
-import PostCatModel from "../../models/PostCatModel";
 import SideBar from "../sidebar/SideBar";
-import { getPostCats } from "../../api/PostCatAPI";
 import { useNavigate } from "react-router-dom";
-import PostModel from "../../models/PostModel";
-import { deletePost, getListPost, getPosts } from "../../api/PostAPI";
 import { Pagination } from "../../utils/Pagination";
 import { Button, Modal } from "react-bootstrap";
-import TheoryModel from "../../models/TheoryModel";
-import { deleteTheory, getListTheory } from "../../api/TheoryAPI";
-import TheoryRowAdmin from "./TheoryRowAdmin";
+import TheoryKeywordModel from "../../models/TheoryKeywordModel";
+import { deleteTheoryKeyword, getListTheoryKeyword } from "../../api/TheoryKeywordAPI";
+import TheoryKeywordRowAdmin from "./TheoryKeywordRowAdmin";
 
-function TheoryListAdmin() {
-    const [theories, setTheories] = useState<TheoryModel[] | null>([]);
+
+function TheoryKeywordListAdmin() {
+    const [theoryKeywords, setTheoryKeywords] = useState<TheoryKeywordModel[] | null>([]);
     const [loadingData, setLoadingData] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
     const [currPage, setCurrPage] = useState(1);
@@ -23,10 +20,10 @@ function TheoryListAdmin() {
 
     
     useEffect(() => {
-        getListTheory(currPage - 1)
+        getListTheoryKeyword(currPage - 1)
             .then(
                 res => {
-                    setTheories(res.result);
+                    setTheoryKeywords(res.result);
                     setTotalPages(res.totalPages);
                     setLoadingData(false);
                 }
@@ -42,8 +39,22 @@ function TheoryListAdmin() {
     }
 
 
+    const handleOnDelete = async (id: number) => {
+        const deleleted = deleteTheoryKeyword(id);
+        if (await deleleted === true) {
+            setNotification('Deleted successfully');
+            setShowModal(true);
+            if (theoryKeywords) {
+                const newTheoryKeywords = theoryKeywords.filter(theoryKeywords => theoryKeywords.keywordId !== id);
+                setTheoryKeywords(newTheoryKeywords);
+            } else {
+                setError("There are no records");
+            }
+        }
+    }
+
     const handleOnUpdate = (id: number) => {
-        navigate(`/admin/theory/edit/${id}`)
+        navigate(`/admin/theory/keyword/edit/${id}`)
     }
 
     const handleClose = () => {
@@ -66,7 +77,6 @@ function TheoryListAdmin() {
     }
 
 
-
     return (
         <div id="layoutSidenav">
             <SideBar />
@@ -75,28 +85,28 @@ function TheoryListAdmin() {
                     <div id="content" className="container-fluid">
                         <div className="card">
                             <div className="card-header font-weight-bold d-flex justify-content-between align-items-center">
-                                <h5 className="m-0 ">Show Theory List</h5>
+                                <h5 className="m-0 ">Show Theory Keyword List</h5>
                             </div>
                             <div className="card-body">
                                 <table className="table table-striped table-checkall">
                                     <thead>
                                         <tr>
                                             <th scope="col">ID</th>
-                                            <th scope="col">Title</th>
+                                            <th scope="col">Keyword</th>
                                             <th scope="col">Created at</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {
-                                            theories?.map((theory) => (
-                                                <TheoryRowAdmin key={theory.theoryDetailId} theory={theory} onUpdate={handleOnUpdate} />
+                                            theoryKeywords?.map((theoryKeyword) => (
+                                                <TheoryKeywordRowAdmin key={theoryKeyword.keywordId} theoryKeyword={theoryKeyword} onDelete={handleOnDelete} onUpdate={handleOnUpdate} />
                                             ))
                                         }
 
                                     </tbody>
                                 </table>
-                                <nav aria-label="Page navigation example">
+                                <nav aria-label="Page navigation keyword">
                                     <Pagination currentPage={currPage} totalPages={totalPages} paginate={paginate} />
                                 </nav>
                             </div>
@@ -125,4 +135,4 @@ function TheoryListAdmin() {
     )
 }
 
-export default TheoryListAdmin;
+export default TheoryKeywordListAdmin;

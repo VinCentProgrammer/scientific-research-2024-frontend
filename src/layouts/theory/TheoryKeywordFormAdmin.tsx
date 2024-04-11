@@ -9,14 +9,12 @@ import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 import { getTheories } from "../../api/TheoryAPI";
 
-function TheoryExampleFormAdmin() {
+function TheoryKeywordFormAdmin() {
     const [theories, setTheories] = useState<TheoryModel[]>([]);
-    const [name, setName] = useState<string>('');
-    const [answer, setAnswer] = useState<string>('');
+    const [keyword, setKeyword] = useState<string>('');
     const [theoryId, setTheoryId] = useState<number>(1);
 
-    const [errorName, setErrorName] = useState<string>('');
-    const [errorAnswer, setErrorAnswer] = useState<string>('');
+    const [errorKeyword, setErrorKeyword] = useState<string>('');
     const [successNoti, setSuccessNoti] = useState("");
     const [errorNoti, setErrorNoti] = useState("");
 
@@ -29,23 +27,13 @@ function TheoryExampleFormAdmin() {
             )
     }, [])
 
-    const handleOnChangeName = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleOnChangeKeyword = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value) {
-            setName(e.target.value);
-            setErrorName('');
+            setKeyword(e.target.value);
+            setErrorKeyword('');
         } else {
-            setName('');
-            setErrorName('This field cannot be left blank!');
-        }
-    }
-
-    const handleOnChangeAnswer = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        if (e.target.value) {
-            setAnswer(e.target.value);
-            setErrorAnswer('');
-        } else {
-            setAnswer('');
-            setErrorAnswer('This field cannot be left blank!');
+            setKeyword('');
+            setErrorKeyword('This field cannot be left blank!');
         }
     }
 
@@ -55,19 +43,18 @@ function TheoryExampleFormAdmin() {
 
     const handleSubmit = (e: React.FormEvent) => {
         // Clear 
-        setErrorName('');
-        setErrorAnswer('');
+        setErrorKeyword('');
 
         // Prevent default
         e.preventDefault();
 
         // 
         const token = localStorage.getItem('token');
-        if (name && answer && theoryId && token) {
+        if (keyword && theoryId && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
 
-            fetch("http://localhost:8080/api/theory/example/add",
+            fetch("http://localhost:8080/api/theory/keyword/add",
                 {
                     method: 'POST',
                     headers: {
@@ -75,29 +62,19 @@ function TheoryExampleFormAdmin() {
                         'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify({
-                        exampleId: 0,
+                        keywordId: 0,
                         theoryDetailId: theoryId,
                         userId: userId,
-                        name: name,
-                        answer: answer
+                        keyword: keyword
                     })
                 }
             ).then((response) => {
                 if (response.ok) {
                     setSuccessNoti("Added successfully!");
-                    setName('');
-                    setAnswer('');
+                    setKeyword('');
                     setTheoryId(1);
                 } else {
                     setErrorNoti("An error occurred while adding!");
-                    console.log({
-                        exampleId: 0,
-                        theoryDetailId: theoryId,
-                        userId: userId,
-                        name: name,
-                        answer: answer
-                    });
-
                 }
             })
         }
@@ -113,30 +90,17 @@ function TheoryExampleFormAdmin() {
                             <div className="col-12">
                                 <div className="card">
                                     <div className="card-header font-weight-bold">
-                                        Add Theory Example
+                                        Add Theory Keyword
                                     </div>
                                     <div className="card-body">
                                         <form onSubmit={handleSubmit}>
                                             <div className="form-group mt-2">
-                                                <label htmlFor="name">Question
-                                                    <span className="text-danger">(*) {errorName}</span>
+                                                <label htmlFor="name">Keyword
+                                                    <span className="text-danger">(*) {errorKeyword}</span>
                                                 </label>
                                                 <input className="form-control" type="text" name="name" id="name"
-                                                    value={name}
-                                                    onChange={handleOnChangeName}
-                                                />
-                                            </div>
-
-                                            <div className="form-group mt-2">
-                                                <label htmlFor="desc">Answer
-                                                    <span className="text-danger">(*) {errorAnswer}</span>
-                                                </label>
-                                                <textarea
-                                                    className="form-control"
-                                                    value={answer}
-                                                    onChange={handleOnChangeAnswer}
-                                                    rows={4}
-                                                    cols={50}
+                                                    value={keyword}
+                                                    onChange={handleOnChangeKeyword}
                                                 />
                                             </div>
 
@@ -160,7 +124,7 @@ function TheoryExampleFormAdmin() {
 
                                             <div>
                                                 {
-                                                    successNoti && <NavLink to='/admin/theory/example/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View Theory Example</NavLink>
+                                                    successNoti && <NavLink to='/admin/theory/keyword/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View Theory Keyword</NavLink>
                                                 }
                                                 <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Add New</button>
                                             </div>
@@ -179,4 +143,4 @@ function TheoryExampleFormAdmin() {
     )
 }
 
-export default TheoryExampleFormAdmin;
+export default TheoryKeywordFormAdmin;

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import Quote from './components/Quote';
 import SearchForm from './components/SearchForm';
 import Banner from './components/Banner';
@@ -7,9 +6,7 @@ import ScrollToTopButton from '../../utils/ScrollToTopButton';
 
 
 function HomePage() {
-
     return (
-
         <div>
             <header className="bg-dark py-5">
                 <SearchForm />

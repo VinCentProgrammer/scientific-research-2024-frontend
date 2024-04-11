@@ -8,47 +8,45 @@ import JwtPayload from "../../models/JwtPayLoad";
 import { NavLink, useParams } from "react-router-dom";
 import { getPostById } from "../../api/PostAPI";
 import PostModel from "../../models/PostModel";
-import TheoryExampleModel from "../../models/TheoryExampleModel";
+import TheoryKeywordModel from "../../models/TheoryKeywordModel";
 import { getTheories, getTheoryById } from "../../api/TheoryAPI";
 import { getTheoryCats } from "../../api/TheoryCatAPI";
 import TheoryCatModel from "../../models/TheoryCatModel";
-import { getTheoryExampleById } from "../../api/TheoryExampleAPI";
+import { getTheoryKeywordById } from "../../api/TheoryKeywordAPI";
 import TheoryModel from "../../models/TheoryModel";
 
-function TheoryExampleFormUpdateAdmin() {
-    const { theoryExampleIdParam } = useParams();
+function TheoryKeywordFormUpdateAdmin() {
+    const { theoryKeywordIdParam } = useParams();
 
-    let exampleId = 0;
+    let keywordId = 0;
     try {
-        exampleId = parseInt(theoryExampleIdParam + '');
+        keywordId = parseInt(theoryKeywordIdParam + '');
     } catch (error) {
-        exampleId = 0;
+        keywordId = 0;
         console.log('Error', error);
     }
-    if (Number.isNaN(exampleId))
-        exampleId = 0;
+    if (Number.isNaN(keywordId))
+        keywordId = 0;
 
 
-    const [theoryExample, setTheoryExample] = useState<TheoryExampleModel | null>(null);
+    const [theoryKeyword, setTheoryKeyword] = useState<TheoryKeywordModel | null>(null);
     const [theories, setTheories] = useState<TheoryModel[]>([]);
     const [theoryId, setTheoryId] = useState<number>(0);
-    const [name, setName] = useState<string>('');
-    const [answer, setAnswer] = useState<string>('');
-    const [errorName, setErrorName] = useState<string>('');
-    const [errorrAnswer, setErrorAnswer] = useState<string>('');
+    const [keyword, setKeyword] = useState<string>('');
+    const [errorKeyword, setErrorKeyword] = useState<string>('');
     const [successNoti, setSuccessNoti] = useState("");
     const [errorNoti, setErrorNoti] = useState("");
 
     useEffect(() => {
-        getTheoryExampleById(exampleId)
+        getTheoryKeywordById(keywordId)
             .then(
                 result => {
-                    setTheoryExample(result);
+                    setTheoryKeyword(result);
                 }
             ).catch(error => {
                 console.error('Error fetching user data:', error);
             });
-    }, [exampleId]);
+    }, [keywordId]);
 
     useEffect(() => {
         getTheories()
@@ -61,56 +59,40 @@ function TheoryExampleFormUpdateAdmin() {
 
 
     useEffect(() => {
-        if (theoryExample !== null) {
-            setName(theoryExample.name === undefined ? '' : theoryExample.name);
-            setAnswer(theoryExample.answer === undefined ? '' : theoryExample.answer);
-            setTheoryId(theoryExample.exampleId);
+        if (theoryKeyword !== null) {
+            setKeyword(theoryKeyword.keyword === undefined ? '' : theoryKeyword.keyword);
+            setTheoryId(theoryKeyword.keywordId);
         }
-    }, [theoryExample]);
+    }, [theoryKeyword]);
 
-    const handleOnChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleOnChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value) {
-            setName(e.target.value);
-            setErrorName('');
+            setKeyword(e.target.value);
+            setErrorKeyword('');
         } else {
-            setName('');
-            setErrorName('This field cannot be left blank!');
+            setKeyword('');
+            setErrorKeyword('This field cannot be left blank!');
         }
     }
 
-    const handleOnChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        if (e.target.value) {
-            setAnswer(e.target.value);
-            setErrorAnswer('');
-        } else {
-            setAnswer('');
-            setErrorAnswer('This field cannot be left blank');
-        }
-    }
 
     const handleTheoryId = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setTheoryId(parseInt(event.target.value));
     }
 
-    console.log(theoryId);
-    
-
-
     const handleSubmit = async (e: React.FormEvent) => {
         // Clear 
-        setErrorName('');
-        setErrorAnswer('');
-
+        setErrorKeyword('');
         // Prevent default
         e.preventDefault();
 
         // 
         const token = localStorage.getItem('token');
-        if (name && answer && token) {
+        if (keyword && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
 
-            fetch("http://localhost:8080/api/theory/example/update",
+            fetch("http://localhost:8080/api/theory/keyword/update",
                 {
                     method: 'PUT',
                     headers: {
@@ -118,28 +100,18 @@ function TheoryExampleFormUpdateAdmin() {
                         'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify({
-                        exampleId: exampleId,
+                        keywordId: keywordId,
                         theoryDetailId: theoryId,
-                        name: name,
-                        answer: answer,
+                        keyword: keyword,
                         userId: userId,
                     })
                 }
             ).then((response) => {
                 if (response.ok) {
                     setSuccessNoti("Updated successfully!");
-                    setName('');
-                    setAnswer('');
+                    setKeyword('');
                 } else {
                     setErrorNoti("An error occurred while updating!");
-                    console.log({
-                        exampleId: exampleId,
-                        theoryDetailId: theoryId,
-                        name: name,
-                        answer: answer,
-                        userId: userId,
-                    });
-                    
                 }
             })
         }
@@ -151,33 +123,20 @@ function TheoryExampleFormUpdateAdmin() {
             <SideBar />
             <div id="layoutSidenav_content" className="text-start">
                 <main>
-                    <div id="answer" className="container-fluid">
+                    <div id="keyword" className="container-fluid">
                         <div className="card">
                             <div className="card-header font-weight-bold">
-                                Update Theory Example
+                                Update Theory Keyword
                             </div>
                             <div className="card-body">
                                 <form onSubmit={handleSubmit}>
                                     <div className="form-group">
                                         <label htmlFor="name">Name
-                                            <span className="text-danger">(*) {errorName}</span>
+                                            <span className="text-danger">(*) {errorKeyword}</span>
                                         </label>
                                         <input className="form-control" type="text" name="name" id="name"
-                                            value={name}
-                                            onChange={handleOnChangeTitle}
-                                        />
-                                    </div>
-
-                                    <div className="form-group mt-2">
-                                        <label htmlFor="detail">Answer
-                                            <span className="text-danger">(*) {errorrAnswer}</span>
-                                        </label>
-                                        <textarea
-                                            className="form-control"
-                                            value={answer}
-                                            onChange={handleOnChangeContent}
-                                            rows={4}
-                                            cols={50}
+                                            value={keyword}
+                                            onChange={handleOnChangeKeyword}
                                         />
                                     </div>
 
@@ -202,7 +161,7 @@ function TheoryExampleFormUpdateAdmin() {
 
                                     <div>
                                         {
-                                            successNoti && <NavLink to='/admin/theory/example/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View theory example list</NavLink>
+                                            successNoti && <NavLink to='/admin/theory/keyword/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View theory keyword list</NavLink>
                                         }
                                         <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Update</button>
                                     </div>
@@ -218,4 +177,4 @@ function TheoryExampleFormUpdateAdmin() {
     )
 }
 
-export default TheoryExampleFormUpdateAdmin;
+export default TheoryKeywordFormUpdateAdmin;

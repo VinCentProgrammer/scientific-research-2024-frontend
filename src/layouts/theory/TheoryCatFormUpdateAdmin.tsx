@@ -169,7 +169,7 @@ function TheoryCatFormUpdateAdmin() {
                                                     value={theoryParentCatId}
                                                     onChange={handleTheoryCatParent}
                                                 >
-                                                    {/* <option value={1}>Parent Topic</option> */}
+                                                    <option value={1}>Parent Topic</option>
                                                     {
                                                         theoryCats.map((theoryCat) => (
                                                             theoryCat.theoryCatId !== theoryCatId &&

@@ -1,66 +1,58 @@
-
+import { useEffect, useState } from "react";
+import TheoryCatModel from "../../models/TheoryCatModel";
+import { getTheoryCat, getTheoryCats } from "../../api/TheoryCatAPI";
 import { NavLink } from "react-router-dom";
 
 function SidebarMenu() {
+    const [theoryCategories, setTheoryCategories] = useState<TheoryCatModel[]>([]);
+
+    useEffect(() => {
+        getTheoryCats()
+            .then(
+                result => {
+                    setTheoryCategories(result);
+                }
+            )
+    }, [])
+
+    const renderSubcategories = (subcategories: TheoryCatModel[]) => {
+        if (subcategories.length === 0) return null;
+
+        return (
+            <ul className="sub-menu">
+                {subcategories.map(category => (
+                    <li key={category.theoryCatId}>
+                        <NavLink to={`/theory/${category.theoryCatId}`} title="">{category.name}</NavLink>
+                        {renderSubcategories(getSubcategories(category.theoryCatId))}
+                    </li>
+                ))}
+            </ul>
+        );
+    };
+
+    const getSubcategories = (parentId: number): TheoryCatModel[] => {
+        return theoryCategories.filter(category => category.theoryParentCatId === parentId);
+    };
+
     return (
         <div className="sidebar fl-left">
             <div className="section" id="category-product-wp">
                 <div className="section-head">
                     <h3 className="section-title">Theory</h3>
                 </div>
-                <div className="secion-detail">
+                <div className="section-detail">
                     <ul className="list-item">
-                        <li>
-                            <a href="?page=category_product" title="">Điện thoại</a>
-                            <ul className="sub-menu">
-                                <li>
-                                    <a href="?page=category_product" title="">Iphone</a>
-                                </li>
-                                <li>
-                                    <a href="?page=category_product" title="">Samsung</a>
-                                    <ul className="sub-menu">
-                                        <li>
-                                            <a href="?page=category_product" title="">Iphone X</a>
-                                        </li>
-                                        <li>
-                                            <a href="?page=category_product" title="">Iphone 8</a>
-                                        </li>
-                                        <li>
-                                            <a href="?page=category_product" title="">Iphone 8 Plus</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="?page=category_product" title="">Oppo</a>
-                                </li>
-                                <li>
-                                    <a href="?page=category_product" title="">Bphone</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="?page=category_product" title="">Máy tính bảng</a>
-                        </li>
-                        <li>
-                            <a href="?page=category_product" title="">laptop</a>
-                        </li>
-                        <li>
-                            <a href="?page=category_product" title="">Tai nghe</a>
-                        </li>
-                        <li>
-                            <a href="?page=category_product" title="">Thời trang</a>
-                        </li>
-                        <li>
-                            <a href="?page=category_product" title="">Đồ gia dụng</a>
-                        </li>
-                        <li>
-                            <a href="?page=category_product" title="">Thiết bị văn phòng</a>
-                        </li>
+                        {theoryCategories.filter(category => category.theoryParentCatId === 1).map(category => (
+                            <li key={category.theoryCatId}>
+                                <NavLink to={`/theory/${category.theoryCatId}`} title="">{category.name}</NavLink>
+                                {renderSubcategories(getSubcategories(category.theoryCatId))}
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default SidebarMenu;

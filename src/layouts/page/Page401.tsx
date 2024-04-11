@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 
-
 function Page401() {
     return (
         <div id="layoutError">

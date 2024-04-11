@@ -15,6 +15,7 @@ function NavBar() {
             setUsernameLogin(jwtDecode(token).sub + '');
         }
     }, []);
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         setIsLogin(false);

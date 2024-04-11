@@ -9,7 +9,7 @@ function PageList() {
                     <div id="content" className="container-fluid">
                         <div className="card">
                             <div className="card-header font-weight-bold d-flex justify-content-between align-items-center">
-                                <h5 className="m-0 ">Danh sách trang</h5>
+                                <h5 className="m-0 ">Page List</h5>
                                 <div className="form-search form-inline">
                                     <form action="#">
                                         <input type="" className="form-control form-search" placeholder="Tìm kiếm" />

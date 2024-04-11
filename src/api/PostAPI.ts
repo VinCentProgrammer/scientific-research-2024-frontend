@@ -1,8 +1,5 @@
 
-import React from "react";
 import PostModel from "../models/PostModel";
-import { jwtDecode } from "jwt-decode";
-import JwtPayload from "../models/JwtPayLoad";
 
 interface ResultInterface {
     result: PostModel[];

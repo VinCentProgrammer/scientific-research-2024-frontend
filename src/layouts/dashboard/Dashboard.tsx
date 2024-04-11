@@ -1,5 +1,4 @@
 import RequireAdminOrStaff from "../admin/RequireAdminOrStaff";
-import RequireAdminAndStaff from "../admin/RequireAdminOrStaff";
 import SideBar from "../sidebar/SideBar";
 
 function Dashboard() {
@@ -11,7 +10,7 @@ function Dashboard() {
                     <div className="container-fluid py-5">
                         <div className="row">
                             <div className="col">
-                                <div className="card text-white bg-primary mb-3" style={{maxWidth: '18rem'}}>
+                                <div className="card text-white bg-primary mb-3" style={{ maxWidth: '18rem' }}>
                                     <div className="card-header">ĐƠN HÀNG THÀNH CÔNG</div>
                                     <div className="card-body">
                                         <h5 className="card-title">2.680</h5>
@@ -20,7 +19,7 @@ function Dashboard() {
                                 </div>
                             </div>
                             <div className="col">
-                                <div className="card text-white bg-danger mb-3" style={{maxWidth: '18rem'}}>
+                                <div className="card text-white bg-danger mb-3" style={{ maxWidth: '18rem' }}>
                                     <div className="card-header">ĐANG XỬ LÝ</div>
                                     <div className="card-body">
                                         <h5 className="card-title">10</h5>
@@ -30,7 +29,7 @@ function Dashboard() {
                             </div>
 
                             <div className="col">
-                                <div className="card text-white bg-success mb-3" style={{maxWidth: '18rem'}}>
+                                <div className="card text-white bg-success mb-3" style={{ maxWidth: '18rem' }}>
                                     <div className="card-header">DOANH SỐ</div>
                                     <div className="card-body">
                                         <h5 className="card-title">2.5 tỷ</h5>
@@ -39,7 +38,7 @@ function Dashboard() {
                                 </div>
                             </div>
                             <div className="col">
-                                <div className="card text-white bg-dark mb-3" style={{maxWidth: '18rem'}}>
+                                <div className="card text-white bg-dark mb-3" style={{ maxWidth: '18rem' }}>
                                     <div className="card-header">ĐƠN HÀNG HỦY</div>
                                     <div className="card-body">
                                         <h5 className="card-title">125</h5>
@@ -72,8 +71,8 @@ function Dashboard() {
                                             <th scope="row">1</th>
                                             <td>1212</td>
                                             <td>
-                                                Phan Văn Cương <br/>
-                                                    0988859692
+                                                Phan Văn Cương <br />
+                                                0988859692
                                             </td>
                                             <td><a href="#">Samsung Galaxy A51 (8GB/128GB)</a></td>
                                             <td>1</td>
@@ -89,8 +88,8 @@ function Dashboard() {
                                             <th scope="row">2</th>
                                             <td>1213</td>
                                             <td>
-                                                Minh Anh <br/>
-                                                    0868873382
+                                                Minh Anh <br />
+                                                0868873382
                                             </td>
                                             <td><a href="#">Samsung Galaxy A51 (8GB/128GB)</a></td>
                                             <td>1</td>
@@ -106,8 +105,8 @@ function Dashboard() {
                                             <th scope="row">3</th>
                                             <td>1214</td>
                                             <td>
-                                                Trần Thu Hằng <br/>
-                                                    0234343545
+                                                Trần Thu Hằng <br />
+                                                0234343545
                                             </td>
                                             <td><a href="#">Điện thoại iPhone 11 Pro Max 64GB</a></td>
                                             <td>1</td>
@@ -123,8 +122,8 @@ function Dashboard() {
                                             <th scope="row">4</th>
                                             <td>1212</td>
                                             <td>
-                                                Tuấn Anh <br/>
-                                                    091236768
+                                                Tuấn Anh <br />
+                                                091236768
                                             </td>
                                             <td><a href="#">Apple MacBook Pro Touch 2020 i5 512GB</a></td>
                                             <td>1</td>
@@ -140,8 +139,8 @@ function Dashboard() {
                                             <th scope="row">3</th>
                                             <td>1214</td>
                                             <td>
-                                                Trần Thu Hằng <br/>
-                                                    0234343545
+                                                Trần Thu Hằng <br />
+                                                0234343545
                                             </td>
                                             <td><a href="#">Điện thoại iPhone 11 Pro Max 64GB</a></td>
                                             <td>1</td>
@@ -157,8 +156,8 @@ function Dashboard() {
                                             <th scope="row">4</th>
                                             <td>1212</td>
                                             <td>
-                                                Tuấn Anh <br/>
-                                                    091236768
+                                                Tuấn Anh <br />
+                                                091236768
                                             </td>
                                             <td><a href="#">Apple MacBook Pro Touch 2020 i5 512GB</a></td>
                                             <td>1</td>

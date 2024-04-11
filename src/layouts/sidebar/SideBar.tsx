@@ -1,11 +1,10 @@
-
-import { NavLink } from "react-router-dom";
 import SideBarPage from "./components/SideBarPage";
 import SideBarPost from "./components/SideBarPost";
 import SideBarUser from "./components/SideBarUser";
 import SideBarRolePermission from "./components/SideBarRolePermission";
 import SideBarThread from "./components/SideBarThread";
 import SideBarTheory from "./components/SideBarTheory";
+import { NavLink } from "react-router-dom";
 
 function SideBar() {
     return (
