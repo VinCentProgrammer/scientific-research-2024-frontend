@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
 import './App.css';
 import Footer from './layouts/footer/Footer';
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginForm from './layouts/user/LoginForm';
 import NavBar from './layouts/header/NavBar';
 import HomePage from './layouts/homepage/HomePage';
@@ -39,7 +38,6 @@ import PostCatForm from './layouts/post/PostCatFormAdmin';
 import PostCatList from './layouts/post/PostCatListAdmin';
 import PostCatFormUpdateAdmin from './layouts/post/PostCatFormUpdateAdmin';
 import PostFormUpdateAdmin from './layouts/post/PostFormUpdateAdmin';
-import ScrollToTopButton from './utils/ScrollToTopButton';
 import TheoryFormAdmin from './layouts/theory/TheoryFormAdmin';
 import TheoryListAdmin from './layouts/theory/TheoryListAdmin';
 import TheoryFormUpdateAdmin from './layouts/theory/TheoryFormUpdateAdmin';
@@ -52,7 +50,7 @@ import TheoryExampleFormUpdateAdmin from './layouts/theory/TheoryExampleFormUpda
 import TheoryKeywordFormAdmin from './layouts/theory/TheoryKeywordFormAdmin';
 import TheoryKeywordListAdmin from './layouts/theory/TheoryKeywordListAdmin';
 import TheoryKeywordFormUpdateAdmin from './layouts/theory/TheoryKeywordFormUpdateAdmin';
-import SidebarMenu from './layouts/theory/SidebarMenu';
+
 
 function App() {
   return (
