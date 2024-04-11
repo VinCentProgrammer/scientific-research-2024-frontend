@@ -16,3 +16,10 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+});

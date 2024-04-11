@@ -13,8 +13,8 @@ function SideBarUser() {
             <div className="collapse" id="user" aria-labelledby="headingTwo"
                 data-bs-parent="#sidenavAccordion">
                 <nav className="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                    <NavLink to="/admin/user/add" className='nav-link'>Thêm mới</NavLink>
-                    <NavLink to="/admin/user/list" className='nav-link'>Danh sách user</NavLink>
+                    <NavLink to="/admin/user/add" className='nav-link'>Add New</NavLink>
+                    <NavLink to="/admin/user/list" className='nav-link'>User List</NavLink>
                 </nav>
             </div>
         </div>

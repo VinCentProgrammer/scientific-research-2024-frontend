@@ -6,16 +6,20 @@ function SideBarTheory() {
             <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#theory"
                 aria-expanded="false" aria-controls="theory">
                 <div className="sb-nav-link-icon"><i className="bi bi-folder-fill"></i></div>
-                Lý thuyết
+                Theory
                 <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
             </a>
             <div className="collapse" id="theory" aria-labelledby="headingTwo"
                 data-bs-parent="#sidenavAccordion">
                 <nav className="sb-sidenav-menu-nested nav accordion">
-                    <NavLink to="/admin/theory/chapter/list" className='nav-link'>Hiển thị chuyên đề</NavLink>
-                    <NavLink to="/admin/theory/chapters/add" className='nav-link'>Thêm chuyên đề</NavLink>
-                    <NavLink to="/admin/theory/lesson/list" className='nav-link'>Hiển thị các bài học</NavLink>
-                    <NavLink to="/admin/theory/lesson/add" className='nav-link'>Thêm bài học mới</NavLink>
+                    <NavLink to="/admin/theory/add" className='nav-link'>Add New</NavLink>
+                    <NavLink to="/admin/theory/list" className='nav-link'>Theory List</NavLink>
+                    <NavLink to="/admin/theory/topic/add" className='nav-link'>Add New Topic</NavLink>
+                    <NavLink to="/admin/theory/topic/list" className='nav-link'>Category List</NavLink>
+                    <NavLink to="/admin/theory/example/add" className='nav-link'>Add New Example</NavLink>
+                    <NavLink to="/admin/theory/example/list" className='nav-link'>Example List</NavLink>
+                    <NavLink to="/admin/theory/keyword/add" className='nav-link'>Add New Keyword</NavLink>
+                    <NavLink to="/admin/theory/keyword/list" className='nav-link'>Keyword List</NavLink>
                 </nav>
             </div>
         </div>
