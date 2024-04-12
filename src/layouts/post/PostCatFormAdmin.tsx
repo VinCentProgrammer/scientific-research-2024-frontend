@@ -89,73 +89,77 @@ function PostCatFormAdmin() {
     }
 
     return (
-        <div id="layoutSidenav">
-            <SideBar />
-            <div id="layoutSidenav_content" className="text-start">
-                <main>
-                    <div id="content" className="container-fluid">
-                        <div className="row">
-                            <div className="col-12">
-                                <div className="card">
-                                    <div className="card-header font-weight-bold">
-                                        Thêm danh mục
-                                    </div>
-                                    <div className="card-body">
-                                        <form onSubmit={handleSubmit}>
-                                            <div className="form-group mt-2">
-                                                <label htmlFor="name">Tên danh mục
-                                                    <span className="text-danger">(*) {errorPostCatName}</span>
-                                                </label>
-                                                <input className="form-control" type="text" name="name" id="name"
-                                                    value={postCatName}
-                                                    onChange={handleOnChangePostCatName}
-                                                />
-                                            </div>
+        <div id="layoutSidenav " className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
+            <div className="row">
+                <div className="col-md-2">
+                    <SideBar />
+                </div>
+                <div id="layoutSidenav_content" className="col-md-10">
+                    <main>
+                        <div id="content" className="container-fluid">
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="card">
+                                        <div className="card-header font-weight-bold">
+                                            Thêm danh mục
+                                        </div>
+                                        <div className="card-body">
+                                            <form onSubmit={handleSubmit}>
+                                                <div className="form-group mt-2">
+                                                    <label htmlFor="name">Tên danh mục
+                                                        <span className="text-danger">(*) {errorPostCatName}</span>
+                                                    </label>
+                                                    <input className="form-control" type="text" name="name" id="name"
+                                                        value={postCatName}
+                                                        onChange={handleOnChangePostCatName}
+                                                    />
+                                                </div>
 
-                                            <div className="form-group mt-2">
-                                                <label htmlFor="desc">Mô tả
-                                                    <span className="text-danger">(*) {errorDesc}</span>
-                                                </label>
-                                                <input className="form-control" type="text" name="name" id="desc"
-                                                    value={desc}
-                                                    onChange={handleOnChangeDesc}
-                                                />
-                                            </div>
+                                                <div className="form-group mt-2">
+                                                    <label htmlFor="desc">Mô tả
+                                                        <span className="text-danger">(*) {errorDesc}</span>
+                                                    </label>
+                                                    <input className="form-control" type="text" name="name" id="desc"
+                                                        value={desc}
+                                                        onChange={handleOnChangeDesc}
+                                                    />
+                                                </div>
 
-                                            <div className="form-group mt-2">
-                                                <label htmlFor="">Thuộc danh mục</label>
-                                                <select className="form-control" id=""
-                                                    value={postCatParentId}
-                                                    onChange={handlePostCatParent}
-                                                >
-                                                    <option value={1}>Danh mục cha</option>
+                                                <div className="form-group mt-2">
+                                                    <label htmlFor="">Thuộc danh mục</label>
+                                                    <select className="form-control" id=""
+                                                        value={postCatParentId}
+                                                        onChange={handlePostCatParent}
+                                                    >
+                                                        <option value={1}>Danh mục cha</option>
+                                                        {
+                                                            postCats.map((postCat) => (
+                                                                <option
+                                                                    key={postCat.postCatId}
+                                                                    value={postCat.postCatId}
+                                                                >{postCat.postCatName}</option>
+                                                            ))
+                                                        }
+                                                    </select>
+                                                </div>
+
+                                                <div>
                                                     {
-                                                        postCats.map((postCat) => (
-                                                            <option
-                                                                key={postCat.postCatId}
-                                                                value={postCat.postCatId}
-                                                            >{postCat.postCatName}</option>
-                                                        ))
+                                                        successNoti && <NavLink to='/admin/post/cat/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View list post cat</NavLink>
                                                     }
-                                                </select>
-                                            </div>
-
-                                            <div>
-                                                {
-                                                    successNoti && <NavLink to='/admin/post/cat/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View list post cat</NavLink>
-                                                }
-                                                <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Thêm mới</button>
-                                            </div>
-                                            {successNoti && <div className="text-success">{successNoti}</div>}
-                                            {errorNoti && <div className="text-danger">{errorNoti}</div>}
-                                        </form>
+                                                    <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Thêm mới</button>
+                                                </div>
+                                                {successNoti && <div className="text-success">{successNoti}</div>}
+                                                {errorNoti && <div className="text-danger">{errorNoti}</div>}
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                    </div>
-                </main>
+                        </div>
+                    </main>
+                </div>
             </div>
         </div>
     )

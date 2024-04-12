@@ -93,12 +93,12 @@ function App() {
           {/* //////////////////////////////// POST ///////////////////////////////// */}
           <Route path='/post' element={<Post />} />
           <Route path='/post-detail' element={<PostDetail />} />
-          <Route path='admin/post/list' element={<PostList />} />
-          <Route path='admin/post/add' element={<PostForm />} />
-          <Route path='admin/post/edit/:postIdParam' element={<PostFormUpdateAdmin />} />
-          <Route path='admin/post/cat/add' element={<PostCatForm />} />
-          <Route path='admin/post/cat/list' element={<PostCatList />} />
-          <Route path='admin/post/cat/edit/:postCatIdParam' element={<PostCatFormUpdateAdmin />} />
+          <Route path='/admin/post/list' element={<PostList />} />
+          <Route path='/admin/post/add' element={<PostForm />} />
+          <Route path='/admin/post/edit/:postIdParam' element={<PostFormUpdateAdmin />} />
+          <Route path='/admin/post/cat/add' element={<PostCatForm />} />
+          <Route path='/admin/post/cat/list' element={<PostCatList />} />
+          <Route path='/admin/post/cat/edit/:postCatIdParam' element={<PostCatFormUpdateAdmin />} />
 
           {/* //////////////////////////////// FORUM ///////////////////////////////// */}
           <Route path='/forum' element={<Forum />} />
@@ -114,10 +114,10 @@ function App() {
           <Route path='admin/theory/topic/edit/:theoryCatIdParam' element={<TheoryCatFormUpdateAdmin />} />
           <Route path='/admin/theory/example/add' element={<TheoryExampleFormAdmin />} />
           <Route path='/admin/theory/example/list' element={<TheoryExampleListAdmin />} />
-          <Route path='admin/theory/example/edit/:theoryExampleIdParam' element={<TheoryExampleFormUpdateAdmin />} />
+          <Route path='/admin/theory/example/edit/:theoryExampleIdParam' element={<TheoryExampleFormUpdateAdmin />} />
           <Route path='/admin/theory/keyword/add' element={<TheoryKeywordFormAdmin />} />
           <Route path='/admin/theory/keyword/list' element={<TheoryKeywordListAdmin />} />
-          <Route path='admin/theory/keyword/edit/:theoryKeywordIdParam' element={<TheoryKeywordFormUpdateAdmin />} />
+          <Route path='/admin/theory/keyword/edit/:theoryKeywordIdParam' element={<TheoryKeywordFormUpdateAdmin />} />
 
         </Routes>
         <Footer />

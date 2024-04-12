@@ -78,66 +78,70 @@ function PostCatListAdmin() {
 
 
     return (
-        <div id="layoutSidenav">
-            <SideBar />
-            <div id="layoutSidenav_content">
-                <main>
-                    <div id="content" className="container-fluid">
-                        <div className="row">
-                            <div className="col-12">
-                                <div className="card">
-                                    <div className="card-header font-weight-bold">
-                                        Danh sách các danh mục
-                                    </div>
-                                    <div className="card-body">
-                                        <table className="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Tên danh mục</th>
-                                                    <th scope="col">Mô tả</th>
-                                                    <th scope="col">Parent ID</th>
-                                                    <th scope="col">Ngày tạo</th>
-                                                    <th scope="col">Ngày chỉnh sửa</th>
-                                                    <th scope="col">Hành động</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {
-                                                    postCats?.map((postCat) => (
-                                                        <PostCatItemAdmin key={postCat.postCatId} postCat={postCat} onDelete={handleOnDelete} onUpdate={handleOnUpdate} />
-                                                    ))
-                                                }
-                                            </tbody>
-                                        </table>
-                                        <nav aria-label="Page navigation example">
-                                            <Pagination currentPage={currPage} totalPages={totalPages} paginate={paginate} />
-                                        </nav>
+        <div id="layoutSidenav" className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
+            <div className="row">
+                <div className="col-md-2">
+                    <SideBar />
+                </div>
+                <div id="layoutSidenav_content" className="col-md-10">
+                    <main>
+                        <div id="content" className="container-fluid">
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="card">
+                                        <div className="card-header font-weight-bold">
+                                            Danh sách các danh mục
+                                        </div>
+                                        <div className="card-body">
+                                            <table className="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Tên danh mục</th>
+                                                        <th scope="col">Mô tả</th>
+                                                        <th scope="col">Parent ID</th>
+                                                        <th scope="col">Ngày tạo</th>
+                                                        <th scope="col">Ngày chỉnh sửa</th>
+                                                        <th scope="col">Hành động</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {
+                                                        postCats?.map((postCat) => (
+                                                            <PostCatItemAdmin key={postCat.postCatId} postCat={postCat} onDelete={handleOnDelete} onUpdate={handleOnUpdate} />
+                                                        ))
+                                                    }
+                                                </tbody>
+                                            </table>
+                                            <nav aria-label="Page navigation example">
+                                                <Pagination currentPage={currPage} totalPages={totalPages} paginate={paginate} />
+                                            </nav>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
-                    </div>
-
-                </main>
-                <section>
-                    <Modal show={showModal} onHide={handleClose}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Thông báo</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <div>
-                                <p className="text-center fs-2 font-weight-bold"> <i className="bi bi-check-circle text-success mx-2"></i> {notification}</p>
-                            </div>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Đóng
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
-                </section>
+                    </main>
+                    <section>
+                        <Modal show={showModal} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Thông báo</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <div>
+                                    <p className="text-center fs-2 font-weight-bold"> <i className="bi bi-check-circle text-success mx-2"></i> {notification}</p>
+                                </div>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Đóng
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+                    </section>
+                </div>
             </div>
         </div>
     )

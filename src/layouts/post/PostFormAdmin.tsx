@@ -128,93 +128,97 @@ function PostFormAdmin() {
 
 
     return (
-        <div id="layoutSidenav">
-            <SideBar />
-            <div id="layoutSidenav_content" className="text-start">
-                <main>
-                    <div id="content" className="container-fluid">
-                        <div className="card">
-                            <div className="card-header font-weight-bold">
-                                Thêm bài viết
-                            </div>
-                            <div className="card-body">
-                                <form onSubmit={handleSubmit}>
-                                    <div className="form-group">
-                                        <label htmlFor="title">Tiêu đề bài viết
-                                            <span className="text-danger">(*) {errorTitle}</span>
-                                        </label>
-                                        <input className="form-control" type="text" name="name" id="title"
-                                            value={title}
-                                            onChange={handleOnChangeTitle}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="desc">Mô tả
-                                            <span className="text-danger">(*) {errorDesc}</span>
-                                        </label>
-                                        <input className="form-control" type="text" name="name" id="desc"
-                                            value={desc}
-                                            onChange={handleOnChangeDesc}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="detail">Nội dung bài viết
-                                            <span className="text-danger">(*) {errorDetail}</span>
-                                        </label>
-                                        <input className="form-control" type="text" name="name" id="detail"
-                                            value={detail}
-                                            onChange={handleOnChangeDetail}
-                                        />
-                                    </div>
-
-                                    <div className="form-group mt-2">
-                                        <label htmlFor="">Thuộc danh mục
-                                            <span className="text-danger">(*) {errorPostCatId}</span>
-                                        </label>
-                                        <select className="form-control" id=""
-                                            value={postCatId}
-                                            onChange={handleOnChangePostCatId}
-                                        >
-                                            <option value={0}>Chọn</option>
-                                            {
-                                                postCats.map((postCat) => (
-                                                    <option
-                                                        key={postCat.postCatId}
-                                                        value={postCat.postCatId}
-                                                    >{postCat.postCatName}
-
-                                                    </option>
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
-
-
-                                    {/* Avatar */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="avatar">Thumbnail
-                                                <span className="text-danger">(*) {errorThumbnail}</span>
+        <div id="layoutSidenav" className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
+            <div className="row">
+                <div className="col-md-2">
+                    <SideBar />
+                </div>
+                <div id="layoutSidenav_content" className="col-md-10">
+                    <main>
+                        <div id="content" className="container-fluid">
+                            <div className="card">
+                                <div className="card-header font-weight-bold">
+                                    Thêm bài viết
+                                </div>
+                                <div className="card-body">
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="form-group">
+                                            <label htmlFor="title">Tiêu đề bài viết
+                                                <span className="text-danger">(*) {errorTitle}</span>
                                             </label>
-                                            <input type="file" id="avatar" className="form-control"
-                                                accept='images/*'
-                                                onChange={handleThumbnailOnChange}
+                                            <input className="form-control" type="text" name="name" id="title"
+                                                value={title}
+                                                onChange={handleOnChangeTitle}
                                             />
                                         </div>
-                                    </div>
-                                    <div>
-                                        {
-                                            successNoti && <NavLink to='/admin/post/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View list post </NavLink>
-                                        }
-                                        <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Thêm mới</button>
-                                    </div>
-                                    {successNoti && <div className="text-success">{successNoti}</div>}
-                                    {errorNoti && <div className="text-danger">{errorNoti}</div>}
-                                </form>
+                                        <div className="form-group">
+                                            <label htmlFor="desc">Mô tả
+                                                <span className="text-danger">(*) {errorDesc}</span>
+                                            </label>
+                                            <input className="form-control" type="text" name="name" id="desc"
+                                                value={desc}
+                                                onChange={handleOnChangeDesc}
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="detail">Nội dung bài viết
+                                                <span className="text-danger">(*) {errorDetail}</span>
+                                            </label>
+                                            <input className="form-control" type="text" name="name" id="detail"
+                                                value={detail}
+                                                onChange={handleOnChangeDetail}
+                                            />
+                                        </div>
+
+                                        <div className="form-group mt-2">
+                                            <label htmlFor="">Thuộc danh mục
+                                                <span className="text-danger">(*) {errorPostCatId}</span>
+                                            </label>
+                                            <select className="form-control" id=""
+                                                value={postCatId}
+                                                onChange={handleOnChangePostCatId}
+                                            >
+                                                <option value={0}>Chọn</option>
+                                                {
+                                                    postCats.map((postCat) => (
+                                                        <option
+                                                            key={postCat.postCatId}
+                                                            value={postCat.postCatId}
+                                                        >{postCat.postCatName}
+
+                                                        </option>
+                                                    ))
+                                                }
+                                            </select>
+                                        </div>
+
+
+                                        {/* Avatar */}
+                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                            <div className="form-outline flex-fill mb-0">
+                                                <label className="form-label" htmlFor="avatar">Thumbnail
+                                                    <span className="text-danger">(*) {errorThumbnail}</span>
+                                                </label>
+                                                <input type="file" id="avatar" className="form-control"
+                                                    accept='images/*'
+                                                    onChange={handleThumbnailOnChange}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            {
+                                                successNoti && <NavLink to='/admin/post/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View list post </NavLink>
+                                            }
+                                            <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Thêm mới</button>
+                                        </div>
+                                        {successNoti && <div className="text-success">{successNoti}</div>}
+                                        {errorNoti && <div className="text-danger">{errorNoti}</div>}
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </main>
+                    </main>
+                </div>
             </div>
         </div>
     )

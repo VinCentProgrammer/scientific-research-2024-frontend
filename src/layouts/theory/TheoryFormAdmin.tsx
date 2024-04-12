@@ -45,7 +45,7 @@ function TheoryFormAdmin() {
             setErrorContent('This field cannot be left blank');
         }
     }
-    
+
     const handleTheoryCatId = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setTheoryCatId(parseInt(event.target.value));
     }
@@ -90,71 +90,75 @@ function TheoryFormAdmin() {
     }
 
     return (
-        <div id="layoutSidenav">
-            <SideBar />
-            <div id="layoutSidenav_content" className="text-start">
-                <main>
-                    <div id="content" className="container-fluid">
-                        <div className="card">
-                            <div className="card-header font-weight-bold">
-                                Add New Theory Detail
-                            </div>
-                            <div className="card-body">
-                                <form onSubmit={handleSubmit}>
-                                    <div className="form-group">
-                                        <label htmlFor="title">Title
-                                            <span className="text-danger">(*) {errorTitle}</span>
-                                        </label>
-                                        <input className="form-control" type="text" name="name" id="title"
-                                            value={title}
-                                            onChange={handleOnChangeTitle}
-                                        />
-                                    </div>
+        <div id="layoutSidenav" className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
+            <div className="row">
+                <div className="col-md-2">
+                    <SideBar />
+                </div>
+                <div id="layoutSidenav_content" className="col-md-10">
+                    <main>
+                        <div id="content" className="container-fluid">
+                            <div className="card">
+                                <div className="card-header font-weight-bold">
+                                    Add New Theory Detail
+                                </div>
+                                <div className="card-body">
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="form-group">
+                                            <label htmlFor="title">Title
+                                                <span className="text-danger">(*) {errorTitle}</span>
+                                            </label>
+                                            <input className="form-control" type="text" name="name" id="title"
+                                                value={title}
+                                                onChange={handleOnChangeTitle}
+                                            />
+                                        </div>
 
-                                    <div className="form-group mt-2">
-                                        <label htmlFor="detail">Content
-                                            <span className="text-danger">(*) {errorContent}</span>
-                                        </label>
-                                        <textarea
-                                            className="form-control"
-                                            value={content}
-                                            onChange={handleOnChangeContent}
-                                            rows={4}
-                                            cols={50}
-                                        />
-                                    </div>
+                                        <div className="form-group mt-2">
+                                            <label htmlFor="detail">Content
+                                                <span className="text-danger">(*) {errorContent}</span>
+                                            </label>
+                                            <textarea
+                                                className="form-control"
+                                                value={content}
+                                                onChange={handleOnChangeContent}
+                                                rows={4}
+                                                cols={50}
+                                            />
+                                        </div>
 
-                                    <div className="form-group mt-2">
-                                        <label htmlFor="">Belong to Topic</label>
-                                        <select className="form-control" id=""
-                                            value={theoryCatId}
-                                            onChange={handleTheoryCatId}
-                                        >
+                                        <div className="form-group mt-2">
+                                            <label htmlFor="">Belong to Topic</label>
+                                            <select className="form-control" id=""
+                                                value={theoryCatId}
+                                                onChange={handleTheoryCatId}
+                                            >
+                                                {
+                                                    theoryCats.map((theoryCat) => (
+                                                        <option
+                                                            key={theoryCat.theoryCatId}
+                                                            value={theoryCat.theoryCatId}
+                                                            selected={theoryCat.theoryCatId === theoryCatId}
+                                                        >{theoryCat.name}</option>
+                                                    ))
+                                                }
+                                            </select>
+                                        </div>
+
+                                        <div>
                                             {
-                                                theoryCats.map((theoryCat) => (
-                                                    <option
-                                                        key={theoryCat.theoryCatId}
-                                                        value={theoryCat.theoryCatId}
-                                                        selected={theoryCat.theoryCatId === theoryCatId}
-                                                    >{theoryCat.name}</option>
-                                                ))
+                                                successNoti && <NavLink to='/admin/theory/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View theory list </NavLink>
                                             }
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        {
-                                            successNoti && <NavLink to='/admin/theory/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View theory list </NavLink>
-                                        }
-                                        <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Add New</button>
-                                    </div>
-                                    {successNoti && <div className="text-success">{successNoti}</div>}
-                                    {errorNoti && <div className="text-danger">{errorNoti}</div>}
-                                </form>
+                                            <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Add New</button>
+                                        </div>
+                                        {successNoti && <div className="text-success">{successNoti}</div>}
+                                        {errorNoti && <div className="text-danger">{errorNoti}</div>}
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </main>
+                    </main>
+                </div>
             </div>
         </div>
     )

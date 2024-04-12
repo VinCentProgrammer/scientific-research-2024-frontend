@@ -58,7 +58,7 @@ const UserList: React.FC<{}> = () => {
         }
 
         const token = localStorage.getItem('token');
-        if(token) {
+        if (token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
             setUserIdLogin(userId);
@@ -80,7 +80,7 @@ const UserList: React.FC<{}> = () => {
 
     const handleOnDelete = async (id: number) => {
         setUserIdDelete(id);
-        if(userIdLogin === id) {
+        if (userIdLogin === id) {
             setNotification('Bạn không thể xóa user hiện tại đang đăng nhập!');
             setShowModal(true);
             return;
@@ -123,87 +123,91 @@ const UserList: React.FC<{}> = () => {
 
 
     return (
-        <div id="layoutSidenav">
-            <SideBar />
-            <div id="layoutSidenav_content">
-                <main>
-                    <div id="content" className="container-fluid text-start">
-                        <div className="card">
-                            <div className="card-header font-weight-bold d-flex justify-content-between align-items-center">
-                                <h5 className="m-0 ">Danh sách thành viên</h5>
-                                <div className="form-search form-inline">
-                                    <form action="#">
-                                        <input type="" className="form-control form-search" placeholder="Tìm kiếm"
-                                            onChange={onSearchInputChange}
-                                            value={temKeyword}
-                                        />
-                                        <button className="btn btn-outline-success" type="button" onClick={handleSearch}>
-                                            Search
-                                            {/* <Search /> */}
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                            <div className="card-body">
-                                <div className="analytic">
-                                    <a href="" className="text-primary">Trạng thái 1<span className="text-muted">(10)</span></a>
-                                    <a href="" className="text-primary">Trạng thái 2<span className="text-muted">(5)</span></a>
-                                    <a href="" className="text-primary">Trạng thái 3<span className="text-muted">(20)</span></a>
-                                </div>
-                                <div className="form-action form-inline py-3 row">
-                                    <div className="col-md-2">
-                                        <select className="form-control mr-1" id="">
-                                            <option>Action</option>
-                                            <option>Delete</option>
-                                            <option>Order By Name</option>
-                                        </select>
+        <div id="layoutSidenav" className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
+            <div className="row">
+                <div className="col-md-2">
+                    <SideBar />
+                </div>
+                <div id="layoutSidenav_content" className="col-md-10">
+                    <main>
+                        <div id="content" className="container-fluid text-start">
+                            <div className="card">
+                                <div className="card-header font-weight-bold d-flex justify-content-between align-items-center">
+                                    <h5 className="m-0 ">Danh sách thành viên</h5>
+                                    <div className="form-search form-inline">
+                                        <form action="#">
+                                            <input type="" className="form-control form-search" placeholder="Tìm kiếm"
+                                                onChange={onSearchInputChange}
+                                                value={temKeyword}
+                                            />
+                                            <button className="btn btn-outline-success" type="button" onClick={handleSearch}>
+                                                Search
+                                                {/* <Search /> */}
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
-                                <table className="table table-striped table-checkall">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Username</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">First name</th>
-                                            <th scope="col">Last name</th>
-                                            <th scope="col">Active</th>
-                                            <th scope="col">Created At</th>
-                                            <th scope="col">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            listUser?.map((user) => (
-                                                <UserRow key={user.userId} user={user} onDelete={handleOnDelete} onUpdate={handleOnUpdate} />
-                                            ))
-                                        }
-                                    </tbody>
-                                </table>
-                                <nav aria-label="Page navigation example">
-                                    <Pagination currentPage={currPage} totalPages={totalPages} paginate={paginate} />
-                                </nav>
+                                <div className="card-body">
+                                    <div className="analytic">
+                                        <a href="" className="text-primary">Trạng thái 1<span className="text-muted">(10)</span></a>
+                                        <a href="" className="text-primary">Trạng thái 2<span className="text-muted">(5)</span></a>
+                                        <a href="" className="text-primary">Trạng thái 3<span className="text-muted">(20)</span></a>
+                                    </div>
+                                    <div className="form-action form-inline py-3 row">
+                                        <div className="col-md-2">
+                                            <select className="form-control mr-1" id="">
+                                                <option>Action</option>
+                                                <option>Delete</option>
+                                                <option>Order By Name</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <table className="table table-striped table-checkall">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Username</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">First name</th>
+                                                <th scope="col">Last name</th>
+                                                <th scope="col">Active</th>
+                                                <th scope="col">Created At</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                listUser?.map((user) => (
+                                                    <UserRow key={user.userId} user={user} onDelete={handleOnDelete} onUpdate={handleOnUpdate} />
+                                                ))
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <nav aria-label="Page navigation example">
+                                        <Pagination currentPage={currPage} totalPages={totalPages} paginate={paginate} />
+                                    </nav>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </main>
-                <section>
-                    <Modal show={showModal} onHide={handleClose}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Thông báo</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <div>
-                                <p className="text-center fs-2 font-weight-bold"> <i className={`bi bi-check-circle text-${userIdDelete === userIdLogin ? 'danger' : 'success'} mx-2`}></i> {notification}</p>
-                            </div>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Đóng
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
-                </section>
+                    </main>
+                    <section>
+                        <Modal show={showModal} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Thông báo</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <div>
+                                    <p className="text-center fs-2 font-weight-bold"> <i className={`bi bi-check-circle text-${userIdDelete === userIdLogin ? 'danger' : 'success'} mx-2`}></i> {notification}</p>
+                                </div>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Đóng
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+                    </section>
+                </div>
             </div>
         </div>
     )

@@ -3,7 +3,7 @@ import SideBar from "../sidebar/SideBar";
 
 function Dashboard() {
     return (
-        <div id="layoutSidenav " className="container-fluid">
+        <div id="layoutSidenav" className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
             <div className="row">
                 <div className="col-md-2">
                     <SideBar />
@@ -206,3 +206,15 @@ function Dashboard() {
 }
 
 export default RequireAdminOrStaff(Dashboard);
+
+
+<div id="layoutSidenav" className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
+    <div className="row">
+        <div className="col-md-2">
+            <SideBar />
+        </div>
+        <div id="layoutSidenav_content" className="col-md-10">
+
+        </div>
+    </div>
+</div>

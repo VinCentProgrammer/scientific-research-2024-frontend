@@ -90,76 +90,80 @@ function TheoryExampleFormAdmin() {
     }
 
     return (
-        <div id="layoutSidenav">
-            <SideBar />
-            <div id="layoutSidenav_content" className="text-start">
-                <main>
-                    <div id="content" className="container-fluid">
-                        <div className="row">
-                            <div className="col-12">
-                                <div className="card">
-                                    <div className="card-header font-weight-bold">
-                                        Add Theory Example
-                                    </div>
-                                    <div className="card-body">
-                                        <form onSubmit={handleSubmit}>
-                                            <div className="form-group mt-2">
-                                                <label htmlFor="name">Question
-                                                    <span className="text-danger">(*) {errorName}</span>
-                                                </label>
-                                                <input className="form-control" type="text" name="name" id="name"
-                                                    value={name}
-                                                    onChange={handleOnChangeName}
-                                                />
-                                            </div>
+        <div id="layoutSidenav" className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
+            <div className="row">
+                <div className="col-md-2">
+                    <SideBar />
+                </div>
+                <div id="layoutSidenav_content" className="col-md-10">
+                    <main>
+                        <div id="content" className="container-fluid">
+                            <div className="row">
+                                <div className="col-12">
+                                    <div className="card">
+                                        <div className="card-header font-weight-bold">
+                                            Add Theory Example
+                                        </div>
+                                        <div className="card-body">
+                                            <form onSubmit={handleSubmit}>
+                                                <div className="form-group mt-2">
+                                                    <label htmlFor="name">Question
+                                                        <span className="text-danger">(*) {errorName}</span>
+                                                    </label>
+                                                    <input className="form-control" type="text" name="name" id="name"
+                                                        value={name}
+                                                        onChange={handleOnChangeName}
+                                                    />
+                                                </div>
 
-                                            <div className="form-group mt-2">
-                                                <label htmlFor="desc">Answer
-                                                    <span className="text-danger">(*) {errorAnswer}</span>
-                                                </label>
-                                                <textarea
-                                                    className="form-control"
-                                                    value={answer}
-                                                    onChange={handleOnChangeAnswer}
-                                                    rows={4}
-                                                    cols={50}
-                                                />
-                                            </div>
+                                                <div className="form-group mt-2">
+                                                    <label htmlFor="desc">Answer
+                                                        <span className="text-danger">(*) {errorAnswer}</span>
+                                                    </label>
+                                                    <textarea
+                                                        className="form-control"
+                                                        value={answer}
+                                                        onChange={handleOnChangeAnswer}
+                                                        rows={4}
+                                                        cols={50}
+                                                    />
+                                                </div>
 
-                                            <div className="form-group mt-2">
-                                                <label htmlFor="">Belong to Topic</label>
-                                                <select className="form-control" id=""
-                                                    value={theoryId}
-                                                    onChange={handleTheoryId}
-                                                >
-                                                    <option value={0}>Chọn</option>
+                                                <div className="form-group mt-2">
+                                                    <label htmlFor="">Belong to Topic</label>
+                                                    <select className="form-control" id=""
+                                                        value={theoryId}
+                                                        onChange={handleTheoryId}
+                                                    >
+                                                        <option value={0}>Chọn</option>
+                                                        {
+                                                            theories.map((theory) => (
+                                                                <option
+                                                                    key={theory.theoryDetailId}
+                                                                    value={theory.theoryDetailId}
+                                                                >{theory.title}</option>
+                                                            ))
+                                                        }
+                                                    </select>
+                                                </div>
+
+                                                <div>
                                                     {
-                                                        theories.map((theory) => (
-                                                            <option
-                                                                key={theory.theoryDetailId}
-                                                                value={theory.theoryDetailId}
-                                                            >{theory.title}</option>
-                                                        ))
+                                                        successNoti && <NavLink to='/admin/theory/example/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View Theory Example</NavLink>
                                                     }
-                                                </select>
-                                            </div>
-
-                                            <div>
-                                                {
-                                                    successNoti && <NavLink to='/admin/theory/example/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View Theory Example</NavLink>
-                                                }
-                                                <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Add New</button>
-                                            </div>
-                                            {successNoti && <div className="text-success">{successNoti}</div>}
-                                            {errorNoti && <div className="text-danger">{errorNoti}</div>}
-                                        </form>
+                                                    <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Add New</button>
+                                                </div>
+                                                {successNoti && <div className="text-success">{successNoti}</div>}
+                                                {errorNoti && <div className="text-danger">{errorNoti}</div>}
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                    </div>
-                </main>
+                        </div>
+                    </main>
+                </div>
             </div>
         </div>
     )

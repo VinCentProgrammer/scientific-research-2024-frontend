@@ -25,7 +25,7 @@ function Page403() {
     }, [navigate]);
 
     return (
-        <div id="layoutError">
+        <div id="layoutError" style={{minHeight: '700px'}}>
             <div id="layoutError_content">
                 <main>
                     <div className="container">

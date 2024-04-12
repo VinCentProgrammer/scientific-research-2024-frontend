@@ -25,7 +25,7 @@ function RoleFormUpdate() {
     const [roleName, setRoleName] = useState('');
     const [desc, setDesc] = useState('');
     const [permissions, setPermissions] = useState<PermissionModel[] | null>(null);
-    const [selectedPermissions, setSelectedPermissions] = useState<string[]>([]); 
+    const [selectedPermissions, setSelectedPermissions] = useState<string[]>([]);
 
     // Các biến báo lỗi
     const [errorRoleName, setErrorRoleName] = useState("");
@@ -173,55 +173,59 @@ function RoleFormUpdate() {
     const modules = getModules();
 
     return (
-        <div id="layoutSidenav">
-            <SideBar />
-            <div id="layoutSidenav_content">
-                <main>
-                    <div id="content" className="container-fluid text-start">
-                        <div className="card">
-                            <div className="card-header font-weight-bold d-flex justify-content-between align-items-center">
-                                <h5 className="m-2 ">Cập nhật vai trò</h5>
-                            </div>
-                            <div className="card-body">
-                                <form method="POST" action=""
-                                    onSubmit={handleSubmit}
-                                >
+        <div id="layoutSidenav" className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
+            <div className="row">
+                <div className="col-md-2">
+                    <SideBar />
+                </div>
+                <div id="layoutSidenav_content" className="col-md-10">
+                    <main>
+                        <div id="content" className="container-fluid text-start">
+                            <div className="card">
+                                <div className="card-header font-weight-bold d-flex justify-content-between align-items-center">
+                                    <h5 className="m-2 ">Cập nhật vai trò</h5>
+                                </div>
+                                <div className="card-body">
+                                    <form method="POST" action=""
+                                        onSubmit={handleSubmit}
+                                    >
 
-                                    <div className="form-group mt-2">
-                                        <label className="text-strong" htmlFor="name">Tên vai trò <span className="text-danger">(*) {errorRoleName}</span></label>
-                                        <input className="form-control" type="text" name="name" id="name"
-                                            value={roleName}
-                                            onChange={handleOnChangeRoleName}
-                                        />
-                                    </div>
-                                    <div className="form-group my-4">
-                                        <label className="text-strong" htmlFor="description">Mô tả <span className="text-danger">(*) {errorDesc}</span></label>
-                                        <input className="form-control" type="text" name="desc" id="desc"
-                                            value={desc}
-                                            onChange={handleOnChangeDesc}
-                                        />
-                                    </div>
-                                    <strong className="pt-2">Vai trò này có quyền gì?</strong>
-                                    <small className="form-text text-muted pb-2"> Check vào module hoặc các hành động bên dưới để chọn quyền.</small>
-                                    <div>
-                                        {/* Duyệt qua danh sách các module và render HTML tương ứng */}
-                                        {Object.keys(modules).map(moduleName => (
-                                            renderModulePermissions(moduleName, modules[moduleName])
-                                        ))}
-                                    </div>
-                                    <div>
-                                        {
-                                            successNoti && <NavLink to='/admin/role/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View list role</NavLink>
-                                        }
-                                        <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Update</button>
-                                    </div>
-                                    {successNoti && <div className="text-success">{successNoti}</div>}
-                                    {errorNoti && <div className="text-danger">{errorNoti}</div>}
-                                </form>
+                                        <div className="form-group mt-2">
+                                            <label className="text-strong" htmlFor="name">Tên vai trò <span className="text-danger">(*) {errorRoleName}</span></label>
+                                            <input className="form-control" type="text" name="name" id="name"
+                                                value={roleName}
+                                                onChange={handleOnChangeRoleName}
+                                            />
+                                        </div>
+                                        <div className="form-group my-4">
+                                            <label className="text-strong" htmlFor="description">Mô tả <span className="text-danger">(*) {errorDesc}</span></label>
+                                            <input className="form-control" type="text" name="desc" id="desc"
+                                                value={desc}
+                                                onChange={handleOnChangeDesc}
+                                            />
+                                        </div>
+                                        <strong className="pt-2">Vai trò này có quyền gì?</strong>
+                                        <small className="form-text text-muted pb-2"> Check vào module hoặc các hành động bên dưới để chọn quyền.</small>
+                                        <div>
+                                            {/* Duyệt qua danh sách các module và render HTML tương ứng */}
+                                            {Object.keys(modules).map(moduleName => (
+                                                renderModulePermissions(moduleName, modules[moduleName])
+                                            ))}
+                                        </div>
+                                        <div>
+                                            {
+                                                successNoti && <NavLink to='/admin/role/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View list role</NavLink>
+                                            }
+                                            <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Update</button>
+                                        </div>
+                                        {successNoti && <div className="text-success">{successNoti}</div>}
+                                        {errorNoti && <div className="text-danger">{errorNoti}</div>}
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </main>
+                    </main>
+                </div>
             </div>
         </div>
     )

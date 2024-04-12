@@ -79,59 +79,65 @@ const PermissionList: React.FC<{}> = () => {
 
 
     return (
-        <div id="layoutSidenav">
-            <SideBar />
-            <div id="layoutSidenav_content" className="text-start m-4">
-                <main className="">
-                    <div className="card">
-                        <div className="card-header font-weight-bold">
-                            Danh sách quyền
-                        </div>
-                        <div className="card-body">
-                            <table className="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Tên quyền</th>
-                                        <th scope="col">Slug</th>
-                                        <th scope="col">Desc</th>
-                                        <th scope="col">Created</th>
-                                        <th scope="col">Updated</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        permissions?.map((permission) => (
-                                            <PermissionRow key={permission.permissionId} permission={permission} onDelete={handleOnDelete} onUpdate={handleOnUpdate} />
-                                        ))
-                                    }
 
-                                </tbody>
-                            </table>
-                            <nav aria-label="Page navigation example">
-                                <Pagination currentPage={currPage} totalPages={totalPages} paginate={paginate} />
-                            </nav>
-                        </div>
-                    </div>
-                </main>
-                <section>
-                    <Modal show={showModal} onHide={handleClose}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Thông báo</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <div>
-                                <p className="text-center fs-2 font-weight-bold"> <i className="bi bi-check-circle text-success mx-2"></i> {notification}</p>
+        <div id="layoutSidenav" className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
+            <div className="row">
+                <div className="col-md-2">
+                    <SideBar />
+                </div>
+                <div id="layoutSidenav_content" className="col-md-10">
+
+                    <main className="">
+                        <div className="card">
+                            <div className="card-header font-weight-bold">
+                                Danh sách quyền
                             </div>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Đóng
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>
-                </section>
+                            <div className="card-body">
+                                <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Tên quyền</th>
+                                            <th scope="col">Slug</th>
+                                            <th scope="col">Desc</th>
+                                            <th scope="col">Created</th>
+                                            <th scope="col">Updated</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            permissions?.map((permission) => (
+                                                <PermissionRow key={permission.permissionId} permission={permission} onDelete={handleOnDelete} onUpdate={handleOnUpdate} />
+                                            ))
+                                        }
+
+                                    </tbody>
+                                </table>
+                                <nav aria-label="Page navigation example">
+                                    <Pagination currentPage={currPage} totalPages={totalPages} paginate={paginate} />
+                                </nav>
+                            </div>
+                        </div>
+                    </main>
+                    <section>
+                        <Modal show={showModal} onHide={handleClose}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Thông báo</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <div>
+                                    <p className="text-center fs-2 font-weight-bold"> <i className="bi bi-check-circle text-success mx-2"></i> {notification}</p>
+                                </div>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Đóng
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+                    </section>
+                </div>
             </div>
         </div>
     )

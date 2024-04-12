@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function Page404() {
     return (
-        <div id="layoutError">
+        <div id="layoutError" style={{minHeight: '700px'}}>
             <div id="layoutError_content">
                 <main>
                     <div className="container">

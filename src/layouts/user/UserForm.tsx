@@ -208,201 +208,205 @@ function UserForm() {
 
 
     return (
-        <div id="layoutSidenav">
-            <SideBar />
-            <div id="layoutSidenav_content">
-                <main>
-                    <div id="content" className="container">
-                        <div className="card">
-                            <div className="card-header font-weight-bold">
-                                Thêm người dùng
-                            </div>
-                            <div className="card-body w-75 mx-auto">
-                                <form onSubmit={handleSubmit}>
-                                    {/* User ID */}
-                                    <input
-                                        type='hidden'
-                                        id='userId'
-                                        value={userId}
-                                    />
-                                    {/* Username */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fas fa-user fa-lg me-3 fa-fw"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="username">Username <span className="text-danger">(*)</span>
-                                                <span style={{ color: "red", marginLeft: '10px' }}>{errorUsername}</span>
-                                            </label>
-                                            <input type="text" id="username"
-                                                value={username}
-                                                onChange={handleUsernameOnChange}
-                                                className="form-control" />
+        <div id="layoutSidenav" className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
+            <div className="row">
+                <div className="col-md-2">
+                    <SideBar />
+                </div>
+                <div id="layoutSidenav_content" className="col-md-10">
+                    <main>
+                        <div id="content" className="container">
+                            <div className="card">
+                                <div className="card-header font-weight-bold">
+                                    Thêm người dùng
+                                </div>
+                                <div className="card-body w-75 mx-auto">
+                                    <form onSubmit={handleSubmit}>
+                                        {/* User ID */}
+                                        <input
+                                            type='hidden'
+                                            id='userId'
+                                            value={userId}
+                                        />
+                                        {/* Username */}
+                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                            <i className="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div className="form-outline flex-fill mb-0">
+                                                <label className="form-label" htmlFor="username">Username <span className="text-danger">(*)</span>
+                                                    <span style={{ color: "red", marginLeft: '10px' }}>{errorUsername}</span>
+                                                </label>
+                                                <input type="text" id="username"
+                                                    value={username}
+                                                    onChange={handleUsernameOnChange}
+                                                    className="form-control" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Email */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fa-solid fa-envelope fa-lg me-3 fa-fw"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="email">Email <span className="text-danger">(*)</span>
-                                                <span style={{ color: "red", marginLeft: '10px' }}>{errorEmail}</span>
-                                            </label>
-                                            <input type="email" id="email"
-                                                value={email}
-                                                onChange={handleEmailOnChange}
-                                                className="form-control" />
+                                        {/* Email */}
+                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                            <i className="fa-solid fa-envelope fa-lg me-3 fa-fw"></i>
+                                            <div className="form-outline flex-fill mb-0">
+                                                <label className="form-label" htmlFor="email">Email <span className="text-danger">(*)</span>
+                                                    <span style={{ color: "red", marginLeft: '10px' }}>{errorEmail}</span>
+                                                </label>
+                                                <input type="email" id="email"
+                                                    value={email}
+                                                    onChange={handleEmailOnChange}
+                                                    className="form-control" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Firstname */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fa-solid fa-signature me-3"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="firstname">Firstname</label>
-                                            <input type="text" id="firstname" className="form-control"
-                                                value={firstname}
-                                                onChange={(e) => setFirstname(e.target.value)}
-                                            />
+                                        {/* Firstname */}
+                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                            <i className="fa-solid fa-signature me-3"></i>
+                                            <div className="form-outline flex-fill mb-0">
+                                                <label className="form-label" htmlFor="firstname">Firstname</label>
+                                                <input type="text" id="firstname" className="form-control"
+                                                    value={firstname}
+                                                    onChange={(e) => setFirstname(e.target.value)}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Lastname */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fa-solid fa-signature me-3"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="lastname">Lastname </label>
-                                            <input type="text" id="lastname" className="form-control"
-                                                value={lastname}
-                                                onChange={(e) => setLastname(e.target.value)}
-                                            />
+                                        {/* Lastname */}
+                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                            <i className="fa-solid fa-signature me-3"></i>
+                                            <div className="form-outline flex-fill mb-0">
+                                                <label className="form-label" htmlFor="lastname">Lastname </label>
+                                                <input type="text" id="lastname" className="form-control"
+                                                    value={lastname}
+                                                    onChange={(e) => setLastname(e.target.value)}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Phone number */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fa-solid fa-phone-volume me-3"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="phoneNumber">Phone Number </label>
-                                            <input type="text" id="phoneNumber" className="form-control"
-                                                value={phoneNumber}
-                                                onChange={(e) => setPhoneNumber(e.target.value)}
-                                            />
+                                        {/* Phone number */}
+                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                            <i className="fa-solid fa-phone-volume me-3"></i>
+                                            <div className="form-outline flex-fill mb-0">
+                                                <label className="form-label" htmlFor="phoneNumber">Phone Number </label>
+                                                <input type="text" id="phoneNumber" className="form-control"
+                                                    value={phoneNumber}
+                                                    onChange={(e) => setPhoneNumber(e.target.value)}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Address */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fa-solid fa-phone-volume me-3"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="address">Address</label>
-                                            <input type="text" id="address" className="form-control"
-                                                value={address}
-                                                onChange={(e) => setAddress(e.target.value)}
-                                            />
+                                        {/* Address */}
+                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                            <i className="fa-solid fa-phone-volume me-3"></i>
+                                            <div className="form-outline flex-fill mb-0">
+                                                <label className="form-label" htmlFor="address">Address</label>
+                                                <input type="text" id="address" className="form-control"
+                                                    value={address}
+                                                    onChange={(e) => setAddress(e.target.value)}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
-                                    {/* Avatar */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fa-regular fa-image me-3"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="avatar">Avatar</label>
-                                            <input type="file" id="avatar" className="form-control"
-                                                accept='images/*'
-                                                onChange={handleAvatarOnChange}
-                                            />
+                                        {/* Avatar */}
+                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                            <i className="fa-regular fa-image me-3"></i>
+                                            <div className="form-outline flex-fill mb-0">
+                                                <label className="form-label" htmlFor="avatar">Avatar</label>
+                                                <input type="file" id="avatar" className="form-control"
+                                                    accept='images/*'
+                                                    onChange={handleAvatarOnChange}
+                                                />
+                                            </div>
                                         </div>
-                                    </div>
 
 
-                                    {/* Gender */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fa-solid fa-venus-mars me-3"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="gender">Gender</label>
-                                            <div className="container row">
-                                                <div className="form-check col-md-3">
-                                                    <input className="form-check-input" type="radio" name="exampleRadios" id="male" value={1}
-                                                        onChange={(e) => setGender(1)}
-                                                        checked />
-                                                    <label className="form-check-label" htmlFor="male">
-                                                        Male
-                                                    </label>
-                                                </div>
-                                                <div className="form-check col-md-3">
-                                                    <input className="form-check-input" type="radio" name="exampleRadios" id="female" value={0}
-                                                        onChange={(e) => setGender(0)}
-                                                    />
-                                                    <label className="form-check-label" htmlFor="female">
-                                                        Female
-                                                    </label>
+                                        {/* Gender */}
+                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                            <i className="fa-solid fa-venus-mars me-3"></i>
+                                            <div className="form-outline flex-fill mb-0">
+                                                <label className="form-label" htmlFor="gender">Gender</label>
+                                                <div className="container row">
+                                                    <div className="form-check col-md-3">
+                                                        <input className="form-check-input" type="radio" name="exampleRadios" id="male" value={1}
+                                                            onChange={(e) => setGender(1)}
+                                                            checked />
+                                                        <label className="form-check-label" htmlFor="male">
+                                                            Male
+                                                        </label>
+                                                    </div>
+                                                    <div className="form-check col-md-3">
+                                                        <input className="form-check-input" type="radio" name="exampleRadios" id="female" value={0}
+                                                            onChange={(e) => setGender(0)}
+                                                        />
+                                                        <label className="form-check-label" htmlFor="female">
+                                                            Female
+                                                        </label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    {/* Password */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="password">Password <span className="text-danger">(*)</span><span style={{ color: "red", marginLeft: '10px' }}>{errorPassword}</span></label>
-                                            <input type="password" id="password"
-                                                value={password}
-                                                onChange={handlePassOnChange}
-                                                className="form-control" />
+                                        {/* Password */}
+                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                            <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i>
+                                            <div className="form-outline flex-fill mb-0">
+                                                <label className="form-label" htmlFor="password">Password <span className="text-danger">(*)</span><span style={{ color: "red", marginLeft: '10px' }}>{errorPassword}</span></label>
+                                                <input type="password" id="password"
+                                                    value={password}
+                                                    onChange={handlePassOnChange}
+                                                    className="form-control" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Repeat Password */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i>
-                                        <div className="form-outline flex-fill mb-0">
-                                            <label className="form-label" htmlFor="passwordRepeat">Repeat password <span className="text-danger">(*)</span><span style={{ color: "red", marginLeft: '10px' }}>{errorRePassword}</span></label>
-                                            <input type="password" id="passwordRepeat"
-                                                value={rePassword}
-                                                onChange={handleRePassOnChange}
-                                                className="form-control" />
+                                        {/* Repeat Password */}
+                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                            <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i>
+                                            <div className="form-outline flex-fill mb-0">
+                                                <label className="form-label" htmlFor="passwordRepeat">Repeat password <span className="text-danger">(*)</span><span style={{ color: "red", marginLeft: '10px' }}>{errorRePassword}</span></label>
+                                                <input type="password" id="passwordRepeat"
+                                                    value={rePassword}
+                                                    onChange={handleRePassOnChange}
+                                                    className="form-control" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Roles */}
-                                    <div className="d-flex flex-row align-items-center mb-4  text-start">
-                                        <i className="bi bi-person-check me-3 fa-fw"></i>
-                                        <select
-                                            className="form-select"
-                                            multiple aria-label="multiple select example"
-                                            value={selectedRoles.map(roleId => String(roleId))}
-                                            onChange={handleRoleChange}
-                                        >
-                                            <option selected>Choose role</option>
-                                            {
-                                                roles?.map((role) => (
-                                                    <option
-                                                        key={role.roleId}
-                                                        value={role.roleId}
-                                                    >
-                                                        {role.roleName}
-                                                    </option>
-                                                ))
-                                            }
-                                        </select>
-                                    </div>
-
-                                    <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <div className="container">
-                                            <div className="row">
+                                        {/* Roles */}
+                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                            <i className="bi bi-person-check me-3 fa-fw"></i>
+                                            <select
+                                                className="form-select"
+                                                multiple aria-label="multiple select example"
+                                                value={selectedRoles.map(roleId => String(roleId))}
+                                                onChange={handleRoleChange}
+                                            >
+                                                <option selected>Choose role</option>
                                                 {
-                                                    successNoti && <NavLink to='/admin/user/list' className="btn btn-info btn-lg w-25 col-md-6 mx-4">View list user</NavLink>
+                                                    roles?.map((role) => (
+                                                        <option
+                                                            key={role.roleId}
+                                                            value={role.roleId}
+                                                        >
+                                                            {role.roleName}
+                                                        </option>
+                                                    ))
                                                 }
-                                                <button type="submit" className="btn btn-primary btn-lg w-25 col-md-6">Add new user</button>
-                                            </div>
+                                            </select>
                                         </div>
 
-                                    </div>
-                                    <div style={{ color: "green" }}>{successNoti ? successNoti : errorNoti}</div>
-                                </form>
+                                        <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                            <div className="container">
+                                                <div className="row">
+                                                    {
+                                                        successNoti && <NavLink to='/admin/user/list' className="btn btn-info btn-lg w-25 col-md-6 mx-4">View list user</NavLink>
+                                                    }
+                                                    <button type="submit" className="btn btn-primary btn-lg w-25 col-md-6">Add new user</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div style={{ color: "green" }}>{successNoti ? successNoti : errorNoti}</div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </main>
+                    </main>
+                </div>
             </div>
         </div>
     )
