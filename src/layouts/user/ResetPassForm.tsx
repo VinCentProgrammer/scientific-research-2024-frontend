@@ -71,7 +71,7 @@ function ResetPassForm() {
 
 
     return (
-        <div id="layoutAuthentication" className='m-4'>
+        <div id="layoutAuthentication" className='m-4' style={{ minHeight: '800px' }}>
             <div id="layoutAuthentication_content">
                 <main>
                     <div className="container">

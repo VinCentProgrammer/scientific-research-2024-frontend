@@ -169,17 +169,22 @@ function RegisterForm() {
     };
 
     return (
-        <section className="py-5" style={{ backgroundColor: '#eee' }}>
+        <section className="py-5">
             <div className="container h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-12 col-xl-11">
                         <div className="card text-black" style={{ borderRadius: '25px' }}>
                             <div className="card-body p-md-5">
+
                                 <div className="row justify-content-center">
+                                    <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                                            className="img-fluid" alt="Sample image" />
+                                    </div>
+
                                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                                         <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
                                         <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
-
                                             {/* Username */}
                                             <div className="d-flex flex-row align-items-center mb-4  text-start">
                                                 <i className="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -189,6 +194,7 @@ function RegisterForm() {
                                                     </label>
                                                     <input type="text" id="username"
                                                         value={username}
+                                                        placeholder="Enter a valid username"
                                                         onChange={handleUsernameOnChange}
                                                         className="form-control" />
                                                 </div>
@@ -205,6 +211,7 @@ function RegisterForm() {
                                                     </label>
                                                     <input type="email" id="email"
                                                         value={email}
+                                                        placeholder="Enter a valid email"
                                                         onChange={handleEmailOnChange}
                                                         className="form-control" />
                                                 </div>
@@ -217,6 +224,7 @@ function RegisterForm() {
                                                     <label className="form-label" htmlFor="firstname">Firstname</label>
                                                     <input type="text" id="firstname" className="form-control"
                                                         value={firstname}
+                                                        placeholder="Enter your firstname"
                                                         onChange={(e) => setFirstname(e.target.value)}
                                                     />
                                                 </div>
@@ -229,6 +237,7 @@ function RegisterForm() {
                                                     <label className="form-label" htmlFor="lastname">Lastname </label>
                                                     <input type="text" id="lastname" className="form-control"
                                                         value={lastname}
+                                                        placeholder="Enter your lastname"
                                                         onChange={(e) => setLastname(e.target.value)}
                                                     />
                                                 </div>
@@ -241,6 +250,7 @@ function RegisterForm() {
                                                     <label className="form-label" htmlFor="phoneNumber">Phone Number </label>
                                                     <input type="text" id="phoneNumber" className="form-control"
                                                         value={phoneNumber}
+                                                        placeholder="Enter your phone number"
                                                         onChange={(e) => setPhoneNumber(e.target.value)}
                                                     />
                                                 </div>
@@ -278,6 +288,7 @@ function RegisterForm() {
                                                     <label className="form-label" htmlFor="password">Password <span className="text-danger">(*)</span><span style={{ color: "red", marginLeft: '10px' }}>{errorPassword}</span></label>
                                                     <input type="password" id="password"
                                                         value={password}
+                                                        placeholder="Enter your passowrd"
                                                         onChange={handlePassOnChange}
                                                         className="form-control" />
                                                 </div>
@@ -290,6 +301,7 @@ function RegisterForm() {
                                                     <label className="form-label" htmlFor="passwordRepeat">Repeat password <span className="text-danger">(*)</span><span style={{ color: "red", marginLeft: '10px' }}>{errorRePassword}</span></label>
                                                     <input type="password" id="passwordRepeat"
                                                         value={rePassword}
+                                                        placeholder="Enter your repeat password"
                                                         onChange={handleRePassOnChange}
                                                         className="form-control" />
                                                 </div>
@@ -306,25 +318,18 @@ function RegisterForm() {
                                                     />
                                                 </div>
                                             </div>
-
                                             <div className="form-check d-flex justify-content-center mb-5">
                                                 <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
                                                 <label className="form-check-label" htmlFor="form2Example3">
                                                     I agree all statements in <a href="#!">Terms of service</a>
                                                 </label>
                                             </div>
-
                                             <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                                 <button type="submit" className="btn btn-primary btn-lg">Register</button>
-
                                             </div>
                                             <div style={{ color: "green" }}>{notification}</div>
                                         </form>
 
-                                    </div>
-                                    <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                                            className="img-fluid" alt="Sample image"/>
                                     </div>
                                 </div>
                             </div>

@@ -30,10 +30,8 @@ function ResetPassword() {
         }
     }
 
-    
-
     return (
-        <section className="py-5" style={{ backgroundColor: '#eee', minHeight: '700px' }}>
+        <section className="py-5" style={{ backgroundColor: '#eee', minHeight: '800px' }}>
             <div className="container h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-12 col-xl-11">

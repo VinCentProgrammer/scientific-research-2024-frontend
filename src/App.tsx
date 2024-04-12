@@ -49,6 +49,7 @@ import TheoryExampleFormUpdateAdmin from './layouts/theory/TheoryExampleFormUpda
 import TheoryKeywordFormAdmin from './layouts/theory/TheoryKeywordFormAdmin';
 import TheoryKeywordListAdmin from './layouts/theory/TheoryKeywordListAdmin';
 import TheoryKeywordFormUpdateAdmin from './layouts/theory/TheoryKeywordFormUpdateAdmin';
+import PageFormUpdate from './layouts/page/PageFormUpdate';
 
 
 function App() {
@@ -82,6 +83,7 @@ function App() {
           {/* //////////////////////////////// PAGE ///////////////////////////////// */}
           <Route path='/admin/page/add' element={<PageForm />} />
           <Route path='/admin/page/list' element={<PageList />} />
+          <Route path='/admin/page/edit/:pageIdParam' element={<PageFormUpdate />} />
           <Route path='/page/about' element={<About />} />
           <Route path='/page/contact' element={<Contact />} />
           <Route path="/page/401" element={<Page401 />} />

@@ -91,7 +91,6 @@ function RetypePassForm() {
 
     return (
         <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
-
             {/* Password new */}
             <div className="d-flex flex-row align-items-center mb-4  text-start">
                 <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i>
