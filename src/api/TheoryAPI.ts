@@ -8,13 +8,13 @@ interface ResultInterface {
 
 export async function getTheory(url: string): Promise<ResultInterface> {
     const result: TheoryModel[] = [];
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
     const response: Response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            // 'Authorization': `Bearer ${token}`
         }
     });
 

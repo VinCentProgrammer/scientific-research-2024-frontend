@@ -8,11 +8,13 @@ interface ResultInterface {
 
 export async function getPost(url: string): Promise<ResultInterface> {
     const result: PostModel[] = [];
+    // const token = localStorage.getItem('token');
 
     const response: Response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            // 'Authorization': `Bearer ${token}`
         }
     });
 

@@ -57,7 +57,7 @@ export async function getUserById(id: number): Promise<UserModel | null> {
     const url: string = `http://localhost:8080/user/${id}`;
     const token = localStorage.getItem('token');
 
-    
+
     try {
         const response: Response = await fetch(url, {
             method: 'GET',
@@ -124,6 +124,48 @@ export async function deleteUser(id: number) {
     } catch (error) {
         console.error('Error deleting user:', error);
         throw error; // Ném lỗi để xử lý tại nơi gọi hàm này nếu cần
+    }
+}
+
+
+
+export async function getUserByPostId(postId: number): Promise<UserModel | null> {
+    const url: string = `http://localhost:8080/post-detail/${postId}/user`;
+    const token = localStorage.getItem('token');
+    try {
+        const response: Response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Lỗi khi truy cập đến API! ${url}`);
+        }
+        const userData = await response.json();
+        if (!userData) {
+            throw new Error('Không tồn tài!');
+        }
+        return {
+            userId: userData.userId,
+            username: userData.username,
+            email: userData.email,
+            active: userData.active,
+            gender: userData.gender,
+            createdAt: userData.createdAt,
+            updatedAt: userData.updatedAt,
+            roles: userData.roles,
+            firstname: userData.firstname,
+            lastname: userData.lastname,
+            address: userData.address,
+            avatar: userData.avatar,
+            phoneNumber: userData.phoneNumber
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+        return null;
     }
 }
 
