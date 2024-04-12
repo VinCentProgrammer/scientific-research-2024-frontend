@@ -292,3 +292,23 @@ ul#sidebar-menu * {
 #category-product-wp .list-item li:hover {
   background-color: rgb(142, 182, 231);
 }
+
+/* 
+#layoutSidenav {
+  display: flex;
+  min-height: 700px;
+}
+
+#layoutSidenav_nav {
+  flex-basis: 20%;
+  display: flex;
+  flex-wrap: wrap;
+} */
+/* 
+#layoutSidenav_nav .sb-sidenav-menu .nav{
+  flex-direction: column;
+}
+
+#layoutSidenav_nav .sb-sidenav-menu .nav div {
+  flex-direction: column;
+} */

@@ -11,7 +11,6 @@ import About from './layouts/page/About';
 import Contact from './layouts/page/Contact';
 import Forum from './layouts/forum/Forum';
 import Theory from './layouts/theory/Theory';
-import Problem from './layouts/problem/Problem';
 import Dashboard from './layouts/dashboard/Dashboard';
 import PageList from './layouts/page/PageList';
 import UserList from './layouts/user/UserList';
@@ -119,9 +118,6 @@ function App() {
           <Route path='/admin/theory/keyword/add' element={<TheoryKeywordFormAdmin />} />
           <Route path='/admin/theory/keyword/list' element={<TheoryKeywordListAdmin />} />
           <Route path='admin/theory/keyword/edit/:theoryKeywordIdParam' element={<TheoryKeywordFormUpdateAdmin />} />
-
-          {/* //////////////////////////////// PROBLEM ///////////////////////////////// */}
-          <Route path='/problem' element={<Problem />} />
 
         </Routes>
         <Footer />

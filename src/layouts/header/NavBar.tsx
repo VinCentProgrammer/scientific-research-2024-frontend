@@ -33,7 +33,6 @@ function NavBar() {
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li className="nav-item"><NavLink className="nav-link" to="/">Home</NavLink></li>
                         <li className="nav-item"><NavLink className="nav-link" to="/theory">Theory</NavLink></li>
-                        <li className="nav-item"><NavLink className="nav-link" to="/problem">Solve Exercises</NavLink></li>
                         <li className="nav-item"><NavLink className="nav-link" to="/post">Posts</NavLink></li>
                         <li className="nav-item"><NavLink className="nav-link" to="/forum">Discussion Forum</NavLink></li>
                         <li className="nav-item"><NavLink className="nav-link" to="/page/about">About Us</NavLink></li>

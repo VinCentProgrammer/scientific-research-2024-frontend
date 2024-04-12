@@ -4,6 +4,7 @@ import SidebarMenu from "./SidebarMenu";
 import { useEffect, useState } from "react";
 import TheoryModel from "../../models/TheoryModel";
 import { getTheoryByCatId } from "../../api/TheoryAPI";
+import SearchForm from "../search/SearchForm";
 
 function Theory() {
     const { theoryCatIdParam } = useParams();
@@ -35,21 +36,25 @@ function Theory() {
     return (
         <div id="layoutSidenav">
             <ScrollToTopButton />
-            <div className="container-fluid mt-4" style={{ minHeight: '700px' }}>
+            <div className="container mt-4" style={{ minHeight: '700px' }}>
+                <div className="row mb-4">
+                    <SearchForm />
+                </div>
+
                 <div className="row">
                     <div className="col-md-3">
                         <SidebarMenu />
                     </div>
                     <div className="col-md-9">
-                        <div id="content" style={{ textAlign: 'left' }}>
+                        <div id="content" style={{ textAlign: 'left' }} className="">
                             {
-                                theory 
-                                ?
-                                <div dangerouslySetInnerHTML={{ __html: theory?.content }} />
-                                : 
-                                <div>
-                                    Lý thuyết toán rời rạc
-                                </div>
+                                theory
+                                    ?
+                                    <div dangerouslySetInnerHTML={{ __html: theory?.content }} />
+                                    :
+                                    <div>
+                                        Lý thuyết toán rời rạc
+                                    </div>
                             }
                         </div>
                     </div>

@@ -1,5 +1,4 @@
 import Quote from './components/Quote';
-import SearchForm from './components/SearchForm';
 import Banner from './components/Banner';
 import Post from '../post/Post';
 import ScrollToTopButton from '../../utils/ScrollToTopButton';
@@ -8,8 +7,7 @@ import ScrollToTopButton from '../../utils/ScrollToTopButton';
 function HomePage() {
     return (
         <div>
-            <header className="bg-dark py-5">
-                <SearchForm />
+            <header className="bg-dark">
                 <Banner />
             </header>
             <Quote />

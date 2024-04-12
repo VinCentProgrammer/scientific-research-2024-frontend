@@ -5,18 +5,17 @@ import SideBarRolePermission from "./components/SideBarRolePermission";
 import SideBarThread from "./components/SideBarThread";
 import SideBarTheory from "./components/SideBarTheory";
 import { NavLink } from "react-router-dom";
+import SideBarDashboard from "./components/SideBarDashboard";
 
 function SideBar() {
     return (
         <div id="layoutSidenav_nav">
             <nav className="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                 <div className="sb-sidenav-menu">
-                    <div className="nav p-2">
-                        <div className="sb-sidenav-menu-heading text-start text-dark fs-6">Core</div>
-                        <NavLink to="/admin/dashboard" className='nav-link'>
-                            <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
-                            Dashboard
-                        </NavLink>
+                    <div className="nav py-2">
+                        <div className="sb-sidenav-menu-heading text-start text-dark fs-6" style={{ fontWeight: 'bold', width: '100%' }}>Core</div>
+                        {/* Dashboard */}
+                        <SideBarDashboard />
                         {/* Page */}
                         <SideBarPage />
                         {/* Post */}
@@ -25,7 +24,7 @@ function SideBar() {
                         <SideBarThread />
                         {/* Theory */}
                         <SideBarTheory />
-                        <div className="sb-sidenav-menu-heading text-start text-dark fs-6">Account - User</div>
+                        <div className="sb-sidenav-menu-heading text-start text-dark fs-6" style={{ fontWeight: 'bold', width: '100%' }}>Account - User</div>
                         {/* User */}
                         <SideBarUser />
                         {/* RolePermission */}
