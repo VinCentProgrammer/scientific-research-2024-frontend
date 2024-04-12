@@ -42,13 +42,13 @@ const PermissionList: React.FC<{}> = () => {
     const handleOnDelete = async (id: number) => {
         const deleleted = deletePermission(id);
         if (await deleleted === true) {
-            setNotification('Xóa thành công');
+            setNotification('Deleted successfully');
             setShowModal(true);
             if (permissions) {
                 const newPermissions = permissions.filter(permission => permission.permissionId !== id);
                 setPermissions(newPermissions);
             } else {
-                setError("Không có bản ghi nào");
+                setError("There are no records");
             }
         }
     }
@@ -61,11 +61,12 @@ const PermissionList: React.FC<{}> = () => {
         setShowModal(false);
     }
 
-
     if (loadingData) {
         return (
-            <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
+            <div id="layoutSidenav" className="container-fluid mt-4" style={{ minHeight: '700px', textAlign: 'center' }}>
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
             </div>
         )
     }
@@ -86,22 +87,21 @@ const PermissionList: React.FC<{}> = () => {
                     <SideBar />
                 </div>
                 <div id="layoutSidenav_content" className="col-md-10">
-
-                    <main className="">
+                    <main className="mt-4">
                         <div className="card">
-                            <div className="card-header font-weight-bold">
-                                Danh sách quyền
+                            <div className="card-header font-weight-bold" style={{fontWeight: 'bold'}}>
+                                List of permissions
                             </div>
                             <div className="card-body">
                                 <table className="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Tên quyền</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Permission Name</th>
                                             <th scope="col">Slug</th>
-                                            <th scope="col">Desc</th>
-                                            <th scope="col">Created</th>
-                                            <th scope="col">Updated</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Created at</th>
+                                            <th scope="col">Updated at</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -123,7 +123,7 @@ const PermissionList: React.FC<{}> = () => {
                     <section>
                         <Modal show={showModal} onHide={handleClose}>
                             <Modal.Header closeButton>
-                                <Modal.Title>Thông báo</Modal.Title>
+                                <Modal.Title>Notification</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <div>
@@ -132,7 +132,7 @@ const PermissionList: React.FC<{}> = () => {
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={handleClose}>
-                                    Đóng
+                                    Close
                                 </Button>
                             </Modal.Footer>
                         </Modal>

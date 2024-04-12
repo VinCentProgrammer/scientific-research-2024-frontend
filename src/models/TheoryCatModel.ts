@@ -6,6 +6,7 @@ export default class TheoryCatModel {
     name: string;
     shortDesc: string;
     createdAt: string;
+    updatedAt: string;
 
     constructor(
         theoryCatId: number,
@@ -14,6 +15,7 @@ export default class TheoryCatModel {
         name: string,
         shortDesc: string,
         createdAt: string,
+        updatedAt: string,
     ) {
         this.theoryCatId = theoryCatId;
         this.theoryParentCatId = theoryParentCatId;
@@ -21,5 +23,6 @@ export default class TheoryCatModel {
         this.name = name;
         this.shortDesc = shortDesc;
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 }

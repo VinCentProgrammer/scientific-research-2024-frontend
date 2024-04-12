@@ -3,6 +3,7 @@ import UserModel from "../../models/UserModel";
 import { useEffect, useState } from 'react';
 import JwtPayload from "../../models/JwtPayLoad";
 import RequireAdmin from "../admin/RequireAdmin";
+import formatDateTime from "../../utils/FormatDateTime";
 
 interface UserPropsInterface {
     user: UserModel;
@@ -14,7 +15,7 @@ const UserRow: React.FC<UserPropsInterface> = (props) => {
     const [isUserLogin, setIsUserLogin] = useState(false);
 
     const handleDelete = () => {
-        const confirm = window.confirm("Bạn có chắc chắn xóa bản ghi này không?");
+        const confirm = window.confirm("Are you sure to delete this record?");
         if (confirm) {
             props.onDelete(props.user.userId);
         }
@@ -29,7 +30,7 @@ const UserRow: React.FC<UserPropsInterface> = (props) => {
         if (token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userIdToken = decodedToken.userId;
-            
+
             if (userIdToken === props.user.userId) {
                 setIsUserLogin(true);
             }
@@ -40,12 +41,14 @@ const UserRow: React.FC<UserPropsInterface> = (props) => {
     return (
         <tr>
             <th scope="row">{props.user.userId}</th>
+            <td><img src={props.user.avatar} alt="" style={{ maxWidth: '80px' }} /></td>
             <td>{props.user.username}</td>
             <td>{props.user.email}</td>
             <td>{props.user.firstname === '' ? "null" : props.user.firstname}</td>
             <td>{props.user.lastname === '' ? "null" : props.user.lastname}</td>
             <td>{props.user.active ? '1' : '0'}</td>
-            <td>{props.user.createdAt}</td>
+            <td>{formatDateTime(props.user.createdAt)}</td>
+            <td>{props.user.updatedAt === null ? 'Not update' : formatDateTime((props.user.updatedAt))}</td>
             <td>
                 {
                     !isUserLogin &&

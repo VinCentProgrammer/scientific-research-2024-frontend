@@ -8,13 +8,11 @@ interface ResultInterface {
 
 export async function getPost(url: string): Promise<ResultInterface> {
     const result: PostModel[] = [];
-    const token = localStorage.getItem('token');
 
     const response: Response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${token}`
         }
     });
 
@@ -51,7 +49,7 @@ export async function getPosts(): Promise<PostModel[]> {
 
 
 export async function getListPost(page: number): Promise<ResultInterface> {
-    const url: string = `http://localhost:8080/post-detail?sort=postId,asc&size=3&page=${page}`;
+    const url: string = `http://localhost:8080/post-detail?sort=postId,desc&size=9&page=${page}`;
     return getPost(url);
 }
 
@@ -120,3 +118,4 @@ export async function getPostById(postId: number): Promise<PostModel | null> {
         return null;
     }
 }
+

@@ -88,11 +88,11 @@ function RoleFormUpdate() {
                 }
             ).then((response) => {
                 if (response.ok) {
-                    setSuccessNoti("Đã cập nhật vai trò thành công!");
+                    setSuccessNoti("Role updated successfully!");
                     setRoleName('');
                     setDesc('');
                 } else {
-                    setErrorNoti("Gặp lỗi trong quá trình cập nhât vai trò!");
+                    setErrorNoti("Error while updating roles!");
                 }
             })
         }
@@ -104,7 +104,7 @@ function RoleFormUpdate() {
             setErrorRoleName('');
         } else {
             setRoleName('');
-            setErrorRoleName('Trường này không được bỏ trống');
+            setErrorRoleName('This field cannot be left blank');
         }
     }
 
@@ -114,7 +114,7 @@ function RoleFormUpdate() {
             setErrorDesc('');
         } else {
             setDesc('');
-            setErrorDesc('Trường này không được bỏ trống');
+            setErrorDesc('This field cannot be left blank');
         }
     }
 

@@ -17,7 +17,6 @@ function PostCatListAdmin() {
     const [notification, setNotification] = useState('');
     const navigate = useNavigate();
 
-
     useEffect(() => {
         getListPostCat(currPage - 1)
             .then(
@@ -41,13 +40,13 @@ function PostCatListAdmin() {
     const handleOnDelete = async (id: number) => {
         const deleleted = deletePostCat(id);
         if (await deleleted === true) {
-            setNotification('Xóa thành công');
+            setNotification('Deleted successfully');
             setShowModal(true);
             if (postCats) {
                 const newPostCat = postCats.filter(postCat => postCat.postCatId !== id);
                 setPostCats(newPostCat);
             } else {
-                setError("Không có bản ghi nào");
+                setError("There are no records");
             }
         }
     }
@@ -63,8 +62,10 @@ function PostCatListAdmin() {
 
     if (loadingData) {
         return (
-            <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
+            <div id="layoutSidenav" className="container-fluid mt-4" style={{ minHeight: '700px', textAlign: 'center' }}>
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
             </div>
         )
     }
@@ -74,7 +75,6 @@ function PostCatListAdmin() {
             <div>{error}</div>
         )
     }
-
 
 
     return (
@@ -89,20 +89,20 @@ function PostCatListAdmin() {
                             <div className="row">
                                 <div className="col-12">
                                     <div className="card">
-                                        <div className="card-header font-weight-bold">
-                                            Danh sách các danh mục
+                                        <div className="card-header font-weight-bold" style={{ fontWeight: 'bold' }}>
+                                            List Post Category
                                         </div>
                                         <div className="card-body">
                                             <table className="table table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Tên danh mục</th>
-                                                        <th scope="col">Mô tả</th>
-                                                        <th scope="col">Parent ID</th>
-                                                        <th scope="col">Ngày tạo</th>
-                                                        <th scope="col">Ngày chỉnh sửa</th>
-                                                        <th scope="col">Hành động</th>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Category Name</th>
+                                                        <th scope="col">Parent Category Name</th>
+                                                        <th scope="col">Description</th>
+                                                        <th scope="col">Created at</th>
+                                                        <th scope="col">Updated at</th>
+                                                        <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -127,7 +127,7 @@ function PostCatListAdmin() {
                     <section>
                         <Modal show={showModal} onHide={handleClose}>
                             <Modal.Header closeButton>
-                                <Modal.Title>Thông báo</Modal.Title>
+                                <Modal.Title>Notification</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <div>
@@ -136,7 +136,7 @@ function PostCatListAdmin() {
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={handleClose}>
-                                    Đóng
+                                    Close
                                 </Button>
                             </Modal.Footer>
                         </Modal>

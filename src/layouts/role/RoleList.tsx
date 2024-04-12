@@ -44,13 +44,13 @@ function RoleList() {
     const handleOnDelete = async (id: number) => {
         const deleleted = deleteRole(id);
         if (await deleleted === true) {
-            setNotification('Xóa thành công');
+            setNotification('Deleted successfully');
             setShowModal(true);
             if (roles) {
                 const newRoles = roles.filter(role => role.roleId !== id);
                 setRoles(newRoles);
             } else {
-                setError("Không có bản ghi nào");
+                setError("There are no records");
             }
         }
     }
@@ -66,8 +66,10 @@ function RoleList() {
 
     if (loadingData) {
         return (
-            <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
+            <div id="layoutSidenav" className="container-fluid mt-4" style={{ minHeight: '700px', textAlign: 'center' }}>
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
             </div>
         )
     }
@@ -90,7 +92,7 @@ function RoleList() {
                         <div id="content" className="container-fluid text-start">
                             <div className="card">
                                 <div className="card-header font-weight-bold d-flex justify-content-between align-items-center p-4">
-                                    <h5 className="m-0 ">Danh sách vai trò</h5>
+                                    <h5 className="m-0 " style={{fontWeight: 'bold'}}>List of roles</h5>
                                     <div className="form-search form-inline">
                                         <form action="#">
                                             <input type="" className="form-control form-search" placeholder="Tìm kiếm" />
@@ -129,7 +131,7 @@ function RoleList() {
                     <section>
                         <Modal show={showModal} onHide={handleClose}>
                             <Modal.Header closeButton>
-                                <Modal.Title>Thông báo</Modal.Title>
+                                <Modal.Title>Notification</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <div>
@@ -138,7 +140,7 @@ function RoleList() {
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={handleClose}>
-                                    Đóng
+                                    Close
                                 </Button>
                             </Modal.Footer>
                         </Modal>

@@ -86,7 +86,7 @@ function PostFormUpdateAdmin() {
             setErrorTitle('');
         } else {
             setTitle('');
-            setErrorTitle('Trường này không được bỏ trống');
+            setErrorTitle('This field cannot be left blank');
         }
     }
 
@@ -96,21 +96,20 @@ function PostFormUpdateAdmin() {
             setErrorDesc('');
         } else {
             setDesc('');
-            setErrorDesc('Trường này không được bỏ trống');
+            setErrorDesc('This field cannot be left blank');
         }
     }
 
 
-    const handleOnChangeDetail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleOnChangeDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         if (e.target.value) {
             setDetail(e.target.value);
             setErrorDetail('');
         } else {
             setDetail('');
-            setErrorDetail('Trường này không được bỏ trống');
+            setErrorDetail('This field cannot be left blank');
         }
     }
-
 
     const handleOnChangePostCatId = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setPostCatId(parseInt(event.target.value));
@@ -185,13 +184,13 @@ function PostFormUpdateAdmin() {
                     <main>
                         <div id="content" className="container-fluid">
                             <div className="card">
-                                <div className="card-header font-weight-bold">
-                                    Thêm bài viết
+                                <div className="card-header" style={{fontWeight: 'bold'}}>
+                                    Edit Post
                                 </div>
                                 <div className="card-body">
                                     <form onSubmit={handleSubmit}>
                                         <div className="form-group">
-                                            <label htmlFor="title">Tiêu đề bài viết
+                                            <label htmlFor="title">Title Post
                                                 <span className="text-danger">(*) {errorTitle}</span>
                                             </label>
                                             <input className="form-control" type="text" name="name" id="title"
@@ -199,8 +198,9 @@ function PostFormUpdateAdmin() {
                                                 onChange={handleOnChangeTitle}
                                             />
                                         </div>
+
                                         <div className="form-group">
-                                            <label htmlFor="desc">Mô tả
+                                            <label htmlFor="desc">Description
                                                 <span className="text-danger">(*) {errorDesc}</span>
                                             </label>
                                             <input className="form-control" type="text" name="name" id="desc"
@@ -208,32 +208,35 @@ function PostFormUpdateAdmin() {
                                                 onChange={handleOnChangeDesc}
                                             />
                                         </div>
-                                        <div className="form-group">
-                                            <label htmlFor="detail">Nội dung bài viết
+
+                                        <div className="form-group mt-2">
+                                            <label htmlFor="detail">Content Post
                                                 <span className="text-danger">(*) {errorDetail}</span>
                                             </label>
-                                            <input className="form-control" type="text" name="name" id="detail"
+                                            <textarea
+                                                className="form-control"
                                                 value={detail}
                                                 onChange={handleOnChangeDetail}
-
+                                                rows={4}
+                                                cols={50}
                                             />
                                         </div>
 
+
                                         <div className="form-group mt-2">
-                                            <label htmlFor="">Thuộc danh mục
+                                            <label htmlFor="">Belong To Category Post
                                                 <span className="text-danger">(*) {errorPostCatId}</span>
                                             </label>
                                             <select className="form-control" id=""
                                                 value={postCatId}
                                                 onChange={handleOnChangePostCatId}
                                             >
-                                                <option value={0}>Chọn</option>
+                                                <option value={0}>Choice</option>
                                                 {
                                                     postCats.map((postCat) => (
                                                         <option
                                                             key={postCat.postCatId}
                                                             value={postCat.postCatId}
-                                                            selected={postCat.postCatId === postCatId}
                                                         >{postCat.postCatName}
                                                         </option>
                                                     ))
@@ -255,13 +258,13 @@ function PostFormUpdateAdmin() {
                                             </div>
                                         </div>
                                         <div>
-                                            <img className='img-thumbnail w-50' src={thumbnailBase64 + ''} alt="" />
+                                            <img className='img-thumbnail w-25' src={thumbnailBase64 + ''} alt="" />
                                         </div>
                                         <div>
                                             {
                                                 successNoti && <NavLink to='/admin/post/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View list post </NavLink>
                                             }
-                                            <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Cập nhật</button>
+                                            <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Save</button>
                                         </div>
                                         {successNoti && <div className="text-success">{successNoti}</div>}
                                         {errorNoti && <div className="text-danger">{errorNoti}</div>}

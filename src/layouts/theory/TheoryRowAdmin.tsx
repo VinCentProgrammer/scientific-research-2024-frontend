@@ -1,4 +1,5 @@
 import TheoryModel from "../../models/TheoryModel";
+import formatDateTime from "../../utils/FormatDateTime";
 
 interface TheoryRowInterface {
     theory: TheoryModel;
@@ -13,7 +14,8 @@ const TheoryRowAdmin: React.FC<TheoryRowInterface> = (props) => {
         <tr>
             <td scope="row">{props.theory.theoryDetailId}</td>
             <td>{props.theory.title}</td>
-            <td>{props.theory.createdAt}</td>
+            <td>{formatDateTime(props.theory.createdAt)}</td>
+            <td>{props.theory.updatedAt === null ? 'Not update' : formatDateTime(props.theory.updatedAt)}</td>
             <td><div>
                 <button className="btn btn-success btn-sm rounded-0 text-white mx-2" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={handleOnUpdate}><i className="fa fa-edit"></i></button>
             </div>

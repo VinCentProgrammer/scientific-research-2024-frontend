@@ -101,7 +101,7 @@ function TheoryExampleFormAdmin() {
                             <div className="row">
                                 <div className="col-12">
                                     <div className="card">
-                                        <div className="card-header font-weight-bold">
+                                        <div className="card-header font-weight-bold" style={{fontWeight: 'bold'}}>
                                             Add Theory Example
                                         </div>
                                         <div className="card-body">

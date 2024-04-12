@@ -9,7 +9,6 @@ import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 import { useNavigate } from "react-router-dom";
 import RequireAdmin from "../admin/RequireAdmin";
-// import { Search } from "react-bootstrap-icons";
 
 
 const UserList: React.FC<{}> = () => {
@@ -81,19 +80,19 @@ const UserList: React.FC<{}> = () => {
     const handleOnDelete = async (id: number) => {
         setUserIdDelete(id);
         if (userIdLogin === id) {
-            setNotification('Bạn không thể xóa user hiện tại đang đăng nhập!');
+            setNotification('You cannot delete the currently logged in user!');
             setShowModal(true);
             return;
         }
         const deleleted = deleteUser(id);
         if (await deleleted === true) {
-            setNotification('Xóa thành công');
+            setNotification('Deleted successfully');
             setShowModal(true);
             if (listUser) {
                 const updatedUser = listUser.filter(user => user.userId !== id);
                 setListUser(updatedUser);
             } else {
-                setError("Không có bản ghi nào");
+                setError("There are no records");
             }
         }
     }
@@ -108,8 +107,10 @@ const UserList: React.FC<{}> = () => {
 
     if (loadingData) {
         return (
-            <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
+            <div id="layoutSidenav" className="container-fluid mt-4" style={{ minHeight: '700px', textAlign: 'center' }}>
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
             </div>
         )
     }
@@ -132,23 +133,22 @@ const UserList: React.FC<{}> = () => {
                     <main>
                         <div id="content" className="container-fluid text-start">
                             <div className="card">
-                                <div className="card-header font-weight-bold d-flex justify-content-between align-items-center">
-                                    <h5 className="m-0 ">Danh sách thành viên</h5>
+                                <div className="card-header font-weight-bold d-flex justify-content-between align-items-center" >
+                                    <h5 className="m-0 " style={{ fontWeight: 'bold' }}>List User</h5>
                                     <div className="form-search form-inline">
-                                        <form action="#">
+                                        {/* <form action="#">
                                             <input type="" className="form-control form-search" placeholder="Tìm kiếm"
                                                 onChange={onSearchInputChange}
                                                 value={temKeyword}
                                             />
                                             <button className="btn btn-outline-success" type="button" onClick={handleSearch}>
                                                 Search
-                                                {/* <Search /> */}
                                             </button>
-                                        </form>
+                                        </form> */}
                                     </div>
                                 </div>
                                 <div className="card-body">
-                                    <div className="analytic">
+                                    {/* <div className="analytic">
                                         <a href="" className="text-primary">Trạng thái 1<span className="text-muted">(10)</span></a>
                                         <a href="" className="text-primary">Trạng thái 2<span className="text-muted">(5)</span></a>
                                         <a href="" className="text-primary">Trạng thái 3<span className="text-muted">(20)</span></a>
@@ -161,17 +161,19 @@ const UserList: React.FC<{}> = () => {
                                                 <option>Order By Name</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <table className="table table-striped table-checkall">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
+                                                <th scope="col">Avatar</th>
                                                 <th scope="col">Username</th>
                                                 <th scope="col">Email</th>
                                                 <th scope="col">First name</th>
                                                 <th scope="col">Last name</th>
                                                 <th scope="col">Active</th>
                                                 <th scope="col">Created At</th>
+                                                <th scope="col">Updated At</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
@@ -193,7 +195,7 @@ const UserList: React.FC<{}> = () => {
                     <section>
                         <Modal show={showModal} onHide={handleClose}>
                             <Modal.Header closeButton>
-                                <Modal.Title>Thông báo</Modal.Title>
+                                <Modal.Title>Notification</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <div>
@@ -202,7 +204,7 @@ const UserList: React.FC<{}> = () => {
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={handleClose}>
-                                    Đóng
+                                    Close
                                 </Button>
                             </Modal.Footer>
                         </Modal>

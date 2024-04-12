@@ -61,8 +61,10 @@ function TheoryExampleListAdmin() {
 
     if (loadingData) {
         return (
-            <div className="spinner-border" role="status">
-                <span className="sr-only"></span>
+            <div id="layoutSidenav" className="container-fluid mt-4" style={{ minHeight: '700px', textAlign: 'center' }}>
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
             </div>
         )
     }
@@ -94,7 +96,8 @@ function TheoryExampleListAdmin() {
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Answer</th>
-                                                <th scope="col">Created at</th>
+                                                <th scope="col">Created At</th>
+                                                        <th scope="col">Updated At</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>

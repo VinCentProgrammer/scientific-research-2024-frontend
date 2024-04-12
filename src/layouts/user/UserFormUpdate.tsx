@@ -131,7 +131,7 @@ function UserFormUpdate() {
                 }
             ).then((response) => {
                 if (response.ok) {
-                    setSuccessNoti("Đã cập nhật user thành công!");
+                    setSuccessNoti("User updated successfully!");
 
                     setUsername('');
                     setEmail('');
@@ -143,7 +143,7 @@ function UserFormUpdate() {
                     setAvatarBase64(null);
 
                 } else {
-                    setError("Gặp lỗi trong quá trình cập nhật user!");
+                    setError("Error while updating user!");
                 }
             })
         }
@@ -159,7 +159,7 @@ function UserFormUpdate() {
             const response = await fetch(url);
             const data = await response.text();
             if (data === 'true' && username !== usernameTemp) {
-                setErrorUsername('Tên đăng nhập đã tồn tại!');
+                setErrorUsername('Username already existsi!');
                 return true;
             }
         } catch (error) {
@@ -183,7 +183,7 @@ function UserFormUpdate() {
             const response = await fetch(url);
             const data = await response.text();
             if (data === 'true' && email !== emailTemp) {
-                setErrorEmail('Địa chỉ email đã tồn tại!');
+                setErrorEmail('Email address already exists!');
                 return true;
             }
         } catch (error) {
@@ -223,8 +223,8 @@ function UserFormUpdate() {
                     <main>
                         <div id="content" className="container">
                             <div className="card">
-                                <div className="card-header font-weight-bold">
-                                    Cập nhật người dùng
+                                <div className="card-header" style={{ fontWeight: 'bold' }}>
+                                    Edit user
                                 </div>
                                 <div className="card-body w-75 mx-auto">
                                     <form onSubmit={handleSubmit}>
@@ -349,12 +349,12 @@ function UserFormUpdate() {
                                                 />
                                             </div>
                                         </div>
-                                        <div>
+                                        <div className='text-center'>
                                             <img className='img-thumbnail w-50' src={avatarBase64 + ''} alt="" />
                                         </div>
 
                                         {/* Roles */}
-                                        <div className="d-flex flex-row align-items-center mb-4  text-start">
+                                        <div className="d-flex flex-row align-items-center my-4 text-start">
                                             <i className="bi bi-person-check me-3 fa-fw"></i>
                                             <select
                                                 className="form-select"

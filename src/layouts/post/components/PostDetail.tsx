@@ -1,6 +1,34 @@
+import { useParams } from "react-router-dom";
 import ScrollToTopButton from "../../../utils/ScrollToTopButton";
+import { useEffect, useState } from "react";
+import PostModel from "../../../models/PostModel";
+import { getPostById } from "../../../api/PostAPI";
 
 function PostDetail() {
+    const { postIdParam } = useParams();
+    const [post, setPost] = useState<PostModel | null>(null);
+
+    let postId = 0;
+    try {
+        postId = parseInt(postIdParam + '');
+    } catch (error) {
+        postId = 0;
+        console.log('Error', error);
+    }
+    if (Number.isNaN(postId))
+        postId = 0;
+
+    useEffect(() => {
+        getPostById(postId)
+            .then(
+                result => {
+                    setPost(result);
+                }
+            ).catch(error => {
+                console.error('Error fetching user data:', error);
+            });
+    }, [postId]);
+
     return (
         <section className="py-5 text-start">
             <ScrollToTopButton />
@@ -8,7 +36,7 @@ function PostDetail() {
                 <div className="row gx-5">
                     <div className="col-lg-3">
                         <div className="d-flex align-items-center mt-lg-5 mb-4">
-                            <img className="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+                            <img className="img-fluid rounded-circle" src={post?.thumbnail} alt="..." />
                             <div className="ms-3">
                                 <div className="fw-bold">Admin</div>
                                 <div className="text-muted">News, Combinatorics</div>

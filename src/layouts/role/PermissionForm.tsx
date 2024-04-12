@@ -21,7 +21,7 @@ function PermissionForm() {
             setErrorPermissionName('');
         } else {
             setPermissionName('');
-            setErrorPermissionName('Trường này không được bỏ trống');
+            setErrorPermissionName('This field cannot be left blank');
         }
     }
 
@@ -31,7 +31,7 @@ function PermissionForm() {
             setErrorSlug('');
         } else {
             setSlug('');
-            setErrorSlug('Trường này không được bỏ trống');
+            setErrorSlug('This field cannot be left blank');
         }
     }
 
@@ -62,36 +62,36 @@ function PermissionForm() {
                 }
             ).then((response) => {
                 if (response.ok) {
-                    setSuccessNoti("Đã thêm quyền thành công!");
+                    setSuccessNoti("Permission added successfully!");
                     setPermissionName('');
                     setDesc('');
                     setSlug('');
 
                 } else {
-                    setErrorNoti("Gặp lỗi trong quá trình thêm quyền!");
+                    setErrorNoti("Error while adding permissions!");
                 }
             })
         }
     }
 
     return (
-        <div id="layoutSidenav" className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
+        <div id="layoutSidenav" className="container-fluid " style={{ minHeight: '700px', textAlign: 'left' }}>
             <div className="row">
                 <div className="col-md-2">
                     <SideBar />
                 </div>
                 <div id="layoutSidenav_content" className="col-md-10">
-                    <main className=" w-50">
+                    <main className="w-50 mt-4">
                         <div className="card">
-                            <div className="card-header font-weight-bold">
-                                Thêm quyền
+                            <div className="card-header font-weight-bold" style={{fontWeight: 'bold'}}>
+                                Add Permission
                             </div>
                             <div className="container">
                                 <div className="row">
                                     <div className="card-body col-md-4">
                                         <form onSubmit={handleSubmit}>
                                             <div className="form-group mt-2">
-                                                <label htmlFor="name">Tên quyền <span className="text-danger">(*) {errorPermissionName}</span></label>
+                                                <label htmlFor="name">Permission name <span className="text-danger">(*) {errorPermissionName}</span></label>
                                                 <input className="form-control" type="text" name="name" id="name"
                                                     value={permissionName}
                                                     onChange={handleOnChangePermissionName}
@@ -99,14 +99,14 @@ function PermissionForm() {
                                             </div>
                                             <div className="form-group mt-2">
                                                 <label htmlFor="slug">Slug</label>
-                                                <small className="form-text text-muted pb-2 p-2">Ví dụ: user.add <span className="text-danger">(*) {errorSlug}</span></small>
+                                                <small className="form-text text-muted pb-2 p-2">Example: user.add <span className="text-danger">(*) {errorSlug}</span></small>
                                                 <input className="form-control" type="text" name="slug" id="slug"
                                                     value={slug}
                                                     onChange={handleOnChangeSlug}
                                                 />
                                             </div>
                                             <div className="form-group mt-2">
-                                                <label htmlFor="description">Mô tả</label>
+                                                <label htmlFor="description">Description</label>
                                                 <input className="form-control" name="description" id="description" type="text"
                                                     value={desc}
                                                     onChange={(e) => setDesc(e.target.value)}
@@ -116,7 +116,7 @@ function PermissionForm() {
                                                 {
                                                     successNoti && <NavLink to='/admin/role/permission/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View list permission</NavLink>
                                                 }
-                                                <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Thêm mới</button>
+                                                <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Add</button>
                                             </div>
                                             {successNoti && <div className="text-success">{successNoti}</div>}
                                             {errorNoti && <div className="text-danger">{errorNoti}</div>}

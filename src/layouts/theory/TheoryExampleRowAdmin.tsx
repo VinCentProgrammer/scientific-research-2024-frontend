@@ -1,4 +1,5 @@
 import TheoryExampleModel from "../../models/TheoryExampleModel";
+import formatDateTime from "../../utils/FormatDateTime";
 
 interface TheoryExampleRowInterface {
     theoryExample: TheoryExampleModel;
@@ -22,7 +23,8 @@ const TheoryExampleRowAdmin: React.FC<TheoryExampleRowInterface> = (props) => {
             <td scope="row">{props.theoryExample.exampleId}</td>
             <td>{props.theoryExample.name}</td>
             <td>{props.theoryExample.answer}</td>
-            <td>{props.theoryExample.createdAt}</td>
+            <td>{formatDateTime(props.theoryExample.createdAt)}</td>
+            <td>{props.theoryExample.updatedAt === null ? 'Not update' : formatDateTime(props.theoryExample.updatedAt)}</td>
             <td><div>
                 <button className="btn btn-success btn-sm rounded-0 text-white mx-2" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={handleOnUpdate}><i className="fa fa-edit"></i></button>
                 <button className="btn btn-danger btn-sm rounded-0 text-white mx-2" type="button" data-toggle="tooltip" data-placement="top" title="Delete" onClick={handleOnDelete}><i className="fa fa-trash"></i></button>

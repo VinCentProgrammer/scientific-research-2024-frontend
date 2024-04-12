@@ -35,6 +35,7 @@ export async function getTheoryKeyword(url: string): Promise<ResultInterface> {
             keyword: theoryKeywordData.keyword,
             userId: theoryKeywordData.userId,
             createdAt: theoryKeywordData.createdAt,
+            updatedAt: theoryKeywordData.updatedAt,
         });
     });
 
@@ -106,6 +107,7 @@ export async function getTheoryKeywordById(keywordId: number): Promise<TheoryKey
             keyword: responseData.keyword,
             userId: responseData.userId,
             createdAt: responseData.createdAt,
+            updatedAt: responseData.updatedAt,
         }
     } catch (error) {
         console.error('Error: ', error);
@@ -139,6 +141,7 @@ export async function getTheoryByKeyword(keyword: string): Promise<TheoryModel |
             content: responseData.content,
             userId: responseData.userId,
             createdAt: responseData.createdAt,
+            updatedAt: responseData.updatedAt,
         }
     } catch (error) {
         console.error('Error: ', error);

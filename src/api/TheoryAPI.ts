@@ -35,6 +35,7 @@ export async function getTheory(url: string): Promise<ResultInterface> {
             content: theoryData.content,
             userId: theoryData.userId,
             createdAt: theoryData.createdAt,
+            updatedAt: theoryData.updatedAt,
         });
     });
 
@@ -107,6 +108,7 @@ export async function getTheoryById(theoryId: number): Promise<TheoryModel | nul
             content: responseData.content,
             userId: responseData.userId,
             createdAt: responseData.createdAt,
+            updatedAt: responseData.updatedAt,
         }
     } catch (error) {
         console.error('Error: ', error);
@@ -142,6 +144,7 @@ export async function getTheoryByCatId(theoryCatId: number): Promise<TheoryModel
             content: responseData.content,
             userId: responseData.userId,
             createdAt: responseData.createdAt,
+            updatedAt: responseData.updatedAt,
         }
     } catch (error) {
         console.error('Error: ', error);

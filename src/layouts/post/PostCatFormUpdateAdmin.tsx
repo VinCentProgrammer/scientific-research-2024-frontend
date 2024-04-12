@@ -63,7 +63,7 @@ function PostCatFormUpdateAdmin() {
             setErrorPostCatName('');
         } else {
             setPostCatName('');
-            setErrorPostCatName('Trường này không được bỏ trống');
+            setErrorPostCatName('This field cannot be left blank');
         }
     }
 
@@ -73,7 +73,7 @@ function PostCatFormUpdateAdmin() {
             setErrorDesc('');
         } else {
             setDesc('');
-            setErrorDesc('Trường này không được bỏ trống');
+            setErrorDesc('This field cannot be left blank');
         }
     }
 
@@ -81,16 +81,12 @@ function PostCatFormUpdateAdmin() {
         setPostCatParent(parseInt(event.target.value));
     }
 
-
     const handleSubmit = (e: React.FormEvent) => {
-        // Clear 
         setErrorPostCatName('');
         setErrorDesc('');
 
-        // Prevent default
         e.preventDefault();
 
-        // 
         if (postCatName && desc && postCatParentId) {
             const token = localStorage.getItem('token');
             fetch(`http://localhost:8080/post-cat/${postCatId}`,
@@ -110,13 +106,13 @@ function PostCatFormUpdateAdmin() {
                 }
             ).then((response) => {
                 if (response.ok) {
-                    setSuccessNoti("Đã update thành công!");
+                    setSuccessNoti("Updated successfully!");
                     setErrorPostCatName('');
                     setDesc('');
                     setPostCatParent(1);
 
                 } else {
-                    setErrorNoti("Gặp lỗi trong quá trình update!");
+                    setErrorNoti("An error occurred during the update process!");
                 }
             })
         }
@@ -134,13 +130,13 @@ function PostCatFormUpdateAdmin() {
                             <div className="row">
                                 <div className="col-12">
                                     <div className="card">
-                                        <div className="card-header font-weight-bold">
-                                            Cập nhật danh mục
+                                        <div className="card-header font-weight-bold" style={{fontWeight: 'bold'}}>
+                                            Edit Category Post
                                         </div>
                                         <div className="card-body">
                                             <form onSubmit={handleSubmit}>
                                                 <div className="form-group mt-2">
-                                                    <label htmlFor="name">Tên danh mục
+                                                    <label htmlFor="name">Post Name
                                                         <span className="text-danger">(*) {errorPostCatName}</span>
                                                     </label>
                                                     <input className="form-control" type="text" name="name" id="name"
@@ -150,7 +146,7 @@ function PostCatFormUpdateAdmin() {
                                                 </div>
 
                                                 <div className="form-group mt-2">
-                                                    <label htmlFor="desc">Mô tả
+                                                    <label htmlFor="desc">Description
                                                         <span className="text-danger">(*) {errorDesc}</span>
                                                     </label>
                                                     <input className="form-control" type="text" name="name" id="desc"
@@ -160,12 +156,12 @@ function PostCatFormUpdateAdmin() {
                                                 </div>
 
                                                 <div className="form-group mt-2">
-                                                    <label htmlFor="">Thuộc danh mục</label>
+                                                    <label htmlFor="">Belong to Category</label>
                                                     <select className="form-control" id=""
                                                         value={postCatParentId}
                                                         onChange={handlePostCatParent}
                                                     >
-                                                        <option value={1}>Danh mục cha</option>
+                                                        <option value={1}>Parent Category</option>
                                                         {
                                                             postCats.map((postCat) => (
                                                                 postCat.postCatId !== postCatId && <option
@@ -181,7 +177,7 @@ function PostCatFormUpdateAdmin() {
                                                     {
                                                         successNoti && <NavLink to='/admin/post/cat/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View list post cat</NavLink>
                                                     }
-                                                    <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Cập nhật</button>
+                                                    <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Save</button>
                                                 </div>
                                                 {successNoti && <div className="text-success">{successNoti}</div>}
                                                 {errorNoti && <div className="text-danger">{errorNoti}</div>}

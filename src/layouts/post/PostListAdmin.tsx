@@ -43,13 +43,13 @@ function PostListAdmin() {
     const handleOnDelete = async (id: number) => {
         const deleleted = deletePost(id);
         if (await deleleted === true) {
-            setNotification('Xóa thành công');
+            setNotification('Deleted successfully');
             setShowModal(true);
             if (posts) {
                 const newPosts = posts.filter(post => post.postId !== id);
                 setPosts(newPosts);
             } else {
-                setError("Không có bản ghi nào");
+                setError("There are no records");
             }
         }
     }
@@ -65,8 +65,10 @@ function PostListAdmin() {
 
     if (loadingData) {
         return (
-            <div className="spinner-border" role="status">
-                <span className="sr-only">Loading...</span>
+            <div id="layoutSidenav" className="container-fluid mt-4" style={{ minHeight: '700px', textAlign: 'center' }}>
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
             </div>
         )
     }
@@ -90,16 +92,17 @@ function PostListAdmin() {
                         <div id="content" className="container-fluid">
                             <div className="card">
                                 <div className="card-header font-weight-bold d-flex justify-content-between align-items-center">
-                                    <h5 className="m-0 ">Danh sách bài viết</h5>
+                                    <h5 className="m-0 " style={{fontWeight: 'bold'}}>Post List</h5>
                                 </div>
                                 <div className="card-body">
                                     <table className="table table-striped table-checkall">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Title</th>
-                                                <th scope="col">Desc</th>
                                                 <th scope="col">Thumbnail</th>
+                                                <th scope="col">Title</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Description</th>
                                                 <th scope="col">Created at</th>
                                                 <th scope="col">Updated at</th>
                                                 <th scope="col">Action</th>
@@ -111,7 +114,6 @@ function PostListAdmin() {
                                                     <PostRowAdmin key={post.postId} post={post} onDelete={handleOnDelete} onUpdate={handleOnUpdate} />
                                                 ))
                                             }
-
 
                                         </tbody>
                                     </table>
@@ -125,7 +127,7 @@ function PostListAdmin() {
                     <section>
                         <Modal show={showModal} onHide={handleClose}>
                             <Modal.Header closeButton>
-                                <Modal.Title>Thông báo</Modal.Title>
+                                <Modal.Title>Notification</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <div>
@@ -134,7 +136,7 @@ function PostListAdmin() {
                             </Modal.Body>
                             <Modal.Footer>
                                 <Button variant="secondary" onClick={handleClose}>
-                                    Đóng
+                                    Close
                                 </Button>
                             </Modal.Footer>
                         </Modal>

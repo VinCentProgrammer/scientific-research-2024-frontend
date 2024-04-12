@@ -46,11 +46,11 @@ function RoleForm() {
                 }
             ).then((response) => {
                 if (response.ok) {
-                    setSuccessNoti("Đã thêm vai trò thành công!");
+                    setSuccessNoti("Role added successfully!");
                     setRoleName('');
                     setDesc('');
                 } else {
-                    setErrorNoti("Gặp lỗi trong quá trình thêm vai trò!");
+                    setErrorNoti("Error while adding role!");
                 }
             })
         }
@@ -62,7 +62,7 @@ function RoleForm() {
             setErrorRoleName('');
         } else {
             setRoleName('');
-            setErrorRoleName('Trường này không được bỏ trống');
+            setErrorRoleName('This field cannot be left blank');
         }
     }
 
@@ -72,7 +72,7 @@ function RoleForm() {
             setErrorDesc('');
         } else {
             setDesc('');
-            setErrorDesc('Trường này không được bỏ trống');
+            setErrorDesc('This field cannot be left blank');
         }
     }
 
@@ -152,7 +152,7 @@ function RoleForm() {
                         <div id="content" className="container-fluid text-start">
                             <div className="card">
                                 <div className="card-header font-weight-bold d-flex justify-content-between align-items-center">
-                                    <h5 className="m-2 ">Thêm mới vai trò</h5>
+                                    <h5 className="m-2 ">Add New Role</h5>
                                 </div>
                                 <div className="card-body">
                                     <form method="POST" action=""
@@ -160,21 +160,21 @@ function RoleForm() {
                                     >
 
                                         <div className="form-group mt-2">
-                                            <label className="text-strong" htmlFor="name">Tên vai trò <span className="text-danger">(*) {errorRoleName}</span></label>
+                                            <label className="text-strong" htmlFor="name">Role Name <span className="text-danger">(*) {errorRoleName}</span></label>
                                             <input className="form-control" type="text" name="name" id="name"
                                                 value={roleName}
                                                 onChange={handleOnChangeRoleName}
                                             />
                                         </div>
                                         <div className="form-group my-4">
-                                            <label className="text-strong" htmlFor="description">Mô tả <span className="text-danger">(*) {errorDesc}</span></label>
+                                            <label className="text-strong" htmlFor="description">Description<span className="text-danger">(*) {errorDesc}</span></label>
                                             <input className="form-control" type="text" name="desc" id="desc"
                                                 value={desc}
                                                 onChange={handleOnChangeDesc}
                                             />
                                         </div>
-                                        <strong className="pt-2">Vai trò này có quyền gì?</strong>
-                                        <small className="form-text text-muted pb-2"> Check vào module hoặc các hành động bên dưới để chọn quyền.</small>
+                                        <strong className="pt-2">What permissions does this role have??</strong>
+                                        <small className="form-text text-muted pb-2"> Check the module or actions below to select permissions.</small>
                                         <div>
                                             {/* Duyệt qua danh sách các module và render HTML tương ứng */}
                                             {Object.keys(modules).map(moduleName => (
@@ -185,7 +185,7 @@ function RoleForm() {
                                             {
                                                 successNoti && <NavLink to='/admin/role/list' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View list role</NavLink>
                                             }
-                                            <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Thêm mới</button>
+                                            <button type="submit" className="btn btn-primary btn-sm w-25 col-md-6 mt-4">Add</button>
                                         </div>
                                         {successNoti && <div className="text-success">{successNoti}</div>}
                                         {errorNoti && <div className="text-danger">{errorNoti}</div>}

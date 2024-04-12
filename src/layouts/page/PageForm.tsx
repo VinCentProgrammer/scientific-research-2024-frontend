@@ -98,7 +98,7 @@ function PageForm() {
                     <main>
                         <div id="content" className="container-fluid">
                             <div className="card">
-                                <div className="card-header font-weight-bold">
+                                <div className="card-header font-weight-bold" style={{fontWeight: 'bold'}}>
                                     Add New Page
                                 </div>
                                 <div className="card-body">

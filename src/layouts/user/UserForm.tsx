@@ -96,7 +96,7 @@ function UserForm() {
                 }
             ).then((response) => {
                 if (response.ok) {
-                    setSuccessNoti("Đã thêm user thành công!");
+                    setSuccessNoti("User added successfully!");
                     setUsername('');
                     setEmail('');
                     setPassword('');
@@ -108,7 +108,7 @@ function UserForm() {
                     setAddress('');
                     setAvatar(null);
                 } else {
-                    setErrorNoti("Gặp lỗi trong quá trình thêm user!");
+                    setErrorNoti("Error while adding user!");
                 }
             })
         }
@@ -124,7 +124,7 @@ function UserForm() {
             const response = await fetch(url);
             const data = await response.text();
             if (data === 'true') {
-                setErrorUsername('Tên đăng nhập đã tồn tại!');
+                setErrorUsername('Username available!');
                 return true;
             }
         } catch (error) {
@@ -148,7 +148,7 @@ function UserForm() {
             const response = await fetch(url);
             const data = await response.text();
             if (data === 'true') {
-                setErrorEmail('Địa chỉ email đã tồn tại!');
+                setErrorEmail('Email address already exists!');
                 return true;
             }
         } catch (error) {
@@ -167,7 +167,7 @@ function UserForm() {
     const checkPassword = (password: string) => {
         const passwordRegex = /^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
         if (!passwordRegex.test(password)) {
-            setErrorPassword("Mật khẩu phải có ít nhất 8 ký tự và bao gồm ít nhất 1 ký tự đặc biệt (!@#$%^&*)");
+            setErrorPassword("Password must have at least 8 characters and include at least 1 special character (!@#$%^&*)");
             return true;
         } else {
             setErrorPassword("");
@@ -184,7 +184,7 @@ function UserForm() {
     //////////////======CHECK RE PASSWORD ========///////////////////
     const checkRePassword = (rePassword: string) => {
         if (rePassword !== password) {
-            setErrorRePassword("Mật khẩu không trùng khớp.");
+            setErrorRePassword("Repeated passwords do not match.");
             return true;
         } else {
             setErrorRePassword(""); // Mật khẩu trùng khớp
@@ -217,8 +217,8 @@ function UserForm() {
                     <main>
                         <div id="content" className="container">
                             <div className="card">
-                                <div className="card-header font-weight-bold">
-                                    Thêm người dùng
+                                <div className="card-header" style={{fontWeight: 'bold'}}>
+                                    Add User
                                 </div>
                                 <div className="card-body w-75 mx-auto">
                                     <form onSubmit={handleSubmit}>

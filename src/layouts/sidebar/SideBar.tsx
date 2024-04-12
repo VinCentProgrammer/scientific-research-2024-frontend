@@ -15,7 +15,7 @@ function SideBar() {
                     <div className="nav py-2">
                         <div className="sb-sidenav-menu-heading text-start text-dark fs-6" style={{ fontWeight: 'bold', width: '100%' }}>Core</div>
                         {/* Dashboard */}
-                        <SideBarDashboard />
+                        {/* <SideBarDashboard /> */}
                         {/* Page */}
                         <SideBarPage />
                         {/* Post */}

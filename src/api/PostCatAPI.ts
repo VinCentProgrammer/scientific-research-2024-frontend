@@ -130,7 +130,7 @@ export async function getPostCatById(postCatId: number): Promise<PostCatModel | 
         if (!response.ok) {
             throw new Error(`Lỗi khi truy cập đến API! ${url}`);
         }
-        
+
         const postCatData = await response.json();
         if (!postCatData) {
             throw new Error('Không tồn tài!');

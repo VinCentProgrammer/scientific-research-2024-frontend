@@ -1,4 +1,5 @@
 import TheoryCatModel from "../../models/TheoryCatModel";
+import formatDateTime from "../../utils/FormatDateTime";
 
 interface TheoryCatRowProps {
     theoryCat: TheoryCatModel;
@@ -23,7 +24,8 @@ const TheoryCatItemAdmin: React.FC<TheoryCatRowProps> = (props) => {
             <td>{props.theoryCat.theoryParentCatId}</td>
             <td>{props.theoryCat.name}</td>
             <td>{props.theoryCat.shortDesc}</td>
-            <td>{props.theoryCat.createdAt}</td>
+            <td>{formatDateTime(props.theoryCat.createdAt)}</td>
+            <td>{props.theoryCat.updatedAt === null ? 'Not update' : formatDateTime(props.theoryCat.updatedAt)}</td>
             <td><div>
                 <div>
                     <button className="btn btn-success btn-sm rounded-0 text-white mx-2" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={handleOnUpdate}><i className="fa fa-edit"></i></button>

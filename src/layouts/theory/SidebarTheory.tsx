@@ -3,7 +3,7 @@ import TheoryCatModel from "../../models/TheoryCatModel";
 import { getTheoryCat, getTheoryCats } from "../../api/TheoryCatAPI";
 import { NavLink } from "react-router-dom";
 
-function SidebarMenu() {
+function SidebarTheory() {
     const [theoryCategories, setTheoryCategories] = useState<TheoryCatModel[]>([]);
 
     useEffect(() => {
@@ -52,4 +52,4 @@ function SidebarMenu() {
     );
 }
 
-export default SidebarMenu;
+export default SidebarTheory;

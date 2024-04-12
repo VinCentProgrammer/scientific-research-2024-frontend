@@ -1,5 +1,6 @@
 import RequireAdminOrStaff from "../admin/RequireAdminOrStaff";
 import SideBar from "../sidebar/SideBar";
+import UserList from "../user/UserList";
 
 function Dashboard() {
     return (
@@ -10,7 +11,8 @@ function Dashboard() {
                 </div>
                 <div id="layoutSidenav_content" className="col-md-10">
                     <main>
-                        <div className="container-fluid py-5">
+                        {/* <UserList/> */}
+                        {/* <div className="container-fluid py-5">
                             <div className="row">
                                 <div className="col">
                                     <div className="card text-white bg-primary mb-3" style={{ maxWidth: '18rem' }}>
@@ -196,7 +198,7 @@ function Dashboard() {
                                     </nav>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </main>
                 </div>
             </div>

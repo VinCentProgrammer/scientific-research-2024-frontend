@@ -31,7 +31,6 @@ import PermissionForm from './layouts/role/PermissionForm';
 import PermissionList from './layouts/role/PermissionList';
 import PermissionFormUpdate from './layouts/role/PermissionFormUpdate';
 import RoleFormUpdate from './layouts/role/RoleFormUpdate';
-import RoleDetail from './layouts/role/RoleDetail';
 import PageForm from './layouts/page/PageForm';
 import PostCatForm from './layouts/post/PostCatFormAdmin';
 import PostCatList from './layouts/post/PostCatListAdmin';
@@ -59,8 +58,8 @@ function App() {
         <NavBar />
         <Routes>
           {/* //////////////////////////////// DASHBOARD ///////////////////////////////// */}
-          <Route path="/admin" element={<Dashboard />} />
-          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin" element={<UserList />} />
+          <Route path="/admin/dashboard" element={<UserList />} />
 
           {/* //////////////////////////////// USER ///////////////////////////////// */}
           <Route path='/' element={<HomePage />} />
@@ -78,7 +77,6 @@ function App() {
           <Route path='/admin/role/list' element={<RoleList />} />
           <Route path='/admin/role/add' element={<RoleForm />} />
           <Route path='/admin/role/edit/:roleIdParam' element={<RoleFormUpdate />} />
-          <Route path='/admin/role/list/:roleIdParam' element={<RoleDetail />} />
 
           {/* //////////////////////////////// PAGE ///////////////////////////////// */}
           <Route path='/admin/page/add' element={<PageForm />} />
@@ -94,7 +92,7 @@ function App() {
 
           {/* //////////////////////////////// POST ///////////////////////////////// */}
           <Route path='/post' element={<Post />} />
-          <Route path='/post-detail' element={<PostDetail />} />
+          <Route path='/post/:postIdParam' element={<PostDetail />} />
           <Route path='/admin/post/list' element={<PostList />} />
           <Route path='/admin/post/add' element={<PostForm />} />
           <Route path='/admin/post/edit/:postIdParam' element={<PostFormUpdateAdmin />} />

@@ -133,7 +133,7 @@ function TheoryExampleFormUpdateAdmin() {
                     <main>
                         <div id="answer" className="container-fluid">
                             <div className="card">
-                                <div className="card-header font-weight-bold">
+                                <div className="card-header font-weight-bold" style={{fontWeight: 'bold'}}>
                                     Update Theory Example
                                 </div>
                                 <div className="card-body">

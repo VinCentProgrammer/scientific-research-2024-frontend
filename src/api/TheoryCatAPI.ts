@@ -31,7 +31,8 @@ export async function getTheoryCat(url: string): Promise<ResultInterface> {
             userId: theoryData.userId,
             name: theoryData.name,
             shortDesc: theoryData.shortDesc,
-            createdAt: theoryData.createdAt
+            createdAt: theoryData.createdAt,
+            updatedAt: theoryData.updatedAt,
         });
     });
 
@@ -104,7 +105,8 @@ export async function getTheoryCatById(theoryCatId: number): Promise<TheoryCatMo
             userId: responseData.userId,
             name: responseData.name,
             shortDesc: responseData.shortDesc,
-            createdAt: responseData.createdAt
+            createdAt: responseData.createdAt,
+            updatedAt: responseData.updatedAt,
         }
     } catch (error) {
         console.error('Error: ', error);

@@ -34,9 +34,9 @@ function Post() {
 
     if (loadingData) {
         return (
-            <div style={{ minHeight: '700px' }}>
-                <div className="spinner-border" role="status" >
-                    <span className="sr-only"></span>
+            <div id="layoutSidenav" className="container-fluid mt-4" style={{ minHeight: '700px', textAlign: 'center' }}>
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
                 </div>
             </div>
         )

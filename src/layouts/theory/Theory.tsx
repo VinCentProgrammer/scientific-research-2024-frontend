@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import ScrollToTopButton from "../../utils/ScrollToTopButton";
-import SidebarMenu from "./SidebarMenu";
+import SidebarMenu from "./SidebarTheory";
 import { useEffect, useState } from "react";
 import TheoryModel from "../../models/TheoryModel";
 import { getTheoryByCatId } from "../../api/TheoryAPI";

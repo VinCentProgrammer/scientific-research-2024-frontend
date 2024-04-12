@@ -63,12 +63,13 @@ function TheoryCatListAdmin() {
 
     if (loadingData) {
         return (
-            <div className="spinner-border" role="status">
-                <span className="sr-only"></span>
+            <div id="layoutSidenav" className="container-fluid mt-4" style={{ minHeight: '700px', textAlign: 'center' }}>
+                <div className="spinner-border" role="status">
+                    <span className="sr-only">Loading...</span>
+                </div>
             </div>
         )
     }
-
     if (error) {
         return (
             <div>{error}</div>
@@ -99,6 +100,7 @@ function TheoryCatListAdmin() {
                                                         <th scope="col">Name</th>
                                                         <th scope="col">Description</th>
                                                         <th scope="col">Created At</th>
+                                                        <th scope="col">Updated At</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>

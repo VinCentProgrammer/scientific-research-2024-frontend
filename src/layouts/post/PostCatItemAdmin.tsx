@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react";
 import PostCatModel from "../../models/PostCatModel";
 import SideBar from "../sidebar/SideBar";
+import { getPostCatById } from "../../api/PostCatAPI";
+import formatDateTime from "../../utils/FormatDateTime";
 
 interface PostCatRowProps {
     postCat: PostCatModel;
@@ -9,8 +12,17 @@ interface PostCatRowProps {
 
 
 const PostCatItemAdmin: React.FC<PostCatRowProps> = (props) => {
+    const [parentPostCat, setParentPostCat] = useState<string>('');
+    useEffect(() => {
+        getPostCatById(props.postCat.postCatParentId)
+            .then((result) => {
+                if (result)
+                    setParentPostCat(result?.postCatName);
+            })
+    })
+
     const handleOnDelete = () => {
-        const confirm = window.confirm("Bạn có chắc chắn xóa bản ghi này không?");
+        const confirm = window.confirm("Are you sure to delete this record?");
         if (confirm) {
             props.onDelete(props.postCat.postCatId);
         }
@@ -24,10 +36,10 @@ const PostCatItemAdmin: React.FC<PostCatRowProps> = (props) => {
         <tr>
             <th scope="row">{props.postCat.postCatId}</th>
             <td>{props.postCat.postCatName}</td>
+            <td>{parentPostCat}</td>
             <td>{props.postCat.desc}</td>
-            <td>{props.postCat.postCatParentId}</td>
-            <td>{props.postCat.createdAt}</td>
-            <td>{props.postCat.updatedAt === null ? props.postCat.createdAt : props.postCat.updatedAt}</td>
+            <td>{formatDateTime(props.postCat.createdAt)}</td>
+            <td>{props.postCat.updatedAt === null ? 'Not update' : formatDateTime(props.postCat.updatedAt)}</td>
             <td><div>
                 <div>
                     <button className="btn btn-success btn-sm rounded-0 text-white mx-2" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={handleOnUpdate}><i className="fa fa-edit"></i></button>

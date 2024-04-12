@@ -34,6 +34,7 @@ export async function getTheoryExample(url: string): Promise<ResultInterface> {
             answer: theoryExampleData.answer,
             userId: theoryExampleData.userId,
             createdAt: theoryExampleData.createdAt,
+            updatedAt: theoryExampleData.updatedAt,
         });
     });
 
@@ -107,6 +108,7 @@ export async function getTheoryExampleById(exampleId: number): Promise<TheoryExa
             answer: responseData.answer,
             userId: responseData.userId,
             createdAt: responseData.createdAt,
+            updatedAt: responseData.updatedAt,
         }
     } catch (error) {
         console.error('Error: ', error);

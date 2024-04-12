@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PermissionModel from "../../models/PermissionModel";
 import RequireAdmin from "../admin/RequireAdmin";
+import formatDateTime from "../../utils/FormatDateTime";
 
 interface PermissionRowProps {
     permission: PermissionModel;
@@ -11,7 +12,7 @@ interface PermissionRowProps {
 const PermissionRow: React.FC<PermissionRowProps> = (props) => {
 
     const handleOnDelete = () => {
-        const confirm = window.confirm("Bạn có chắc chắn xóa bản ghi này không?");
+        const confirm = window.confirm("Are you sure to delete this record?");
         if (confirm) {
             props.onDelete(props.permission.permissionId);
         }
@@ -27,8 +28,8 @@ const PermissionRow: React.FC<PermissionRowProps> = (props) => {
             <td>{props.permission.name}</td>
             <td>{props.permission.slug}</td>
             <td>{props.permission.desc}</td>
-            <td>{props.permission.createdAt}</td>
-            <td>{props.permission.updatedAt === null ? props.permission.createdAt : props.permission.updatedAt}</td>
+            <td>{formatDateTime(props.permission.createdAt)}</td>
+            <td>{props.permission.updatedAt === null ? "Not update" : props.permission.updatedAt}</td>
             <td>
                 <div>
                     <button className="btn btn-success btn-sm rounded-0 text-white mx-2" type="button" data-toggle="tooltip" data-placement="top" title="Edit" onClick={handleOnUpdate}><i className="fa fa-edit"></i></button>

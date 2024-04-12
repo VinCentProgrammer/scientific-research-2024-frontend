@@ -134,7 +134,7 @@ function TheoryCatFormUpdateAdmin() {
                             <div className="row">
                                 <div className="col-12">
                                     <div className="card">
-                                        <div className="card-header font-weight-bold">
+                                        <div className="card-header font-weight-bold"  style={{fontWeight: 'bold'}}>
                                             Edit Theory Topic
                                         </div>
                                         <div className="card-body">
