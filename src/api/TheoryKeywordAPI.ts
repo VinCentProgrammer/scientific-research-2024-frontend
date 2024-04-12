@@ -1,4 +1,5 @@
 import TheoryKeywordModel from "../models/TheoryKeywordModel";
+import TheoryModel from "../models/TheoryModel";
 
 interface ResultInterface {
     result: TheoryKeywordModel[];
@@ -47,7 +48,7 @@ export async function getTheoryKeywords(): Promise<TheoryKeywordModel[]> {
 
 
 export async function getListTheoryKeyword(page: number): Promise<ResultInterface> {
-    const url: string = `http://localhost:8080/theory-keyword?sort=keywordId,asc&size=8&page=${page}`;
+    const url: string = `http://localhost:8080/theory-keyword?sort=keywordId,asc&size=20&page=${page}`;
     return getTheoryKeyword(url);
 }
 
@@ -103,6 +104,39 @@ export async function getTheoryKeywordById(keywordId: number): Promise<TheoryKey
             keywordId: responseData.keywordId,
             theoryDetailId: responseData.theoryDetailId,
             keyword: responseData.keyword,
+            userId: responseData.userId,
+            createdAt: responseData.createdAt,
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+        return null;
+    }
+}
+
+
+export async function getTheoryByKeyword(keyword: string): Promise<TheoryModel | null> {
+    const url: string = `http://localhost:8080/api/theory/keyword/search/${keyword}`;
+
+    try {
+        const response: Response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Lỗi khi truy cập đến API! ${url}`);
+        }
+        const responseData = await response.json();
+        if (!responseData) {
+            throw new Error('Không tồn tài!');
+        }
+        return {
+            theoryDetailId: responseData.theoryDetailId,
+            theoryCatId: responseData.theoryCatId,
+            title: responseData.title,
+            content: responseData.content,
             userId: responseData.userId,
             createdAt: responseData.createdAt,
         }

@@ -86,6 +86,9 @@ function TheoryKeywordListAdmin() {
                                     <h5 className="m-0 ">Show Theory Keyword List</h5>
                                 </div>
                                 <div className="card-body">
+                                    <nav aria-label="Page navigation keyword">
+                                        <Pagination currentPage={currPage} totalPages={totalPages} paginate={paginate} />
+                                    </nav>
                                     <table className="table table-striped table-checkall">
                                         <thead>
                                             <tr>
@@ -104,9 +107,7 @@ function TheoryKeywordListAdmin() {
 
                                         </tbody>
                                     </table>
-                                    <nav aria-label="Page navigation keyword">
-                                        <Pagination currentPage={currPage} totalPages={totalPages} paginate={paginate} />
-                                    </nav>
+
                                 </div>
                             </div>
                         </div>

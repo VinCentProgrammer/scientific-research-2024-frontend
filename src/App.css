@@ -258,10 +258,11 @@ ul#sidebar-menu * {
 
 #category-product-wp .list-item li a {
   display: block;
-  color: #333;
+  color: #198754;
   padding: 8px 20px;
   border-bottom: 1px solid #eee;
   text-decoration: none;
+  font-weight: bold;
 }
 
 #category-product-wp .list-item li .sub-menu {
@@ -290,8 +291,9 @@ ul#sidebar-menu * {
 }
 
 #category-product-wp .list-item li:hover {
-  background-color: rgb(142, 182, 231);
+  background-color: #d0e7dc;
 }
+
 
 /* 
 #layoutSidenav {

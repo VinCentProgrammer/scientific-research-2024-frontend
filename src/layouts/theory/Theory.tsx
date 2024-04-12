@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import TheoryModel from "../../models/TheoryModel";
 import { getTheoryByCatId } from "../../api/TheoryAPI";
 import SearchForm from "../search/SearchForm";
+import { getTheoryByKeyword } from "../../api/TheoryKeywordAPI";
 
 function Theory() {
     const { theoryCatIdParam } = useParams();
@@ -20,12 +21,17 @@ function Theory() {
         theoryCatId = 0;
 
     const [theory, setTheory] = useState<TheoryModel | null>(null);
+    const [keyword, setKeyword] = useState<string>('');
+    const [searchResult, setSearchResult] = useState<TheoryModel | null>(null);
+    const [statusSearch, setStatusSearch] = useState<boolean>(false);
+
 
     useEffect(() => {
         getTheoryByCatId(theoryCatId)
             .then((result) => {
                 if (result != null) {
                     setTheory(result);
+                    setStatusSearch(false);
                 }
             })
             .catch(error => {
@@ -33,29 +39,69 @@ function Theory() {
             });
     }, [theoryCatId]);
 
+    const handleClickBtnSearch = async () => {
+        setSearchResult(await getTheoryByKeyword(keyword.toLowerCase()));
+        setStatusSearch(true);
+    }
+
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của phím Enter trên form
+            handleClickBtnSearch();
+        }
+    };
+
     return (
-        <div id="layoutSidenav">
+        <div id="layoutSidenav" className="my-2">
             <ScrollToTopButton />
             <div className="container mt-4" style={{ minHeight: '700px' }}>
-                <div className="row mb-4">
-                    <SearchForm />
-                </div>
-
                 <div className="row">
-                    <div className="col-md-3">
+                    <div className="col-md-3" style={{ background: 'rgb(250 250 250)' }} >
+                        <div className="row mb-4">
+                            <div className="container m-auto">
+                                <form className="d-flex" onSubmit={handleClickBtnSearch}>
+                                    <input
+                                        className="form-control me-2" style={{ height: '60px' }}
+                                        type="search"
+                                        placeholder="Enter your keyword?"
+                                        aria-label="Search"
+                                        value={keyword}
+                                        onChange={(e) => setKeyword(e.target.value)}
+                                        onKeyPress={handleKeyPress}
+                                    />
+                                    <button
+                                        className="btn btn-outline-success w-25"
+                                        type="button"
+                                        onClick={handleClickBtnSearch}
+                                    >Search</button>
+                                </form>
+                            </div>
+                        </div>
                         <SidebarMenu />
                     </div>
                     <div className="col-md-9">
-                        <div id="content" style={{ textAlign: 'left' }} className="">
+                        <div id="content" style={{
+                            textAlign: 'left', background: '#f4f4f4',
+                            borderRadius: '10px',
+                            padding: '20px'
+                        }} className="">
                             {
-                                theory
+                                theory && !statusSearch
                                     ?
                                     <div dangerouslySetInnerHTML={{ __html: theory?.content }} />
                                     :
-                                    <div>
-                                        Lý thuyết toán rời rạc
-                                    </div>
+                                    (statusSearch && searchResult)
+                                        ?
+                                        <div>
+                                            <h4 className="p-2 text-end fs-6">
+                                                Kết quả tìm: <span style={{ fontWeight: 'bold' }}>"{keyword}"</span> trong trang này
+                                            </h4>
+                                            <div dangerouslySetInnerHTML={{ __html: searchResult.content }} />
+                                        </div>
+                                        :
+                                        <div>There are no results!</div>
                             }
+
                         </div>
                     </div>
                 </div>

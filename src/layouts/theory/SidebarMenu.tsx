@@ -37,13 +37,10 @@ function SidebarMenu() {
     return (
         <div className="sidebar fl-left">
             <div className="section" id="category-product-wp">
-                <div className="section-head">
-                    <h3 className="section-title">Theory</h3>
-                </div>
                 <div className="section-detail">
                     <ul className="list-item">
                         {theoryCategories.filter(category => category.theoryParentCatId === 1).map(category => (
-                            <li key={category.theoryCatId}>
+                            <li key={category.theoryCatId} className="">
                                 <NavLink to={`/theory/${category.theoryCatId}`} title="">{category.name}</NavLink>
                                 {renderSubcategories(getSubcategories(category.theoryCatId))}
                             </li>
