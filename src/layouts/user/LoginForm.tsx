@@ -62,6 +62,15 @@ function LoginForm() {
             );
     }
 
+
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của phím Enter trên form
+            handleLogin();
+        }
+    };
+
+
     const handleClose = () => {
         setShowModal(false);
         if (isAdmin || isStaff)
@@ -101,6 +110,7 @@ function LoginForm() {
                                 <input type="email" id="username" className="form-control form-control-lg"
                                     placeholder="Enter a valid username"
                                     value={username} onChange={(e) => setUsername(e.target.value)}
+                                    onKeyPress={handleKeyPress}
                                 />
                             </div>
                             <div className="form-outline mb-3 text-start">
@@ -110,6 +120,7 @@ function LoginForm() {
                                     placeholder="Enter password" required
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
+                                    onKeyPress={handleKeyPress}
                                 />
                             </div>
 
@@ -133,6 +144,7 @@ function LoginForm() {
                                 <button type="button" className="btn btn-primary btn-lg"
                                     style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
                                     onClick={handleLogin}
+
                                 >Login</button>
                                 <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <NavLink to="/register"
                                     className="link-danger">Register</NavLink></p>

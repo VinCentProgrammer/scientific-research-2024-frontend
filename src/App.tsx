@@ -49,6 +49,12 @@ import TheoryKeywordFormAdmin from './layouts/theory/TheoryKeywordFormAdmin';
 import TheoryKeywordListAdmin from './layouts/theory/TheoryKeywordListAdmin';
 import TheoryKeywordFormUpdateAdmin from './layouts/theory/TheoryKeywordFormUpdateAdmin';
 import PageFormUpdate from './layouts/page/PageFormUpdate';
+import ThreadCatListAdmin from './layouts/forum/ThreadCatListAdmin';
+import ThreadCatFormAdmin from './layouts/forum/ThreadCatFormAdmin';
+import ThreadCatFormUpdateAdmin from './layouts/forum/ThreadCatFormUpdateAdmin';
+import ThreadListAdmin from './layouts/forum/ThreadListAdmin';
+import ThreadRowAdmin from './layouts/forum/ThreadCatRowAdmin';
+import ThreadFormUpdateAdmin from './layouts/forum/ThreadFormUpdateAdmin';
 
 
 function App() {
@@ -102,6 +108,12 @@ function App() {
 
           {/* //////////////////////////////// FORUM ///////////////////////////////// */}
           <Route path='/forum' element={<Forum />} />
+          <Route path='/admin/thread/cat/list' element={<ThreadCatListAdmin />} />
+          <Route path='/admin/thread/cat/add' element={<ThreadCatFormAdmin />} />
+          <Route path='/admin/thread/cat/edit/:threadCatIdParam' element={<ThreadCatFormUpdateAdmin />} />
+
+          <Route path='/admin/thread/list' element={<ThreadListAdmin />} />
+          <Route path='/admin/thread/edit/:threadIdParam' element={<ThreadFormUpdateAdmin />} />
 
           {/* //////////////////////////////// THEORY ///////////////////////////////// */}
           <Route path='/theory' element={<Theory />} />

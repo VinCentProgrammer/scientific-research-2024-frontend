@@ -12,8 +12,10 @@ function SideBarThread() {
             <div className="collapse" id="thread" aria-labelledby="headingTwo"
                 data-bs-parent="#sidenavAccordion">
                 <nav className="sb-sidenav-menu-nested nav accordion flex-column" style={{textAlign: 'left', marginLeft: '30px'}}>
-                    <NavLink to="/admin/thread/list" className='nav-link'>View List</NavLink>
-                    <NavLink to="/admin/thread/comment/list" className='nav-link'>View List Comment</NavLink>
+                    <NavLink to="/admin/thread/cat/add" className='nav-link'>Add Thread Category</NavLink>
+                    <NavLink to="/admin/thread/cat/list" className='nav-link'>Thread Category List</NavLink>
+                    <NavLink to="/admin/thread/list" className='nav-link'>Thread List</NavLink>
+                    <NavLink to="/admin/thread/comment/list" className='nav-link'>Thread Comment List</NavLink>
                 </nav>
             </div>
         </div>
