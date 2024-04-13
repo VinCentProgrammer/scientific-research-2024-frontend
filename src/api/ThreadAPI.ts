@@ -124,3 +124,43 @@ export async function getThreadById(threadId: number): Promise<ThreadModel | nul
         return null;
     }
 }
+
+
+
+export async function getThreadByThreadCommentId(commentId: number): Promise<ThreadModel | null> {
+    const url: string = `http://localhost:8080/thread-comment/${commentId}/thread`;
+    const token = localStorage.getItem('token');
+    try {
+        const response: Response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Lỗi khi truy cập đến API! ${url}`);
+        }
+        const threadData = await response.json();
+        if (!threadData) {
+            throw new Error('Không tồn tài!');
+        }
+        return {
+            threadId: threadData.threadId,
+            threadCatId: threadData.threadCatId,
+            userId: threadData.userId,
+            shortQuestion: threadData.shortQuestion,
+            detailQuestion: threadData.detailQuestion,
+            views: threadData.views,
+            votes: threadData.votes,
+            replies: threadData.replies,
+            status: threadData.status,
+            createdAt: threadData.createdAt,
+            updatedAt: threadData.updatedAt,
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+        return null;
+    }
+}

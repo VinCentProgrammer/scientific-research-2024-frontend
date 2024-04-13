@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 
 function SideBarPage() {
     return (
@@ -11,7 +12,7 @@ function SideBarPage() {
             </NavLink>
             <div className="collapse" id="page" aria-labelledby="headingTwo"
                 data-bs-parent="#sidenavAccordion">
-                <nav className="sb-sidenav-menu-nested nav accordion flex-column" id="sidenavAccordionPages" style={{textAlign: 'left', marginLeft: '30px'}}>
+                <nav className="sb-sidenav-menu-nested nav accordion flex-column" id="sidenavAccordionPages" style={{ textAlign: 'left', marginLeft: '30px' }}>
                     <NavLink to="/admin/page/add" className='nav-link'>Add New</NavLink>
                     <NavLink to="/admin/page/list" className='nav-link'>Page List</NavLink>
                     <NavLink className="nav-link" to="/page/401">401 Page </NavLink>

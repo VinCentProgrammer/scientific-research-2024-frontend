@@ -22,4 +22,9 @@ $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
     });
+    
+    $('#sidebar-menu .arrow').click(function() {
+        $(this).parents('li').children('.sub-menu').slideToggle();
+        $(this).toggleClass('fa-angle-right fa-angle-down');
+    });
 });

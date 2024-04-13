@@ -55,6 +55,8 @@ import ThreadCatFormUpdateAdmin from './layouts/forum/ThreadCatFormUpdateAdmin';
 import ThreadListAdmin from './layouts/forum/ThreadListAdmin';
 import ThreadRowAdmin from './layouts/forum/ThreadCatRowAdmin';
 import ThreadFormUpdateAdmin from './layouts/forum/ThreadFormUpdateAdmin';
+import ThreadCommentListAdmin from './layouts/forum/ThreadCommentListAdmin';
+import ThreadCommentFormUpdateAdmin from './layouts/forum/ThreadCommentFormUpdateAdmin';
 
 
 function App() {
@@ -63,6 +65,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
+          
           {/* //////////////////////////////// DASHBOARD ///////////////////////////////// */}
           <Route path="/admin" element={<UserList />} />
           <Route path="/admin/dashboard" element={<UserList />} />
@@ -114,6 +117,9 @@ function App() {
 
           <Route path='/admin/thread/list' element={<ThreadListAdmin />} />
           <Route path='/admin/thread/edit/:threadIdParam' element={<ThreadFormUpdateAdmin />} />
+
+          <Route path='/admin/thread/comment/list' element={<ThreadCommentListAdmin />} />
+          <Route path='/admin/thread/comment/edit/:commentIdParam' element={<ThreadCommentFormUpdateAdmin />} />
 
           {/* //////////////////////////////// THEORY ///////////////////////////////// */}
           <Route path='/theory' element={<Theory />} />
