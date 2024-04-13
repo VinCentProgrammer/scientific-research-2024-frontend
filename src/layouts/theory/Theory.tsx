@@ -9,6 +9,10 @@ import { getTheoryByKeyword } from "../../api/TheoryKeywordAPI";
 
 function Theory() {
     const { theoryCatIdParam } = useParams();
+    const [theory, setTheory] = useState<TheoryModel | null>(null);
+    const [keyword, setKeyword] = useState<string>('');
+    const [searchResult, setSearchResult] = useState<TheoryModel | null>(null);
+    const [statusSearch, setStatusSearch] = useState<boolean>(false);
 
     let theoryCatId = 0;
     try {
@@ -18,13 +22,7 @@ function Theory() {
         console.log('Error', error);
     }
     if (Number.isNaN(theoryCatId))
-        theoryCatId = 0;
-
-    const [theory, setTheory] = useState<TheoryModel | null>(null);
-    const [keyword, setKeyword] = useState<string>('');
-    const [searchResult, setSearchResult] = useState<TheoryModel | null>(null);
-    const [statusSearch, setStatusSearch] = useState<boolean>(false);
-
+        theoryCatId = 18;
 
     useEffect(() => {
         getTheoryByCatId(theoryCatId)

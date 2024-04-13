@@ -131,13 +131,13 @@ export async function deleteUser(id: number) {
 
 export async function getUserByPostId(postId: number): Promise<UserModel | null> {
     const url: string = `http://localhost:8080/post-detail/${postId}/user`;
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                // 'Authorization': `Bearer ${token}`
             }
         });
 

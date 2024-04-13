@@ -8,7 +8,9 @@ interface ResultInterface {
 
 export async function getPost(url: string): Promise<ResultInterface> {
     const result: PostModel[] = [];
-    // const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
+    // console.log(token);
+    
 
     const response: Response = await fetch(url, {
         method: 'GET',
@@ -87,13 +89,13 @@ export async function deletePost(postId: number) {
 
 export async function getPostById(postId: number): Promise<PostModel | null> {
     const url: string = `http://localhost:8080/post-detail/${postId}`;
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                // 'Authorization': `Bearer ${token}`
             }
         });
 
