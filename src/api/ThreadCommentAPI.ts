@@ -8,13 +8,13 @@ interface ResultInterface {
 
 export async function getThreadComment(url: string): Promise<ResultInterface> {
     const result: ThreadCommentModel[] = [];
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
     const response: Response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            // 'Authorization': `Bearer ${token}`
         }
     });
 
@@ -119,4 +119,62 @@ export async function getThreadCommentById(commentId: number): Promise<ThreadCom
         console.error('Error: ', error);
         return null;
     }
+}
+
+
+export async function getThreadCommentsByThreadId(threadId: number): Promise<ThreadCommentModel[]> {
+    const result: ThreadCommentModel[] = [];
+    const url: string = `http://localhost:8080/thread/${threadId}/threadComments`;
+
+    const response: Response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+        throw new Error(`Error ${response.status}: ${responseData.message}`);
+    }
+
+    responseData._embedded.threadComments.forEach((threadComment: any) => {
+        result.push({
+            commentId: threadComment.commentId,
+            commentParentId: threadComment.commentParentId,
+            userId: threadComment.userId,
+            threadId: threadComment.threadId,
+            level: threadComment.level,
+            comment: threadComment.comment,
+            status: threadComment.status,
+            createdAt: threadComment.createdAt,
+            updatedAt: threadComment.updatedAt,
+        });
+    });
+
+    return result;
+}
+
+
+
+export async function getRepliesByThreadId(threadId: number): Promise<number> {
+    // let result: number = 0;
+    const url: string = `http://localhost:8080/thread/${threadId}/threadComments`;
+
+    const response: Response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+        throw new Error(`Error ${response.status}: ${responseData.message}`);
+    }
+
+    return responseData._embedded.threadComments.length;
+
 }

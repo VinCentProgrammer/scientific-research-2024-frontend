@@ -57,6 +57,8 @@ import ThreadRowAdmin from './layouts/forum/ThreadCatRowAdmin';
 import ThreadFormUpdateAdmin from './layouts/forum/ThreadFormUpdateAdmin';
 import ThreadCommentListAdmin from './layouts/forum/ThreadCommentListAdmin';
 import ThreadCommentFormUpdateAdmin from './layouts/forum/ThreadCommentFormUpdateAdmin';
+import ForumFormQuestion from './layouts/forum/ForumFormQuestion';
+import ThreadDetail from './layouts/forum/ThreadDetail';
 
 
 function App() {
@@ -111,6 +113,10 @@ function App() {
 
           {/* //////////////////////////////// FORUM ///////////////////////////////// */}
           <Route path='/forum' element={<Forum />} />
+          <Route path='/forum/quesion/add' element={<ForumFormQuestion />} />
+          <Route path='/thread/:threadIdParam' element={<ThreadDetail />} />
+
+
           <Route path='/admin/thread/cat/list' element={<ThreadCatListAdmin />} />
           <Route path='/admin/thread/cat/add' element={<ThreadCatFormAdmin />} />
           <Route path='/admin/thread/cat/edit/:threadCatIdParam' element={<ThreadCatFormUpdateAdmin />} />

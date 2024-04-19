@@ -8,13 +8,13 @@ interface ResultInterface {
 
 export async function getThreadCat(url: string): Promise<ResultInterface> {
     const result: ThreadCatModel[] = [];
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
     const response: Response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            // 'Authorization': `Bearer ${token}`
         }
     });
 
@@ -119,13 +119,13 @@ export async function getThreadCatById(threadCatId: number): Promise<ThreadCatMo
 
 export async function getThreadCatByThreadId(threadId: number): Promise<ThreadCatModel | null> {
     const url: string = `http://localhost:8080/thread/${threadId}/threadCategory`;
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                // 'Authorization': `Bearer ${token}`
             }
         });
 

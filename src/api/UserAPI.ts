@@ -55,7 +55,7 @@ export async function getUsers(page: number): Promise<ResultInterface> {
 
 export async function getUserById(id: number): Promise<UserModel | null> {
     const url: string = `http://localhost:8080/user/${id}`;
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
 
     try {
@@ -63,7 +63,7 @@ export async function getUserById(id: number): Promise<UserModel | null> {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                // 'Authorization': `Bearer ${token}`
             }
         });
 
@@ -169,3 +169,42 @@ export async function getUserByPostId(postId: number): Promise<UserModel | null>
     }
 }
 
+
+
+export async function getUserByThreadId(threadId: number): Promise<UserModel | null> {
+    const url: string = `http://localhost:8080/thread/${threadId}/user`;
+    try {
+        const response: Response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Lỗi khi truy cập đến API! ${url}`);
+        }
+        const userData = await response.json();
+        if (!userData) {
+            throw new Error('Không tồn tài!');
+        }
+        return {
+            userId: userData.userId,
+            username: userData.username,
+            email: userData.email,
+            active: userData.active,
+            gender: userData.gender,
+            createdAt: userData.createdAt,
+            updatedAt: userData.updatedAt,
+            roles: userData.roles,
+            firstname: userData.firstname,
+            lastname: userData.lastname,
+            address: userData.address,
+            avatar: userData.avatar,
+            phoneNumber: userData.phoneNumber
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+        return null;
+    }
+}

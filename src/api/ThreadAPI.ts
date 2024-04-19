@@ -8,13 +8,13 @@ interface ResultInterface {
 
 export async function getThread(url: string): Promise<ResultInterface> {
     const result: ThreadModel[] = [];
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
     const response: Response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
+            // 'Authorization': `Bearer ${token}`
         }
     });
 
@@ -53,7 +53,7 @@ export async function getThreads(): Promise<ThreadModel[]> {
 
 
 export async function getListThread(page: number): Promise<ResultInterface> {
-    const url: string = `http://localhost:8080/thread?sort=threadId,desc&size=8&page=${page}`;
+    const url: string = `http://localhost:8080/thread?sort=threadId,desc&size=4&page=${page}`;
     return getThread(url);
 }
 
@@ -129,6 +129,46 @@ export async function getThreadById(threadId: number): Promise<ThreadModel | nul
 
 export async function getThreadByThreadCommentId(commentId: number): Promise<ThreadModel | null> {
     const url: string = `http://localhost:8080/thread-comment/${commentId}/thread`;
+    const token = localStorage.getItem('token');
+    try {
+        const response: Response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Lỗi khi truy cập đến API! ${url}`);
+        }
+        const threadData = await response.json();
+        if (!threadData) {
+            throw new Error('Không tồn tài!');
+        }
+        return {
+            threadId: threadData.threadId,
+            threadCatId: threadData.threadCatId,
+            userId: threadData.userId,
+            shortQuestion: threadData.shortQuestion,
+            detailQuestion: threadData.detailQuestion,
+            views: threadData.views,
+            votes: threadData.votes,
+            replies: threadData.replies,
+            status: threadData.status,
+            createdAt: threadData.createdAt,
+            updatedAt: threadData.updatedAt,
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+        return null;
+    }
+}
+
+
+
+export async function getThreadByThreadCatId(commentId: number): Promise<ThreadModel | null> {
+    const url: string = `http://localhost:8080/thread-cat/${commentId}/thread`;
     const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {
