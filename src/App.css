@@ -206,9 +206,9 @@ ul#sidebar-menu * {
 
 .scroll-to-top {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000; /* Ensure button appears on top of other content */
+  bottom: 100px;
+  right: 30px;
+  z-index: 1000;
 }
 
 .scroll-to-top-button {

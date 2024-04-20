@@ -4,7 +4,6 @@ import SidebarMenu from "./SidebarTheory";
 import { useEffect, useState } from "react";
 import TheoryModel from "../../models/TheoryModel";
 import { getTheoryByCatId } from "../../api/TheoryAPI";
-import SearchForm from "../search/SearchForm";
 import { getTheoryByKeyword } from "../../api/TheoryKeywordAPI";
 
 function Theory() {
@@ -52,9 +51,9 @@ function Theory() {
     return (
         <div id="layoutSidenav" className="my-2">
             <ScrollToTopButton />
-            <div className="container mt-4" style={{ minHeight: '700px' }}>
+            <div className="container mt-4">
                 <div className="row">
-                    <div className="col-md-3" style={{ background: 'rgb(250 250 250)' }} >
+                    <div className="col-md-3">
                         <div className="row mb-4">
                             <div className="container m-auto">
                                 <form className="d-flex" onSubmit={handleClickBtnSearch}>
@@ -81,7 +80,9 @@ function Theory() {
                         <div id="content" style={{
                             textAlign: 'left', background: '#f4f4f4',
                             borderRadius: '10px',
-                            padding: '20px'
+                            padding: '25px',
+                            minHeight: '700px',
+                            marginBottom: '40px'
                         }} className="">
                             {
                                 theory && !statusSearch
@@ -92,7 +93,7 @@ function Theory() {
                                         ?
                                         <div>
                                             <h4 className="p-2 text-end fs-6">
-                                                Kết quả tìm: <span style={{ fontWeight: 'bold' }}>"{keyword}"</span> trong trang này
+                                                Kết quả tìm: <span style={{ fontWeight: 'bold' }}>"{keyword}"</span>
                                             </h4>
                                             <div dangerouslySetInnerHTML={{ __html: searchResult.content }} />
                                         </div>

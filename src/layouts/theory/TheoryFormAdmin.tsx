@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 import { NavLink } from "react-router-dom";
 import TheoryCatModel from "../../models/TheoryCatModel";
-import { getTheoryCats } from "../../api/TheoryCatAPI";
+import { getAllTheoryCats, getTheoryCats } from "../../api/TheoryCatAPI";
 
 function TheoryFormAdmin() {
     const [theoryCats, setTheoryCats] = useState<TheoryCatModel[]>([]);
@@ -18,7 +18,7 @@ function TheoryFormAdmin() {
     const [errorNoti, setErrorNoti] = useState("");
 
     useEffect(() => {
-        getTheoryCats()
+        getAllTheoryCats()
             .then(
                 result => {
                     setTheoryCats(result);

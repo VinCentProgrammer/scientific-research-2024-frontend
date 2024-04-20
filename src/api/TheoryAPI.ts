@@ -8,13 +8,11 @@ interface ResultInterface {
 
 export async function getTheory(url: string): Promise<ResultInterface> {
     const result: TheoryModel[] = [];
-    // const token = localStorage.getItem('token');
 
     const response: Response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${token}`
         }
     });
 
@@ -41,6 +39,41 @@ export async function getTheory(url: string): Promise<ResultInterface> {
 
     return { result: result, totalTheory: totalTheory, totalPages: totalPages };
 }
+
+
+export async function getAllTheories(): Promise<TheoryModel[]> {
+    const url: string = `http://localhost:8080/api/theory`;
+    const result: TheoryModel[] = [];
+
+    const response: Response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    const responseData = await response.json(); // Phải await để chờ dữ liệu JSON được trả về
+
+    if (!response.ok) {
+        throw new Error(`Error ${response.status}: ${responseData.message}`);
+    }
+
+    responseData.forEach((theoryData: any) => {
+        result.push({
+            theoryDetailId: theoryData.theoryDetailId,
+            theoryCatId: theoryData.theoryCatId,
+            title: theoryData.title,
+            content: theoryData.content,
+            userId: theoryData.userId,
+            createdAt: theoryData.createdAt,
+            updatedAt: theoryData.updatedAt,
+        });
+    });
+
+    return result;
+}
+
+
 
 export async function getTheories(): Promise<TheoryModel[]> {
     const url: string = `http://localhost:8080/theory-detail`;

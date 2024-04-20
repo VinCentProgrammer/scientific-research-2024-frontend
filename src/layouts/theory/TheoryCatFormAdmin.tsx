@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SideBar from "../sidebar/SideBar";
 import { NavLink } from "react-router-dom";
 import TheoryCatModel from "../../models/TheoryCatModel";
-import { getTheoryCats } from "../../api/TheoryCatAPI";
+import { getAllTheoryCats, getTheoryCats } from "../../api/TheoryCatAPI";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 
@@ -18,7 +18,7 @@ function TheoryCatFormAdmin() {
     const [errorNoti, setErrorNoti] = useState("");
 
     useEffect(() => {
-        getTheoryCats()
+        getAllTheoryCats()
             .then(
                 result => {
                     setTheoryCats(result);

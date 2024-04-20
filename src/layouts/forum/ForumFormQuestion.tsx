@@ -12,7 +12,6 @@ function ForumFormQuestion() {
     const [shortQuestion, setShortQuestion] = useState<string>('');
     const [detailQuestion, setDetailQuestion] = useState<string>('');
     const [threadCatId, setThreadCatId] = useState<number>(0);
-    // const [threadId, setThreadId] = useState<number>(0);
     const [img, setImg] = useState<File | null>(null);
 
     const [errorShortQuestion, setErrorShortQuestion] = useState<string>('');

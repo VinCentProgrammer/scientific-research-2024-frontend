@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import TheoryCatModel from "../../models/TheoryCatModel";
-import { getTheoryCat, getTheoryCats } from "../../api/TheoryCatAPI";
+import { getAllTheoryCats } from "../../api/TheoryCatAPI";
 import { NavLink } from "react-router-dom";
 
 function SidebarTheory() {
     const [theoryCategories, setTheoryCategories] = useState<TheoryCatModel[]>([]);
 
     useEffect(() => {
-        getTheoryCats()
+        getAllTheoryCats()
             .then(
                 result => {
                     setTheoryCategories(result);

@@ -52,8 +52,10 @@ function LoginForm() {
                         setIsStaff(true);
                     }
 
-                    setNotification('Logged in successfully');
+                    setNotification('LOGIN SUCCESSFULL!');
                     setShowModal(true);
+
+                    handleClose();
                 }
             ).catch((error) => {
                 console.error('Đăng nhập thất bại: ', error);
@@ -70,13 +72,14 @@ function LoginForm() {
         }
     };
 
-
     const handleClose = () => {
-        setShowModal(false);
-        if (isAdmin || isStaff)
-            navigate('/admin')
-        else
-            navigate('/')
+        setTimeout(() => {
+            setShowModal(false);
+            if (isAdmin || isStaff)
+                navigate('/admin')
+            else
+                navigate('/')
+        }, 2000);
     }
 
     return (
@@ -155,19 +158,11 @@ function LoginForm() {
             </div>
             <section>
                 <Modal show={showModal} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Notification</Modal.Title>
-                    </Modal.Header>
                     <Modal.Body>
                         <div>
-                            <p className="text-center fs-2 font-weight-bold"> <i className="bi bi-check-circle text-success mx-2"></i> {notification}</p>
+                            <p className="text-center fs-2 font-weight-bold text-success">{notification} <i className="bi bi-check-circle text-success mx-2"></i> </p>
                         </div>
                     </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                    </Modal.Footer>
                 </Modal>
             </section>
         </section>

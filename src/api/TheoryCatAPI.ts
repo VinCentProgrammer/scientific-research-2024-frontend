@@ -8,13 +8,11 @@ interface ResultInterface {
 
 export async function getTheoryCat(url: string): Promise<ResultInterface> {
     const result: TheoryCatModel[] = [];
-    // const token = localStorage.getItem('token');
 
     const response: Response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${token}`
         }
     });
 
@@ -45,6 +43,38 @@ export async function getTheoryCat(url: string): Promise<ResultInterface> {
 export async function getTheoryCats(): Promise<TheoryCatModel[]> {
     const url: string = `http://localhost:8080/theory-cat`;
     return (await getTheoryCat(url)).result;
+}
+
+export async function getAllTheoryCats(): Promise<TheoryCatModel[]> {
+    const url: string = `http://localhost:8080/api/theory/cat`;
+    const result: TheoryCatModel[] = [];
+
+    const response: Response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    const responseData = await response.json(); // Phải await để chờ dữ liệu JSON được trả về
+
+    if (!response.ok) {
+        throw new Error(`Error ${response.status}: ${responseData.message}`);
+    }
+
+    responseData.forEach((theoryData: any) => {
+        result.push({
+            theoryCatId: theoryData.theoryCatId,
+            theoryParentCatId: theoryData.theoryParentCatId,
+            userId: theoryData.userId,
+            name: theoryData.name,
+            shortDesc: theoryData.shortDesc,
+            createdAt: theoryData.createdAt,
+            updatedAt: theoryData.updatedAt,
+        });
+    });
+
+    return result;
 }
 
 

@@ -261,27 +261,36 @@ function ThreadDetail() {
             <div className="container mt-5 mb-5">
                 <div className="d-flex justify-content-center row">
                     <div className="d-flex flex-column col-md-8">
-                        <div className="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
-                            <div className="profile-image">
-                                <div className="fs-4" style={{ padding: '11px 0px 11px 24px', fontWeight: 'bold' }}>{user && capitalize(user?.username)}</div>
-                                <img className="rounded-circle text-center" src={user?.avatar} width="100" height={100} />
-                            </div>
-                            <div className="p-5">
-                                {
-                                    threadImage && <img className="text-center" src={threadImage[0].path} width="500" height={500} />
-                                }
-                                <p style={{ margin: "5px 20px" }}>{thread?.detailQuestion}</p>
+                        <div className="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4 row">
+                            <div className="col-md-1">
+                                <div className="profile-image">
+                                    <div className="fs-4" style={{ padding: '11px 0px 11px 24px', fontWeight: 'bold' }}>{user && capitalize(user?.username)}</div>
+                                    <img className="rounded-circle text-center" src={user?.avatar} width="100" height={100} />
+                                </div>
                             </div>
 
-                            <div className="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1 p-2">
-                                <div onClick={handleOnClickIncreaseVote}>
-                                    <i className="fa fa-sort-up fa-2x hit-voting"></i>
-                                </div>
-                                <span>{thread?.votes}</span>
-                                <div onClick={handleOnClickDecreaseVote}>
-                                    <i className="fa fa-sort-down fa-2x hit-voting"></i>
+                            <div className="col-md-10">
+                                <div className="p-5">
+                                    {
+                                        threadImage && <img className="text-center" style={{ maxWidth: '500px' }} src={threadImage[0].path} />
+                                    }
+                                    <p style={{ margin: "5px 20px" }}>{thread?.detailQuestion}</p>
                                 </div>
                             </div>
+
+                            <div className="col-md-1">
+                                <div className="d-flex flex-column-reverse flex-grow-0 align-items-center votings ml-1 p-2">
+                                    <div onClick={handleOnClickIncreaseVote}>
+                                        <i className="fa fa-sort-up fa-2x hit-voting"></i>
+                                    </div>
+                                    <span>{thread?.votes}</span>
+                                    <div onClick={handleOnClickDecreaseVote}>
+                                        <i className="fa fa-sort-down fa-2x hit-voting"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
 
                         <div className="coment-bottom bg-white p-2 px-4">
