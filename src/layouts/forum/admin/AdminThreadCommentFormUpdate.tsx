@@ -7,6 +7,7 @@ import ThreadCommentModel from "../../../models/ThreadCommentModel";
 import { getThreadCommentById } from "../../../api/ThreadCommentAPI";
 import ThreadModel from "../../../models/ThreadModel";
 import { getThreadByThreadCommentId } from "../../../api/ThreadAPI";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminThreadCommentFormUpdate() {
     const { commentIdParam } = useParams();
@@ -159,4 +160,4 @@ function AdminThreadCommentFormUpdate() {
     );
 }
 
-export default AdminThreadCommentFormUpdate;
+export default AdminOrStaffRequire(AdminThreadCommentFormUpdate);

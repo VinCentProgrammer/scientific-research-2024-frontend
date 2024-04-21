@@ -1,5 +1,5 @@
 import PageModel from "../../../models/PageModel";
-import formatDateTime from "../../../utils/date-time/FormatDateTime";
+import formatDateTime from "../../../utils/datetime/FormatDateTime";
 
 interface PageRowInterface {
     page: PageModel;

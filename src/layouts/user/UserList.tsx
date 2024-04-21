@@ -8,7 +8,8 @@ import { Button, Modal } from "react-bootstrap";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 import { useNavigate } from "react-router-dom";
-import RequireAdmin from "../admin/AdminRequire";
+import RequireAdmin from "../require/AdminRequire";
+import AdminOrStaffRequire from "../require/AdminOrStaffRequire";
 
 
 const UserList: React.FC<{}> = () => {
@@ -215,4 +216,4 @@ const UserList: React.FC<{}> = () => {
     )
 }
 
-export default RequireAdmin(UserList);
+export default AdminOrStaffRequire(UserList);

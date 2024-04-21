@@ -6,6 +6,7 @@ import { Button, Modal } from "react-bootstrap";
 import TheoryKeywordModel from "../../../models/TheoryKeywordModel";
 import { deleteTheoryKeyword, getListTheoryKeyword } from "../../../api/TheoryKeywordAPI";
 import TheoryKeywordRowAdmin from "./AdminTheoryKeywordRow";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminTheoryKeywordList() {
     const [theoryKeywords, setTheoryKeywords] = useState<TheoryKeywordModel[] | null>([]);
@@ -138,4 +139,4 @@ function AdminTheoryKeywordList() {
     )
 }
 
-export default AdminTheoryKeywordList;
+export default AdminOrStaffRequire(AdminTheoryKeywordList);

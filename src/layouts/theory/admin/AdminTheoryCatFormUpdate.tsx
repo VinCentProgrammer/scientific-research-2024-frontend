@@ -5,6 +5,7 @@ import TheoryCatModel from "../../../models/TheoryCatModel";
 import { getTheoryCatById, getTheoryCats } from "../../../api/TheoryCatAPI";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../../models/JwtPayLoad";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminTheoryCatFormUpdate() {
     const { theoryCatIdParam } = useParams();
@@ -200,4 +201,4 @@ function AdminTheoryCatFormUpdate() {
     )
 }
 
-export default AdminTheoryCatFormUpdate;
+export default AdminOrStaffRequire(AdminTheoryCatFormUpdate);

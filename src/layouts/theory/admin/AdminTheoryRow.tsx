@@ -1,5 +1,6 @@
 import TheoryModel from "../../../models/TheoryModel";
-import formatDateTime from "../../../utils/date-time/FormatDateTime";
+import formatDateTime from "../../../utils/datetime/FormatDateTime";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 interface TheoryRowInterface {
     theory: TheoryModel;
@@ -24,4 +25,4 @@ const AdminTheoryRow: React.FC<TheoryRowInterface> = (props) => {
     )
 }
 
-export default AdminTheoryRow;
+export default AdminOrStaffRequire(AdminTheoryRow);

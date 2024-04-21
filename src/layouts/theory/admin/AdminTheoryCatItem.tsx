@@ -1,5 +1,6 @@
 import TheoryCatModel from "../../../models/TheoryCatModel";
-import formatDateTime from "../../../utils/date-time/FormatDateTime";
+import formatDateTime from "../../../utils/datetime/FormatDateTime";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 interface TheoryCatRowProps {
     theoryCat: TheoryCatModel;
@@ -36,4 +37,4 @@ const AdminTheoryCatItem: React.FC<TheoryCatRowProps> = (props) => {
     )
 }
 
-export default AdminTheoryCatItem;
+export default AdminOrStaffRequire(AdminTheoryCatItem);

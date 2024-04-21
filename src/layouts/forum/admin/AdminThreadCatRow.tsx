@@ -1,5 +1,6 @@
 import ThreadCatModel from "../../../models/ThreadCatModel";
-import formatDateTime from "../../../utils/date-time/FormatDateTime";
+import formatDateTime from "../../../utils/datetime/FormatDateTime";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 
 interface ThreadCatRowInterface {
@@ -36,4 +37,4 @@ const AdminThreadCatRow: React.FC<ThreadCatRowInterface> = (props) => {
     )
 }
 
-export default AdminThreadCatRow;
+export default AdminOrStaffRequire(AdminThreadCatRow);

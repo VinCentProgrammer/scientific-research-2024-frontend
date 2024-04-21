@@ -4,8 +4,7 @@ import SideBarUser from "./components/SideBarUser";
 import SideBarRolePermission from "./components/SideBarRolePermission";
 import SideBarThread from "./components/SideBarThread";
 import SideBarTheory from "./components/SideBarTheory";
-import { NavLink } from "react-router-dom";
-import SideBarDashboard from "./components/SideBarDashboard";
+import AdminOrStaffRequire from "../require/AdminOrStaffRequire";
 
 function SideBar() {
     return (
@@ -36,4 +35,4 @@ function SideBar() {
     )
 }
 
-export default SideBar;
+export default AdminOrStaffRequire(SideBar);

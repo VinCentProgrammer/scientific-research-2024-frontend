@@ -5,9 +5,10 @@ import UserModel from '../../models/UserModel';
 import { getUserById } from '../../api/UserAPI';
 import Page404 from '../page/Page404';
 import getBase64 from '../../utils/base64/Base64';
-import RequireAdmin from '../admin/AdminRequire';
+import RequireAdmin from '../require/AdminRequire';
 import RoleModel from '../../models/RoleModel';
 import { getRole } from '../../api/RoleAPI';
+import AdminOrStaffRequire from '../require/AdminOrStaffRequire';
 
 function UserFormUpdate() {
     const { userIdParam } = useParams();
@@ -399,4 +400,4 @@ function UserFormUpdate() {
     )
 }
 
-export default RequireAdmin(UserFormUpdate);
+export default AdminOrStaffRequire(UserFormUpdate);

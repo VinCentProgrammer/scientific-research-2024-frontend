@@ -6,6 +6,7 @@ import { Pagination } from "../../../utils/pagination/Pagination";
 import { Button, Modal } from "react-bootstrap";
 import { deleteThread, getListThread } from "../../../api/ThreadAPI";
 import ThreadRowAdmin from "./AdminThreadRow";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminThreadList() {
     const [threads, setThreads] = useState<ThreadModel[] | null>([]);
@@ -146,4 +147,4 @@ function AdminThreadList() {
     )
 }
 
-export default AdminThreadList;
+export default AdminOrStaffRequire(AdminThreadList);

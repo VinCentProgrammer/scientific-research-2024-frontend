@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import SideBar from "../../sidebar/SideBar";
 import TheoryRowAdmin from "./AdminTheoryRow";
 import { Pagination } from "../../../utils/pagination/Pagination";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminTheoryList() {
     const [theories, setTheories] = useState<TheoryModel[] | null>([]);
@@ -128,4 +129,4 @@ function AdminTheoryList() {
     )
 }
 
-export default AdminTheoryList;
+export default AdminOrStaffRequire(AdminTheoryList);

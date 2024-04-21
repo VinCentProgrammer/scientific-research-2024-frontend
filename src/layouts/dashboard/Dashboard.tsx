@@ -1,4 +1,4 @@
-import RequireAdminOrStaff from "../admin/AdminOrStaffRequire";
+import RequireAdminOrStaff from "../require/AdminOrStaffRequire";
 import SideBar from "../sidebar/SideBar";
 
 function Dashboard() {

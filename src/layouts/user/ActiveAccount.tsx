@@ -7,7 +7,6 @@ function ActiveAccount() {
     const [active, setActive] = useState(false);
     const [noti, setNoti] = useState('');
 
-
     useEffect(() => {
         if (email && activeCode) {
             activeAccount();

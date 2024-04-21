@@ -59,7 +59,8 @@ function RegisterForm() {
                         gender: gender,
                         active: 0,
                         activeCode: "",
-                        avatar: base64Avatar
+                        avatar: base64Avatar,
+                        // roles: 
                     })
                 }
                 );
@@ -184,6 +185,7 @@ function RegisterForm() {
 
                                     <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
                                         <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
                                         <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
                                             {/* Username */}
                                             <div className="d-flex flex-row align-items-center mb-4  text-start">
@@ -198,10 +200,7 @@ function RegisterForm() {
                                                         onChange={handleUsernameOnChange}
                                                         className="form-control" />
                                                 </div>
-
                                             </div>
-
-
                                             {/* Email */}
                                             <div className="d-flex flex-row align-items-center mb-4  text-start">
                                                 <i className="fa-solid fa-envelope fa-lg me-3 fa-fw"></i>
@@ -216,7 +215,6 @@ function RegisterForm() {
                                                         className="form-control" />
                                                 </div>
                                             </div>
-
                                             {/* Firstname */}
                                             <div className="d-flex flex-row align-items-center mb-4  text-start">
                                                 <i className="fa-solid fa-signature me-3"></i>
@@ -229,7 +227,6 @@ function RegisterForm() {
                                                     />
                                                 </div>
                                             </div>
-
                                             {/* Lastname */}
                                             <div className="d-flex flex-row align-items-center mb-4  text-start">
                                                 <i className="fa-solid fa-signature me-3"></i>
@@ -242,7 +239,6 @@ function RegisterForm() {
                                                     />
                                                 </div>
                                             </div>
-
                                             {/* Phone number */}
                                             <div className="d-flex flex-row align-items-center mb-4  text-start">
                                                 <i className="fa-solid fa-phone-volume me-3"></i>
@@ -255,7 +251,6 @@ function RegisterForm() {
                                                     />
                                                 </div>
                                             </div>
-
                                             {/* Gender */}
                                             <div className="d-flex flex-row align-items-center mb-4  text-start">
                                                 <i className="fa-solid fa-venus-mars me-3"></i>
@@ -280,7 +275,6 @@ function RegisterForm() {
                                                     </div>
                                                 </div>
                                             </div>
-
                                             {/* Password */}
                                             <div className="d-flex flex-row align-items-center mb-4  text-start">
                                                 <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i>
@@ -293,7 +287,6 @@ function RegisterForm() {
                                                         className="form-control" />
                                                 </div>
                                             </div>
-
                                             {/* Repeat Password */}
                                             <div className="d-flex flex-row align-items-center mb-4  text-start">
                                                 <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i>
@@ -306,7 +299,6 @@ function RegisterForm() {
                                                         className="form-control" />
                                                 </div>
                                             </div>
-
                                             {/* Avatar */}
                                             <div className="d-flex flex-row align-items-center mb-4  text-start">
                                                 <i className="fa-regular fa-image me-3"></i>
@@ -318,18 +310,19 @@ function RegisterForm() {
                                                     />
                                                 </div>
                                             </div>
+                                            {/* Terms of service */}
                                             <div className="form-check d-flex justify-content-center mb-5">
                                                 <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
                                                 <label className="form-check-label" htmlFor="form2Example3">
                                                     I agree all statements in <a href="#!">Terms of service</a>
                                                 </label>
                                             </div>
+                                            {/* Submit */}
                                             <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                                 <button type="submit" className="btn btn-primary btn-lg">Register</button>
                                             </div>
                                             <div style={{ color: "green" }}>{notification}</div>
                                         </form>
-
                                     </div>
                                 </div>
                             </div>

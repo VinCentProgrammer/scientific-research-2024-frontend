@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import ThreadModel from "../../../models/ThreadModel";
-import formatDateTime from "../../../utils/date-time/FormatDateTime";
+import formatDateTime from "../../../utils/datetime/FormatDateTime";
 import ThreadCatModel from "../../../models/ThreadCatModel";
 import { getThreadCatByThreadId } from "../../../api/ThreadCatAPI";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 interface ThreadRowInterface {
     thread: ThreadModel;
@@ -53,4 +54,4 @@ const AdminThreadRow: React.FC<ThreadRowInterface> = (props) => {
     )
 }
 
-export default AdminThreadRow;
+export default AdminOrStaffRequire(AdminThreadRow);

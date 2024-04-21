@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import PostCatModel from "../../../models/PostCatModel";
 import { getPostCatById } from "../../../api/PostCatAPI";
-import formatDateTime from "../../../utils/date-time/FormatDateTime";
+import formatDateTime from "../../../utils/datetime/FormatDateTime";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 interface PostCatRowProps {
     postCat: PostCatModel;
@@ -49,4 +50,4 @@ const AdminPostCatItem: React.FC<PostCatRowProps> = (props) => {
     )
 }
 
-export default AdminPostCatItem;
+export default AdminOrStaffRequire(AdminPostCatItem);

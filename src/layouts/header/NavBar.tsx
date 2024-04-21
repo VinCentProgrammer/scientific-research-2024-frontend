@@ -40,7 +40,6 @@ function NavBar() {
                         {
                             isLogin ?
                                 <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-
                                     <li className="nav-item dropdown">
                                         <a className="nav-link dropdown-toggle mx-2  text-white fs-6" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                                             aria-expanded="false">

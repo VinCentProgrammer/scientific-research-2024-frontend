@@ -2,8 +2,9 @@ import { jwtDecode } from "jwt-decode";
 import UserModel from "../../models/UserModel";
 import { useEffect, useState } from 'react';
 import JwtPayload from "../../models/JwtPayLoad";
-import RequireAdmin from "../admin/AdminRequire";
-import formatDateTime from "../../utils/date-time/FormatDateTime";
+import RequireAdmin from "../require/AdminRequire";
+import formatDateTime from "../../utils/datetime/FormatDateTime";
+import AdminOrStaffRequire from "../require/AdminOrStaffRequire";
 
 interface UserPropsInterface {
     user: UserModel;
@@ -62,4 +63,4 @@ const UserRow: React.FC<UserPropsInterface> = (props) => {
 
     )
 }
-export default RequireAdmin(UserRow);
+export default AdminOrStaffRequire(UserRow);

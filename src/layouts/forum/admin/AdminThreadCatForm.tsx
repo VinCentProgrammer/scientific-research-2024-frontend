@@ -3,6 +3,7 @@ import SideBar from "../../sidebar/SideBar";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../../models/JwtPayLoad";
 import { NavLink } from "react-router-dom";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminThreadCatForm() {
     const [name, setName] = useState<string>('');
@@ -125,5 +126,4 @@ function AdminThreadCatForm() {
 
     );
 }
-
-export default AdminThreadCatForm;
+export default AdminOrStaffRequire(AdminThreadCatForm);

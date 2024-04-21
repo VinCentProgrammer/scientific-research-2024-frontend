@@ -5,6 +5,7 @@ import { getThreadCatById } from "../../../api/ThreadCatAPI";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../../models/JwtPayLoad";
 import SideBar from "../../sidebar/SideBar";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminThreadCatFormUpdate() {
     const { threadCatIdParam } = useParams();
@@ -160,4 +161,4 @@ function AdminThreadCatFormUpdate() {
     );
 }
 
-export default AdminThreadCatFormUpdate;
+export default AdminOrStaffRequire(AdminThreadCatFormUpdate);

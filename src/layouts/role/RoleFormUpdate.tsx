@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import SideBar from '../sidebar/SideBar';
-import RequireAdmin from '../admin/AdminRequire';
+import RequireAdmin from '../require/AdminRequire';
 import RoleModel from '../../models/RoleModel';
 import { getPermission } from '../../api/PermissionAPI';
 import { getRoleById } from '../../api/RoleAPI';
 import PermissionModel from '../../models/PermissionModel';
+import AdminRequire from '../require/AdminRequire';
 
 function RoleFormUpdate() {
     const { roleIdParam } = useParams();
@@ -230,4 +231,4 @@ function RoleFormUpdate() {
         </div>
     )
 }
-export default RequireAdmin(RoleFormUpdate);
+export default AdminRequire(RoleFormUpdate);

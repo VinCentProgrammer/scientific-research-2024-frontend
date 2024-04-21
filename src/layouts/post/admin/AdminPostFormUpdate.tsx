@@ -8,6 +8,7 @@ import JwtPayload from "../../../models/JwtPayLoad";
 import { NavLink, useParams } from "react-router-dom";
 import { getPostById } from "../../../api/PostAPI";
 import PostModel from "../../../models/PostModel";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminPostFormUpdate() {
     const { postIdParam } = useParams();
@@ -279,4 +280,4 @@ function AdminPostFormUpdate() {
     )
 }
 
-export default AdminPostFormUpdate;
+export default AdminOrStaffRequire(AdminPostFormUpdate);

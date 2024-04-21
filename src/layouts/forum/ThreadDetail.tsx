@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getThreadById } from "../../api/ThreadAPI";
 import ThreadModel from "../../models/ThreadModel";
-import calculateTimeDifference from "../../utils/date-time/calculateTimeDifference ";
+import calculateTimeDifference from "../../utils/datetime/calculateTimeDifference ";
 import UserModel from "../../models/UserModel";
 import { getUserByThreadId } from "../../api/UserAPI";
 import ThreadCatModel from "../../models/ThreadCatModel";
@@ -16,6 +16,7 @@ import JwtPayload from "../../models/JwtPayLoad";
 import capitalize from "../../utils/string/CapitalizeString";
 import ThreadImageModel from "../../models/ThreadImageModel";
 import { getThreadImageByThreadId } from "../../api/ThreadImageAPI";
+import UserLoginRequire from "../require/UserLoginRequire";
 
 function ThreadDetail() {
     const { threadIdParam } = useParams();
@@ -316,4 +317,4 @@ function ThreadDetail() {
     )
 }
 
-export default ThreadDetail;
+export default UserLoginRequire(ThreadDetail);

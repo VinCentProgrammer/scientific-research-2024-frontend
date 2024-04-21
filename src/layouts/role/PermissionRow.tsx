@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import PermissionModel from "../../models/PermissionModel";
-import RequireAdmin from "../admin/AdminRequire";
-import formatDateTime from "../../utils/date-time/FormatDateTime";
+import RequireAdmin from "../require/AdminRequire";
+import formatDateTime from "../../utils/datetime/FormatDateTime";
+import AdminRequire from "../require/AdminRequire";
 
 interface PermissionRowProps {
     permission: PermissionModel;
@@ -40,4 +41,4 @@ const PermissionRow: React.FC<PermissionRowProps> = (props) => {
     )
 }
 
-export default RequireAdmin(PermissionRow);
+export default AdminRequire(PermissionRow);

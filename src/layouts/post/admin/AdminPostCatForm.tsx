@@ -3,6 +3,7 @@ import PostCatModel from "../../../models/PostCatModel";
 import SideBar from "../../sidebar/SideBar";
 import { getPostCats } from "../../../api/PostCatAPI";
 import { NavLink } from "react-router-dom";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminPostCatForm() {
     const [postCats, setPostCats] = useState<PostCatModel[]>([]);
@@ -165,4 +166,4 @@ function AdminPostCatForm() {
     )
 }
 
-export default AdminPostCatForm;
+export default AdminOrStaffRequire(AdminPostCatForm);

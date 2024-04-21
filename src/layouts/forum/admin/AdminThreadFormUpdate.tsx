@@ -7,6 +7,7 @@ import { getThreadCatById, getThreadCatByThreadId, getThreadCats } from "../../.
 import ThreadCatModel from "../../../models/ThreadCatModel";
 import ThreadModel from "../../../models/ThreadModel";
 import { getThreadById } from "../../../api/ThreadAPI";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminThreadFormUpdate() {
     const { threadIdParam } = useParams();
@@ -250,4 +251,4 @@ function AdminThreadFormUpdate() {
     );
 }
 
-export default AdminThreadFormUpdate;
+export default AdminOrStaffRequire(AdminThreadFormUpdate);

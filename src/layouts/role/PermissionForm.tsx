@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SideBar from "../sidebar/SideBar";
 import { NavLink } from "react-router-dom";
-import RequireAdmin from "../admin/AdminRequire";
+import AdminRequire from "../require/AdminRequire";
 
 function PermissionForm() {
 
@@ -132,4 +132,4 @@ function PermissionForm() {
     )
 }
 
-export default RequireAdmin(PermissionForm);
+export default AdminRequire(PermissionForm);

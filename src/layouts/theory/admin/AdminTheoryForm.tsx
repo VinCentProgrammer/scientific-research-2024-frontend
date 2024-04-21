@@ -5,6 +5,7 @@ import JwtPayload from "../../../models/JwtPayLoad";
 import { NavLink } from "react-router-dom";
 import TheoryCatModel from "../../../models/TheoryCatModel";
 import { getAllTheoryCats} from "../../../api/TheoryCatAPI";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminTheoryForm() {
     const [theoryCats, setTheoryCats] = useState<TheoryCatModel[]>([]);
@@ -164,4 +165,4 @@ function AdminTheoryForm() {
     )
 }
 
-export default AdminTheoryForm;
+export default AdminOrStaffRequire(AdminTheoryForm);

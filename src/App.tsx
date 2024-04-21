@@ -66,6 +66,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
+          <Route path="*" element={<Page404 />} />
 
           {/* //////////////////////////////// DASHBOARD ///////////////////////////////// */}
           <Route path="/admin" element={<UserList />} />

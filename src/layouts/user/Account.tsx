@@ -38,12 +38,12 @@ function Account() {
 
     useEffect(() => {
         if (user !== null) {
-            setUsername(user.username === undefined ? '' : user.username);
-            setEmail(user.email === undefined ? '' : user.email);
-            setFirstname(user.firstname === undefined ? '' : user.firstname);
-            setLastname(user.lastname === undefined ? '' : user.lastname);
-            setPhoneNumber(user.phoneNumber === undefined ? '' : user.phoneNumber);
-            setAddress(user.address === undefined ? '' : user.address);
+            setUsername(user.username ?? '');
+            setEmail(user.email ?? '');
+            setFirstname(user.firstname ?? '');
+            setLastname(user.lastname ?? '');
+            setPhoneNumber(user.phoneNumber ?? '');
+            setAddress(user.address ?? '');
             setGender(user.gender === true ? 1 : 0);
             setAvatarBase64(user.avatar === null ? null : user.avatar);
         }
@@ -78,40 +78,11 @@ function Account() {
                 setPhoneNumber(phoneNumber);
                 setGender(gender);
                 setAddress(address);
-
-                console.log({
-                    userId: userId,
-                    username: user?.username,
-                    email: user?.email,
-                    firstname: firstname,
-                    lastname: lastname,
-                    phoneNumber: phoneNumber,
-                    gender: gender,
-                    avatar: user?.avatar,
-                    address: address,
-                    roles: user?.roles,
-                });
-
             } else {
                 setError("Error while updating user!");
-
-                console.log({
-                    userId: userId,
-                    username: user?.username,
-                    email: user?.email,
-                    firstname: firstname,
-                    lastname: lastname,
-                    phoneNumber: phoneNumber,
-                    gender: gender,
-                    avatar: user?.avatar,
-                    address: address,
-                    roles: user?.roles,
-                });
-
             }
         })
     }
-
 
     return (
         <div className="container" >
@@ -133,8 +104,8 @@ function Account() {
                                     }
                                     <div className="mt-3">
                                         <h4>{capitalize(username)}</h4>
-                                        {/* <p className="text-secondary mb-1">Full Stack Developer</p>
-                                        <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p> */}
+                                        <p className="text-secondary mb-1">Full Stack Developer</p>
+                                        <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
                                         <button className="btn btn-primary mx-2">Follow</button>
                                         <button className="btn btn-outline-primary mx-2">Message</button>
                                     </div>
@@ -184,6 +155,7 @@ function Account() {
                                 />
 
                                 <form action="" onSubmit={handleSubmit}>
+                                    {/* Username */}
                                     <div className="row mb-3">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Username</h6>
@@ -192,6 +164,7 @@ function Account() {
                                             <input type="text" className="form-control" value={user?.username} disabled />
                                         </div>
                                     </div>
+                                    {/* Email */}
                                     <div className="row mb-3">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Email</h6>
@@ -200,6 +173,7 @@ function Account() {
                                             <input type="email" className="form-control" value={user?.email} disabled />
                                         </div>
                                     </div>
+                                    {/* Firstname */}
                                     <div className="row mb-3">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">First Name</h6>
@@ -211,7 +185,7 @@ function Account() {
                                             />
                                         </div>
                                     </div>
-
+                                    {/* Lastname */}
                                     <div className="row mb-3">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Last Name</h6>
@@ -223,7 +197,7 @@ function Account() {
                                             />
                                         </div>
                                     </div>
-
+                                    {/* Phone Number */}
                                     <div className="row mb-3">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Phone</h6>
@@ -235,7 +209,7 @@ function Account() {
                                             />
                                         </div>
                                     </div>
-
+                                    {/* Address */}
                                     <div className="row mb-3">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Address</h6>
@@ -247,7 +221,7 @@ function Account() {
                                             />
                                         </div>
                                     </div>
-
+                                    {/* Gender */}
                                     <div className="row mb-3">
                                         <div className="col-sm-3">
                                             <h6 className="mb-0">Gender</h6>
@@ -274,7 +248,7 @@ function Account() {
                                             </div>
                                         </div>
                                     </div>
-
+                                    {/* Submit */}
                                     <div className="row">
                                         <div className="col-md-3"></div>
                                         <div className="col-md-9">
@@ -284,13 +258,9 @@ function Account() {
                                             <div className="text-success mt-3">{successNoti}</div>
                                         </div>
                                     </div>
-
                                 </form>
-
-                                
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

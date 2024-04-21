@@ -6,7 +6,8 @@ import RoleItem from "./RoleItem";
 import { Button, Modal } from "react-bootstrap";
 import { deleteRole, getRoles } from "../../api/RoleAPI";
 import { Pagination } from "../../utils/pagination/Pagination";
-import RequireAdmin from "../admin/AdminRequire";
+import RequireAdmin from "../require/AdminRequire";
+import AdminRequire from "../require/AdminRequire";
 
 
 function RoleList() {
@@ -151,4 +152,4 @@ function RoleList() {
     )
 }
 
-export default RequireAdmin(RoleList);
+export default AdminRequire(RoleList);

@@ -7,7 +7,7 @@ import UserModel from "../../models/UserModel";
 import { getUserByPostId } from "../../api/UserAPI";
 import PostCatModel from "../../models/PostCatModel";
 import { getPostCatByPostId } from "../../api/PostCatAPI";
-import formatDateTimeUserVer2 from "../../utils/date-time/FormatDateTimeUserVer2";
+import formatDateTimeUserVer2 from "../../utils/datetime/FormatDateTimeUserVer2";
 
 function PostDetail() {
     const { postIdParam } = useParams();

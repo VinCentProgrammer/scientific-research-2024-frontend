@@ -2,9 +2,9 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import getBase64 from '../../utils/base64/Base64';
 import { NavLink } from 'react-router-dom';
 import SideBar from '../sidebar/SideBar';
-import RequireAdmin from '../admin/AdminRequire';
 import RoleModel from '../../models/RoleModel';
 import { getRole } from '../../api/RoleAPI';
+import AdminOrStaffRequire from '../require/AdminOrStaffRequire';
 
 function UserForm() {
     const [userId, setUserId] = useState(0);
@@ -413,4 +413,4 @@ function UserForm() {
 }
 
 
-export default RequireAdmin(UserForm);
+export default AdminOrStaffRequire(UserForm);

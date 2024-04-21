@@ -6,6 +6,7 @@ import SideBar from "../../sidebar/SideBar";
 import ThreadCatModel from "../../../models/ThreadCatModel";
 import { useNavigate } from "react-router-dom";
 import { deleteThreadCat, getListThreadCat } from "../../../api/ThreadCatAPI";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminThreadCatList() {
     const [threadCats, setThreadCats] = useState<ThreadCatModel[] | null>([]);
@@ -142,4 +143,4 @@ function AdminThreadCatList() {
     )
 }
 
-export default AdminThreadCatList;
+export default AdminOrStaffRequire(AdminThreadCatList);

@@ -1,5 +1,6 @@
 import ThreadCommentModel from "../../../models/ThreadCommentModel";
-import formatDateTime from "../../../utils/date-time/FormatDateTime";
+import formatDateTime from "../../../utils/datetime/FormatDateTime";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 interface ThreadCommentRowInterface {
     threadComment: ThreadCommentModel;
@@ -35,4 +36,4 @@ const AdminThreadCommentRow: React.FC<ThreadCommentRowInterface> = (props) => {
     )
 }
 
-export default AdminThreadCommentRow;
+export default AdminOrStaffRequire(AdminThreadCommentRow);

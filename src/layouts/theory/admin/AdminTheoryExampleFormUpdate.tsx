@@ -7,6 +7,7 @@ import TheoryExampleModel from "../../../models/TheoryExampleModel";
 import { getTheories } from "../../../api/TheoryAPI";
 import { getTheoryExampleById } from "../../../api/TheoryExampleAPI";
 import TheoryModel from "../../../models/TheoryModel";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminTheoryExampleFormUpdate() {
     const { theoryExampleIdParam } = useParams();
@@ -198,4 +199,4 @@ function AdminTheoryExampleFormUpdate() {
     )
 }
 
-export default AdminTheoryExampleFormUpdate;
+export default AdminOrStaffRequire(AdminTheoryExampleFormUpdate);

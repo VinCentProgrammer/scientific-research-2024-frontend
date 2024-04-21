@@ -6,6 +6,7 @@ import { Button, Modal } from "react-bootstrap";
 import TheoryCatModel from "../../../models/TheoryCatModel";
 import { deleteTheoryCat, getListTheoryCat } from "../../../api/TheoryCatAPI";
 import TheoryCatItemAdmin from "./AdminTheoryCatItem";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminTheoryCatList() {
     const [theoryCats, setTheoryCats] = useState<TheoryCatModel[]>([]);
@@ -144,4 +145,4 @@ function AdminTheoryCatList() {
     )
 }
 
-export default AdminTheoryCatList;
+export default AdminOrStaffRequire(AdminTheoryCatList);

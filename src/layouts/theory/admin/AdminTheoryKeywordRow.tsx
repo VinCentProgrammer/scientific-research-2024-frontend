@@ -1,5 +1,6 @@
 import TheoryKeywordModel from "../../../models/TheoryKeywordModel";
-import formatDateTime from "../../../utils/date-time/FormatDateTime";
+import formatDateTime from "../../../utils/datetime/FormatDateTime";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 
 interface TheoryKeywordRowInterface {
@@ -35,4 +36,4 @@ const AdminTheoryKeywordRow: React.FC<TheoryKeywordRowInterface> = (props) => {
     )
 }
 
-export default AdminTheoryKeywordRow;
+export default AdminOrStaffRequire(AdminTheoryKeywordRow);

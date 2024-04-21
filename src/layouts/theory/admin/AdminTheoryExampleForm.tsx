@@ -5,6 +5,7 @@ import TheoryModel from "../../../models/TheoryModel";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../../models/JwtPayLoad";
 import { getTheories } from "../../../api/TheoryAPI";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminTheoryExampleForm() {
     const [theories, setTheories] = useState<TheoryModel[]>([]);
@@ -169,4 +170,4 @@ function AdminTheoryExampleForm() {
     )
 }
 
-export default AdminTheoryExampleForm;
+export default AdminOrStaffRequire(AdminTheoryExampleForm);

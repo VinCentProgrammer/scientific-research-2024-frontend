@@ -7,6 +7,7 @@ import TheoryKeywordModel from "../../../models/TheoryKeywordModel";
 import { getTheories } from "../../../api/TheoryAPI";
 import { getTheoryKeywordById } from "../../../api/TheoryKeywordAPI";
 import TheoryModel from "../../../models/TheoryModel";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminTheoryKeywordFormUpdate() {
     const { theoryKeywordIdParam } = useParams();
@@ -173,4 +174,4 @@ function AdminTheoryKeywordFormUpdate() {
     )
 }
 
-export default AdminTheoryKeywordFormUpdate;
+export default AdminOrStaffRequire(AdminTheoryKeywordFormUpdate);

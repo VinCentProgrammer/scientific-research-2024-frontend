@@ -4,6 +4,7 @@ import UserModel from "../../models/UserModel";
 import JwtPayload from "../../models/JwtPayLoad";
 import { useEffect, useState } from "react";
 import { getUserById } from "../../api/UserAPI";
+import UserLoginRequire from "../require/UserLoginRequire";
 
 interface FormCommentProps {
     thread: ThreadModel;
@@ -53,4 +54,4 @@ const FormComment: React.FC<FormCommentProps> = (props) => {
     )
 }
 
-export default FormComment;
+export default UserLoginRequire(FormComment);

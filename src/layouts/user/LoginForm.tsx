@@ -1,24 +1,15 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Button, Modal } from 'react-bootstrap';
 import { jwtDecode } from 'jwt-decode';
-
-interface JwtPayload {
-    isAdmin: boolean;
-    isStaff: boolean;
-    isUser: boolean;
-}
+import JwtPayload from '../../models/JwtPayLoad';
 
 function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [showModal, setShowModal] = useState(false);
-    const [notification, setNotification] = useState('');
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [isStaff, setIsStaff] = useState(false);
     const navigate = useNavigate();
 
+    // Xử lý đăng nhập 
     const handleLogin = () => {
         const loginRequest = {
             username: username,
@@ -45,21 +36,20 @@ function LoginForm() {
                     const { jwt } = data;
                     localStorage.setItem('token', jwt);
                     const decodedToken = jwtDecode(jwt) as JwtPayload;
-                    if (decodedToken.isAdmin) {
-                        setIsAdmin(true);
-                    }
-                    if (decodedToken.isStaff) {
-                        setIsStaff(true);
-                    }
 
-                    setNotification('LOGIN SUCCESSFULL!');
-                    setShowModal(true);
+                    // Nếu là admin hoặc staff thì điều hướng đến trang admin
+                    if (decodedToken.isAdmin || decodedToken.isStaff) {
+                        navigate('/admin');
+                        window.location.reload()
 
-                    handleClose();
+                    } else if (decodedToken.isUser) { // Nếu là user thì điều hướng đến trang home
+                        navigate('/');
+                        window.location.reload()
+                    }
                 }
             ).catch((error) => {
                 console.error('Đăng nhập thất bại: ', error);
-                setError('Login failed. Please check your username and password again.')
+                setError('Login failed. Please check your username and password again!')
             }
             );
     }
@@ -67,20 +57,10 @@ function LoginForm() {
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            event.preventDefault(); // Ngăn chặn hành động mặc định của phím Enter trên form
+            event.preventDefault();
             handleLogin();
         }
     };
-
-    const handleClose = () => {
-        setTimeout(() => {
-            setShowModal(false);
-            if (isAdmin || isStaff)
-                navigate('/admin')
-            else
-                navigate('/')
-        }, 2000);
-    }
 
     return (
         <section className='m-4'>
@@ -107,6 +87,7 @@ function LoginForm() {
                             <p className="text-center fw-bold mx-3 mb-0">Or</p>
                         </div>
                         <form action="">
+                            {/* Username */}
                             <div className="form-outline mb-4 text-start">
                                 <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                                 <label className="form-label" htmlFor="username">Username <span className="text-danger">(*)</span></label>
@@ -116,6 +97,8 @@ function LoginForm() {
                                     onKeyPress={handleKeyPress}
                                 />
                             </div>
+
+                            {/* Password */}
                             <div className="form-outline mb-3 text-start">
                                 <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i>
                                 <label className="form-label" htmlFor="password">Password <span className="text-danger">(*)</span></label>
@@ -127,6 +110,7 @@ function LoginForm() {
                                 />
                             </div>
 
+                            {/* Remember me */}
                             <div className="d-flex justify-content-between align-items-center">
                                 <div className="form-check mb-0">
                                     <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
@@ -137,6 +121,7 @@ function LoginForm() {
                                 <NavLink to="/password-recovery" className="text-body">Forgot password?</NavLink>
                             </div>
 
+                            {/* Báo lỗi */}
                             <div className='mt-2'>
                                 {
                                     error && <div className='text-danger'>{error}</div>
@@ -144,27 +129,25 @@ function LoginForm() {
                             </div>
 
                             <div className="text-center text-lg-start mt-4 pt-2">
-                                <button type="button" className="btn btn-primary btn-lg"
+                                <button
+                                    type="button"
+                                    className="btn btn-primary btn-lg"
                                     style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
                                     onClick={handleLogin}
-
-                                >Login</button>
-                                <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <NavLink to="/register"
-                                    className="link-danger">Register</NavLink></p>
+                                >Login
+                                </button>
+                                <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account?
+                                    <NavLink
+                                        to="/register"
+                                        className="link-danger">
+                                        Register
+                                    </NavLink>
+                                </p>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <section>
-                <Modal show={showModal} onHide={handleClose}>
-                    <Modal.Body>
-                        <div>
-                            <p className="text-center fs-2 font-weight-bold text-success">{notification} <i className="bi bi-check-circle text-success mx-2"></i> </p>
-                        </div>
-                    </Modal.Body>
-                </Modal>
-            </section>
         </section>
     )
 }

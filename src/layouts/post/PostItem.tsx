@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import PostModel from "../../models/PostModel";
 import { getPostCatByPostId } from "../../api/PostCatAPI";
-import formatDateTimeUser from "../../utils/date-time/FormatDateTimeUser";
+import formatDateTimeUser from "../../utils/datetime/FormatDateTimeUser";
 
 interface PostItemInterface {
     post: PostModel;

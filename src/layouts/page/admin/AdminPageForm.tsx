@@ -3,6 +3,7 @@ import SideBar from "../../sidebar/SideBar";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../../models/JwtPayLoad";
 import { NavLink } from "react-router-dom";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminPageForm() {
     const [pageName, setPageName] = useState<string>('');
@@ -156,4 +157,4 @@ function AdminPageForm() {
     );
 }
 
-export default AdminPageForm;
+export default AdminOrStaffRequire(AdminPageForm);

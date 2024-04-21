@@ -6,6 +6,7 @@ import { deletePost, getListPost } from "../../../api/PostAPI";
 import PostRowAdmin from "./AdminPostRow";
 import { Pagination } from "../../../utils/pagination/Pagination";
 import { Button, Modal } from "react-bootstrap";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminPostList() {
     const [posts, setPosts] = useState<PostModel[] | null>([]);
@@ -145,4 +146,4 @@ function AdminPostList() {
     )
 }
 
-export default AdminPostList;
+export default AdminOrStaffRequire(AdminPostList);

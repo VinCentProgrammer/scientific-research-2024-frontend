@@ -6,6 +6,7 @@ import getBase64 from "../../../utils/base64/Base64";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../../models/JwtPayLoad";
 import { NavLink } from "react-router-dom";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminPostForm() {
     const [postCats, setPostCats] = useState<PostCatModel[]>([]);
@@ -226,4 +227,4 @@ function AdminPostForm() {
     )
 }
 
-export default AdminPostForm;
+export default AdminOrStaffRequire(AdminPostForm);

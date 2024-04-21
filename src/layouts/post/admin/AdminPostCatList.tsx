@@ -6,6 +6,7 @@ import { deletePostCat, getListPostCat } from "../../../api/PostCatAPI";
 import { Pagination } from "../../../utils/pagination/Pagination";
 import { Button, Modal } from "react-bootstrap";
 import PostCatItemAdmin from "./AdminPostCatItem";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminPostCatList() {
     const [postCats, setPostCats] = useState<PostCatModel[]>([]);
@@ -147,4 +148,4 @@ function AdminPostCatList() {
     )
 }
 
-export default AdminPostCatList;
+export default AdminOrStaffRequire(AdminPostCatList);

@@ -6,7 +6,8 @@ import SideBar from "../sidebar/SideBar";
 import { useNavigate } from "react-router-dom";
 import PermissionRow from "./PermissionRow";
 import { Button, Modal } from "react-bootstrap";
-import RequireAdmin from "../admin/AdminRequire";
+import RequireAdmin from "../require/AdminRequire";
+import AdminRequire from "../require/AdminRequire";
 
 
 const PermissionList: React.FC<{}> = () => {
@@ -143,4 +144,4 @@ const PermissionList: React.FC<{}> = () => {
     )
 }
 
-export default RequireAdmin(PermissionList);
+export default AdminRequire(PermissionList);

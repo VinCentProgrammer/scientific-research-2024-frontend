@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import ThreadCatModel from "../../models/ThreadCatModel";
 import { getThreadCats } from "../../api/ThreadCatAPI";
 import getBase64 from "../../utils/base64/Base64";
+import UserLoginRequire from "../require/UserLoginRequire";
 
 function ForumFormQuestion() {
     const [threadCats, setThreadCats] = useState<ThreadCatModel[]>([]);
@@ -232,4 +233,4 @@ function ForumFormQuestion() {
     )
 }
 
-export default ForumFormQuestion;
+export default UserLoginRequire(ForumFormQuestion);

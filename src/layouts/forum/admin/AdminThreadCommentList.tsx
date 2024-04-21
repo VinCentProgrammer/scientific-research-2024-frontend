@@ -6,6 +6,7 @@ import { Pagination } from "../../../utils/pagination/Pagination";
 import { Button, Modal } from "react-bootstrap";
 import { deleteThreadComment, getListThreadComment } from "../../../api/ThreadCommentAPI";
 import ThreadCommentRowAdmin from "./AdminThreadCommentRow";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminThreadCommentList() {
     const [threadComments, setThreadComments] = useState<ThreadCommentModel[] | null>([]);
@@ -142,4 +143,4 @@ function AdminThreadCommentList() {
     )
 }
 
-export default AdminThreadCommentList;
+export default AdminOrStaffRequire(AdminThreadCommentList);

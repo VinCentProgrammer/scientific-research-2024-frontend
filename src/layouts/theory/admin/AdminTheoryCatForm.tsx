@@ -5,6 +5,7 @@ import TheoryCatModel from "../../../models/TheoryCatModel";
 import { getAllTheoryCats, getTheoryCats } from "../../../api/TheoryCatAPI";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../../models/JwtPayLoad";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminTheoryCatForm() {
     const [theoryCats, setTheoryCats] = useState<TheoryCatModel[]>([]);
@@ -168,4 +169,4 @@ function AdminTheoryCatForm() {
     )
 }
 
-export default AdminTheoryCatForm;
+export default AdminOrStaffRequire(AdminTheoryCatForm);

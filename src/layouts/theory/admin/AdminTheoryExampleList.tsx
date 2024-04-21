@@ -6,6 +6,7 @@ import TheoryExampleModel from "../../../models/TheoryExampleModel";
 import { deleteTheoryExample, getListTheoryExample } from "../../../api/TheoryExampleAPI";
 import TheoryExampleRowAdmin from "./AdminTheoryExampleRow";
 import { Pagination } from "../../../utils/pagination/Pagination";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 function AdminTheoryExampleList() {
     const [theoryExamples, setTheoryExamples] = useState<TheoryExampleModel[] | null>([]);
@@ -140,4 +141,4 @@ function AdminTheoryExampleList() {
     )
 }
 
-export default AdminTheoryExampleList;
+export default AdminOrStaffRequire(AdminTheoryExampleList);

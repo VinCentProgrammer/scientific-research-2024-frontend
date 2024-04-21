@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import PostModel from "../../../models/PostModel";
 import { getPostCatByPostId } from "../../../api/PostCatAPI";
-import formatDateTime from "../../../utils/date-time/FormatDateTime";
+import formatDateTime from "../../../utils/datetime/FormatDateTime";
+import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
 interface PostRowInterface {
     post: PostModel;
@@ -53,4 +54,4 @@ const AdminPostRow: React.FC<PostRowInterface> = (props) => {
     )
 }
 
-export default AdminPostRow;
+export default AdminOrStaffRequire(AdminPostRow)

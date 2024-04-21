@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ThreadModel from "../../models/ThreadModel";
-import calculateTimeDifference from "../../utils/date-time/calculateTimeDifference ";
+import calculateTimeDifference from "../../utils/datetime/calculateTimeDifference ";
 import UserModel from "../../models/UserModel";
 import { getUserByThreadId } from "../../api/UserAPI";
 import ThreadCatModel from "../../models/ThreadCatModel";
