@@ -3,12 +3,12 @@ import SideBar from "../sidebar/SideBar";
 import { deleteUser, findUser, getUsers } from "../../api/UserAPI";
 import UserRow from "./UserRow";
 import UserModel from "../../models/UserModel";
-import { Pagination } from "../../utils/Pagination";
+import { Pagination } from "../../utils/pagination/Pagination";
 import { Button, Modal } from "react-bootstrap";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 import { useNavigate } from "react-router-dom";
-import RequireAdmin from "../admin/RequireAdmin";
+import RequireAdmin from "../admin/AdminRequire";
 
 
 const UserList: React.FC<{}> = () => {

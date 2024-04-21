@@ -3,7 +3,7 @@ import { getPermission } from "../../api/PermissionAPI";
 import PermissionModel from "../../models/PermissionModel";
 import SideBar from "../sidebar/SideBar";
 import { useState, useEffect } from 'react';
-import RequireAdmin from "../admin/RequireAdmin";
+import RequireAdmin from "../admin/AdminRequire";
 
 
 function RoleForm() {

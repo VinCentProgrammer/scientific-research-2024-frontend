@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import RoleModel from "../../models/RoleModel";
 import { NavLink } from "react-router-dom";
-import RequireAdmin from "../admin/RequireAdmin";
-import formatDateTime from "../../utils/FormatDateTime";
+import RequireAdmin from "../admin/AdminRequire";
+import formatDateTime from "../../utils/date-time/FormatDateTime";
 
 interface RoleItemInterface {
     role: RoleModel;

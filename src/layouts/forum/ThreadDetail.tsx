@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getThreadById } from "../../api/ThreadAPI";
 import ThreadModel from "../../models/ThreadModel";
-import calculateTimeDifference from "../../utils/calculateTimeDifference ";
+import calculateTimeDifference from "../../utils/date-time/calculateTimeDifference ";
 import UserModel from "../../models/UserModel";
 import { getUserByThreadId } from "../../api/UserAPI";
 import ThreadCatModel from "../../models/ThreadCatModel";
@@ -13,7 +13,7 @@ import { getThreadCommentsByThreadId } from "../../api/ThreadCommentAPI";
 import CommentItem from "./CommentItem";
 import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
-import capitalize from "../../utils/CapitalizeString";
+import capitalize from "../../utils/string/CapitalizeString";
 import ThreadImageModel from "../../models/ThreadImageModel";
 import { getThreadImageByThreadId } from "../../api/ThreadImageAPI";
 

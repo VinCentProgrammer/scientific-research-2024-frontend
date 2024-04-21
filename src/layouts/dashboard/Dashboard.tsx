@@ -1,6 +1,5 @@
-import RequireAdminOrStaff from "../admin/RequireAdminOrStaff";
+import RequireAdminOrStaff from "../admin/AdminOrStaffRequire";
 import SideBar from "../sidebar/SideBar";
-import UserList from "../user/UserList";
 
 function Dashboard() {
     return (
@@ -208,15 +207,3 @@ function Dashboard() {
 }
 
 export default RequireAdminOrStaff(Dashboard);
-
-
-<div id="layoutSidenav" className="container-fluid" style={{ minHeight: '700px', textAlign: 'left' }}>
-    <div className="row">
-        <div className="col-md-2">
-            <SideBar />
-        </div>
-        <div id="layoutSidenav_content" className="col-md-10">
-
-        </div>
-    </div>
-</div>

@@ -6,13 +6,11 @@ import NavBar from './layouts/header/NavBar';
 import HomePage from './layouts/homepage/HomePage';
 import RegisterForm from './layouts/user/RegisterForm';
 import Post from './layouts/post/Post';
-import PostDetail from './layouts/post/components/PostDetail';
+import PostDetail from './layouts/post/PostDetail';
 import About from './layouts/page/About';
 import Contact from './layouts/page/Contact';
 import Forum from './layouts/forum/Forum';
 import Theory from './layouts/theory/Theory';
-import Dashboard from './layouts/dashboard/Dashboard';
-import PageList from './layouts/page/PageList';
 import UserList from './layouts/user/UserList';
 import UserForm from './layouts/user/UserForm';
 import RoleList from './layouts/role/RoleList';
@@ -23,42 +21,43 @@ import ResetPassForm from './layouts/user/ResetPassForm';
 import Page401 from './layouts/page/Page401';
 import Page404 from './layouts/page/Page404';
 import Page500 from './layouts/page/Page500';
-import PostList from './layouts/post/PostListAdmin';
-import PostForm from './layouts/post/PostFormAdmin';
 import Page403 from './layouts/page/Page403';
 import UserFormUpdate from './layouts/user/UserFormUpdate';
 import PermissionForm from './layouts/role/PermissionForm';
 import PermissionList from './layouts/role/PermissionList';
 import PermissionFormUpdate from './layouts/role/PermissionFormUpdate';
 import RoleFormUpdate from './layouts/role/RoleFormUpdate';
-import PageForm from './layouts/page/PageForm';
-import PostCatForm from './layouts/post/PostCatFormAdmin';
-import PostCatList from './layouts/post/PostCatListAdmin';
-import PostCatFormUpdateAdmin from './layouts/post/PostCatFormUpdateAdmin';
-import PostFormUpdateAdmin from './layouts/post/PostFormUpdateAdmin';
-import TheoryFormAdmin from './layouts/theory/TheoryFormAdmin';
-import TheoryListAdmin from './layouts/theory/TheoryListAdmin';
-import TheoryFormUpdateAdmin from './layouts/theory/TheoryFormUpdateAdmin';
-import TheoryCatFormAdmin from './layouts/theory/TheoryCatFormAdmin';
-import TheoryCatListAdmin from './layouts/theory/TheoryCatListAdmin';
-import TheoryCatFormUpdateAdmin from './layouts/theory/TheoryCatFormUpdateAdmin';
-import TheoryExampleFormAdmin from './layouts/theory/TheoryExampleFormAdmin';
-import TheoryExampleListAdmin from './layouts/theory/TheoryExampleListAdmin';
-import TheoryExampleFormUpdateAdmin from './layouts/theory/TheoryExampleFormUpdateAdmin';
-import TheoryKeywordFormAdmin from './layouts/theory/TheoryKeywordFormAdmin';
-import TheoryKeywordListAdmin from './layouts/theory/TheoryKeywordListAdmin';
-import TheoryKeywordFormUpdateAdmin from './layouts/theory/TheoryKeywordFormUpdateAdmin';
-import PageFormUpdate from './layouts/page/PageFormUpdate';
-import ThreadCatListAdmin from './layouts/forum/ThreadCatListAdmin';
-import ThreadCatFormAdmin from './layouts/forum/ThreadCatFormAdmin';
-import ThreadCatFormUpdateAdmin from './layouts/forum/ThreadCatFormUpdateAdmin';
-import ThreadListAdmin from './layouts/forum/ThreadListAdmin';
-import ThreadRowAdmin from './layouts/forum/ThreadCatRowAdmin';
-import ThreadFormUpdateAdmin from './layouts/forum/ThreadFormUpdateAdmin';
-import ThreadCommentListAdmin from './layouts/forum/ThreadCommentListAdmin';
-import ThreadCommentFormUpdateAdmin from './layouts/forum/ThreadCommentFormUpdateAdmin';
+import PostCatForm from './layouts/post/admin/AdminPostCatForm';
+import ThreadCatFormAdmin from './layouts/forum/admin/AdminThreadCatForm';
 import ForumFormQuestion from './layouts/forum/ForumFormQuestion';
 import ThreadDetail from './layouts/forum/ThreadDetail';
+import Account from './layouts/user/Account';
+import AdminThreadCatList from './layouts/forum/admin/AdminThreadCatList';
+import AdminThreadCatFormUpdate from './layouts/forum/admin/AdminThreadCatFormUpdate';
+import AdminThreadList from './layouts/forum/admin/AdminThreadList';
+import AdminThreadFormUpdate from './layouts/forum/admin/AdminThreadFormUpdate';
+import AdminThreadCommentList from './layouts/forum/admin/AdminThreadCommentList';
+import AdminThreadCommentFormUpdate from './layouts/forum/admin/AdminThreadCommentFormUpdate';
+import AdminPageForm from './layouts/page/admin/AdminPageForm';
+import AdminPageList from './layouts/page/admin/AdminPageList';
+import AdminPageFormUpdate from './layouts/page/admin/AdminPageFormUpdate';
+import AdminPostList from './layouts/post/admin/AdminPostList';
+import AdminPostForm from './layouts/post/admin/AdminPostForm';
+import AdminPostFormUpdate from './layouts/post/admin/AdminPostFormUpdate';
+import AdminPostCatList from './layouts/post/admin/AdminPostCatList';
+import AdminPostCatFormUpdate from './layouts/post/admin/AdminPostCatFormUpdate';
+import AdminTheoryForm from './layouts/theory/admin/AdminTheoryForm';
+import AdminTheoryList from './layouts/theory/admin/AdminTheoryList';
+import AdminTheoryFormUpdate from './layouts/theory/admin/AdminTheoryFormUpdate';
+import AdminTheoryCatForm from './layouts/theory/admin/AdminTheoryCatForm';
+import AdminTheoryCatList from './layouts/theory/admin/AdminTheoryCatList';
+import AdminTheoryCatFormUpdate from './layouts/theory/admin/AdminTheoryCatFormUpdate';
+import AdminTheoryExampleForm from './layouts/theory/admin/AdminTheoryExampleForm';
+import AdminTheoryExampleList from './layouts/theory/admin/AdminTheoryExampleList';
+import AdminTheoryExampleFormUpdate from './layouts/theory/admin/AdminTheoryExampleFormUpdate';
+import AdminTheoryKeywordForm from './layouts/theory/admin/AdminTheoryKeywordForm';
+import AdminTheoryKeywordList from './layouts/theory/admin/AdminTheoryKeywordList';
+import AdminTheoryKeywordFormUpdate from './layouts/theory/admin/AdminTheoryKeywordFormUpdate';
 
 
 function App() {
@@ -67,7 +66,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          
+
           {/* //////////////////////////////// DASHBOARD ///////////////////////////////// */}
           <Route path="/admin" element={<UserList />} />
           <Route path="/admin/dashboard" element={<UserList />} />
@@ -88,11 +87,12 @@ function App() {
           <Route path='/admin/role/list' element={<RoleList />} />
           <Route path='/admin/role/add' element={<RoleForm />} />
           <Route path='/admin/role/edit/:roleIdParam' element={<RoleFormUpdate />} />
+          <Route path='/user/account' element={<Account />} />
 
           {/* //////////////////////////////// PAGE ///////////////////////////////// */}
-          <Route path='/admin/page/add' element={<PageForm />} />
-          <Route path='/admin/page/list' element={<PageList />} />
-          <Route path='/admin/page/edit/:pageIdParam' element={<PageFormUpdate />} />
+          <Route path='/admin/page/add' element={<AdminPageForm />} />
+          <Route path='/admin/page/list' element={<AdminPageList />} />
+          <Route path='/admin/page/edit/:pageIdParam' element={<AdminPageFormUpdate />} />
           <Route path='/page/about' element={<About />} />
           <Route path='/page/contact' element={<Contact />} />
           <Route path="/page/401" element={<Page401 />} />
@@ -104,12 +104,12 @@ function App() {
           {/* //////////////////////////////// POST ///////////////////////////////// */}
           <Route path='/post' element={<Post />} />
           <Route path='/post/:postIdParam' element={<PostDetail />} />
-          <Route path='/admin/post/list' element={<PostList />} />
-          <Route path='/admin/post/add' element={<PostForm />} />
-          <Route path='/admin/post/edit/:postIdParam' element={<PostFormUpdateAdmin />} />
+          <Route path='/admin/post/list' element={<AdminPostList />} />
+          <Route path='/admin/post/add' element={<AdminPostForm />} />
+          <Route path='/admin/post/edit/:postIdParam' element={<AdminPostFormUpdate />} />
           <Route path='/admin/post/cat/add' element={<PostCatForm />} />
-          <Route path='/admin/post/cat/list' element={<PostCatList />} />
-          <Route path='/admin/post/cat/edit/:postCatIdParam' element={<PostCatFormUpdateAdmin />} />
+          <Route path='/admin/post/cat/list' element={<AdminPostCatList />} />
+          <Route path='/admin/post/cat/edit/:postCatIdParam' element={<AdminPostCatFormUpdate />} />
 
           {/* //////////////////////////////// FORUM ///////////////////////////////// */}
           <Route path='/forum' element={<Forum />} />
@@ -117,31 +117,31 @@ function App() {
           <Route path='/thread/:threadIdParam' element={<ThreadDetail />} />
 
 
-          <Route path='/admin/thread/cat/list' element={<ThreadCatListAdmin />} />
+          <Route path='/admin/thread/cat/list' element={<AdminThreadCatList />} />
           <Route path='/admin/thread/cat/add' element={<ThreadCatFormAdmin />} />
-          <Route path='/admin/thread/cat/edit/:threadCatIdParam' element={<ThreadCatFormUpdateAdmin />} />
+          <Route path='/admin/thread/cat/edit/:threadCatIdParam' element={<AdminThreadCatFormUpdate />} />
 
-          <Route path='/admin/thread/list' element={<ThreadListAdmin />} />
-          <Route path='/admin/thread/edit/:threadIdParam' element={<ThreadFormUpdateAdmin />} />
+          <Route path='/admin/thread/list' element={<AdminThreadList />} />
+          <Route path='/admin/thread/edit/:threadIdParam' element={<AdminThreadFormUpdate />} />
 
-          <Route path='/admin/thread/comment/list' element={<ThreadCommentListAdmin />} />
-          <Route path='/admin/thread/comment/edit/:commentIdParam' element={<ThreadCommentFormUpdateAdmin />} />
+          <Route path='/admin/thread/comment/list' element={<AdminThreadCommentList />} />
+          <Route path='/admin/thread/comment/edit/:commentIdParam' element={<AdminThreadCommentFormUpdate />} />
 
           {/* //////////////////////////////// THEORY ///////////////////////////////// */}
           <Route path='/theory' element={<Theory />} />
           <Route path='/theory/:theoryCatIdParam' element={<Theory />} />
-          <Route path='/admin/theory/add' element={<TheoryFormAdmin />} />
-          <Route path='/admin/theory/list' element={<TheoryListAdmin />} />
-          <Route path='admin/theory/edit/:theoryIdParam' element={<TheoryFormUpdateAdmin />} />
-          <Route path='/admin/theory/topic/add' element={<TheoryCatFormAdmin />} />
-          <Route path='/admin/theory/topic/list' element={<TheoryCatListAdmin />} />
-          <Route path='admin/theory/topic/edit/:theoryCatIdParam' element={<TheoryCatFormUpdateAdmin />} />
-          <Route path='/admin/theory/example/add' element={<TheoryExampleFormAdmin />} />
-          <Route path='/admin/theory/example/list' element={<TheoryExampleListAdmin />} />
-          <Route path='/admin/theory/example/edit/:theoryExampleIdParam' element={<TheoryExampleFormUpdateAdmin />} />
-          <Route path='/admin/theory/keyword/add' element={<TheoryKeywordFormAdmin />} />
-          <Route path='/admin/theory/keyword/list' element={<TheoryKeywordListAdmin />} />
-          <Route path='/admin/theory/keyword/edit/:theoryKeywordIdParam' element={<TheoryKeywordFormUpdateAdmin />} />
+          <Route path='/admin/theory/add' element={<AdminTheoryForm />} />
+          <Route path='/admin/theory/list' element={<AdminTheoryList />} />
+          <Route path='admin/theory/edit/:theoryIdParam' element={<AdminTheoryFormUpdate />} />
+          <Route path='/admin/theory/topic/add' element={<AdminTheoryCatForm />} />
+          <Route path='/admin/theory/topic/list' element={<AdminTheoryCatList />} />
+          <Route path='admin/theory/topic/edit/:theoryCatIdParam' element={<AdminTheoryCatFormUpdate />} />
+          <Route path='/admin/theory/example/add' element={<AdminTheoryExampleForm />} />
+          <Route path='/admin/theory/example/list' element={<AdminTheoryExampleList />} />
+          <Route path='/admin/theory/example/edit/:theoryExampleIdParam' element={<AdminTheoryExampleFormUpdate />} />
+          <Route path='/admin/theory/keyword/add' element={<AdminTheoryKeywordForm />} />
+          <Route path='/admin/theory/keyword/list' element={<AdminTheoryKeywordList />} />
+          <Route path='/admin/theory/keyword/edit/:theoryKeywordIdParam' element={<AdminTheoryKeywordFormUpdate />} />
 
         </Routes>
         <Footer />

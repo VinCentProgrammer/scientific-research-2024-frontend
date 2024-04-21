@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import PostItem from "./components/PostItem";
 import PostModel from "../../models/PostModel";
 import { getListPost } from "../../api/PostAPI";
-import { Pagination } from "../../utils/Pagination";
-import PostDetail from "./components/PostDetail";
-import ScrollToTopButton from "../../utils/ScrollToTopButton";
+import { Pagination } from "../../utils/pagination/Pagination";
+import PostDetail from "./PostDetail";
+import ScrollToTopButton from "../../utils/scroll/ScrollToTopButton";
+import PostItem from "./PostItem";
 
 function Post() {
     const [posts, setPosts] = useState<PostModel[] | null>([]);

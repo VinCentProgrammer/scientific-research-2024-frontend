@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PermissionModel from "../../models/PermissionModel";
-import RequireAdmin from "../admin/RequireAdmin";
-import formatDateTime from "../../utils/FormatDateTime";
+import RequireAdmin from "../admin/AdminRequire";
+import formatDateTime from "../../utils/date-time/FormatDateTime";
 
 interface PermissionRowProps {
     permission: PermissionModel;

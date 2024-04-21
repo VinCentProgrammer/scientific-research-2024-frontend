@@ -1,4 +1,4 @@
-import ScrollToTopButton from "../../utils/ScrollToTopButton";
+import ScrollToTopButton from "../../utils/scroll/ScrollToTopButton";
 
 function Contact() {
     return (

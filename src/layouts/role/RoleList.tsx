@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 import RoleItem from "./RoleItem";
 import { Button, Modal } from "react-bootstrap";
 import { deleteRole, getRoles } from "../../api/RoleAPI";
-import { Pagination } from "../../utils/Pagination";
-import RequireAdmin from "../admin/RequireAdmin";
+import { Pagination } from "../../utils/pagination/Pagination";
+import RequireAdmin from "../admin/AdminRequire";
 
 
 function RoleList() {

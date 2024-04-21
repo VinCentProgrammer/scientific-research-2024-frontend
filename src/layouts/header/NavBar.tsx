@@ -1,7 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
 import { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import capitalize from '../../utils/CapitalizeString';
+import capitalize from '../../utils/string/CapitalizeString';
 
 function NavBar() {
     const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -51,10 +51,10 @@ function NavBar() {
                                         </a>
                                         <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                             <li>
-                                                <a className="dropdown-item" href="#!">
+                                                <NavLink className="dropdown-item" to="/user/account">
                                                     <i className="bi bi-person mx-2"></i>
                                                     Account
-                                                </a>
+                                                </NavLink>
                                             </li>
                                             <div className="dropdown-divider"></div>
                                             <li>

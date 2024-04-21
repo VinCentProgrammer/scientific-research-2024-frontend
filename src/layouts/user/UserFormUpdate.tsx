@@ -4,8 +4,8 @@ import SideBar from '../sidebar/SideBar';
 import UserModel from '../../models/UserModel';
 import { getUserById } from '../../api/UserAPI';
 import Page404 from '../page/Page404';
-import getBase64 from '../../utils/Base64';
-import RequireAdmin from '../admin/RequireAdmin';
+import getBase64 from '../../utils/base64/Base64';
+import RequireAdmin from '../admin/AdminRequire';
 import RoleModel from '../../models/RoleModel';
 import { getRole } from '../../api/RoleAPI';
 

@@ -1,9 +1,9 @@
 
 import { NavLink } from "react-router-dom";
-import ScrollToTopButton from "../../utils/ScrollToTopButton";
+import ScrollToTopButton from "../../utils/scroll/ScrollToTopButton";
 import { useEffect, useState } from "react";
 import ThreadModel from "../../models/ThreadModel";
-import { Pagination } from "../../utils/Pagination";
+import { Pagination } from "../../utils/pagination/Pagination";
 import ThreadItem from "./ThreadItem";
 import { getListThread } from "../../api/ThreadAPI";
 
@@ -50,8 +50,6 @@ function Forum() {
             <div>{error}</div>
         )
     }
-
-
 
     return (
         <div className="container text-start my-4 rounded-2" id="forum" style={{ minHeight: '700px' }}>

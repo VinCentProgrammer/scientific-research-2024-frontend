@@ -2,8 +2,8 @@ import { jwtDecode } from "jwt-decode";
 import UserModel from "../../models/UserModel";
 import { useEffect, useState } from 'react';
 import JwtPayload from "../../models/JwtPayLoad";
-import RequireAdmin from "../admin/RequireAdmin";
-import formatDateTime from "../../utils/FormatDateTime";
+import RequireAdmin from "../admin/AdminRequire";
+import formatDateTime from "../../utils/date-time/FormatDateTime";
 
 interface UserPropsInterface {
     user: UserModel;

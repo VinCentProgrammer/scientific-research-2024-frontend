@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import ThreadCommentModel from "../../models/ThreadCommentModel";
 import UserModel from "../../models/UserModel";
 import { getUserById } from "../../api/UserAPI";
-import calculateTimeDifference from "../../utils/calculateTimeDifference ";
-import capitalize from "../../utils/CapitalizeString";
+import calculateTimeDifference from "../../utils/date-time/calculateTimeDifference ";
+import capitalize from "../../utils/string/CapitalizeString";
 
 interface CommentItemProps {
     comment: ThreadCommentModel;

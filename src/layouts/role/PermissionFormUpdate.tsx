@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import SideBar from '../sidebar/SideBar';
 import Page404 from '../page/Page404';
-import RequireAdmin from '../admin/RequireAdmin';
+import RequireAdmin from '../admin/AdminRequire';
 import PermissionModel from '../../models/PermissionModel';
 import { getPermissionById } from '../../api/PermissionAPI';
 

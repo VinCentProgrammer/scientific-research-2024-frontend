@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import ScrollToTopButton from "../../utils/ScrollToTopButton";
+import ScrollToTopButton from "../../utils/scroll/ScrollToTopButton";
 import SidebarMenu from "./SidebarTheory";
 import { useEffect, useState } from "react";
 import TheoryModel from "../../models/TheoryModel";

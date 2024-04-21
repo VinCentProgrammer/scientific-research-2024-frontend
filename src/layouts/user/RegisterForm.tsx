@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import getBase64 from '../../utils/Base64';
+import getBase64 from '../../utils/base64/Base64';
 
 function RegisterForm() {
     const [username, setUsername] = useState("");

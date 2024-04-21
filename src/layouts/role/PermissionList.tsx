@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import PermissionModel from "../../models/PermissionModel";
-import { Pagination } from "../../utils/Pagination";
+import { Pagination } from "../../utils/pagination/Pagination";
 import { deletePermission, getPermissions } from "../../api/PermissionAPI";
 import SideBar from "../sidebar/SideBar";
 import { useNavigate } from "react-router-dom";
 import PermissionRow from "./PermissionRow";
 import { Button, Modal } from "react-bootstrap";
-import RequireAdmin from "../admin/RequireAdmin";
+import RequireAdmin from "../admin/AdminRequire";
 
 
 const PermissionList: React.FC<{}> = () => {

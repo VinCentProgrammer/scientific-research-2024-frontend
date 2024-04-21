@@ -4,7 +4,7 @@ import JwtPayload from "../../models/JwtPayLoad";
 import { NavLink } from "react-router-dom";
 import ThreadCatModel from "../../models/ThreadCatModel";
 import { getThreadCats } from "../../api/ThreadCatAPI";
-import getBase64 from "../../utils/Base64";
+import getBase64 from "../../utils/base64/Base64";
 
 function ForumFormQuestion() {
     const [threadCats, setThreadCats] = useState<ThreadCatModel[]>([]);
@@ -143,9 +143,6 @@ function ForumFormQuestion() {
                         }
                     })
                 })
-
-
-
         }
     }
 

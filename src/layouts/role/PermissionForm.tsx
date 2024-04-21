@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SideBar from "../sidebar/SideBar";
 import { NavLink } from "react-router-dom";
-import RequireAdmin from "../admin/RequireAdmin";
+import RequireAdmin from "../admin/AdminRequire";
 
 function PermissionForm() {
 
