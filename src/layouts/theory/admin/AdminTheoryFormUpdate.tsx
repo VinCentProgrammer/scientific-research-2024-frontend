@@ -5,7 +5,7 @@ import JwtPayload from "../../../models/JwtPayLoad";
 import { NavLink, useParams } from "react-router-dom";
 import TheoryModel from "../../../models/TheoryModel";
 import { getTheoryById } from "../../../api/TheoryAPI";
-import { getTheoryCats } from "../../../api/TheoryCatAPI";
+import { getAllTheoryCats, getTheoryCats } from "../../../api/TheoryCatAPI";
 import TheoryCatModel from "../../../models/TheoryCatModel";
 import AdminOrStaffRequire from "../../require/AdminOrStaffRequire";
 
@@ -44,7 +44,7 @@ function AdminTheoryFormUpdate() {
     }, [theoryId]);
 
     useEffect(() => {
-        getTheoryCats()
+        getAllTheoryCats()
             .then(
                 result => {
                     setTheoryCats(result);
