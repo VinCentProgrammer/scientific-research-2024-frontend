@@ -18,14 +18,14 @@ function Page403() {
 
             // Lấy thông tin cụ thể
             const isStaff = decodedToken.isStaff;
-            if(isStaff) {
+            if (isStaff) {
                 setUrl('/admin')
             }
         }
     }, [navigate]);
 
     return (
-        <div id="layoutError" style={{minHeight: '700px'}}>
+        <div id="layoutError" style={{ minHeight: '700px' }}>
             <div id="layoutError_content">
                 <main>
                     <div className="container">

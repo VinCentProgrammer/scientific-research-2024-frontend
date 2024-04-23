@@ -82,7 +82,8 @@ function Theory() {
                             borderRadius: '10px',
                             padding: '25px',
                             minHeight: '700px',
-                            marginBottom: '40px'
+                            marginBottom: '40px',
+                            fontFamily: 'Roboto'
                         }} className="">
                             {
                                 theory && !statusSearch
