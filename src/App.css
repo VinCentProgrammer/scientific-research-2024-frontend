@@ -288,6 +288,7 @@ ul#sidebar-menu * {
 
 #category-product-wp .list-item li:hover > .sub-menu {
   display: block;
+  font-size: 13px;
 }
 
 #category-product-wp .list-item li:hover {
