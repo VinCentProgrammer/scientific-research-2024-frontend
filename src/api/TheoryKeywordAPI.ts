@@ -1,3 +1,4 @@
+import TheoryExampleModel from "../models/TheoryExampleModel";
 import TheoryKeywordModel from "../models/TheoryKeywordModel";
 import TheoryModel from "../models/TheoryModel";
 
@@ -106,6 +107,39 @@ export async function getTheoryKeywordById(keywordId: number): Promise<TheoryKey
             theoryDetailId: responseData.theoryDetailId,
             keyword: responseData.keyword,
             userId: responseData.userId,
+            createdAt: responseData.createdAt,
+            updatedAt: responseData.updatedAt,
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+        return null;
+    }
+}
+
+
+export async function getTheoryByKeywordExample(keyword: string): Promise<TheoryExampleModel | null> {
+    const url: string = `http://localhost:8080/api/theory/example/keyword/search/${keyword}`;
+
+    try {
+        const response: Response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Lỗi khi truy cập đến API! ${url}`);
+        }
+        const responseData = await response.json();
+        if (!responseData) {
+            throw new Error('Không tồn tài!');
+        }
+        return {
+            exampleId: responseData.exampleId,
+            userId: responseData.userId,
+            name: responseData.name,
+            answer: responseData.answer,
             createdAt: responseData.createdAt,
             updatedAt: responseData.updatedAt,
         }

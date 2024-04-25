@@ -1,6 +1,5 @@
 export default class TheoryExampleModel {
     exampleId: number;
-    theoryDetailId: number;
     userId: number;
     name: string;
     answer: string;
@@ -9,7 +8,6 @@ export default class TheoryExampleModel {
 
     constructor(
         exampleId: number,
-        theoryDetailId: number,
         name: string,
         answer: string,
         userId: number,
@@ -17,7 +15,6 @@ export default class TheoryExampleModel {
         updatedAt: string,
     ) {
         this.exampleId = exampleId;
-        this.theoryDetailId = theoryDetailId;
         this.name = name;
         this.answer = answer;
         this.userId = userId;

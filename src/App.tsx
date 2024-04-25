@@ -66,8 +66,6 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="*" element={<Page404 />} />
-
           {/* //////////////////////////////// DASHBOARD ///////////////////////////////// */}
           <Route path="/admin" element={<UserList />} />
           <Route path="/admin/dashboard" element={<UserList />} />
@@ -91,6 +89,7 @@ function App() {
           <Route path='/user/account' element={<Account />} />
 
           {/* //////////////////////////////// PAGE ///////////////////////////////// */}
+          <Route path="*" element={<Page404 />} />
           <Route path='/admin/page/add' element={<AdminPageForm />} />
           <Route path='/admin/page/list' element={<AdminPageList />} />
           <Route path='/admin/page/edit/:pageIdParam' element={<AdminPageFormUpdate />} />

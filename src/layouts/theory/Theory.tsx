@@ -4,14 +4,17 @@ import SidebarMenu from "./SidebarTheory";
 import { useEffect, useState } from "react";
 import TheoryModel from "../../models/TheoryModel";
 import { getTheoryByCatId } from "../../api/TheoryAPI";
-import { getTheoryByKeyword } from "../../api/TheoryKeywordAPI";
+import { getTheoryByKeyword, getTheoryByKeywordExample } from "../../api/TheoryKeywordAPI";
+import TheoryExampleModel from "../../models/TheoryExampleModel";
 
 function Theory() {
     const { theoryCatIdParam } = useParams();
     const [theory, setTheory] = useState<TheoryModel | null>(null);
     const [keyword, setKeyword] = useState<string>('');
     const [searchResult, setSearchResult] = useState<TheoryModel | null>(null);
+    const [searchExampleResult, setSearchExampleResult] = useState<TheoryExampleModel | null>(null);
     const [statusSearch, setStatusSearch] = useState<boolean>(false);
+    const [checkSearchExercise, setCheckSearchExercise] = useState<boolean>(false);
 
     let theoryCatId = 0;
     try {
@@ -37,17 +40,19 @@ function Theory() {
     }, [theoryCatId]);
 
     const handleClickBtnSearch = async () => {
-        setSearchResult(await getTheoryByKeyword(keyword.toLowerCase()));
+        if (checkSearchExercise)
+            setSearchExampleResult(await getTheoryByKeywordExample(keyword.toLowerCase()));
+        else
+            setSearchResult(await getTheoryByKeyword(keyword.toLowerCase()));
         setStatusSearch(true);
     }
 
-    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (event.key === 'Enter') {
             event.preventDefault(); // Ngăn chặn hành động mặc định của phím Enter trên form
             handleClickBtnSearch();
         }
     };
-
     return (
         <div id="layoutSidenav" className="my-2">
             <ScrollToTopButton />
@@ -56,22 +61,39 @@ function Theory() {
                     <div className="col-md-3">
                         <div className="row mb-4">
                             <div className="container m-auto">
-                                <form className="d-flex" onSubmit={handleClickBtnSearch}>
+                                <div className="row">
+                                    <form className="d-flex" onSubmit={handleClickBtnSearch}>
+                                        <textarea
+                                            className="form-control me-2" style={{ height: '60px' }}
+                                            placeholder="Enter your keyword?"
+                                            aria-label="Search"
+                                            value={keyword}
+                                            onChange={(e) => setKeyword(e.target.value)}
+                                            onKeyPress={handleKeyPress}
+                                        />
+                                        <button
+                                            className="btn btn-outline-success w-25"
+                                            type="button"
+                                            onClick={handleClickBtnSearch}
+                                        >Search</button>
+
+                                    </form>
+                                </div>
+
+                                <div className="form-check text-start m-2">
                                     <input
-                                        className="form-control me-2" style={{ height: '60px' }}
-                                        type="search"
-                                        placeholder="Enter your keyword?"
-                                        aria-label="Search"
-                                        value={keyword}
-                                        onChange={(e) => setKeyword(e.target.value)}
-                                        onKeyPress={handleKeyPress}
-                                    />
-                                    <button
-                                        className="btn btn-outline-success w-25"
-                                        type="button"
-                                        onClick={handleClickBtnSearch}
-                                    >Search</button>
-                                </form>
+                                        className="form-check-input"
+                                        type="checkbox"
+                                        value={0}
+                                        onChange={(e) => setCheckSearchExercise(e.target.checked)}
+                                        id="flexCheckIndeterminate"
+                                        style={{ cursor: 'pointer' }} />
+
+                                    <label className="form-check-label " htmlFor="flexCheckIndeterminate" style={{ cursor: 'pointer' }}>
+                                        Tìm kiếm bài tập
+                                    </label>
+                                </div>
+
                             </div>
                         </div>
                         <SidebarMenu />
@@ -90,23 +112,25 @@ function Theory() {
                                     ?
                                     <div dangerouslySetInnerHTML={{ __html: theory?.content }} />
                                     :
-                                    (statusSearch && searchResult)
+                                    (statusSearch && (searchResult || searchExampleResult))
                                         ?
                                         <div>
-                                            <h4 className="p-2 text-end fs-6">
-                                                Kết quả tìm: <span style={{ fontWeight: 'bold' }}>"{keyword}"</span>
-                                            </h4>
-                                            <div dangerouslySetInnerHTML={{ __html: searchResult.content }} />
+                                            {
+                                                !checkSearchExercise ?
+                                                    searchResult &&
+                                                    <div dangerouslySetInnerHTML={{ __html: searchResult?.content }} />
+                                                    :
+                                                    searchExampleResult &&
+                                                    <div dangerouslySetInnerHTML={{ __html: searchExampleResult?.answer }} />
+                                            }
                                         </div>
                                         :
                                         <div>There are no results!</div>
                             }
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

@@ -29,7 +29,6 @@ export async function getTheoryExample(url: string): Promise<ResultInterface> {
     responseData._embedded.theoryExamples.forEach((theoryExampleData: any) => {
         result.push({
             exampleId: theoryExampleData.exampleId,
-            theoryDetailId: theoryExampleData.theoryDetailId,
             name: theoryExampleData.name,
             answer: theoryExampleData.answer,
             userId: theoryExampleData.userId,
@@ -103,7 +102,6 @@ export async function getTheoryExampleById(exampleId: number): Promise<TheoryExa
         }
         return {
             exampleId: responseData.exampleId,
-            theoryDetailId: responseData.theoryDetailId,
             name: responseData.name,
             answer: responseData.answer,
             userId: responseData.userId,
