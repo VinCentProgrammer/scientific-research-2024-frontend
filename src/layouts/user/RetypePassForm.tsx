@@ -26,7 +26,7 @@ function RetypePassForm() {
         if (isPasswordValid && isRePasswordValid) {
 
             try {
-                const url = 'http://localhost:8080/account/update-password';
+                const url = 'http://localhost:8080/api/account/update-password';
 
                 const response = await fetch(url, {
                     method: 'PUT',

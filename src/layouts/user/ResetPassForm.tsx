@@ -37,7 +37,7 @@ function ResetPassForm() {
         // Kiểm tra tất cả các điều kiện
         if (isEmailValid) {
             try {
-                const url = 'http://localhost:8080/account/reset-password';
+                const url = 'http://localhost:8080/api/account/reset-password';
 
                 const response = await fetch(url, {
                     method: 'PUT',

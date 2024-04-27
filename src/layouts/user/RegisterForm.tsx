@@ -43,7 +43,7 @@ function RegisterForm() {
             const base64Avatar = avatar ? await getBase64(avatar) : null;
 
             try {
-                const url = 'http://localhost:8080/account/register';
+                const url = 'http://localhost:8080/api/account/register';
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: {
