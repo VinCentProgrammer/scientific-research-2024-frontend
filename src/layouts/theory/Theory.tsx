@@ -14,7 +14,7 @@ function Theory() {
     const [searchResult, setSearchResult] = useState<TheoryModel | null>(null);
     const [searchExampleResult, setSearchExampleResult] = useState<TheoryExampleModel | null>(null);
     const [statusSearch, setStatusSearch] = useState<boolean>(false);
-    const [checkSearchExercise, setCheckSearchExercise] = useState<boolean>(false);
+    const [checkSearchExercise, setCheckSearchExercise] = useState<number>(0);
 
     let theoryCatId = 0;
     try {
@@ -53,60 +53,63 @@ function Theory() {
             handleClickBtnSearch();
         }
     };
+
+    const handleCheckSearchExercise = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setCheckSearchExercise(parseInt(event.target.value));
+    }
     return (
         <div id="layoutSidenav" className="my-2">
             <ScrollToTopButton />
             <div className="container mt-4">
                 <div className="row">
-                    <div className="col-md-3">
-                        <div className="row mb-4">
-                            <div className="container m-auto">
-                                <div className="row">
-                                    <form className="d-flex" onSubmit={handleClickBtnSearch}>
-                                        <textarea
-                                            className="form-control me-2" style={{ height: '60px' }}
-                                            placeholder="Enter your keyword?"
-                                            aria-label="Search"
-                                            value={keyword}
-                                            onChange={(e) => setKeyword(e.target.value)}
-                                            onKeyPress={handleKeyPress}
-                                        />
-                                        <button
-                                            className="btn btn-outline-success w-25"
-                                            type="button"
-                                            onClick={handleClickBtnSearch}
-                                        >Search</button>
-
-                                    </form>
-                                </div>
-
-                                <div className="form-check text-start m-2">
-                                    <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        value={0}
-                                        onChange={(e) => setCheckSearchExercise(e.target.checked)}
-                                        id="flexCheckIndeterminate"
-                                        style={{ cursor: 'pointer' }} />
-
-                                    <label className="form-check-label " htmlFor="flexCheckIndeterminate" style={{ cursor: 'pointer' }}>
-                                        Tìm kiếm bài tập
-                                    </label>
-                                </div>
-
-                            </div>
+                    <div className="col-md-3" style={{width: '21%'}}>
+                        <div className="form-group">
+                            <select className="form-control" id=""
+                                value={checkSearchExercise}
+                                onChange={handleCheckSearchExercise}
+                            >
+                                <option value={0}>Tìm kiếm theo lý thuyết</option>
+                                <option value={1}>Giải bài tập</option>
+                            </select>
                         </div>
+                    </div>
+                    <div className="col-md-9" style={{width: '79%'}}>
+                        <div className="row">
+                            <form className="d-flex" onSubmit={handleClickBtnSearch}>
+                                <textarea
+                                    className="form-control me-2" style={{ height: '40px' }}
+                                    placeholder="Enter your keyword?"
+                                    aria-label="Search"
+                                    value={keyword}
+                                    onChange={(e) => setKeyword(e.target.value)}
+                                    onKeyPress={handleKeyPress}
+                                />
+                                <button
+                                    className="btn btn-outline-success w-25"
+                                    type="button"
+                                    onClick={handleClickBtnSearch}
+                                >Search</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="row mt-4">
+                    <div className="col-md-2 mr-2">
                         <SidebarMenu />
                     </div>
-                    <div className="col-md-9">
+                    <div className="col-md-10">
                         <div id="content" style={{
                             textAlign: 'left', background: '#f4f4f4',
                             borderRadius: '10px',
                             padding: '25px',
                             minHeight: '700px',
                             marginBottom: '40px',
-                            fontFamily: 'Roboto'
+                            fontFamily: 'Roboto', 
+                            marginLeft: '53px'
                         }} className="">
+
                             {
                                 theory && !statusSearch
                                     ?
@@ -127,6 +130,7 @@ function Theory() {
                                         :
                                         <div>There are no results!</div>
                             }
+
                         </div>
                     </div>
                 </div>

@@ -66,7 +66,7 @@ function AdminTheoryKeywordForm() {
                 if (response.ok) {
                     setSuccessNoti("Added successfully!");
                     setKeyword('');
-                    setTheoryId(1);
+                    // setTheoryId(1);
                 } else {
                     setErrorNoti("An error occurred while adding!");
                 }

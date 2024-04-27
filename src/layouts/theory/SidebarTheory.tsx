@@ -37,6 +37,7 @@ function SidebarTheory() {
     return (
         <div className="sidebar fl-left">
             <div className="section" id="category-product-wp">
+                <button className="btn btn-success w-100 p-3" style={{fontWeight: 'bold'}}>CƠ SỞ LÝ THUYẾT</button>
                 <div className="section-detail">
                     <ul className="list-item">
                         {theoryCategories.filter(category => category.theoryParentCatId === 1).map(category => (

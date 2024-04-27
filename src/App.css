@@ -227,10 +227,11 @@ ul#sidebar-menu * {
 }
 
 #category-product-wp {
-  border: 1px solid #ececec;
-  min-width: 230px;
+  border: 2px solid #ececec;
+  min-width: 250px;
   text-align: left;
   min-height: auto;
+  border-radius: 10px;
 }
 
 .section-title {
@@ -253,15 +254,17 @@ ul#sidebar-menu * {
 
 #category-product-wp .list-item li {
   position: relative;
+  margin: 5px 0px;
 }
 
 #category-product-wp .list-item li a {
   display: block;
   color: #198754;
-  padding: 8px 20px;
+  padding: 5px 10px;
   border-bottom: 1px solid #eee;
   text-decoration: none;
   font-weight: bold;
+  font-size: 14px;
 }
 
 #category-product-wp .list-item li .sub-menu {
