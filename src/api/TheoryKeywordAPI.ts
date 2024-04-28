@@ -44,19 +44,19 @@ export async function getTheoryKeyword(url: string): Promise<ResultInterface> {
 }
 
 export async function getTheoryKeywords(): Promise<TheoryKeywordModel[]> {
-    const url: string = `http://localhost:8080/theory-keyword`;
+    const url: string = `http://14.225.206.14:8081/theory-keyword`;
     return (await getTheoryKeyword(url)).result;
 }
 
 
 export async function getListTheoryKeyword(page: number): Promise<ResultInterface> {
-    const url: string = `http://localhost:8080/theory-keyword?sort=keywordId,asc&size=20&page=${page}`;
+    const url: string = `http://14.225.206.14:8081/theory-keyword?sort=keywordId,asc&size=20&page=${page}`;
     return getTheoryKeyword(url);
 }
 
 
 export async function deleteTheoryKeyword(keywordId: number) {
-    const url: string = `http://localhost:8080/theory-keyword/${keywordId}`;
+    const url: string = `http://14.225.206.14:8081/theory-keyword/${keywordId}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -85,7 +85,7 @@ export async function deleteTheoryKeyword(keywordId: number) {
 
 
 export async function getTheoryKeywordById(keywordId: number): Promise<TheoryKeywordModel | null> {
-    const url: string = `http://localhost:8080/theory-keyword/${keywordId}`;
+    const url: string = `http://14.225.206.14:8081/theory-keyword/${keywordId}`;
 
     try {
         const response: Response = await fetch(url, {
@@ -118,7 +118,7 @@ export async function getTheoryKeywordById(keywordId: number): Promise<TheoryKey
 
 
 export async function getTheoryByKeywordExample(keyword: string): Promise<TheoryExampleModel | null> {
-    const url: string = `http://localhost:8080/api/theory/example/keyword/search/${keyword}`;
+    const url: string = `http://14.225.206.14:8081/api/theory/example/keyword/search/${keyword}`;
 
     try {
         const response: Response = await fetch(url, {
@@ -151,7 +151,7 @@ export async function getTheoryByKeywordExample(keyword: string): Promise<Theory
 
 
 export async function getTheoryByKeyword(keyword: string): Promise<TheoryModel | null> {
-    const url: string = `http://localhost:8080/api/theory/keyword/search/${keyword}`;
+    const url: string = `http://14.225.206.14:8081/api/theory/keyword/search/${keyword}`;
 
     try {
         const response: Response = await fetch(url, {

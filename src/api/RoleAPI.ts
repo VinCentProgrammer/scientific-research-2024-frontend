@@ -42,12 +42,12 @@ export async function getRole(url: string): Promise<ResultInterface> {
 }
 
 export async function getRoles(page: number): Promise<ResultInterface> {
-    const url: string = `http://localhost:8080/role?sort=roleId,asc&size=4&page=${page}`;
+    const url: string = `http://14.225.206.14:8081/role?sort=roleId,asc&size=4&page=${page}`;
     return getRole(url);
 }
 
 export async function deleteRole(id: number) {
-    const url: string = `http://localhost:8080/role/${id}`;
+    const url: string = `http://14.225.206.14:8081/role/${id}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -77,7 +77,7 @@ export async function deleteRole(id: number) {
 
 
 export async function getRoleById(id: number): Promise<RoleModel | null> {
-    const url: string = `http://localhost:8080/role/${id}`;
+    const url: string = `http://14.225.206.14:8081/role/${id}`;
     const token = localStorage.getItem('token');
 
     try {

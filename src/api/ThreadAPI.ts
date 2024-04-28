@@ -47,18 +47,18 @@ export async function getThread(url: string): Promise<ResultInterface> {
 }
 
 export async function getThreads(): Promise<ThreadModel[]> {
-    const url: string = `http://localhost:8080/thread`;
+    const url: string = `http://14.225.206.14:8081/thread`;
     return (await getThread(url)).result;
 }
 
 
 export async function getListThread(page: number): Promise<ResultInterface> {
-    const url: string = `http://localhost:8080/thread?sort=threadId,desc&size=4&page=${page}`;
+    const url: string = `http://14.225.206.14:8081/thread?sort=threadId,desc&size=4&page=${page}`;
     return getThread(url);
 }
 
 export async function deleteThread(threadId: number) {
-    const url: string = `http://localhost:8080/thread/${threadId}`;
+    const url: string = `http://14.225.206.14:8081/thread/${threadId}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -88,7 +88,7 @@ export async function deleteThread(threadId: number) {
 
 
 export async function getThreadById(threadId: number): Promise<ThreadModel | null> {
-    const url: string = `http://localhost:8080/thread/${threadId}`;
+    const url: string = `http://14.225.206.14:8081/thread/${threadId}`;
     const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {
@@ -128,7 +128,7 @@ export async function getThreadById(threadId: number): Promise<ThreadModel | nul
 
 
 export async function getThreadByThreadCommentId(commentId: number): Promise<ThreadModel | null> {
-    const url: string = `http://localhost:8080/thread-comment/${commentId}/thread`;
+    const url: string = `http://14.225.206.14:8081/thread-comment/${commentId}/thread`;
     const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {
@@ -168,7 +168,7 @@ export async function getThreadByThreadCommentId(commentId: number): Promise<Thr
 
 
 export async function getThreadByThreadCatId(commentId: number): Promise<ThreadModel | null> {
-    const url: string = `http://localhost:8080/thread-cat/${commentId}/thread`;
+    const url: string = `http://14.225.206.14:8081/thread-cat/${commentId}/thread`;
     const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {

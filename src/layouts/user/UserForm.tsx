@@ -40,7 +40,7 @@ function UserForm() {
     const [errorNoti, setErrorNoti] = useState("");
 
     useEffect(() => {
-        getRole("http://localhost:8080/role")
+        getRole("http://14.225.206.14:8081/role")
             .then(
                 res => {
                     setRoles(res.result);
@@ -69,7 +69,7 @@ function UserForm() {
             const base64Avatar = avatar ? await getBase64(avatar) : null;
 
             const token = localStorage.getItem('token');
-            fetch("http://localhost:8080/api/user/add",
+            fetch("http://14.225.206.14:8081/api/user/add",
                 {
                     method: 'POST',
                     headers: {
@@ -118,7 +118,7 @@ function UserForm() {
     //////////////======CHECK USERNAME========///////////////////
     const checkExistedUsername = async (username: string) => {
         // Endpoint
-        const url = `http://localhost:8080/user/search/existsByUsername?username=${username}`;
+        const url = `http://14.225.206.14:8081/user/search/existsByUsername?username=${username}`;
         // Call API
         try {
             const response = await fetch(url);
@@ -142,7 +142,7 @@ function UserForm() {
     //////////////======CHECK EMAIL ========///////////////////
     const checkExistedEmail = async (email: string) => {
         // Endpoint
-        const url = `http://localhost:8080/user/search/existsByEmail?email=${email}`;
+        const url = `http://14.225.206.14:8081/user/search/existsByEmail?email=${email}`;
         // Call API
         try {
             const response = await fetch(url);

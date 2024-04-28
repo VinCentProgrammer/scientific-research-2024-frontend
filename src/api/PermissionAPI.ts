@@ -43,12 +43,12 @@ export async function getPermission(url: string): Promise<ResultInterface> {
 }
 
 export async function getPermissions(page: number): Promise<ResultInterface> {
-    const url: string = `http://localhost:8080/permission?sort=permissionId,desc&size=8&page=${page}`;
+    const url: string = `http://14.225.206.14:8081/permission?sort=permissionId,desc&size=8&page=${page}`;
     return getPermission(url);
 }
 
 export async function getPermissionsByRoleId(roleId: number): Promise<PermissionModel[]> {
-    const url: string = `http://localhost:8080/role/${roleId}/permissions`;
+    const url: string = `http://14.225.206.14:8081/role/${roleId}/permissions`;
     const result: PermissionModel[] = [];
     const token = localStorage.getItem('token');
 
@@ -84,7 +84,7 @@ export async function getPermissionsByRoleId(roleId: number): Promise<Permission
 
 
 export async function deletePermission(id: number) {
-    const url: string = `http://localhost:8080/permission/${id}`;
+    const url: string = `http://14.225.206.14:8081/permission/${id}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -113,7 +113,7 @@ export async function deletePermission(id: number) {
 
 
 export async function getPermissionById(id: number): Promise<PermissionModel | null> {
-    const url: string = `http://localhost:8080/permission/${id}`;
+    const url: string = `http://14.225.206.14:8081/permission/${id}`;
     const token = localStorage.getItem('token');
 
 

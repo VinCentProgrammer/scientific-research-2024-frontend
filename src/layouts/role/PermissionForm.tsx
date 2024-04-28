@@ -46,7 +46,7 @@ function PermissionForm() {
         // 
         if (permissionName && slug) {
             const token = localStorage.getItem('token');
-            fetch("http://localhost:8080/permission",
+            fetch("http://14.225.206.14:8081/permission",
                 {
                     method: 'POST',
                     headers: {

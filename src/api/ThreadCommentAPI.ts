@@ -45,18 +45,18 @@ export async function getThreadComment(url: string): Promise<ResultInterface> {
 }
 
 export async function getThreadComments(): Promise<ThreadCommentModel[]> {
-    const url: string = `http://localhost:8080/thread-comment`;
+    const url: string = `http://14.225.206.14:8081/thread-comment`;
     return (await getThreadComment(url)).result;
 }
 
 
 export async function getListThreadComment(page: number): Promise<ResultInterface> {
-    const url: string = `http://localhost:8080/thread-comment?sort=commentId,desc&size=8&page=${page}`;
+    const url: string = `http://14.225.206.14:8081/thread-comment?sort=commentId,desc&size=8&page=${page}`;
     return getThreadComment(url);
 }
 
 export async function deleteThreadComment(commentId: number) {
-    const url: string = `http://localhost:8080/thread-comment/${commentId}`;
+    const url: string = `http://14.225.206.14:8081/thread-comment/${commentId}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -86,7 +86,7 @@ export async function deleteThreadComment(commentId: number) {
 
 
 export async function getThreadCommentById(commentId: number): Promise<ThreadCommentModel | null> {
-    const url: string = `http://localhost:8080/thread-comment/${commentId}`;
+    const url: string = `http://14.225.206.14:8081/thread-comment/${commentId}`;
     const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {
@@ -124,7 +124,7 @@ export async function getThreadCommentById(commentId: number): Promise<ThreadCom
 
 export async function getThreadCommentsByThreadId(threadId: number): Promise<ThreadCommentModel[]> {
     const result: ThreadCommentModel[] = [];
-    const url: string = `http://localhost:8080/thread/${threadId}/threadComments`;
+    const url: string = `http://14.225.206.14:8081/thread/${threadId}/threadComments`;
 
     const response: Response = await fetch(url, {
         method: 'GET',
@@ -160,7 +160,7 @@ export async function getThreadCommentsByThreadId(threadId: number): Promise<Thr
 
 export async function getRepliesByThreadId(threadId: number): Promise<number> {
     // let result: number = 0;
-    const url: string = `http://localhost:8080/thread/${threadId}/threadComments`;
+    const url: string = `http://14.225.206.14:8081/thread/${threadId}/threadComments`;
 
     const response: Response = await fetch(url, {
         method: 'GET',

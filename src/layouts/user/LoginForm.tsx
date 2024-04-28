@@ -16,7 +16,7 @@ function LoginForm() {
             password: password
         }
 
-        fetch('http://localhost:8080/api/account/login',
+        fetch('http://14.225.206.14:8081/api/account/login',
             {
                 method: 'POST',
                 headers: {

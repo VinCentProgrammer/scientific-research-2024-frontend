@@ -45,7 +45,7 @@ function RoleFormUpdate() {
     }, [roleId]);
 
     useEffect(() => {
-        getPermission("http://localhost:8080/permission")
+        getPermission("http://14.225.206.14:8081/permission")
             .then((res) => {
                 setPermissions(res.result);
             })
@@ -73,7 +73,7 @@ function RoleFormUpdate() {
         // 
         if (roleName && desc && selectedPermissions) {
             const token = localStorage.getItem('token');
-            fetch(`http://localhost:8080/api/role/update`,
+            fetch(`http://14.225.206.14:8081/api/role/update`,
                 {
                     method: 'PUT',
                     headers: {

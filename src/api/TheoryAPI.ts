@@ -42,7 +42,7 @@ export async function getTheory(url: string): Promise<ResultInterface> {
 
 
 export async function getAllTheories(): Promise<TheoryModel[]> {
-    const url: string = `http://localhost:8080/api/theory`;
+    const url: string = `http://14.225.206.14:8081/api/theory`;
     const result: TheoryModel[] = [];
 
     const response: Response = await fetch(url, {
@@ -76,17 +76,17 @@ export async function getAllTheories(): Promise<TheoryModel[]> {
 
 
 export async function getTheories(): Promise<TheoryModel[]> {
-    const url: string = `http://localhost:8080/theory-detail`;
+    const url: string = `http://14.225.206.14:8081/theory-detail`;
     return (await getTheory(url)).result;
 }
 
 export async function getListTheory(page: number): Promise<ResultInterface> {
-    const url: string = `http://localhost:8080/theory-detail?sort=theoryId,asc&size=8&page=${page}`;
+    const url: string = `http://14.225.206.14:8081/theory-detail?sort=theoryId,asc&size=8&page=${page}`;
     return getTheory(url);
 }
 
 export async function deleteTheory(theoryId: number) {
-    const url: string = `http://localhost:8080/theory-detail/${theoryId}`;
+    const url: string = `http://14.225.206.14:8081/theory-detail/${theoryId}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -116,7 +116,7 @@ export async function deleteTheory(theoryId: number) {
 
 
 export async function getTheoryById(theoryId: number): Promise<TheoryModel | null> {
-    const url: string = `http://localhost:8080/theory-detail/${theoryId}`;
+    const url: string = `http://14.225.206.14:8081/theory-detail/${theoryId}`;
 
     try {
         // Truy vấn đến đường dẫn
@@ -152,7 +152,7 @@ export async function getTheoryById(theoryId: number): Promise<TheoryModel | nul
 
 
 export async function getTheoryByCatId(theoryCatId: number): Promise<TheoryModel | null> {
-    const url: string = `http://localhost:8080/api/theory/cat/${theoryCatId}`;
+    const url: string = `http://14.225.206.14:8081/api/theory/cat/${theoryCatId}`;
 
     try {
         const response: Response = await fetch(url, {

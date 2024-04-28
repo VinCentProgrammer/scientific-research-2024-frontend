@@ -61,7 +61,7 @@ function AdminPostCatForm() {
         // 
         if (postCatName && desc && postCatParentId) {
             const token = localStorage.getItem('token');
-            fetch("http://localhost:8080/post-cat",
+            fetch("http://14.225.206.14:8081/post-cat",
                 {
                     method: 'POST',
                     headers: {

@@ -42,18 +42,18 @@ export async function getThreadCat(url: string): Promise<ResultInterface> {
 }
 
 export async function getThreadCats(): Promise<ThreadCatModel[]> {
-    const url: string = `http://localhost:8080/thread-cat`;
+    const url: string = `http://14.225.206.14:8081/thread-cat`;
     return (await getThreadCat(url)).result;
 }
 
 
 export async function getListThreadCat(page: number): Promise<ResultInterface> {
-    const url: string = `http://localhost:8080/thread-cat?sort=threadCatId,asc&size=8&page=${page}`;
+    const url: string = `http://14.225.206.14:8081/thread-cat?sort=threadCatId,asc&size=8&page=${page}`;
     return getThreadCat(url);
 }
 
 export async function deleteThreadCat(threadCatId: number) {
-    const url: string = `http://localhost:8080/thread-cat/${threadCatId}`;
+    const url: string = `http://14.225.206.14:8081/thread-cat/${threadCatId}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -83,7 +83,7 @@ export async function deleteThreadCat(threadCatId: number) {
 
 
 export async function getThreadCatById(threadCatId: number): Promise<ThreadCatModel | null> {
-    const url: string = `http://localhost:8080/thread-cat/${threadCatId}`;
+    const url: string = `http://14.225.206.14:8081/thread-cat/${threadCatId}`;
     const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {
@@ -118,7 +118,7 @@ export async function getThreadCatById(threadCatId: number): Promise<ThreadCatMo
 
 
 export async function getThreadCatByThreadId(threadId: number): Promise<ThreadCatModel | null> {
-    const url: string = `http://localhost:8080/thread/${threadId}/threadCategory`;
+    const url: string = `http://14.225.206.14:8081/thread/${threadId}/threadCategory`;
     // const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {

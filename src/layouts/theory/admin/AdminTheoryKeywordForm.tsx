@@ -48,7 +48,7 @@ function AdminTheoryKeywordForm() {
         if (keyword && theoryId && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-            fetch("http://localhost:8080/api/theory/keyword/add",
+            fetch("http://14.225.206.14:8081/api/theory/keyword/add",
                 {
                     method: 'POST',
                     headers: {

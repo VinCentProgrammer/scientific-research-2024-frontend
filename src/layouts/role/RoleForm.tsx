@@ -31,7 +31,7 @@ function RoleForm() {
         // 
         if (roleName && desc && selectedPermissions) {
             const token = localStorage.getItem('token');
-            fetch("http://localhost:8080/api/role/add",
+            fetch("http://14.225.206.14:8081/api/role/add",
                 {
                     method: 'POST',
                     headers: {
@@ -89,7 +89,7 @@ function RoleForm() {
     };
 
     useEffect(() => {
-        getPermission("http://localhost:8080/permission")
+        getPermission("http://14.225.206.14:8081/permission")
             .then(
                 res => {
                     setPermissions(res.result);

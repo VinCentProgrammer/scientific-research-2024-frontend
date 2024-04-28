@@ -42,12 +42,12 @@ export async function getPostCat(url: string): Promise<ResultInterface> {
 }
 
 export async function getPostCats(): Promise<PostCatModel[]> {
-    const url: string = `http://localhost:8080/post-cat`;
+    const url: string = `http://14.225.206.14:8081/post-cat`;
     return (await getPostCat(url)).result;
 }
 
 export async function getPostCatByPostId(postId: number): Promise<PostCatModel | null> {
-    const url: string = `http://localhost:8080/post-detail/${postId}/postCategory`;
+    const url: string = `http://14.225.206.14:8081/post-detail/${postId}/postCategory`;
 
     try {
         const response: Response = await fetch(url, {
@@ -81,12 +81,12 @@ export async function getPostCatByPostId(postId: number): Promise<PostCatModel |
 
 
 export async function getListPostCat(page: number): Promise<ResultInterface> {
-    const url: string = `http://localhost:8080/post-cat?sort=postCatId,desc&size=8&page=${page}`;
+    const url: string = `http://14.225.206.14:8081/post-cat?sort=postCatId,desc&size=8&page=${page}`;
     return getPostCat(url);
 }
 
 export async function deletePostCat(postCatId: number) {
-    const url: string = `http://localhost:8080/post-cat/${postCatId}`;
+    const url: string = `http://14.225.206.14:8081/post-cat/${postCatId}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -115,7 +115,7 @@ export async function deletePostCat(postCatId: number) {
 
 
 export async function getPostCatById(postCatId: number): Promise<PostCatModel | null> {
-    const url: string = `http://localhost:8080/post-cat/${postCatId}`;
+    const url: string = `http://14.225.206.14:8081/post-cat/${postCatId}`;
     const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {

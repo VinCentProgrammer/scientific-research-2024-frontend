@@ -56,7 +56,7 @@ function UserFormUpdate() {
     }, [userId]);
 
     useEffect(() => {
-        getRole("http://localhost:8080/role")
+        getRole("http://14.225.206.14:8081/role")
             .then(
                 res => {
                     setRoles(res.result);
@@ -106,7 +106,7 @@ function UserFormUpdate() {
         if (isUsernameValid && isEmailValid) {
 
             const token = localStorage.getItem('token');
-            fetch("http://localhost:8080/api/user/update",
+            fetch("http://14.225.206.14:8081/api/user/update",
                 {
                     method: 'PUT',
                     headers: {
@@ -154,7 +154,7 @@ function UserFormUpdate() {
     //////////////======CHECK USERNAME========///////////////////
     const checkExistedUsername = async (username: string) => {
         // Endpoint
-        const url = `http://localhost:8080/user/search/existsByUsername?username=${username}`;
+        const url = `http://14.225.206.14:8081/user/search/existsByUsername?username=${username}`;
         // Call API
         try {
             const response = await fetch(url);
@@ -178,7 +178,7 @@ function UserFormUpdate() {
     //////////////======CHECK EMAIL ========///////////////////
     const checkExistedEmail = async (email: string) => {
         // Endpoint
-        const url = `http://localhost:8080/user/search/existsByEmail?email=${email}`;
+        const url = `http://14.225.206.14:8081/user/search/existsByEmail?email=${email}`;
         // Call API
         try {
             const response = await fetch(url);

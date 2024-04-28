@@ -95,7 +95,7 @@ function AdminTheoryCatFormUpdate() {
         if (name && shortDesc && theoryParentCatId && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-            fetch(`http://localhost:8080/api/theory/cat/update`,
+            fetch(`http://14.225.206.14:8081/api/theory/cat/update`,
                 {
                     method: 'PUT',
                     headers: {

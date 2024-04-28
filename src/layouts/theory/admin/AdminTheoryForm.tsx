@@ -63,7 +63,7 @@ function AdminTheoryForm() {
         if (title && content && theoryCatId && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-            fetch("http://localhost:8080/api/theory/add",
+            fetch("http://14.225.206.14:8081/api/theory/add",
                 {
                     method: 'POST',
                     headers: {

@@ -80,7 +80,7 @@ function AdminThreadCatFormUpdate() {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
 
-            fetch("http://localhost:8080/api/thread/cat/update",
+            fetch("http://14.225.206.14:8081/api/thread/cat/update",
                 {
                     method: 'PUT',
                     headers: {

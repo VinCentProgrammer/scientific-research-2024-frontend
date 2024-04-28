@@ -15,7 +15,7 @@ function ActiveAccount() {
 
     const activeAccount = async () => {
         try {
-            const url: string = `http://localhost:8080/api/account/active?email=${email}&activeCode=${activeCode}`;
+            const url: string = `http://14.225.206.14:8081/api/account/active?email=${email}&activeCode=${activeCode}`;
             const response = await fetch(url, { method: 'GET' })
             if (response.ok) {
                 setActive(true);
