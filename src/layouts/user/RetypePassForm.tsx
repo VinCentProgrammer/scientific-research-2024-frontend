@@ -26,7 +26,7 @@ function RetypePassForm() {
         if (isPasswordValid && isRePasswordValid) {
 
             try {
-                const url = 'http://localhost:8080/account/update-password';
+                const url = 'http://localhost:8080/api/account/update-password';
 
                 const response = await fetch(url, {
                     method: 'PUT',
@@ -41,13 +41,13 @@ function RetypePassForm() {
                 );
 
                 if (response.ok) {
-                    setNotification("Cập nhật mật khẩu mới thành công!");
+                    setNotification("New password updated successfully!!");
                 } else {
                     console.log(response.json());
-                    setNotification("Cập nhật mật khẩu không thành công.")
+                    setNotification("Password update failed.")
                 }
             } catch (error) {
-                setNotification("Cập nhật mật khẩu không thành công.")
+                setNotification("Password update failed.")
             }
         }
 
@@ -93,7 +93,7 @@ function RetypePassForm() {
         <form className="mx-1 mx-md-4" onSubmit={handleSubmit}>
             {/* Password new */}
             <div className="d-flex flex-row align-items-center mb-4  text-start">
-                <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i>
+                {/* <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i> */}
                 <div className="form-outline flex-fill mb-0">
                     <label className="form-label" htmlFor="password">New Password<span className="text-danger">(*)</span>
                         <span style={{ color: "red", marginLeft: '10px' }}>{errorPassword}</span>
@@ -107,9 +107,9 @@ function RetypePassForm() {
 
             {/* Retype Password new */}
             <div className="d-flex flex-row align-items-center mb-4  text-start">
-                <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i>
+                {/* <i className="fa-solid fa-key fa-lg me-3 fa-fw"></i> */}
                 <div className="form-outline flex-fill mb-0">
-                    <label className="form-label" htmlFor="rePassword">New Password<span className="text-danger">(*)</span>
+                    <label className="form-label" htmlFor="rePassword">Retype New Password<span className="text-danger">(*)</span>
                         <span style={{ color: "red", marginLeft: '10px' }}>{errorRePassword}</span>
                     </label>
                     <input type="password" id="rePassword"
@@ -119,10 +119,11 @@ function RetypePassForm() {
                 </div>
             </div>
 
-            <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
-                <button type="submit" className="btn btn-primary" >Save</button>
+            <div className="text-end">
+                <button type="submit" className="btn btn-primary w-100" >Save</button>
             </div>
-            <div style={{ color: "green" }}>{notification}</div>
+
+            <div style={{ color: "green", marginTop: '10px' }}>{notification}</div>
         </form>
     )
 }

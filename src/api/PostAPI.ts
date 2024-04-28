@@ -1,3 +1,4 @@
+import PostCatModel from "../models/PostCatModel";
 import PostModel from "../models/PostModel";
 
 interface ResultInterface {
@@ -10,7 +11,7 @@ export async function getPost(url: string): Promise<ResultInterface> {
     const result: PostModel[] = [];
     const token = localStorage.getItem('token');
     // console.log(token);
-    
+
 
     const response: Response = await fetch(url, {
         method: 'GET',
@@ -55,6 +56,40 @@ export async function getPosts(): Promise<PostModel[]> {
 export async function getListPost(page: number): Promise<ResultInterface> {
     const url: string = `http://localhost:8080/post-detail?sort=postId,desc&size=9&page=${page}`;
     return getPost(url);
+}
+
+export async function getPostsByPostCatId(postCatId: number): Promise<PostModel[] | null> {
+    const url: string = `http://localhost:8080/post-cat/${postCatId}/posts`;
+    const result: PostModel[] = [];
+
+    const response: Response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    const responseData = await response.json(); // Phải await để chờ dữ liệu JSON được trả về
+
+    if (!response.ok) {
+        throw new Error(`Error ${response.status}: ${responseData.message}`);
+    }
+
+    responseData._embedded.postDetails.forEach((postData: any) => {
+        result.push({
+            postId: postData.postId,
+            title: postData.title,
+            detail: postData.detail,
+            thumbnail: postData.thumbnail,
+            desc: postData.desc,
+            postCatId: postData.postCatId,
+            userId: postData.userId,
+            createdAt: postData.createdAt,
+            updatedAt: postData.updatedAt,
+        });
+    });
+
+    return result;
 }
 
 export async function deletePost(postId: number) {

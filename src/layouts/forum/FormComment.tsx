@@ -34,22 +34,31 @@ const FormComment: React.FC<FormCommentProps> = (props) => {
 
     return (
         <div className="d-flex flex-row add-comment-section mt-4 mb-4">
-            <div className="col-md-1 m-2" >
-                <img className="img-fluid img-responsive rounded-circle mr-2" src={user?.avatar} width={50} height={50}/>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-2" >
+                        <img className="img-fluid img-responsive rounded-circle m-2" src={user?.avatar} width={50} height={50} />
+                    </div>
+                    <div className="col-md-10">
+                        <textarea
+                            className="form-control mr-3 mx-2"
+                            placeholder="Add comment"
+                            value={props.comment}
+                            onChange={(e) => props.setComment(e.target.value)}
+                            rows={5}
+                            cols={20}
+                        />
+                    </div>
+                </div>
+
+                <div className="row mt-2 text-end">
+                    <div className="col-md-2"></div>
+                    <div className="col-md-10">
+                        <button className="btn btn-primary" onClick={props.handleSubmit} type="submit">Comment</button>
+                    </div>
+                </div>
             </div>
-            <div className="col-md-10">
-                <textarea
-                    className="form-control mr-3 mx-2"
-                    placeholder="Add comment"
-                    value={props.comment}
-                    onChange={(e) => props.setComment(e.target.value)}
-                    rows={5}
-                    cols={80}
-                />
-            </div>
-            <div className="col-md-1 m-4">
-                <button className="btn btn-primary" onClick={props.handleSubmit} type="submit">Comment</button>
-            </div>
+
         </div>
     )
 }

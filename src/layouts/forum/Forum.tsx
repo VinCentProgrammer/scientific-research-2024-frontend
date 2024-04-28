@@ -54,27 +54,23 @@ function Forum() {
     return (
         <div className="container text-start my-4 rounded-2" id="forum" style={{ minHeight: '700px' }}>
             <ScrollToTopButton />
-            <div className="row">
-                <div className="col-lg-12">
-                    <div className="row">
-                        <div className="col-lg-6 text-start">
-                            <h2 className="mb-4 mx-2">Recent Threads</h2>
-                        </div>
-                        <div className="col-lg-6 text-end">
-                            <NavLink className="btn btn-block btn-success rounded-2 py-3 mb-3 bg-op-6 roboto-bold" to="/forum/quesion/add">Ask Question</NavLink>
-                        </div>
-                    </div>
-                    {
-                        threads?.map((thread) => (
-                            <ThreadItem thread={thread} />
-                        ))
-                    }
-
-                    <nav aria-label="Page navigation example">
-                        <Pagination currentPage={currPage} totalPages={totalPages} paginate={paginate} />
-                    </nav>
+            <div className="row mb-2 px-2" style={{alignItems: 'center'}}>
+                <div className="col-md-6 text-start">
+                    <h3 className="">Recent Threads</h3>
+                </div>
+                <div className="col-md-6 text-end">
+                    <NavLink className="btn btn-success rounded-2  roboto-bold" to="/forum/quesion/add">Ask Question</NavLink>
                 </div>
             </div>
+            {
+                threads?.map((thread) => (
+                    <ThreadItem thread={thread} />
+                ))
+            }
+
+            <nav aria-label="Page navigation example">
+                <Pagination currentPage={currPage} totalPages={totalPages} paginate={paginate} />
+            </nav>
         </div>
     )
 }

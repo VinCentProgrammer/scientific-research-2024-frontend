@@ -2,6 +2,7 @@ import Quote from './components/Quote';
 import Banner from './components/Banner';
 import Post from '../post/Post';
 import ScrollToTopButton from '../../utils/scroll/ScrollToTopButton';
+import Forum from '../forum/Forum';
 
 
 function HomePage() {
@@ -11,6 +12,7 @@ function HomePage() {
                 <Banner />
             </header>
             <Quote />
+            <Forum/>
             <Post />
             <ScrollToTopButton />
         </div >

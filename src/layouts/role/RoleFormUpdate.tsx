@@ -73,7 +73,7 @@ function RoleFormUpdate() {
         // 
         if (roleName && desc && selectedPermissions) {
             const token = localStorage.getItem('token');
-            fetch(`http://localhost:8080/role/update`,
+            fetch(`http://localhost:8080/api/role/update`,
                 {
                     method: 'PUT',
                     headers: {

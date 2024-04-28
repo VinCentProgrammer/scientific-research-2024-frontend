@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getThreadById } from "../../api/ThreadAPI";
 import ThreadModel from "../../models/ThreadModel";
-import calculateTimeDifference from "../../utils/datetime/calculateTimeDifference ";
 import UserModel from "../../models/UserModel";
 import { getUserByThreadId } from "../../api/UserAPI";
 import ThreadCatModel from "../../models/ThreadCatModel";
@@ -15,7 +14,6 @@ import { jwtDecode } from "jwt-decode";
 import JwtPayload from "../../models/JwtPayLoad";
 import capitalize from "../../utils/string/CapitalizeString";
 import ThreadImageModel from "../../models/ThreadImageModel";
-import { getThreadImageByThreadId } from "../../api/ThreadImageAPI";
 import UserLoginRequire from "../require/UserLoginRequire";
 
 function ThreadDetail() {
@@ -29,7 +27,6 @@ function ThreadDetail() {
     const [commentString, setCommentString] = useState<string>('');
     const [votesIncrease, setVotesIncrease] = useState<boolean>(true);
     const [votesDecrease, setVotesDecrease] = useState<boolean>(true);
-    const [threadImage, setThreadImage] = useState<ThreadImageModel[] | null>(null);
 
     let threadId = 0;
     try {
@@ -94,16 +91,16 @@ function ThreadDetail() {
             });
     }, [threadId]);
 
-    useEffect(() => {
-        getThreadImageByThreadId(threadId)
-            .then(
-                result => {
-                    setThreadImage(result);
-                }
-            ).catch(error => {
-                console.error('Error fetching user data:', error);
-            });
-    }, [threadId]);
+    // useEffect(() => {
+    //     getThreadImageByThreadId(threadId)
+    //         .then(
+    //             result => {
+    //                 setThreadImage(result);
+    //             }
+    //         ).catch(error => {
+    //             console.error('Error fetching user data:', error);
+    //         });
+    // }, [threadId]);
 
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -272,9 +269,9 @@ function ThreadDetail() {
 
                             <div className="col-md-10">
                                 <div className="p-5">
-                                    {
+                                    {/* {
                                         threadImage && <img className="text-center" style={{ maxWidth: '500px' }} src={threadImage[0].path} />
-                                    }
+                                    } */}
                                     <p style={{ margin: "5px 20px" }}>{thread?.detailQuestion}</p>
                                 </div>
                             </div>

@@ -48,7 +48,6 @@ export async function getPostCats(): Promise<PostCatModel[]> {
 
 export async function getPostCatByPostId(postId: number): Promise<PostCatModel | null> {
     const url: string = `http://localhost:8080/post-detail/${postId}/postCategory`;
-    // const token = localStorage.getItem('token');
 
     try {
         const response: Response = await fetch(url, {

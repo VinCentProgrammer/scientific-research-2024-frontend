@@ -87,44 +87,31 @@ function PostDetail() {
     return (
         <section className="py-4 text-start">
             <ScrollToTopButton />
-            <div className="container px-5">
+            <div className="container px-5" style={{ minHeight: '700px' }}>
                 <div className="row gx-5">
-                    <div className="col-lg-2">
-                        <div className="d-flex align-items-center mt-lg-5 mb-4">
-                            <img className="img-fluid rounded-circle" src={user?.avatar} alt="..." style={{ maxWidth: '80px' }} />
-                            <div className="ms-3">
-                                <div className="fw-bold">Admin</div>
-                                <div className="text-muted">System management</div>
+                    <article style={{ minHeight: '500px' }}>
+                        <header className="mb-4">
+                            <h1 className="fw-bolder mb-1">{post?.title}</h1>
+                            <div className="text-muted fst-italic mb-2">{post && formatDateTimeUserVer2(post?.createdAt)}</div>
+                            <a className="badge bg-secondary text-decoration-none link-light" href="#">{postCat?.postCatName}</a>
+                        </header>
+                        <section className="mb-5">
+                            {post && <div dangerouslySetInnerHTML={{ __html: post?.detail }} />}
+                        </section>
+
+                    </article>
+                    <section>
+                        <div className="card bg-light">
+                            <div className="card-body">
+                                <form className="mb-4">
+                                    <textarea className="form-control" placeholder="Join the discussion and leave a comment!"></textarea>
+                                    <div className="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
+                                        <button className="btn btn-primary me-md-2 w-100" type="button">Comment</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-lg-10">
-                        <article>
-                            <header className="mb-4">
-                                <h1 className="fw-bolder mb-1">{post?.title}</h1>
-                                <div className="text-muted fst-italic mb-2">{post && formatDateTimeUserVer2(post?.createdAt)}</div>
-                                <a className="badge bg-secondary text-decoration-none link-light" href="#">{postCat?.postCatName}</a>
-                            </header>
-                            {/* <figure className="mb-4"><img className="img-fluid rounded" src={post?.thumbnail} alt="..." /></figure> */}
-
-                            <section className="mb-5">
-                                {post && <div dangerouslySetInnerHTML={{ __html: post?.detail }} />}
-                            </section>
-
-                        </article>
-                        <section>
-                            <div className="card bg-light">
-                                <div className="card-body">
-                                    <form className="mb-4">
-                                        <textarea className="form-control" placeholder="Join the discussion and leave a comment!"></textarea>
-                                        <div className="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
-                                            <button className="btn btn-primary me-md-2 w-100" type="button">Comment</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
+                    </section>
                 </div>
             </div>
         </section>
