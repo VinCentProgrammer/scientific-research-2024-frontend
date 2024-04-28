@@ -345,7 +345,7 @@ ul#sidebar-menu * {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 0 solid rgba(0, 0, 0, 0.125);
+  border: 1px solid #dbdbdb;
   border-radius: 0.25rem;
 }
 

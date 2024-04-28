@@ -13,7 +13,7 @@ function ForumFormQuestion() {
     const [shortQuestion, setShortQuestion] = useState<string>('');
     const [detailQuestion, setDetailQuestion] = useState<string>('');
     const [threadCatId, setThreadCatId] = useState<number>(0);
-    const [img, setImg] = useState<File | null>(null);
+    // const [img, setImg] = useState<File | null>(null);
 
     const [errorShortQuestion, setErrorShortQuestion] = useState<string>('');
     const [errorDetailQuestion, setErrorDetailQuestion] = useState<string>('');
@@ -30,8 +30,6 @@ function ForumFormQuestion() {
                 }
             )
     }, [])
-
-
 
     const handleOnChangeShortQuestion = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value) {
@@ -64,12 +62,12 @@ function ForumFormQuestion() {
         }
     }
 
-    const handleImageOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            const file = e.target.files[0];
-            setImg(file);
-        }
-    };
+    // const handleImageOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (e.target.files) {
+    //         const file = e.target.files[0];
+    //         setImg(file);
+    //     }
+    // };
 
     const handleSubmit = async (e: React.FormEvent) => {
         // Clear 
@@ -82,7 +80,7 @@ function ForumFormQuestion() {
 
         const token = localStorage.getItem('token');
         if (shortQuestion && detailQuestion && threadCatId && token) {
-            const base64Image = img ? await getBase64(img) : null;
+            // const base64Image = img ? await getBase64(img) : null;
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
 
@@ -117,33 +115,33 @@ function ForumFormQuestion() {
                 } else {
                     setErrorNoti("An error occurred while adding!");
                 }
+                // })
+                //     .then((data) => {
+                //         fetch("http://localhost:8080/api/thread/image/add",
+                //             {
+                //                 method: 'POST',
+                //                 headers: {
+                //                     'Content-Type': 'application/json',
+                //                     'Authorization': `Bearer ${token}`
+                //                 },
+                //                 body: JSON.stringify({
+                //                     imgId: 0,
+                //                     name: img?.name,
+                //                     path: base64Image,
+                //                     threadId: data,
+                //                     createdAt: '',
+                //                     updatedAt: '',
+                //                 })
+                //             }
+                //         ).then((response) => {
+                //             if (response.ok) {
+                //                 setSuccessNoti("Added successfully!");
+                //             } else {
+                //                 setErrorNoti("An error occurred while adding!");
+                //             }
+                //         })
+                //     })
             })
-                .then((data) => {
-                    fetch("http://localhost:8080/api/thread/image/add",
-                        {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token}`
-                            },
-                            body: JSON.stringify({
-                                imgId: 0,
-                                name: img?.name,
-                                path: base64Image,
-                                threadId: data,
-                                createdAt: '',
-                                updatedAt: '',
-                            })
-                        }
-                    ).then((response) => {
-                        if (response.ok) {
-                            setSuccessNoti("Added successfully!");
-
-                        } else {
-                            setErrorNoti("An error occurred while adding!");
-                        }
-                    })
-                })
         }
     }
 
@@ -203,7 +201,7 @@ function ForumFormQuestion() {
                                             </select>
                                         </div>
 
-                                        <div className="d-flex flex-row align-items-center my-4 text-start">
+                                        {/* <div className="d-flex flex-row align-items-center my-4 text-start">
                                             <div className="form-outline flex-fill mb-0">
                                                 <label className="form-label" htmlFor="avatar">Image</label>
                                                 <input type="file" id="avatar" className="form-control"
@@ -211,17 +209,19 @@ function ForumFormQuestion() {
                                                     onChange={handleImageOnChange}
                                                 />
                                             </div>
-                                        </div>
+                                        </div> */}
+
+                                        {successNoti && <div className="text-success text-center mt-2">{successNoti}</div>}
+                                        {errorNoti && <div className="text-danger">{errorNoti}</div>}
 
                                         <div>
-                                            {
-                                                successNoti && <NavLink to='/forum' className="btn btn-info btn-sm w-25 col-md-6 mx-4 mt-4">View forum</NavLink>
-                                            }
                                             <button type="submit" className="btn btn-primary btn-sm w-100 col-md-6 mt-4">Add New</button>
+                                            {
+                                                successNoti && <NavLink to='/forum' className="btn btn-success btn-sm w-100 col-md-6 mt-4">View forum</NavLink>
+                                            }
                                         </div>
 
-                                        {successNoti && <div className="text-success">{successNoti}</div>}
-                                        {errorNoti && <div className="text-danger">{errorNoti}</div>}
+
                                     </form>
                                 </div>
                             </div>

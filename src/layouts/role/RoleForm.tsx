@@ -31,7 +31,7 @@ function RoleForm() {
         // 
         if (roleName && desc && selectedPermissions) {
             const token = localStorage.getItem('token');
-            fetch("http://localhost:8080/role/add",
+            fetch("http://localhost:8080/api/role/add",
                 {
                     method: 'POST',
                     headers: {
