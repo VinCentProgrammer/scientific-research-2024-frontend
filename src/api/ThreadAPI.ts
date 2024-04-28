@@ -53,7 +53,7 @@ export async function getThreads(): Promise<ThreadModel[]> {
 
 
 export async function getListThread(page: number): Promise<ResultInterface> {
-    const url: string = `http://14.225.206.14:8081/thread?sort=threadId,desc&size=4&page=${page}`;
+    const url: string = `http://14.225.206.14:8081/thread?sort=threadId,desc&size=5&page=${page}`;
     return getThread(url);
 }
 

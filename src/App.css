@@ -113,9 +113,10 @@ a:hover {
   padding-left: 15rem;
 }
 
-#content {
-  padding-top: 20px;
-  padding-bottom: 20px;
+#content img{
+  max-width: 100%;
+  height: auto;
+  padding: 5px;
 }
 
 #content .card-header {
@@ -378,4 +379,10 @@ ul#sidebar-menu * {
 }
 .shadow-none {
   box-shadow: none !important;
+}
+
+
+#post-detail img{
+  max-width: 100%;
+  height: auto;
 }

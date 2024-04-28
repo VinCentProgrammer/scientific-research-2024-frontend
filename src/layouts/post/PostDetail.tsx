@@ -88,9 +88,9 @@ function PostDetail() {
         <section className="py-4 text-start">
             <ScrollToTopButton />
             <div className="container px-5" style={{ minHeight: '700px' }}>
-                <div className="row gx-5">
+                <div className="row gx-5" id="post-detail">
                     <article style={{ minHeight: '500px' }}>
-                        <header className="mb-4">
+                        <header className="mb-4 text-center">
                             <h1 className="fw-bolder mb-1">{post?.title}</h1>
                             <div className="text-muted fst-italic mb-2">{post && formatDateTimeUserVer2(post?.createdAt)}</div>
                             <a className="badge bg-secondary text-decoration-none link-light" href="#">{postCat?.postCatName}</a>

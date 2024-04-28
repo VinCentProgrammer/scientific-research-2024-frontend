@@ -62,7 +62,7 @@ function Theory() {
             <ScrollToTopButton />
             <div className="container mt-4">
                 <div className="row">
-                    <div className="col-md-3" style={{width: '21%'}}>
+                    <div className="col-md-3 mb-2">
                         <div className="form-group">
                             <select className="form-control" id=""
                                 value={checkSearchExercise}
@@ -73,7 +73,7 @@ function Theory() {
                             </select>
                         </div>
                     </div>
-                    <div className="col-md-9" style={{width: '79%'}}>
+                    <div className="col-md-9">
                         <div className="row">
                             <form className="d-flex" onSubmit={handleClickBtnSearch}>
                                 <textarea
@@ -89,25 +89,23 @@ function Theory() {
                                     type="button"
                                     onClick={handleClickBtnSearch}
                                 >Search</button>
-
                             </form>
                         </div>
                     </div>
                 </div>
 
                 <div className="row mt-4">
-                    <div className="col-md-2 mr-2">
+                    <div className="col-md-3" style={{ marginBottom: '20px' }}>
                         <SidebarMenu />
                     </div>
-                    <div className="col-md-10">
+                    <div className="col-md-9">
                         <div id="content" style={{
                             textAlign: 'left', background: '#f4f4f4',
                             borderRadius: '10px',
-                            padding: '25px',
+                            padding: '20px',
                             minHeight: '700px',
                             marginBottom: '40px',
-                            fontFamily: 'Roboto', 
-                            marginLeft: '53px'
+                            fontFamily: 'Roboto',
                         }} className="">
 
                             {
@@ -135,7 +133,7 @@ function Theory() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

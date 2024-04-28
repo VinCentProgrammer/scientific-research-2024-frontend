@@ -26,16 +26,17 @@ const PostItem: React.FC<PostItemInterface> = (props) => {
                 <NavLink to={`/post/${props.post.postId}`}>
                     <img className="card-img-top" src={props.post.thumbnail} alt="..." style={{ height: "400px" }} />
                 </NavLink>
-                <div className="card-body p-4">
+                <div className="card-body py-2 px-3">
                     <div className="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
                     <div className="badge bg-primary bg-gradient rounded-pill mb-2">{postCatName}</div>
-                    <NavLink className="text-decoration-none link-dark stretched-link" to={`/post/${props.post.postId}`}><h5 className="card-title mb-3">{props.post.title}</h5></NavLink>
+                    <NavLink className="text-decoration-none link-dark stretched-link" to={`/post/${props.post.postId}`}>
+                        <h5 className="card-title mb-2">{props.post.title}</h5></NavLink>
                     <p className="card-text mb-0">{props.post.desc}</p>
                 </div>
                 <div className="card-footer p-4 pt-0 bg-transparent border-top-0">
                     <div className="d-flex align-items-end justify-content-between">
                         <div className="d-flex align-items-center">
-                            <img className="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                            <img className="rounded-circle me-3"  src={'./../../../images/avatar.jpg'} alt="..." width={40}/>
                             <div className="small">
                                 <div className="fw-bold">Admin</div>
                                 <div className="text-muted">{formatDateTimeUser(props.post.createdAt)}</div>

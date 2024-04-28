@@ -1,7 +1,7 @@
 function About() {
     return (
         <div>
-            <section className="py-5 bg-light" style={{minHeight: '700px'}}>
+            <section className="" style={{minHeight: '700px'}}>
                 <div className="container px-5 my-5">
                     <div className="text-center">
                         <h2 className="fw-bolder">Our team</h2>

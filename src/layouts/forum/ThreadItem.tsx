@@ -63,20 +63,23 @@ const ThreadItem: React.FC<ThreadRowProps> = (props) => {
                 })
             }
         )
-        
+
     }
 
     return (
         <div className="card row-hover pos-relative py-2 px-4 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-1">
             <div className="row align-items-center">
-                <div className="col-md-8 mb-3 mb-sm-0">
+                <div className="col-md-8 mb-sm-0">
                     <h5>
-                        <NavLink onClick={handleIncreaseViews} to={`/thread/${props.thread.threadId}`} className="text-primary text-decoration-none">{props.thread.shortQuestion}</NavLink>
+                        <NavLink className="icon-link icon-link-hover" to={`/thread/${props.thread.threadId}`} onClick={handleIncreaseViews}>
+                            {props.thread.shortQuestion}
+                            <svg className="bi" aria-hidden="true"><use href="#arrow-right"></use></svg>
+                        </NavLink>
                     </h5>
                     <p className="text-sm my-0"><span className="op-6 fst-italic">Posted {calculateTimeDifference(props.thread.createdAt)} by </span>
                         <a className="badge bg-primary bg-gradient rounded-pill mb-2" href="#">{user?.username}</a></p>
                     <div className="text-sm op-5">
-                        <a className="badge bg-warning bg-gradient rounded-pill mb-2" href="#">{threadCat?.name}</a>
+                        <a className="badge bg-secondary bg-gradient rounded-pill mb-2" href="#">{threadCat?.name}</a>
                     </div>
                 </div>
                 <div className="col-md-4 op-7">

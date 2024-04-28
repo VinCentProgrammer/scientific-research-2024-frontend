@@ -31,17 +31,14 @@ const CommentItem: React.FC<CommentItemProps> = (props) => {
             <div className="d-flex flex-row align-items-center commented-user">
                 <img className="img-fluid img-responsive rounded-circle mr-2" src={user?.avatar} width="38" />
                 <h5 className="mx-3">{user && capitalize(user?.username)}</h5>
-                <span className=" dot"></span>
+                <span className="dot"></span>
                 <span className="mb-1 ml-2 mx-2 fst-italic">Commented {calculateTimeDifference(props.comment.createdAt)}</span>
             </div>
-            <div className="comment-text-sm" style={{ padding: '5px 5px 5px 40px' }}>
+            <div className="comment-text-sm" style={{ margin: '2px 58px' }}>
                 <span>{props.comment.comment}</span>
             </div>
-            {/* <div className="reply-section text-end ">
-                <button className="mx-2 mt-1 btn btn-outline-primary">Reply</button>
-            </div> */}
             <hr />
-        </div>
+        </div >
     )
 }
 

@@ -52,13 +52,13 @@ function Forum() {
     }
 
     return (
-        <div className="container text-start my-4 rounded-2" id="forum" style={{ minHeight: '700px' }}>
+        <div className="container text-start rounded-2" id="forum">
             <ScrollToTopButton />
             <div className="row mb-2 px-2" style={{alignItems: 'center'}}>
-                <div className="col-md-6 text-start">
+                <div className="col-md-6 col-sm-4 text-start w-50">
                     <h3 className="">Recent Threads</h3>
                 </div>
-                <div className="col-md-6 text-end">
+                <div className="col-md-6 col-sm-4 text-end w-50">
                     <NavLink className="btn btn-success rounded-2  roboto-bold" to="/forum/quesion/add">Ask Question</NavLink>
                 </div>
             </div>

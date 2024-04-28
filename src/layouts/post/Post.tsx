@@ -51,7 +51,7 @@ function Post() {
                         borderRadius: '8px'
                     }}>
                     {postCat.postCatName}</h2>
-                <div className="row gx-5">
+                <div className="row gx-5 mx-2">
                     {posts?.map((post) => (
                         <PostItem key={post.postId} post={post} />
                     ))}

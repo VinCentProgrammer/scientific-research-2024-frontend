@@ -146,62 +146,61 @@ function ForumFormQuestion() {
     }
 
     return (
-        <div className="container text-start my-4 rounded-2" id="forum" style={{ minHeight: '650px' }}>
-            <NavLink to="/forum" className="mx-4 text-decoration-none text-danger fs-3 font-weight-bold">
-                <i className="bi bi-arrow-left"></i>
-            </NavLink>
+        <div className="container text-start my-4 mx-auto px-2">
             <div className="row">
-                <div id="layoutSidenav_content" className="col-md-12">
-                    <main>
-                        <div id="content" className="container-fluid">
-                            <div className="card">
-                                <div className="card-header font-weight-bold" style={{ fontWeight: 'bold' }}>
-                                    Add Question
-                                </div>
-                                <div className="card-body">
-                                    <form onSubmit={handleSubmit}>
-                                        <div className="form-group">
-                                            <label htmlFor="title">Short Question
-                                                <span className="text-danger">(*) {errorShortQuestion}</span>
-                                            </label>
-                                            <input className="form-control" type="text" name="name" id="title"
-                                                value={shortQuestion}
-                                                onChange={handleOnChangeShortQuestion}
-                                            />
-                                        </div>
+                <NavLink to="/forum" className="mx-2 text-decoration-none text-danger fs-2">
+                    <i className="bi bi-arrow-left"></i>
+                </NavLink>
+            </div>
+            <div className="row mx-2">
+                <div className="card bg-light">
+                    <div className="card-header font-weight-bold" style={{ fontWeight: 'bold' }}>
+                        Add Question
+                    </div>
+                    <div className="card-body">
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="title">Short Question
+                                    <span className="text-danger">(*) {errorShortQuestion}</span>
+                                </label>
+                                <input className="form-control" type="text" name="name" id="title"
+                                    value={shortQuestion}
+                                    onChange={handleOnChangeShortQuestion}
+                                />
+                            </div>
 
-                                        <div className="form-group mt-2">
-                                            <label htmlFor="detail">Detail Question
-                                                <span className="text-danger">(*) {errorDetailQuestion}</span>
-                                            </label>
-                                            <textarea
-                                                className="form-control"
-                                                value={detailQuestion}
-                                                onChange={handleOnChangeDetailQuestion}
-                                                rows={11}
-                                                cols={80}
-                                            />
-                                        </div>
+                            <div className="form-group mt-2">
+                                <label htmlFor="detail">Detail Question
+                                    <span className="text-danger">(*) {errorDetailQuestion}</span>
+                                </label>
+                                <textarea
+                                    className="form-control"
+                                    value={detailQuestion}
+                                    onChange={handleOnChangeDetailQuestion}
+                                    rows={11}
+                                    cols={80}
+                                />
+                            </div>
 
-                                        <div className="form-group mt-2">
-                                            <label htmlFor="">Belong to Category <span className="text-danger">(*) {errorThreadCatId}</span></label>
-                                            <select className="form-control" id=""
-                                                value={threadCatId}
-                                                onChange={handleThreadCatId}
-                                            >
-                                                <option value={0}>Choose</option>
-                                                {
-                                                    threadCats.map((threadCat) => (
-                                                        <option
-                                                            key={threadCat.threadCatId}
-                                                            value={threadCat.threadCatId}
-                                                        >{threadCat.name}</option>
-                                                    ))
-                                                }
-                                            </select>
-                                        </div>
+                            <div className="form-group mt-2">
+                                <label htmlFor="">Belong to Category <span className="text-danger">(*) {errorThreadCatId}</span></label>
+                                <select className="form-control" id=""
+                                    value={threadCatId}
+                                    onChange={handleThreadCatId}
+                                >
+                                    <option value={0}>Choose</option>
+                                    {
+                                        threadCats.map((threadCat) => (
+                                            <option
+                                                key={threadCat.threadCatId}
+                                                value={threadCat.threadCatId}
+                                            >{threadCat.name}</option>
+                                        ))
+                                    }
+                                </select>
+                            </div>
 
-                                        {/* <div className="d-flex flex-row align-items-center my-4 text-start">
+                            {/* <div className="d-flex flex-row align-items-center my-4 text-start">
                                             <div className="form-outline flex-fill mb-0">
                                                 <label className="form-label" htmlFor="avatar">Image</label>
                                                 <input type="file" id="avatar" className="form-control"
@@ -211,24 +210,21 @@ function ForumFormQuestion() {
                                             </div>
                                         </div> */}
 
-                                        {successNoti && <div className="text-success text-center mt-2">{successNoti}</div>}
-                                        {errorNoti && <div className="text-danger">{errorNoti}</div>}
+                            {successNoti && <div className="text-success text-center mt-2">{successNoti}</div>}
+                            {errorNoti && <div className="text-danger">{errorNoti}</div>}
 
-                                        <div>
-                                            <button type="submit" className="btn btn-primary btn-sm w-100 col-md-6 mt-4">Add New</button>
-                                            {
-                                                successNoti && <NavLink to='/forum' className="btn btn-success btn-sm w-100 col-md-6 mt-4">View forum</NavLink>
-                                            }
-                                        </div>
-
-
-                                    </form>
-                                </div>
+                            <div>
+                                <button type="submit" className="btn btn-primary btn-sm w-100 col-md-6 mt-4">Add New</button>
+                                {
+                                    successNoti && <NavLink to='/forum' className="btn btn-success btn-sm w-100 col-md-6 mt-4">View forum</NavLink>
+                                }
                             </div>
-                        </div>
-                    </main>
+
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </div>
     )
 }

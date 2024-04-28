@@ -5,7 +5,21 @@ import { NavLink } from "react-router-dom";
 
 function SidebarTheory() {
     const [theoryCategories, setTheoryCategories] = useState<TheoryCatModel[]>([]);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    
     useEffect(() => {
         getAllTheoryCats()
             .then(
@@ -35,15 +49,16 @@ function SidebarTheory() {
     };
 
     return (
-        <div className="sidebar fl-left">
+        <div className="sidebar">
             <div className="section" id="category-product-wp">
-                <button className="btn btn-success w-100 p-3" style={{fontWeight: 'bold'}}>CƠ SỞ LÝ THUYẾT</button>
+                <button className="btn btn-success w-100 p-3" style={{ fontWeight: 'bold' }}>CƠ SỞ LÝ THUYẾT</button>
                 <div className="section-detail">
                     <ul className="list-item">
                         {theoryCategories.filter(category => category.theoryParentCatId === 1).map(category => (
                             <li key={category.theoryCatId} className="">
                                 <NavLink to={`/theory/${category.theoryCatId}`} title="">{category.name}</NavLink>
-                                {renderSubcategories(getSubcategories(category.theoryCatId))}
+
+                                {windowWidth > 600 && renderSubcategories(getSubcategories(category.theoryCatId))}
                             </li>
                         ))}
                     </ul>

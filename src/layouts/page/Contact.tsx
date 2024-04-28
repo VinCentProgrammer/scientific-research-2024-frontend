@@ -2,9 +2,9 @@ import ScrollToTopButton from "../../utils/scroll/ScrollToTopButton";
 
 function Contact() {
     return (
-        <section className="py-5">
+        <section className="">
             <ScrollToTopButton />
-            <div className="bg-light rounded-3 py-5 px-4 px-md-5 mb-5 ">
+            <div className=" rounded-3 py-5 px-4 px-md-5 mb-5 ">
                 <div className="feature bg-primary bg-gradient text-white rounded-3 mb-3 text-center p-2 mx-auto" style={{ width: '50px' }}><i className="bi bi-envelope"></i></div>
                 <div className="text-center mb-5">
                     <h1 className="fw-bolder">Get in touch</h1>
