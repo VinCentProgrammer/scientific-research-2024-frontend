@@ -84,7 +84,7 @@ function ForumFormQuestion() {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
 
-            fetch("http://14.225.206.14:8081/api/thread/add",
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/thread/add`,
                 {
                     method: 'POST',
                     headers: {
@@ -117,7 +117,7 @@ function ForumFormQuestion() {
                 }
                 // })
                 //     .then((data) => {
-                //         fetch("http://14.225.206.14:8081/api/thread/image/add",
+                //         fetch(`${process.env.REACT_APP_SERVER_URL}/api/thread/image/add`,
                 //             {
                 //                 method: 'POST',
                 //                 headers: {

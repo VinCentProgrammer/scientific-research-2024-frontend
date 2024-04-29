@@ -26,7 +26,7 @@ function RetypePassForm() {
         if (isPasswordValid && isRePasswordValid) {
 
             try {
-                const url = 'http://14.225.206.14:8081/api/account/update-password';
+                const url = `${process.env.REACT_APP_SERVER_URL}/api/account/update-password`;
 
                 const response = await fetch(url, {
                     method: 'PUT',

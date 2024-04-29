@@ -57,7 +57,6 @@ function SidebarTheory() {
                         {theoryCategories.filter(category => category.theoryParentCatId === 1).map(category => (
                             <li key={category.theoryCatId} className="">
                                 <NavLink to={`/theory/${category.theoryCatId}`} title="">{category.name}</NavLink>
-
                                 {windowWidth > 600 && renderSubcategories(getSubcategories(category.theoryCatId))}
                             </li>
                         ))}

@@ -41,19 +41,19 @@ export async function getTheoryExample(url: string): Promise<ResultInterface> {
 }
 
 export async function getTheoryExamples(): Promise<TheoryExampleModel[]> {
-    const url: string = `http://14.225.206.14:8081/theory-example`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/theory-example`;
     return (await getTheoryExample(url)).result;
 }
 
 
 export async function getListTheoryExample(page: number): Promise<ResultInterface> {
-    const url: string = `http://14.225.206.14:8081/theory-example?sort=exampleId,asc&size=8&page=${page}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/theory-example?sort=exampleId,asc&size=8&page=${page}`;
     return getTheoryExample(url);
 }
 
 
 export async function deleteTheoryExample(exampleId: number) {
-    const url: string = `http://14.225.206.14:8081/theory-example/${exampleId}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/theory-example/${exampleId}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -83,7 +83,7 @@ export async function deleteTheoryExample(exampleId: number) {
 
 
 export async function getTheoryExampleById(exampleId: number): Promise<TheoryExampleModel | null> {
-    const url: string = `http://14.225.206.14:8081/theory-example/${exampleId}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/theory-example/${exampleId}`;
 
     try {
         const response: Response = await fetch(url, {

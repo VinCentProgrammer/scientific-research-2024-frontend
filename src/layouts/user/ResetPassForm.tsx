@@ -9,7 +9,7 @@ function ResetPassForm() {
     //////////////======CHECK EMAIL ========///////////////////
     const checkExistedEmail = async (email: string) => {
         // Endpoint
-        const url = `http://14.225.206.14:8081/user/search/existsByEmail?email=${email}`;
+        const url = `${process.env.REACT_APP_SERVER_URL}/user/search/existsByEmail?email=${email}`;
         // Call API
         try {
             const response = await fetch(url);
@@ -37,7 +37,7 @@ function ResetPassForm() {
         // Kiểm tra tất cả các điều kiện
         if (isEmailValid) {
             try {
-                const url = 'http://14.225.206.14:8081/api/account/reset-password';
+                const url = `${process.env.REACT_APP_SERVER_URL}/api/account/reset-password`;
 
                 const response = await fetch(url, {
                     method: 'PUT',

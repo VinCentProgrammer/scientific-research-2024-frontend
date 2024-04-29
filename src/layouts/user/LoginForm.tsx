@@ -16,7 +16,7 @@ function LoginForm() {
             password: password
         }
 
-        fetch('http://14.225.206.14:8081/api/account/login',
+        fetch(`${process.env.REACT_APP_SERVER_URL}/api/account/login`,
             {
                 method: 'POST',
                 headers: {

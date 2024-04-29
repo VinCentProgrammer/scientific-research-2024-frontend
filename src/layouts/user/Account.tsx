@@ -51,7 +51,7 @@ function Account() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        fetch(`http://14.225.206.14:8081/api/user/update/info`,
+        fetch(`${process.env.REACT_APP_SERVER_URL}/api/user/update/info`,
             {
                 method: 'PUT',
                 headers: {

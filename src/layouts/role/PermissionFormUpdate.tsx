@@ -63,7 +63,7 @@ function PermissionFormUpdate() {
         // Kiểm tra tất cả các điều kiện
         if (name && slug) {
             const token = localStorage.getItem('token');
-            fetch(`http://14.225.206.14:8081/permission/${permission?.permissionId}`,
+            fetch(`${process.env.REACT_APP_SERVER_URL}/permission/${permission?.permissionId}`,
                 {
                     method: 'PUT',
                     headers: {

@@ -42,7 +42,7 @@ const ThreadItem: React.FC<ThreadRowProps> = (props) => {
     }, [props.thread.threadId])
 
     const handleIncreaseViews = () => {
-        fetch("http://14.225.206.14:8081/api/thread/update",
+        fetch(`${process.env.REACT_APP_SERVER_URL}/api/thread/update`,
             {
                 method: 'PUT',
                 headers: {

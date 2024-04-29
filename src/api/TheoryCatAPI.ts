@@ -41,12 +41,12 @@ export async function getTheoryCat(url: string): Promise<ResultInterface> {
 }
 
 export async function getTheoryCats(): Promise<TheoryCatModel[]> {
-    const url: string = `http://14.225.206.14:8081/theory-cat`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/theory-cat`;
     return (await getTheoryCat(url)).result;
 }
 
 export async function getAllTheoryCats(): Promise<TheoryCatModel[]> {
-    const url: string = `http://14.225.206.14:8081/api/theory/cat`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/api/theory/cat`;
     const result: TheoryCatModel[] = [];
 
     const response: Response = await fetch(url, {
@@ -79,12 +79,12 @@ export async function getAllTheoryCats(): Promise<TheoryCatModel[]> {
 
 
 export async function getListTheoryCat(page: number): Promise<ResultInterface> {
-    const url: string = `http://14.225.206.14:8081/theory-cat?sort=theoryCatId,asc&size=8&page=${page}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/theory-cat?sort=theoryCatId,asc&size=8&page=${page}`;
     return getTheoryCat(url);
 }
 
 export async function deleteTheoryCat(theoryCatId: number) {
-    const url: string = `http://14.225.206.14:8081/theory-cat/${theoryCatId}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/theory-cat/${theoryCatId}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -113,7 +113,7 @@ export async function deleteTheoryCat(theoryCatId: number) {
 
 
 export async function getTheoryCatById(theoryCatId: number): Promise<TheoryCatModel | null> {
-    const url: string = `http://14.225.206.14:8081/theory-cat/${theoryCatId}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/theory-cat/${theoryCatId}`;
     const token = localStorage.getItem('token');
 
     try {

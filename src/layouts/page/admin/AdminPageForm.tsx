@@ -60,7 +60,7 @@ function AdminPageForm() {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
 
-            fetch("http://14.225.206.14:8081/api/page/add",
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/page/add`,
                 {
                     method: 'POST',
                     headers: {

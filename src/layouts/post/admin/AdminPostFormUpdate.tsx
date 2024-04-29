@@ -141,7 +141,7 @@ function AdminPostFormUpdate() {
             const base64Thumbnail = thumbnail ? await getBase64(thumbnail) : thumbnailBase64;
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-            fetch("http://14.225.206.14:8081/api/post/update",
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/post/update`,
                 {
                     method: 'PUT',
                     headers: {

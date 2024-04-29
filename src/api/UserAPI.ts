@@ -49,12 +49,12 @@ async function getUser(url: string): Promise<ResultInterface> {
 }
 
 export async function getUsers(page: number): Promise<ResultInterface> {
-    const url: string = `http://14.225.206.14:8081/user?sort=userId,desc&size=8&page=${page}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/user?sort=userId,desc&size=8&page=${page}`;
     return getUser(url);
 }
 
 export async function getUserById(id: number): Promise<UserModel | null> {
-    const url: string = `http://14.225.206.14:8081/user/${id}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/user/${id}`;
     // const token = localStorage.getItem('token');
 
 
@@ -96,12 +96,12 @@ export async function getUserById(id: number): Promise<UserModel | null> {
 }
 
 export async function findUser(keyword: string): Promise<ResultInterface> {
-    const url: string = `http://14.225.206.14:8081/user/search/findByUsernameContaining?sort=userId,desc&size=8&page=0&username=${keyword}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/user/search/findByUsernameContaining?sort=userId,desc&size=8&page=0&username=${keyword}`;
     return getUser(url);
 }
 
 export async function deleteUser(id: number) {
-    const url: string = `http://14.225.206.14:8081/user/${id}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/user/${id}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -130,7 +130,7 @@ export async function deleteUser(id: number) {
 
 
 export async function getUserByPostId(postId: number): Promise<UserModel | null> {
-    const url: string = `http://14.225.206.14:8081/post-detail/${postId}/user`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/post-detail/${postId}/user`;
     // const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {
@@ -172,7 +172,7 @@ export async function getUserByPostId(postId: number): Promise<UserModel | null>
 
 
 export async function getUserByThreadId(threadId: number): Promise<UserModel | null> {
-    const url: string = `http://14.225.206.14:8081/thread/${threadId}/user`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/thread/${threadId}/user`;
     try {
         const response: Response = await fetch(url, {
             method: 'GET',

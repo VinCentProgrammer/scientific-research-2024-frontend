@@ -85,7 +85,7 @@ function AdminTheoryKeywordFormUpdate() {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
 
-            fetch("http://14.225.206.14:8081/api/theory/keyword/update",
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/theory/keyword/update`,
                 {
                     method: 'PUT',
                     headers: {

@@ -48,18 +48,18 @@ export async function getPost(url: string): Promise<ResultInterface> {
 }
 
 export async function getPosts(): Promise<PostModel[]> {
-    const url: string = `http://14.225.206.14:8081/post-detail`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/post-detail`;
     return (await getPost(url)).result;
 }
 
 
 export async function getListPost(page: number): Promise<ResultInterface> {
-    const url: string = `http://14.225.206.14:8081/post-detail?sort=postId,desc&size=9&page=${page}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/post-detail?sort=postId,desc&size=9&page=${page}`;
     return getPost(url);
 }
 
 export async function getPostsByPostCatId(postCatId: number): Promise<PostModel[] | null> {
-    const url: string = `http://14.225.206.14:8081/post-cat/${postCatId}/posts`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/post-cat/${postCatId}/posts`;
     const result: PostModel[] = [];
 
     const response: Response = await fetch(url, {
@@ -93,7 +93,7 @@ export async function getPostsByPostCatId(postCatId: number): Promise<PostModel[
 }
 
 export async function deletePost(postId: number) {
-    const url: string = `http://14.225.206.14:8081/post-detail/${postId}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/post-detail/${postId}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -123,7 +123,7 @@ export async function deletePost(postId: number) {
 
 
 export async function getPostById(postId: number): Promise<PostModel | null> {
-    const url: string = `http://14.225.206.14:8081/post-detail/${postId}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/post-detail/${postId}`;
     // const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {

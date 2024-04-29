@@ -110,7 +110,7 @@ function ThreadDetail() {
         if (commentString && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-            fetch("http://14.225.206.14:8081/api/thread/comment/add",
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/thread/comment/add`,
                 {
                     method: 'POST',
                     headers: {
@@ -155,7 +155,7 @@ function ThreadDetail() {
     const handleOnClickIncreaseVote = () => {
         if (votesIncrease && thread != null && threadCat != null && user != null) {
             setVotesIncrease(false);
-            fetch("http://14.225.206.14:8081/api/thread/update",
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/thread/update`,
                 {
                     method: 'PUT',
                     headers: {
@@ -197,7 +197,7 @@ function ThreadDetail() {
         if (votesDecrease && thread != null && threadCat != null && user != null && thread.votes > 0) {
             setVotesDecrease(false);
 
-            fetch("http://14.225.206.14:8081/api/thread/update",
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/thread/update`,
                 {
                     method: 'PUT',
                     headers: {

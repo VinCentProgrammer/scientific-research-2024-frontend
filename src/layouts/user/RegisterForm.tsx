@@ -53,7 +53,7 @@ function RegisterForm() {
             })
 
             try {
-                const url = 'http://14.225.206.14:8081/api/user/add';
+                const url = `${process.env.REACT_APP_SERVER_URL}/api/user/add`;
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: {
@@ -92,7 +92,7 @@ function RegisterForm() {
     }
 
     useEffect(() => {
-        getRole("http://14.225.206.14:8081/role")
+        getRole(`${process.env.REACT_APP_SERVER_URL}/role`)
             .then(
                 res => {
                     setRoles(res.result);
@@ -103,7 +103,7 @@ function RegisterForm() {
     //////////////======CHECK USERNAME========///////////////////
     const checkExistedUsername = async (username: string) => {
         // Endpoint
-        const url = `http://14.225.206.14:8081/user/search/existsByUsername?username=${username}`;
+        const url = `${process.env.REACT_APP_SERVER_URL}/user/search/existsByUsername?username=${username}`;
         // Call API
         try {
             const response = await fetch(url);
@@ -127,7 +127,7 @@ function RegisterForm() {
     //////////////======CHECK EMAIL ========///////////////////
     const checkExistedEmail = async (email: string) => {
         // Endpoint
-        const url = `http://14.225.206.14:8081/user/search/existsByEmail?email=${email}`;
+        const url = `${process.env.REACT_APP_SERVER_URL}/user/search/existsByEmail?email=${email}`;
         // Call API
         try {
             const response = await fetch(url);

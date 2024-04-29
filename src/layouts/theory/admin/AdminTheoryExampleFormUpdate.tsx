@@ -97,7 +97,7 @@ function AdminTheoryExampleFormUpdate() {
         if (name && answer && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-            fetch("http://14.225.206.14:8081/api/theory/example/update",
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/theory/example/update`,
                 {
                     method: 'PUT',
                     headers: {

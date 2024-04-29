@@ -62,7 +62,7 @@ function AdminTheoryExampleForm() {
         if (name && answer && theoryId && token) {
             const decodedToken = jwtDecode(token) as JwtPayload;
             const userId = decodedToken.userId;
-            fetch("http://14.225.206.14:8081/api/theory/example/add",
+            fetch(`${process.env.REACT_APP_SERVER_URL}/api/theory/example/add`,
                 {
                     method: 'POST',
                     headers: {

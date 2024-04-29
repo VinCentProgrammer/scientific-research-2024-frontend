@@ -61,7 +61,7 @@ function AdminPostCatForm() {
         // 
         if (postCatName && desc && postCatParentId) {
             const token = localStorage.getItem('token');
-            fetch("http://14.225.206.14:8081/post-cat",
+            fetch(`${process.env.REACT_APP_SERVER_URL}/post-cat`,
                 {
                     method: 'POST',
                     headers: {

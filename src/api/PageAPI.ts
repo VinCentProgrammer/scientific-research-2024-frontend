@@ -41,18 +41,18 @@ export async function getPage(url: string): Promise<ResultInterface> {
 }
 
 export async function getPages(): Promise<PageModel[]> {
-    const url: string = `http://14.225.206.14:8081/page`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/page`;
     return (await getPage(url)).result;
 }
 
 
 export async function getListPage(page: number): Promise<ResultInterface> {
-    const url: string = `http://14.225.206.14:8081/page?sort=pageId,asc&size=8&page=${page}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/page?sort=pageId,asc&size=8&page=${page}`;
     return getPage(url);
 }
 
 export async function deletePage(pageId: number) {
-    const url: string = `http://14.225.206.14:8081/page/${pageId}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/page/${pageId}`;
     const token = localStorage.getItem('token');
 
     if (!token) {
@@ -82,7 +82,7 @@ export async function deletePage(pageId: number) {
 
 
 export async function getPageById(pageId: number): Promise<PageModel | null> {
-    const url: string = `http://14.225.206.14:8081/page/${pageId}`;
+    const url: string = `${process.env.REACT_APP_SERVER_URL}/page/${pageId}`;
     const token = localStorage.getItem('token');
     try {
         const response: Response = await fetch(url, {
