@@ -5,6 +5,7 @@ import JwtPayload from "../../models/JwtPayLoad";
 import { useEffect, useState } from "react";
 import { getUserById } from "../../api/UserAPI";
 import UserLoginRequire from "../require/UserLoginRequire";
+import capitalize from "../../utils/string/CapitalizeString";
 
 interface FormCommentProps {
     thread: ThreadModel;
@@ -37,7 +38,7 @@ const FormComment: React.FC<FormCommentProps> = (props) => {
             <div className="container">
                 <div className="row">
                     <div className="col-md-1 my-1">
-                        <img className="img-fluid img-responsive rounded-circle" src={user?.avatar} width={50} height={50} />
+                        <img className="img-fluid img-responsive rounded-circle" src={user?.avatar} width={30} height={30} />
                     </div>
                     <div className="col-md-10 my-1">
                         <textarea

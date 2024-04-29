@@ -36,7 +36,7 @@ const PostItem: React.FC<PostItemInterface> = (props) => {
                 <div className="card-footer p-4 pt-0 bg-transparent border-top-0">
                     <div className="d-flex align-items-end justify-content-between">
                         <div className="d-flex align-items-center">
-                            <img className="rounded-circle me-3"  src={'./../../../images/avatar.jpg'} alt="..." width={40}/>
+                            <img className="rounded-circle me-3"  src={'./../../../images/cat-2.jpg'} alt="..." width={40}/>
                             <div className="small">
                                 <div className="fw-bold">Admin</div>
                                 <div className="text-muted">{formatDateTimeUser(props.post.createdAt)}</div>

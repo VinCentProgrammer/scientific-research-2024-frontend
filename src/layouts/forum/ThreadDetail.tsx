@@ -256,22 +256,22 @@ function ThreadDetail() {
 
     return (
         <div className="text-start" style={{ minHeight: '700px' }}>
-            <div className="container">
+            <div className="container-fluid">
                 <div className="d-flex justify-content-center row">
                     <div className="d-flex flex-column col-md-10">
-                        <div className="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4 row">
+                        <div className="d-flex flex-row align-items-center text-left comment-top p-2 mt-2 bg-white border-bottom px-4 row">
                             <div className="col-md-1">
                                 <div className="profile-image" style={{
                                     display: 'flex', flexWrap: 'wrap',
                                     justifyContent: 'center', alignItems: 'center'
                                 }}>
+                                    <img className="rounded-circle text-center" src={user?.avatar} style={{ maxWidth: '80px' }} />
                                     <div className="fs-4" style={{ fontWeight: 'bold' }}>{user && capitalize(user?.username)}</div>
-                                    <img className="rounded-circle text-center" src={user?.avatar} style={{ maxWidth: '100px' }} />
                                 </div>
                             </div>
 
                             <div className="col-md-10">
-                                <div className="p-3">
+                                <div className="p-2 text-center">
                                     <p>{thread?.detailQuestion}</p>
                                 </div>
                             </div>
@@ -297,7 +297,7 @@ function ThreadDetail() {
                                 <FormCommnet thread={thread} handleSubmit={handleSubmit} comment={commentString} setComment={setCommentString} />
                             }
 
-                            <div className="px-4">
+                            <div className="mx-2">
                                 {
                                     comments?.map((comment) => (
                                         <CommentItem comment={comment} commentString={commentString} setComment={setCommentString} handleSubmit={handleSubmit} />

@@ -30,11 +30,11 @@ const CommentItem: React.FC<CommentItemProps> = (props) => {
         <div className="commented-section mt-2">
             <div className="d-flex flex-row align-items-center commented-user">
                 <img className="img-fluid img-responsive rounded-circle mr-2" src={user?.avatar} width="38" />
-                <h5 className="mx-3">{user && capitalize(user?.username)}</h5>
+                <h5 className="mx-3 m-0">{user && capitalize(user?.username)}</h5>
                 <span className="dot"></span>
-                <span className="mb-1 ml-2 mx-2 fst-italic">Commented {calculateTimeDifference(props.comment.createdAt)}</span>
+                <span className="ml-2 mx-2 fst-italic" style={{ fontSize: '12px' }}>Commented {calculateTimeDifference(props.comment.createdAt)}</span>
             </div>
-            <div className="comment-text-sm" style={{ margin: '2px 58px' }}>
+            <div className="comment-text-sm" style={{ margin: '3px 10px' }}>
                 <span>{props.comment.comment}</span>
             </div>
             <hr />

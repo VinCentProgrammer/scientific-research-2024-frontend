@@ -87,7 +87,7 @@ function PostDetail() {
     return (
         <section className="py-4 text-start">
             <ScrollToTopButton />
-            <div className="container px-5" style={{ minHeight: '700px' }}>
+            <div className="container px-4" style={{ minHeight: '700px' }}>
                 <div className="row gx-5" id="post-detail">
                     <article style={{ minHeight: '500px' }}>
                         <header className="mb-4 text-center">
