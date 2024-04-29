@@ -57,6 +57,8 @@ function Theory() {
     const handleCheckSearchExercise = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setCheckSearchExercise(parseInt(event.target.value));
     }
+
+    
     return (
         <div id="layoutSidenav" className="my-2">
             <ScrollToTopButton />
