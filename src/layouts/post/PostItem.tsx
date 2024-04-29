@@ -24,7 +24,7 @@ const PostItem: React.FC<PostItemInterface> = (props) => {
         <div className="col-lg-4 mb-5">
             <div className="card h-100 shadow border-0">
                 <NavLink to={`/post/${props.post.postId}`}>
-                    <img className="card-img-top" src={props.post.thumbnail} alt="..." style={{ height: "400px" }} />
+                    <img className="card-img-top" src={props.post.thumbnail} alt="..." style={{ height: "atuo" }} />
                 </NavLink>
                 <div className="card-body py-2 px-3">
                     <div className="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
